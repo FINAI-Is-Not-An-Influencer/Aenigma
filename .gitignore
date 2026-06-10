@@ -1,0 +1,19 @@
+# =========================
+# Aenigma .gitignore
+# =========================
+
+*.properties
+catalog-v001.xml
+.Protege/
+logs/
+
+*.swp
+*.swo
+*~
+.netrwhist
+
+.DS_Store
+Thumbs.db
+
+*.tmp
+*.bak
