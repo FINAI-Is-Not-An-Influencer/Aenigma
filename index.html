@@ -1,170 +1,489 @@
 <!doctype html>
-<html lang="it">
+<html lang="it" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Aenigma | Ontologia Web Fondamentale</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
+    />
+    <meta name="color-scheme" content="dark" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; font-src 'none'; img-src 'self' data:; media-src 'none'; object-src 'none'; script-src 'none'; frame-src 'none'; child-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content;"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+    <title>
+      Aenigma Ontology | Stat rosa pristina nomine, nomina nuda tenemus
+    </title>
+    <meta
+      name="description"
+      content="Aenigma è un'ontologia digitale statica, un repository semantico in fase di sviluppo afferente alla Cripta Semantica. Esplorazione del web semantico tramite RDF e OWL."
+    />
+    <meta name="author" content="FINAI & Alessandro Sevardi" />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+    <meta
+      name="keywords"
+      content="Ontologia, Web Semantico, RDF, OWL, Cripta Semantica, Aenigma, Sicurezza Informatica, Epistemologia, Nominalismo"
+    />
+
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aenigma Web Ontology" />
+    <meta
+      property="og:description"
+      content="Infrastruttura semantica e grafo di conoscenza. Nomina nuda tenemus."
+    />
+    <meta property="og:url" content="https://aenigma.criptasemantica.it/" />
+    <meta
+      property="og:site_name"
+      content="Cripta Semantica - Sottodominio Ontologico"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Aenigma Ontology",
+        "alternateName": "Grafo Ontologico della Cripta Semantica",
+        "url": "https://aenigma.criptasemantica.it/",
+        "description": "Ontologia web statica per la strutturazione dei dati e la ricerca epistemologica nel campo del Web Semantico.",
+        "inLanguage": "it",
+        "author": {
+          "@type": "Organization",
+          "name": "Cripta Semantica",
+          "url": "https://criptasemantica.it"
+        },
+        "copyrightHolder": {
+          "@type": "Organization",
+          "name": "FINAI"
+        },
+        "license": "https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+      }
+    </script>
+
     <style>
+      /* Variabili CSS Semantiche: Palette ad Alto Contrasto (AAA WCAG) */
+      :root {
+        --color-bg-terminal: #0a0a0a;
+        --color-bg-element: #111111;
+        --color-text-main: #e2e8f0; /* Bianco/Grigio per leggibilità prolungata */
+        --color-text-accent: #22c55e; /* Verde Fosforo Terminale */
+        --color-text-dim: #94a3b8; /* Grigio per meta-testi */
+        --color-border: #333333;
+        --color-focus: #facc15; /* Giallo per focus accessibile */
+
+        /* Tipografia di Sistema - Zero dipendenze esterne */
+        --font-mono:
+          "Consolas", "Monaco", "Lucida Console", "Liberation Mono",
+          "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New",
+          monospace;
+        --line-height-body: 1.7;
+        --font-size-base: 1.125rem; /* 18px per leggibilità superiore */
+      }
+
+      /* Preferenze di sistema per l'accessibilità (Motion e Colore) */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+
+      /* Reset e Base */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: "Times New Roman", Times, serif;
-        line-height: 1.5;
-        color: #2c3e50;
-        background-color: #fdfbf7;
+        background-color: var(--color-bg-terminal);
+        color: var(--color-text-main);
+        font-family: var(--font-mono);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-body);
         margin: 0;
-        padding: 40px 20px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
+
+      /* Gestione del Focus per navigazione da tastiera */
+      :focus {
+        outline: 3px solid var(--color-focus);
+        outline-offset: 4px;
+      }
+
+      /* Struttura Layout Principale */
+      .skip-link {
+        position: absolute;
+        top: -50px;
+        left: 0;
+        background: var(--color-focus);
+        color: #000;
+        padding: 8px 16px;
+        z-index: 100;
+        text-decoration: none;
+        font-weight: bold;
+        transition: top 0.2s;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+
       .container {
-        max-width: 750px;
-        margin: 0 auto;
-        background: #ffffff;
-        padding: 40px;
-        border: 1px solid #e2e8f0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        width: 100%;
+        max-width: 900px;
+        padding: 2rem 1.5rem;
+        flex: 1;
       }
-      h1 {
-        font-size: 20pt;
-        color: #1a365d;
-        border-bottom: 2px solid #1a365d;
-        padding-bottom: 10px;
-        margin-top: 0;
-        margin-bottom: 25px;
+
+      /* Tipografia e Intestazioni */
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: var(--color-text-accent);
         font-weight: normal;
-        letter-spacing: 0.5px;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
       }
+
+      h1 {
+        font-size: 2.5rem;
+        border-bottom: 2px solid var(--color-text-accent);
+        padding-bottom: 0.5rem;
+        margin-top: 0;
+      }
+      h1::before {
+        content: "root@aenigma:~# ";
+        opacity: 0.7;
+        font-size: 1.5rem;
+      }
+
       h2 {
-        font-size: 13pt;
-        color: #2c5282;
-        margin-top: 30px;
-        margin-bottom: 15px;
+        font-size: 1.8rem;
+      }
+      h2::before {
+        content: "./";
+        opacity: 0.7;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        color: var(--color-text-main);
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        text-align: justify;
+      }
+
+      /* Elementi Semantici Inline */
+      strong,
+      b {
+        color: var(--color-text-accent);
         font-weight: bold;
       }
-      p {
-        font-size: 10.5pt;
-        text-align: justify;
-        margin-bottom: 15px;
-      }
-      a {
-        color: #2b6cb0;
-        text-decoration: none;
-        border-bottom: 1px dotted #2b6cb0;
-      }
-      a:hover {
-        color: #1a365d;
-        border-bottom: 1px solid #1a365d;
-      }
-      .notice-box {
-        background-color: #f7fafc;
-        border-left: 4px solid #4a5568;
-        padding: 15px 20px;
-        margin: 25px 0;
-      }
-      .notice-box p {
-        margin: 0;
+      em,
+      i {
         font-style: italic;
+        color: var(--color-text-dim);
       }
-      .footer-links {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px dashed #cbd5e0;
-        font-size: 9.5pt;
+      dfn {
+        border-bottom: 1px dashed var(--color-text-dim);
+        cursor: help;
+      }
+      abbr {
+        text-decoration: underline dotted;
+        cursor: help;
+      }
+
+      blockquote {
+        border-left: 4px solid var(--color-text-accent);
+        margin: 2rem 0;
+        padding: 1rem 1.5rem;
+        background-color: var(--color-bg-element);
+        font-style: italic;
+        color: var(--color-text-dim);
+      }
+      blockquote cite {
+        display: block;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        text-align: right;
+        color: var(--color-text-accent);
+      }
+
+      /* Codice e Dati */
+      code,
+      kbd,
+      samp {
+        font-family: var(--font-mono);
+        background-color: #1e293b;
+        padding: 0.2rem 0.4rem;
+        border-radius: 3px;
+        font-size: 0.95em;
+        color: #fbbf24;
+      }
+
+      pre {
+        background-color: var(--color-bg-element);
+        border: 1px solid var(--color-border);
+        padding: 1rem;
+        overflow-x: auto;
+        margin-bottom: 1.5rem;
+        color: var(--color-text-dim);
+      }
+
+      /* Link e Navigazione */
+      a {
+        color: var(--color-text-accent);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          border-bottom-color 0.2s,
+          color 0.2s;
+      }
+      a:hover,
+      a:active {
+        border-bottom-color: var(--color-text-accent);
+        text-shadow: 0 0 5px rgba(34, 197, 94, 0.5);
+      }
+
+      .policies-nav {
+        background-color: var(--color-bg-element);
+        border: 1px solid var(--color-border);
+        padding: 1.5rem;
+        margin-top: 4rem;
+      }
+      .policies-nav h2 {
+        margin-top: 0;
+        font-size: 1.2rem;
+        color: var(--color-text-dim);
+      }
+      .policies-nav ul {
+        list-style-type: square;
+        padding-left: 1.5rem;
+        margin-bottom: 0;
+      }
+      .policies-nav li {
+        margin-bottom: 0.5rem;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px dashed var(--color-border);
         text-align: center;
+        font-size: 0.9rem;
+        color: var(--color-text-dim);
+      }
+
+      /* Animazione cursore per dare feeling terminale */
+      .cursor-blink {
+        display: inline-block;
+        width: 10px;
+        height: 1.2em;
+        background-color: var(--color-text-accent);
+        vertical-align: text-bottom;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* Accessibilità della Stampa */
+      @media print {
+        body {
+          background: #fff;
+          color: #000;
+        }
+        a {
+          color: #000;
+          text-decoration: underline;
+        }
+        h1,
+        h2,
+        strong,
+        code {
+          color: #000;
+        }
+        .container {
+          padding: 0;
+        }
       }
     </style>
   </head>
+
   <body>
+    <a
+      href="#main-content"
+      class="skip-link"
+      aria-label="Salta la decorazione visiva e vai al contenuto testuale"
+      >Salta al contenuto principale</a
+    >
+
     <div class="container">
-      <h1>Aenigma Ontology &mdash;</h1>
-      <h2>Stat rosa pristina nomine, nomina nuda tenemus</h2>
+      <header role="banner" aria-labelledby="page-title">
+        <h1 id="page-title">Aenigma_Ontology</h1>
 
-      <p>
-        Benvenuto nell'ambiente telematico del sottodominio
-        <a href="https://aenigma.criptasemantica.it/"
-          >aenigma.criptasemantica.it</a
-        >. Questa risorsa è interamente dedicata all'esposizione strutturata,
-        all'interrogazione e alla computazione della Web Ontology parallela
-        sviluppata all'interno del progetto originario.
-      </p>
+        <blockquote aria-label="Citazione filosofica sul nominalismo">
+          <p><q>Stat rosa pristina nomine, nomina nuda tenemus.</q></p>
+          <cite
+            >&mdash; Bernando Censecense (ripreso da Umberto Eco,
+            <em>Il nome della rosa</em>)</cite
+          >
+        </blockquote>
+      </header>
 
-      <h2>1. Architettura Tecnica e Assenza di Cookie di Tracciamento</h2>
-      <p>
-        In ossequio ai principi di ingegneria del software orientati alla
-        sovranità dei dati e alla <em>Privacy by Design</em>, si informa
-        l'Utenza che questo spazio telematico è ospitato in modalità statica
-        sulle infrastrutture cloud di <strong>GitHub Pages</strong>, servizio
-        erogato da GitHub, Inc. Per sua stessa natura strutturale, questo
-        sottodominio
-        <strong
-          >non installa, non utilizza e non propaga alcun cookie di
-          profilazione, cookie analitico o marcatore pubblicitario
-          commerciale</strong
-        >, né di prima né di terza parte.
-      </p>
+      <main id="main-content" role="main">
+        <article aria-labelledby="section-epistemologia">
+          <h2 id="section-epistemologia">Dall'Epistemologia al Grafo</h2>
+          <p>
+            La
+            <dfn
+              title="Ontologia: una specificazione formale e condivisa di una concettualizzazione nel dominio informatico"
+              >rosa primigenia</dfn
+            >
+            esiste oramai soltanto nel suo nome; a noi non restano che nomi
+            nudi, etichette vuote, stringhe alfanumeriche in attesa di senso. Il
+            <strong>Web Semantico</strong> è la massima e più cruda incarnazione
+            tecnologica di questa intuizione medievale: la realtà tangibile si
+            smaterializza, tradotta e ridotta a una costellazione di
+            <abbr title="Uniform Resource Identifier">URI</abbr> e triplette
+            <abbr title="Resource Description Framework">RDF</abbr>.
+          </p>
+          <p>
+            <strong>Aenigma</strong> non è un semplice sito web. È la sala
+            macchine, il telaio sintattico e il repository statico su cui la
+            <a
+              href="https://criptasemantica.it"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Cripta Semantica</a
+            >
+            compila la propria ontologia digitale. In questo spazio non serviamo
+            interfacce grafiche edulcorate, ma esponiamo la struttura logica
+            nuda: classi, proprietà, gerarchie e assiomi codificati in formato
+            <abbr title="Web Ontology Language">OWL</abbr>.
+          </p>
+        </article>
 
-      <h2>2. Come GitHub Elabora i Dati di Navigazione (Log di Rete)</h2>
-      <p>
-        Quando un dispositivo client interroga e carica le pagine o i file
-        ontologici (OWL, RDF, JSON-LD) di questo sottodominio, i server di
-        GitHub, Inc. acquisiscono in modo automatico e transitorio i metadati
-        intrinseci di rete. Tali dati includono l'indirizzo IP del visitatore,
-        l'orario esatto della richiesta (timestamp) e le specifiche del browser
-        (User-Agent). Questa elaborazione è svolta in base al
-        <strong>legittimo interesse</strong> del fornitore di hosting per
-        adempiere a imprescindibili obblighi di sicurezza perimetrale,
-        prevenzione di frodi, mitigazione di attacchi informatici e corretta
-        distribuzione del protocollo HTTPS, come specificato nei
-        <a
-          href="https://docs.github.com/en/site-policy"
-          target="_blank"
-          rel="noopener noreferrer"
-          >GitHub Site Terms</a
-        >.
-      </p>
+        <article aria-labelledby="section-status">
+          <h2 id="section-status">Stato di Inizializzazione del Nodo</h2>
+          <p>
+            Attualmente, l'infrastruttura di <em>Aenigma</em> si trova in stato
+            di <samp>compilazione_attiva</samp>. Stiamo tracciando i confini
+            formali del vocabolario, definendo le tassonomie che permetteranno
+            alle macchine (dai <em>crawler</em> tradizionali ai più moderni
+            agenti di <strong>Intelligenza Artificiale Generativa</strong>) di
+            comprendere le relazioni di significato che legano l'architettura
+            filosofica e tecnica del progetto originario.
+          </p>
+          <p>
+            In ossequio ai principi di <em>Privacy by Design</em> e di sicurezza
+            asettica, questo sottodominio è servito come
+            <strong>nodo di puro read-only</strong> (sola lettura). Nessun
+            database dinamico è connesso a questa istanza, nessuno script di
+            esecuzione è consentito. L'ambiente in cui navighi è ermetico,
+            concepito per l'interrogazione macchina-macchina (M2M) e per la
+            consultazione accademica. L'identità dell'utente non viene
+            tracciata, inferita o archiviata all'interno di questi confini.
+          </p>
+          <pre
+            aria-label="Codice di stato fittizio dell'ontologia"
+            tabindex="0"
+          ><code><span aria-hidden="true">[STATUS LOG]</span>
+Loading triples... 
+Initializing semantic graph... 
+Verifying disjoint classes... OK.
+Aenigma node online. Ready for SPARQL queries. <span class="cursor-blink" aria-hidden="true"></span></code></pre>
+        </article>
+      </main>
 
-      <div class="notice-box">
+      <nav
+        class="policies-nav"
+        role="navigation"
+        aria-labelledby="nav-policies"
+      >
+        <h2 id="nav-policies">Documentazione Legale e Vincoli Sistemici</h2>
         <p>
-          <strong>Nota sulla neutralità del consenso:</strong> Non essendovi
-          alcuna posa in opera di traccianti opzionali o dinamiche di
-          monetizzazione comportamentale, all'interno di questo sottodominio non
-          è operativo (né richiesto dalla legge) alcun meccanismo intrusivo di
-          Cookie Banner. La tutela della tua riservatezza è garantita
-          biologicamente dall'assenza totale di codice tracciante.
+          La navigazione, l'estrazione dati e l'interrogazione di questa
+          ontologia sono tassativamente subordinate all'architettura legale
+          centralizzata della Cripta Semantica. Si evidenzia l'applicazione di
+          un inibitoria <em>machine-readable</em> contro il Text and Data Mining
+          (TDM Opt-Out) non autorizzato.
         </p>
-      </div>
+        <ul>
+          <li>
+            <a
+              href="https://criptasemantica.it/note-legali/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Leggi le Note Legali e Condizioni Generali sul sito principale"
+              >Note Legali e Condizioni Generali</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://criptasemantica.it/note-legali/informativa-sulla-privacy/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Leggi l'Informativa sulla Privacy sul sito principale"
+              >Informativa sulla Privacy</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://criptasemantica.it/note-legali/informativa-sui-cookie/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Leggi l'Informativa sui Cookie sul sito principale"
+              >Informativa sui Cookie &amp; TDM Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Leggi l'informativa su Diritti d'Autore e Licenze Open Access sul sito principale"
+              >Diritti d'Autore e Licenze (Copyleft &amp; Copyright)</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-      <h2>3. Diritti dell'Interessato e Politiche Centralizzate</h2>
-      <p>
-        Per l'esercizio dei diritti di accesso, rettifica o cancellazione
-        previsti dal Titolo III del GDPR, nonché per una piena ed esaustiva
-        comprensione dei trattamenti effettuati, della conservazione dei log e
-        dei trasferimenti transfrontalieri associati a questa infrastruttura, si
-        rinvia l'Utente alla documentazione legale centralizzata della
-        piattaforma madre, di cui questo progetto parallelo costituisce parte
-        integrante.
-      </p>
-
-      <div class="footer-links">
-        Riferimenti di Compliance:
-        <a
-          href="https://criptasemantica.it/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Cripta Semantica Home</a
-        >
-        |
-        <a
-          href="https://criptasemantica.it/index.php/note-legali/informativa-sulla-privacy/"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Informativa Privacy e Cookie Completa</a
-        >
-        |
-        <a
-          href="https://docs.github.com/en/site-policy"
-          target="_blank"
-          rel="noopener noreferrer"
-          >GitHub Site Policy (Esterna)</a
-        >
-      </div>
+      <footer role="contentinfo">
+        <p>
+          <time datetime="2026-06-13"
+            >Aggiornamento di Sistema: 13 Giugno 2026</time
+          ><br />
+          Progetto Aenigma &copy; FINAI &amp; Alessandro Sevardi.<br />
+          <small>Ambiente Statico Isolato. Zero dipendenze remote.</small>
+        </p>
+      </footer>
     </div>
   </body>
 </html>
