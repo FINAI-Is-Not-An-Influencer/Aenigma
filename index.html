@@ -68,26 +68,23 @@
     </script>
 
     <style>
-      /* Variabili CSS Semantiche: Palette ad Alto Contrasto (AAA WCAG) */
       :root {
         --color-bg-terminal: #0a0a0a;
         --color-bg-element: #111111;
-        --color-text-main: #e2e8f0; /* Bianco/Grigio per leggibilità prolungata */
-        --color-text-accent: #22c55e; /* Verde Fosforo Terminale */
-        --color-text-dim: #94a3b8; /* Grigio per meta-testi */
+        --color-text-main: #e2e8f0;
+        --color-text-accent: #22c55e;
+        --color-text-dim: #94a3b8;
         --color-border: #333333;
-        --color-focus: #facc15; /* Giallo per focus accessibile */
+        --color-focus: #facc15;
 
-        /* Tipografia di Sistema - Zero dipendenze esterne */
         --font-mono:
           "Consolas", "Monaco", "Lucida Console", "Liberation Mono",
           "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New",
           monospace;
         --line-height-body: 1.7;
-        --font-size-base: 1.125rem; /* 18px per leggibilità superiore */
+        --font-size-base: 1.125rem;
       }
 
-      /* Preferenze di sistema per l'accessibilità (Motion e Colore) */
       @media (prefers-reduced-motion: reduce) {
         * {
           animation: none !important;
@@ -95,7 +92,6 @@
         }
       }
 
-      /* Reset e Base */
       *,
       *::before,
       *::after {
@@ -120,13 +116,11 @@
         -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Gestione del Focus per navigazione da tastiera */
       :focus {
         outline: 3px solid var(--color-focus);
         outline-offset: 4px;
       }
 
-      /* Struttura Layout Principale */
       .skip-link {
         position: absolute;
         top: -50px;
@@ -150,7 +144,6 @@
         flex: 1;
       }
 
-      /* Tipografia e Intestazioni */
       h1,
       h2,
       h3,
@@ -189,10 +182,9 @@
 
       p {
         margin-bottom: 1.5rem;
-        text-align: justify;
+        text-align: left;
       }
 
-      /* Elementi Semantici Inline */
       strong,
       b {
         color: var(--color-text-accent);
@@ -228,7 +220,6 @@
         color: var(--color-text-accent);
       }
 
-      /* Codice e Dati */
       code,
       kbd,
       samp {
@@ -249,7 +240,6 @@
         color: var(--color-text-dim);
       }
 
-      /* Link e Navigazione */
       a {
         color: var(--color-text-accent);
         text-decoration: none;
@@ -284,7 +274,6 @@
         margin-bottom: 0.5rem;
       }
 
-      /* Footer */
       footer {
         margin-top: 4rem;
         padding-top: 2rem;
@@ -294,7 +283,6 @@
         color: var(--color-text-dim);
       }
 
-      /* Animazione cursore per dare feeling terminale */
       .cursor-blink {
         display: inline-block;
         width: 10px;
@@ -313,7 +301,6 @@
         }
       }
 
-      /* Accessibilità della Stampa */
       @media print {
         body {
           background: #fff;
