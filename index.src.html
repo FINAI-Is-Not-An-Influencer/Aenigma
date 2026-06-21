@@ -1,5 +1,13 @@
 <!doctype html>
-<html lang="it" dir="ltr">
+<html
+  lang="it-IT"
+  xml:lang="it-IT"
+  dir="ltr"
+  prefix="og: https://ogp.me/ns# article: https://ogp.me/ns/article# dc: http://purl.org/dc/elements/1.1/ schema: https://schema.org/ cito: http://purl.org/spar/cito/ fabio: http://purl.org/spar/fabio/ owl: http://www.w3.org/2002/07/owl#"
+  itemscope
+  itemtype="https://schema.org/WebPage"
+  typeof="schema:WebPage fabio:WebPage owl:Thing"
+>
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -14,21 +22,50 @@
     <meta name="referrer" content="no-referrer" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
-    <title>
+    <title itemprop="name" property="schema:name dc:title">
       Aenigma Ontology | Stat rosa pristina nomine, nomina nuda tenemus
     </title>
+
     <meta
       name="description"
+      itemprop="description"
+      property="schema:description dc:description"
       content="Aenigma è un'ontologia digitale statica, un repository semantico in fase di sviluppo afferente alla Cripta Semantica. Esplorazione del web semantico tramite RDF e OWL."
     />
-    <meta name="author" content="FINAI & Alessandro Sevardi" />
     <meta
-      name="robots"
-      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+      name="abstract"
+      property="schema:abstract"
+      content="Repository semantico e ontologico (Aenigma) per l'infrastrutturazione del Web Semantico, lo studio epistemologico e la capitalizzazione scientometrica tramite standard RDF e OWL."
     />
     <meta
+      name="author"
+      property="schema:author"
+      content="FINAI & Alessandro Sevardi"
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1, noarchive"
+    />
+    <meta
+      name="googlebot"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+
+    <meta
       name="keywords"
-      content="Ontologia, Web Semantico, RDF, OWL, Cripta Semantica, Aenigma, Sicurezza Informatica, Epistemologia, Nominalismo"
+      property="schema:keywords"
+      content="Ontologia, Web Semantico, RDF, OWL, Cripta Semantica, Aenigma, Sicurezza Informatica, Epistemologia, Nominalismo, Filosofia, Intelligenza Artificiale, AI Optimization, Agentic AI Optimization, Generative Engine Optimization, Accessibilità, WCAG, WAD, JSON-LD, Microdata, Grafo di Conoscenza, Privacy, GDPR, FLOSS, Copyleft, Ricerca Scientifica"
+    />
+
+    <meta name="category" content="Science & Technology > Semantic Web" />
+    <meta
+      name="classification"
+      content="Ontology, Epistemology, Computer Science"
+    />
+    <meta
+      name="subject"
+      property="dc:subject"
+      content="Web Semantico e Ontologia"
     />
 
     <meta property="og:locale" content="it_IT" />
@@ -43,112 +80,592 @@
       property="og:site_name"
       content="Cripta Semantica - Sottodominio Ontologico"
     />
+    <meta property="article:publisher" content="https://criptasemantica.it" />
+    <meta property="article:section" content="Ontologia Informatica" />
+    <meta property="article:tag" content="Ontologia" />
+    <meta property="article:tag" content="Web Semantico" />
+    <meta property="article:tag" content="RDF" />
+    <meta property="article:tag" content="OWL" />
+    <meta property="article:tag" content="Cripta Semantica" />
+    <meta property="article:tag" content="Aenigma" />
+    <meta property="article:tag" content="Sicurezza Informatica" />
+    <meta property="article:tag" content="Epistemologia" />
+    <meta property="article:tag" content="Nominalismo" />
+    <meta property="article:tag" content="Filosofia" />
+    <meta property="article:tag" content="AI Optimization" />
+    <meta property="article:tag" content="Agentic AI Optimization" />
+    <meta property="article:tag" content="Generative Engine Optimization" />
+    <meta property="article:tag" content="Accessibilità" />
+    <meta property="article:tag" content="WCAG" />
+    <meta property="article:tag" content="WAD" />
+    <meta property="article:tag" content="JSON-LD" />
+    <meta property="article:tag" content="Microdata" />
+    <meta property="article:tag" content="Grafo di Conoscenza" />
+    <meta property="article:tag" content="Privacy" />
+    <meta property="article:tag" content="GDPR" />
+    <meta property="article:tag" content="FLOSS" />
+    <meta property="article:tag" content="Copyleft" />
+    <meta property="article:tag" content="Ricerca Scientifica" />
+
+    <meta name="DC.title" content="Aenigma Web Ontology" />
+    <meta name="DC.creator" content="FINAI" />
+    <meta name="DC.creator" content="Alessandro Sevardi" />
+    <meta
+      name="DC.subject"
+      content="Semantic Web; Ontology; OWL; Epistemology"
+    />
+    <meta
+      name="DC.description"
+      content="Aenigma è un'ontologia digitale statica, un repository semantico in fase di sviluppo afferente alla Cripta Semantica."
+    />
+    <meta name="DC.publisher" content="Cripta Semantica" />
+    <meta name="DC.type" scheme="DCTERMS.DCMIType" content="Text" />
+    <meta name="DC.type" scheme="DCTERMS.DCMIType" content="Dataset" />
+    <meta name="DC.format" content="text/html" />
+    <meta
+      name="DC.identifier"
+      scheme="DCTERMS.URI"
+      content="https://aenigma.criptasemantica.it/"
+    />
+    <meta name="DC.language" scheme="DCTERMS.RFC4646" content="it" />
+    <meta
+      name="DC.rights"
+      content="Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)"
+    />
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Aenigma Ontology",
-        "alternateName": "Grafo Ontologico della Cripta Semantica",
-        "url": "https://aenigma.criptasemantica.it/",
-        "description": "Ontologia web statica per la strutturazione dei dati e la ricerca epistemologica nel campo del Web Semantico.",
-        "inLanguage": "it",
-        "author": {
-          "@type": "Organization",
-          "name": "Cripta Semantica",
-          "url": "https://criptasemantica.it"
-        },
-        "copyrightHolder": {
-          "@type": "Organization",
-          "name": "FINAI"
-        },
-        "license": "https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://aenigma.criptasemantica.it/#website",
+            "name": "Aenigma Ontology",
+            "alternateName": "Grafo Ontologico della Cripta Semantica",
+            "url": "https://aenigma.criptasemantica.it/",
+            "description": "Ontologia web statica per la strutturazione dei dati e la ricerca epistemologica nel campo del Web Semantico.",
+            "inLanguage": "it-IT",
+            "author": [
+              {
+                "@type": "Organization",
+                "name": "Cripta Semantica",
+                "url": "https://criptasemantica.it"
+              },
+              {
+                "@type": "Person",
+                "name": "FINAI"
+              },
+              {
+                "@type": "Person",
+                "name": "Alessandro Sevardi"
+              }
+            ],
+            "copyrightHolder": {
+              "@type": "Organization",
+              "name": "FINAI"
+            },
+            "license": "https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://aenigma.criptasemantica.it/#webpage",
+            "url": "https://aenigma.criptasemantica.it/",
+            "name": "Aenigma Ontology | Stat rosa pristina nomine, nomina nuda tenemus",
+            "isPartOf": { "@id": "https://aenigma.criptasemantica.it/#website" }
+          }
+        ]
       }
     </script>
 
     INJECT_CSS_HERE
   </head>
-  <body>
-    <a
-      href="#main-content"
-      class="skip-link"
-      aria-label="Salta la decorazione visiva e vai al contenuto testuale"
-      >Salta al contenuto principale</a
-    >
-    <div class="container">
-      <header role="banner" aria-labelledby="page-title">
-        <h1 id="page-title">Aenigma_Ontology</h1>
-        <blockquote aria-label="Citazione filosofica sul nominalismo">
-          <p><q>Stat rosa pristina nomine, nomina nuda tenemus.</q></p>
+  <body
+    itemscope
+    itemtype="https://schema.org/ItemPage"
+    typeof="schema:ItemPage"
+  >
+    <div class="container" role="document" typeof="fabio:WebPage">
+      <header
+        role="banner"
+        aria-labelledby="page-title"
+        itemscope
+        itemtype="https://schema.org/WPHeader"
+        typeof="schema:WPHeader"
+      >
+        <h1 id="page-title" itemprop="headline" property="schema:headline">
+          AENIGMA
+        </h1>
+
+        <blockquote
+          aria-label="Citazione filosofica sul nominalismo"
+          itemscope
+          itemtype="https://schema.org/Quotation"
+          property="cito:cites"
+          typeof="schema:Quotation fabio:Quotation"
+        >
+          <p>
+            <q
+              lang="la"
+              xml:lang="la"
+              itemprop="text"
+              property="schema:text fabio:hasText"
+              >Stat rosa pristina nomine, nomina nuda tenemus.</q
+            >
+          </p>
           <cite
-            >&mdash; Bernardo di Cluny (ripreso da Umberto Eco,
-            <em>Il nome della rosa</em>)</cite
+            itemprop="citation"
+            itemscope
+            itemtype="https://schema.org/CreativeWork"
+            typeof="schema:CreativeWork"
           >
+            &mdash;
+            <span
+              itemprop="author"
+              itemscope
+              itemtype="https://schema.org/Person"
+              typeof="schema:Person"
+              resource="http://dbpedia.org/resource/Bernard_of_Cluny"
+              ><span itemprop="name" property="schema:name"
+                >Bernardo di Cluny</span
+              ></span
+            >
+            (ripreso da
+            <span
+              itemprop="contributor"
+              itemscope
+              itemtype="https://schema.org/Person"
+              typeof="schema:Person"
+              resource="http://dbpedia.org/resource/Umberto_Eco"
+              ><span itemprop="name" property="schema:name"
+                >Umberto Eco</span
+              ></span
+            >,
+            <em
+              itemprop="name"
+              property="schema:name fabio:hasTitle"
+              typeof="fabio:Novel"
+              resource="http://dbpedia.org/resource/The_Name_of_the_Rose"
+              >Il nome della rosa</em
+            >)
+          </cite>
         </blockquote>
+
+        <aside
+          class="legal-disclaimer-block"
+          aria-label="Informativa Legale, Privacy e Licenze - Sezione Intestazione"
+          tabindex="0"
+          role="complementary"
+          itemscope
+          itemtype="https://schema.org/WebPageElement"
+          typeof="schema:WebPageElement"
+        >
+          <div
+            class="disclaimer-content"
+            itemprop="text"
+            property="schema:text"
+          >
+            <h3 itemprop="name" property="schema:name">
+              Avviso Legale e Condizioni di Utilizzo
+            </h3>
+            <p typeof="fabio:Expression">
+              L'accesso e la navigazione in questa
+              <span property="schema:location" typeof="schema:WebPage"
+                >pagina</span
+              >
+              implicano l'accettazione integrale dei termini e delle condizioni
+              della
+              <span
+                itemprop="sourceOrganization"
+                itemscope
+                itemtype="https://schema.org/Organization"
+                typeof="schema:Organization"
+                resource="#CriptaSemantica"
+                ><span itemprop="name" property="schema:name"
+                  >Cripta Semantica</span
+                ></span
+              >. Per un'informazione trasparente, vi invitiamo a consultare le
+              nostre
+              <span property="schema:about" typeof="fabio:PolicyDocument"
+                >policy</span
+              >:
+              <a
+                href="https://criptasemantica.it/note-legali/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta le Note Legali e Condizioni Generali (si apre in una nuova finestra)"
+                >Note Legali e Condizioni Generali</a
+              >,
+              <a
+                href="https://criptasemantica.it/note-legali/informativa-sulla-privacy/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta l'Informativa sulla Privacy (si apre in una nuova finestra)"
+                >Informativa sulla Privacy</a
+              >,
+              <a
+                href="https://criptasemantica.it/note-legali/informativa-sui-cookie/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta l'Informativa sui Cookie e TDM Policy (si apre in una nuova finestra)"
+                >Informativa sui Cookie &amp; TDM Policy</a
+              >
+              e
+              <a
+                href="https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta le informazioni sui Diritti d'Autore e Licenze (si apre in una nuova finestra)"
+                >Diritti d'Autore e Licenze</a
+              >.
+            </p>
+            <p typeof="fabio:Expression">
+              <strong property="schema:about" typeof="owl:Thing"
+                >Infrastruttura di Erogazione e Implicazioni per la
+                Privacy:</strong
+              ><br />
+              La modalità di erogazione di questa
+              <span property="schema:instrument" typeof="schema:DigitalDocument"
+                >risorsa</span
+              >
+              e il conseguente trattamento dei dati di navigazione variano in
+              base all'<abbr title="Uniform Resource Locator" typeof="owl:Thing"
+                >URL</abbr
+              >
+              utilizzato:
+            </p>
+            <ul
+              aria-label="Dettagli sulle infrastrutture di erogazione e policy privacy relative"
+              property="schema:hasPart"
+              typeof="schema:ItemList"
+            >
+              <li
+                itemscope
+                itemtype="https://schema.org/ListItem"
+                itemprop="itemListElement"
+                typeof="schema:ListItem"
+              >
+                <strong property="schema:name"
+                  >Accesso tramite
+                  <code
+                    itemprop="name"
+                    property="schema:identifier"
+                    typeof="schema:URL"
+                    >aenigma.criptasemantica.it</code
+                  >:</strong
+                >
+                <span property="schema:description"
+                  >In questo scenario, la pagina viene servita dal server
+                  italiano di
+                  <em itemprop="url" property="schema:url"
+                    >criptasemantica.it</em
+                  >
+                  per mezzo di un reverse proxy. Tecnicamente, il server agisce
+                  da gateway: riceve la connessione terminando il protocollo
+                  SSL/TLS e inoltra la richiesta all'origine. Ciò significa che
+                  i metadati della vostra connessione (indirizzo IP, User-Agent,
+                  timestamp) vengono processati e conservati nei log di sistema
+                  unicamente sul server italiano. Questo meccanismo garantisce
+                  che il trattamento temporaneo dei dati di traffico sia
+                  interamente soggetto alla giurisdizione italiana ed europea,
+                  in totale conformità e tutela del
+                  <abbr
+                    title="General Data Protection Regulation"
+                    itemprop="legalName"
+                    property="schema:legalName"
+                    typeof="fabio:Regulation"
+                    resource="http://data.europa.eu/eli/reg/2016/679/oj"
+                    >GDPR</abbr
+                  >
+                  (Regolamento UE 2016/679), impedendo l'esposizione diretta
+                  all'infrastruttura sottostante.</span
+                >
+              </li>
+              <li
+                itemscope
+                itemtype="https://schema.org/ListItem"
+                itemprop="itemListElement"
+                typeof="schema:ListItem"
+              >
+                <strong property="schema:name"
+                  >Accesso tramite
+                  <code
+                    itemprop="name"
+                    property="schema:identifier"
+                    typeof="schema:URL"
+                    >finai-is-not-an-influencer.github.io</code
+                  >:</strong
+                >
+                <span property="schema:description"
+                  >Visitando questo dominio, la pagina viene servita in forma
+                  diretta dall'infrastruttura di hosting GitHub Pages.
+                  Conseguentemente, le richieste HTTP dell'utente raggiungono
+                  direttamente i server di GitHub (Microsoft Corporation).
+                  GitHub raccoglie e processa in automatico l'indirizzo IP, log
+                  di accesso e telemetria essenziale a fini di sicurezza ed
+                  elaborazione statistica. Tali dati personali possono essere
+                  trasferiti e archiviati in server situati negli Stati Uniti
+                  d'America, comportando un trasferimento extra-UE. Vi invitiamo
+                  attentamente a leggere la
+                  <a
+                    href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+                    target="_blank"
+                    rel="noopener noreferrer external"
+                    itemprop="relatedLink"
+                    property="schema:relatedLink cito:citesAsAuthority"
+                    typeof="schema:WebPage fabio:PolicyDocument"
+                    aria-label="Leggi il GitHub General Privacy Statement (si apre in una nuova finestra)"
+                    >GitHub General Privacy Statement</a
+                  >
+                  e i relativi Termini di Servizio per conoscere come Microsoft
+                  tratta tali dati, le basi giuridiche adottate e i rischi
+                  intrinseci legati all'archiviazione extra-europea.</span
+                >
+              </li>
+            </ul>
+            <p typeof="fabio:Expression">
+              <strong property="schema:about" typeof="owl:Thing"
+                >Licenza d'Uso (Creative Commons):</strong
+              ><br />
+              La presente pagina, i suoi contenuti specifici e tutto il
+              materiale intellettuale dell'intero dominio sono rilasciati sotto
+              licenza
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/deed.it"
+                target="_blank"
+                rel="license noopener noreferrer external"
+                itemprop="license"
+                property="schema:license"
+                typeof="schema:CreativeWork"
+                aria-label="Visualizza la licenza Creative Commons Attribuzione 4.0 Internazionale (si apre in una nuova finestra)"
+                >Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)</a
+              >. L'applicazione di questa licenza standard vi autorizza a
+              condividere, copiare, distribuire e modificare i contenuti (anche
+              a fini commerciali), a condizione inderogabile di fornire
+              un'adeguata menzione di paternità. L'attribuzione deve essere
+              espressamente indirizzata a "<span
+                property="schema:creator"
+                typeof="schema:Person"
+                ><span property="schema:name">FINAI</span></span
+              >
+              &amp;
+              <span property="schema:creator" typeof="schema:Person"
+                ><span property="schema:name">Alessandro Sevardi</span></span
+              >", fornendo contestualmente un link alla licenza ufficiale CC BY
+              4.0 e specificando chiaramente se sono state apportate variazioni
+              all'opera originale.
+            </p>
+          </div>
+        </aside>
       </header>
 
-      <main id="main-content" role="main">
-        <article aria-labelledby="section-epistemologia">
-          <h2 id="section-epistemologia">Dall'Epistemologia al Grafo</h2>
-          <p>
-            La
-            <dfn
-              title="Ontologia: una specificazione formale e condivisa di una concettualizzazione nel dominio informatico"
-              >rosa primigenia</dfn
+      <main
+        id="main-content"
+        role="main"
+        aria-label="Contenuto principale"
+        itemprop="mainContentOfPage"
+        itemscope
+        itemtype="https://schema.org/Article"
+        typeof="schema:Article fabio:Expression"
+      >
+        <article
+          aria-labelledby="section-epistemologia"
+          itemprop="articleBody"
+          itemscope
+          itemtype="https://schema.org/TechArticle"
+          typeof="schema:TechArticle"
+        >
+          <header>
+            <h2
+              id="section-epistemologia"
+              itemprop="headline"
+              property="schema:headline"
             >
-            esiste oramai soltanto nel suo nome; a noi non restano che nomi
-            nudi, etichette vuote, stringhe alfanumeriche in attesa di senso. Il
-            <strong>Web Semantico</strong> è la massima e più cruda incarnazione
-            tecnologica di questa intuizione medievale: la realtà tangibile si
-            smaterializza, tradotta e ridotta a una costellazione di
-            <abbr title="Uniform Resource Identifier">URI</abbr> e triplette
-            <abbr title="Resource Description Framework">RDF</abbr>.
-          </p>
-          <p>
-            <strong>Aenigma</strong> non è un semplice sito web. È la sala
-            macchine, il telaio sintattico e il repository statico su cui la
-            <a
-              href="https://criptasemantica.it"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Cripta Semantica</a
-            >
-            compila la propria ontologia digitale. In questo spazio non serviamo
-            interfacce grafiche edulcorate, ma esponiamo la struttura logica
-            nuda: classi, proprietà, gerarchie e assiomi codificati in formato
-            <abbr title="Web Ontology Language">OWL</abbr>.
-          </p>
+              La rete ontologica mondiale d'informazione della Cripta Semantica
+            </h2>
+          </header>
+          <section typeof="fabio:Section">
+            <p typeof="fabio:Paragraph">
+              La
+              <span
+                property="schema:concept"
+                typeof="owl:Class"
+                resource="#RosaSostanziale"
+                >rosa sostanziale</span
+              >
+              <dfn
+                title="Ontologia: una specificazione formale e condivisa di una concettualizzazione nel dominio informatico"
+                itemprop="abstract"
+                property="schema:abstract"
+                typeof="owl:Class"
+                resource="http://dbpedia.org/resource/Ontology_(information_science)"
+                >esiste oramai soltanto nel suo
+                <span property="schema:name" typeof="owl:Thing">nome</span></dfn
+              >; a noi non restano che
+              <span
+                property="schema:concept"
+                typeof="owl:Class"
+                resource="#NudiNomi"
+                >nudi nomi</span
+              >.
+            </p>
+            <p typeof="fabio:Paragraph">
+              <strong
+                itemprop="name"
+                property="schema:name"
+                typeof="owl:Ontology"
+                resource="#AenigmaOntology"
+                >Aenigma</strong
+              >
+              è l'<span
+                property="schema:about"
+                typeof="owl:Thing"
+                resource="http://dbpedia.org/resource/Web_Ontology_Language"
+                >ontologia web</span
+              >
+              della
+              <a
+                href="https://criptasemantica.it"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="isBasedOn"
+                property="schema:isBasedOn schema:isPartOf"
+                typeof="schema:WebSite"
+                aria-label="Visita il sito principale della Cripta Semantica (si apre in una nuova finestra)"
+                ><span itemprop="publisher" property="schema:publisher"
+                  ><span property="schema:name">Cripta Semantica</span></span
+                ></a
+              >. La
+              <span property="schema:hasPart" typeof="owl:Thing"
+                >parte d'iperscrittura</span
+              >
+              dell'<span
+                property="schema:isPartOf"
+                typeof="owl:Ontology"
+                resource="#OntologiaFondamentale"
+                >ontologia fondamentale</span
+              >
+              cui appartiene l'<span
+                property="schema:concept"
+                typeof="owl:Class"
+                resource="#EssereInformatico"
+                >essere informatico</span
+              >
+              si svolge all'interno di
+              <span
+                itemprop="about"
+                property="schema:about"
+                typeof="owl:Ontology"
+                resource="#AenigmaOntology"
+                >Aenigma</span
+              >. Il
+              <span property="schema:purpose" typeof="owl:Thing"
+                >proposito</span
+              >
+              di questa ontologia web è la realizzazione dei presupposti
+              materiali di una
+              <span
+                property="schema:concept"
+                typeof="owl:Class"
+                resource="#OntologiaAnaliticaTotale"
+                >ontologia analitica totale</span
+              >, nonché il progresso delle
+              <span
+                property="schema:instrument"
+                typeof="owl:Class"
+                resource="#TecnologieInferenziali"
+                >tecnologie inferenziali</span
+              >
+              e della
+              <span
+                property="schema:about"
+                typeof="owl:Class"
+                resource="http://dbpedia.org/resource/Research"
+                >ricerca scientifica</span
+              >. Lo strumento finale potrà essere utilizzato per studio,
+              <span property="schema:about" typeof="owl:Class"
+                >capitalizzazione semantica</span
+              >,
+              <span
+                property="schema:about"
+                typeof="owl:Class"
+                resource="http://dbpedia.org/resource/Scientometrics"
+                >qualificazione scientometrica</span
+              >, posizionamento nella rete, marketing, sviluppo
+              dell'intelligenza, lavori derivativi,
+              <span
+                property="schema:about"
+                typeof="owl:Class"
+                resource="http://dbpedia.org/resource/Philosophy"
+                >ricerca filosofica</span
+              >.
+            </p>
+          </section>
         </article>
 
-        <article aria-labelledby="section-status">
-          <h2 id="section-status">Stato di Inizializzazione del Nodo</h2>
-          <p>
-            Attualmente, l'infrastruttura di <em>Aenigma</em> si trova in stato
-            di <samp>compilazione_attiva</samp>. Stiamo tracciando i confini
-            formali del vocabolario, definendo le tassonomie che permetteranno
-            alle macchine (dai <em>crawler</em> tradizionali ai più moderni
-            agenti di <strong>Intelligenza Artificiale Generativa</strong>) di
-            comprendere le relazioni di significato che legano l'architettura
-            filosofica e tecnica del progetto originario.
-          </p>
-          <p>
-            In ossequio ai principi di <em>Privacy by Design</em> e di sicurezza
-            asettica, questo sottodominio è servito come
-            <strong>nodo di puro read-only</strong> (sola lettura). Nessun
-            database dinamico è connesso a questa istanza, nessuno script di
-            esecuzione è consentito. L'ambiente in cui navighi è ermetico,
-            concepito per l'interrogazione macchina-macchina (M2M) e per la
-            consultazione accademica. L'identità dell'utente non viene
-            tracciata, inferita o archiviata all'interno di questi confini.
-          </p>
-          <pre
-            aria-label="Codice di stato fittizio dell'ontologia"
-            tabindex="0"
-          ><code><span aria-hidden="true">[STATUS LOG]</span>
-Loading triples... 
-Initializing semantic graph... 
-Verifying disjoint classes... OK.
-Aenigma node online. Ready for SPARQL queries. <span class="cursor-blink" aria-hidden="true"></span></code></pre>
+        <article
+          aria-labelledby="section-status"
+          itemscope
+          itemtype="https://schema.org/TechArticle"
+          typeof="schema:TechArticle"
+        >
+          <header>
+            <h2
+              id="section-status"
+              itemprop="headline"
+              property="schema:headline"
+            >
+              Stato corrente
+            </h2>
+          </header>
+          <section typeof="fabio:Section">
+            <p itemprop="text" property="schema:text" typeof="fabio:Paragraph">
+              Al momento, lo sviluppo di
+              <span
+                itemprop="about"
+                property="schema:about"
+                typeof="owl:Ontology"
+                resource="#AenigmaOntology"
+                >Aenigma</span
+              >
+              è in fase di
+              <span property="schema:status" typeof="owl:Thing"
+                >preparazione</span
+              >.
+            </p>
+            <figure
+              aria-label="Log di sistema"
+              role="group"
+              typeof="schema:SoftwareSourceCode"
+            >
+              <pre
+                aria-label="Codice di stato fittizio dell'ontologia"
+                tabindex="0"
+                role="region"
+              ><code itemprop="text" property="schema:text"><samp aria-hidden="true">[STATUS LOG]</samp>
+          Costruito il sito web...
+          Costruito il file Turtle principale...<span class="cursor-blink" aria-hidden="true" role="presentation"></span></code></pre>
+              <figcaption
+                class="sr-only"
+                style="display: none"
+                property="schema:description"
+              >
+                Output del terminale che indica lo stato della costruzione dei
+                file dell'ontologia in formato RDF Turtle.
+              </figcaption>
+            </figure>
+          </section>
         </article>
       </main>
 
@@ -156,58 +673,356 @@ Aenigma node online. Ready for SPARQL queries. <span class="cursor-blink" aria-h
         class="policies-nav"
         role="navigation"
         aria-labelledby="nav-policies"
+        itemscope
+        itemtype="https://schema.org/SiteNavigationElement"
+        typeof="schema:SiteNavigationElement"
       >
-        <h2 id="nav-policies">Documentazione Legale e Vincoli Sistemici</h2>
-        <p>
-          La navigazione, l'estrazione dati e l'interrogazione di questa
-          ontologia sono tassativamente subordinate all'architettura legale
-          centralizzata della Cripta Semantica. Si evidenzia l'applicazione di
-          un inibitoria <em>machine-readable</em> contro il Text and Data Mining
-          (TDM Opt-Out) non autorizzato.
+        <h2 id="nav-policies" itemprop="name" property="schema:name">
+          Documentazione Legale e Vincoli Sistemici
+        </h2>
+        <p
+          itemprop="description"
+          property="schema:description"
+          typeof="fabio:Expression"
+        >
+          Si applicano i termini e le condizioni della
+          <span
+            property="schema:sourceOrganization"
+            typeof="schema:Organization"
+            resource="#CriptaSemantica"
+            >Cripta Semantica</span
+          >.
         </p>
-        <ul>
-          <li>
+        <ul role="list" property="schema:hasPart" typeof="schema:ItemList">
+          <li role="listitem" typeof="schema:ListItem">
             <a
               href="https://criptasemantica.it/note-legali/"
               target="_blank"
-              rel="noopener noreferrer"
-              >Note Legali e Condizioni Generali</a
+              rel="noopener noreferrer external"
+              itemprop="url"
+              property="schema:url cito:cites"
+              typeof="schema:WebPage"
+              aria-label="Leggi le Note Legali e Condizioni Generali (si apre in una nuova finestra)"
+              ><span itemprop="name" property="schema:name"
+                >Note Legali e Condizioni Generali</span
+              ></a
             >
           </li>
-          <li>
+          <li role="listitem" typeof="schema:ListItem">
             <a
               href="https://criptasemantica.it/note-legali/informativa-sulla-privacy/"
               target="_blank"
-              rel="noopener noreferrer"
-              >Informativa sulla Privacy</a
+              rel="noopener noreferrer external"
+              itemprop="url"
+              property="schema:url cito:cites"
+              typeof="schema:WebPage"
+              aria-label="Leggi l'Informativa sulla Privacy (si apre in una nuova finestra)"
+              ><span itemprop="name" property="schema:name"
+                >Informativa sulla Privacy</span
+              ></a
             >
           </li>
-          <li>
+          <li role="listitem" typeof="schema:ListItem">
             <a
               href="https://criptasemantica.it/note-legali/informativa-sui-cookie/"
               target="_blank"
-              rel="noopener noreferrer"
-              >Informativa sui Cookie &amp; TDM Policy</a
+              rel="noopener noreferrer external"
+              itemprop="url"
+              property="schema:url cito:cites"
+              typeof="schema:WebPage"
+              aria-label="Leggi l'Informativa sui Cookie &amp; TDM Policy (si apre in una nuova finestra)"
+              ><span itemprop="name" property="schema:name"
+                >Informativa sui Cookie &amp; TDM Policy</span
+              ></a
             >
           </li>
-          <li>
+          <li role="listitem" typeof="schema:ListItem">
             <a
               href="https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
               target="_blank"
-              rel="noopener noreferrer"
-              >Diritti d'Autore e Licenze (Copyleft &amp; Copyright)</a
+              rel="noopener noreferrer external"
+              itemprop="url"
+              property="schema:url cito:cites"
+              typeof="schema:WebPage"
+              aria-label="Leggi i Diritti d'Autore e Licenze (si apre in una nuova finestra)"
+              ><span itemprop="name" property="schema:name"
+                >Diritti d'Autore e Licenze (Copyleft &amp; Copyright)</span
+              ></a
             >
           </li>
         </ul>
       </nav>
 
-      <footer role="contentinfo">
-        <p>
-          <time datetime="2026-06-13"
-            >Aggiornamento di Sistema: 13 Giugno 2026</time
+      <footer
+        role="contentinfo"
+        aria-label="Piè di pagina del documento"
+        itemscope
+        itemtype="https://schema.org/WPFooter"
+        typeof="schema:WPFooter"
+      >
+        <aside
+          class="legal-disclaimer-block"
+          aria-label="Informativa Legale, Privacy e Licenze - Sezione Piè di pagina"
+          tabindex="0"
+          role="complementary"
+          itemscope
+          itemtype="https://schema.org/WebPageElement"
+          typeof="schema:WebPageElement"
+        >
+          <div
+            class="disclaimer-content"
+            itemprop="text"
+            property="schema:text"
+          >
+            <h3 itemprop="name" property="schema:name">
+              Avviso Legale e Condizioni di Utilizzo
+            </h3>
+            <p typeof="fabio:Expression">
+              L'accesso e la navigazione in questa
+              <span property="schema:location" typeof="schema:WebPage"
+                >pagina</span
+              >
+              implicano l'accettazione integrale dei termini e delle condizioni
+              della
+              <span
+                itemprop="sourceOrganization"
+                itemscope
+                itemtype="https://schema.org/Organization"
+                typeof="schema:Organization"
+                resource="#CriptaSemantica"
+                ><span itemprop="name" property="schema:name"
+                  >Cripta Semantica</span
+                ></span
+              >. Per un'informazione trasparente, vi invitiamo a consultare le
+              nostre
+              <span property="schema:about" typeof="fabio:PolicyDocument"
+                >policy</span
+              >:
+              <a
+                href="https://criptasemantica.it/note-legali/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta le Note Legali e Condizioni Generali (si apre in una nuova finestra)"
+                >Note Legali e Condizioni Generali</a
+              >,
+              <a
+                href="https://criptasemantica.it/note-legali/informativa-sulla-privacy/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta l'Informativa sulla Privacy (si apre in una nuova finestra)"
+                >Informativa sulla Privacy</a
+              >,
+              <a
+                href="https://criptasemantica.it/note-legali/informativa-sui-cookie/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta l'Informativa sui Cookie e TDM Policy (si apre in una nuova finestra)"
+                >Informativa sui Cookie &amp; TDM Policy</a
+              >
+              e
+              <a
+                href="https://criptasemantica.it/note-legali/diritti-dautore-e-licenze/"
+                target="_blank"
+                rel="noopener noreferrer external"
+                itemprop="significantLink"
+                property="schema:significantLink cito:citesAsAuthority"
+                typeof="schema:WebPage fabio:WebPage"
+                aria-label="Consulta le informazioni sui Diritti d'Autore e Licenze (si apre in una nuova finestra)"
+                >Diritti d'Autore e Licenze</a
+              >.
+            </p>
+            <p typeof="fabio:Expression">
+              <strong property="schema:about" typeof="owl:Thing"
+                >Infrastruttura di Erogazione e Implicazioni per la
+                Privacy:</strong
+              ><br />
+              La modalità di erogazione di questa
+              <span property="schema:instrument" typeof="schema:DigitalDocument"
+                >risorsa</span
+              >
+              e il conseguente trattamento dei dati di navigazione variano in
+              base all'<abbr title="Uniform Resource Locator" typeof="owl:Thing"
+                >URL</abbr
+              >
+              utilizzato:
+            </p>
+            <ul
+              aria-label="Dettagli sulle infrastrutture di erogazione e policy privacy relative"
+              property="schema:hasPart"
+              typeof="schema:ItemList"
+            >
+              <li
+                itemscope
+                itemtype="https://schema.org/ListItem"
+                itemprop="itemListElement"
+                typeof="schema:ListItem"
+              >
+                <strong property="schema:name"
+                  >Accesso tramite
+                  <code
+                    itemprop="name"
+                    property="schema:identifier"
+                    typeof="schema:URL"
+                    >aenigma.criptasemantica.it</code
+                  >:</strong
+                >
+                <span property="schema:description"
+                  >In questo scenario, la pagina viene servita dal server
+                  italiano di
+                  <em itemprop="url" property="schema:url"
+                    >criptasemantica.it</em
+                  >
+                  per mezzo di un reverse proxy. Tecnicamente, il server agisce
+                  da gateway: riceve la connessione terminando il protocollo
+                  SSL/TLS e inoltra la richiesta all'origine. Ciò significa che
+                  i metadati della vostra connessione (indirizzo IP, User-Agent,
+                  timestamp) vengono processati e conservati nei log di sistema
+                  unicamente sul server italiano. Questo meccanismo garantisce
+                  che il trattamento temporaneo dei dati di traffico sia
+                  interamente soggetto alla giurisdizione italiana ed europea,
+                  in totale conformità e tutela del
+                  <abbr
+                    title="General Data Protection Regulation"
+                    itemprop="legalName"
+                    property="schema:legalName"
+                    typeof="fabio:Regulation"
+                    resource="http://data.europa.eu/eli/reg/2016/679/oj"
+                    >GDPR</abbr
+                  >
+                  (Regolamento UE 2016/679), impedendo l'esposizione diretta
+                  all'infrastruttura sottostante.</span
+                >
+              </li>
+              <li
+                itemscope
+                itemtype="https://schema.org/ListItem"
+                itemprop="itemListElement"
+                typeof="schema:ListItem"
+              >
+                <strong property="schema:name"
+                  >Accesso tramite
+                  <code
+                    itemprop="name"
+                    property="schema:identifier"
+                    typeof="schema:URL"
+                    >finai-is-not-an-influencer.github.io</code
+                  >:</strong
+                >
+                <span property="schema:description"
+                  >Visitando questo dominio, la pagina viene servita in forma
+                  diretta dall'infrastruttura di hosting GitHub Pages.
+                  Conseguentemente, le richieste HTTP dell'utente raggiungono
+                  direttamente i server di GitHub (Microsoft Corporation).
+                  GitHub raccoglie e processa in automatico l'indirizzo IP, log
+                  di accesso e telemetria essenziale a fini di sicurezza ed
+                  elaborazione statistica. Tali dati personali possono essere
+                  trasferiti e archiviati in server situati negli Stati Uniti
+                  d'America, comportando un trasferimento extra-UE. Vi invitiamo
+                  attentamente a leggere la
+                  <a
+                    href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+                    target="_blank"
+                    rel="noopener noreferrer external"
+                    itemprop="relatedLink"
+                    property="schema:relatedLink cito:citesAsAuthority"
+                    typeof="schema:WebPage fabio:PolicyDocument"
+                    aria-label="Leggi il GitHub General Privacy Statement (si apre in una nuova finestra)"
+                    >GitHub General Privacy Statement</a
+                  >
+                  e i relativi Termini di Servizio per conoscere come Microsoft
+                  tratta tali dati, le basi giuridiche adottate e i rischi
+                  intrinseci legati all'archiviazione extra-europea.</span
+                >
+              </li>
+            </ul>
+            <p typeof="fabio:Expression">
+              <strong property="schema:about" typeof="owl:Thing"
+                >Licenza d'Uso (Creative Commons):</strong
+              ><br />
+              La presente pagina, i suoi contenuti specifici e tutto il
+              materiale intellettuale dell'intero dominio sono rilasciati sotto
+              licenza
+              <a
+                href="https://creativecommons.org/licenses/by/4.0/deed.it"
+                target="_blank"
+                rel="license noopener noreferrer external"
+                itemprop="license"
+                property="schema:license"
+                typeof="schema:CreativeWork"
+                aria-label="Visualizza la licenza Creative Commons Attribuzione 4.0 Internazionale (si apre in una nuova finestra)"
+                >Creative Commons Attribuzione 4.0 Internazionale (CC BY 4.0)</a
+              >. L'applicazione di questa licenza standard vi autorizza a
+              condividere, copiare, distribuire e modificare i contenuti (anche
+              a fini commerciali), a condizione inderogabile di fornire
+              un'adeguata menzione di paternità. L'attribuzione deve essere
+              espressamente indirizzata a "<span
+                property="schema:creator"
+                typeof="schema:Person"
+                ><span property="schema:name">FINAI</span></span
+              >
+              &amp;
+              <span property="schema:creator" typeof="schema:Person"
+                ><span property="schema:name">Alessandro Sevardi</span></span
+              >", fornendo contestualmente un link alla licenza ufficiale CC BY
+              4.0 e specificando chiaramente se sono state apportate variazioni
+              all'opera originale.
+            </p>
+          </div>
+        </aside>
+
+        <p
+          itemprop="description"
+          property="schema:description"
+          typeof="fabio:Expression"
+        >
+          <time
+            datetime="2026-06-21T17:20:32+02:00"
+            itemprop="dateModified"
+            property="schema:dateModified"
+            datatype="xsd:dateTime"
+            >Aggiornamento di Sistema: Domenica 21 Giugno 2026</time
           ><br />
-          Progetto Aenigma &copy; FINAI &amp; Alessandro Sevardi.<br />
-          <small>Ambiente Statico Isolato. Zero dipendenze remote.</small>
+          Progetto
+          <span
+            itemprop="name"
+            property="schema:name"
+            typeof="owl:Ontology"
+            resource="#AenigmaOntology"
+            >Aenigma</span
+          >
+          &copy;
+          <span itemprop="copyrightYear" property="schema:copyrightYear"
+            >2026</span
+          >
+          <span
+            itemprop="copyrightHolder"
+            itemscope
+            itemtype="https://schema.org/Organization"
+            typeof="schema:Organization"
+            ><span itemprop="name" property="schema:name">FINAI</span> &amp;
+            <span itemprop="name" property="schema:name"
+              >Alessandro Sevardi</span
+            ></span
+          >.<br />
+          <small
+            >Si applica licenza
+            <span
+              property="schema:license"
+              typeof="schema:CreativeWork"
+              resource="https://creativecommons.org/licenses/by/4.0/deed.it"
+              >Creative Commons</span
+            >
+            con attribuzione.</small
+          >
         </p>
       </footer>
     </div>
