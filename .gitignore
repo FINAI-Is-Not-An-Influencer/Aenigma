@@ -17,3 +17,6 @@ Thumbs.db
 
 *.tmp
 *.bak
+style.min.css
+style.wrapped.css
+index.tmp.html
