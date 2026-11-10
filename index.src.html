@@ -17,10 +17,9 @@
     <meta name="color-scheme" content="dark" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'none'; style-src 'self' 'INJECT_CSP_HASH_HERE'; font-src 'none'; img-src 'self' data:; media-src 'none'; object-src 'none'; script-src 'none'; frame-src 'none'; child-src 'none'; form-action 'none'; base-uri 'none'; frame-ancestors 'none'; upgrade-insecure-requests; block-all-mixed-content;"
+      content="default-src 'none'; style-src 'self' 'INJECT_CSP_HASH_HERE'; font-src 'none'; img-src 'self' data:; media-src 'none'; object-src 'none'; script-src 'none'; frame-src 'none'; child-src 'none'; form-action 'none'; base-uri 'none'; upgrade-insecure-requests; block-all-mixed-content;"
     />
     <meta name="referrer" content="no-referrer" />
-    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
     <title itemprop="name" property="schema:name dc:title">
       Aenigma Ontology | Stat rosa pristina nomine, nomina nuda tenemus
@@ -195,6 +194,14 @@
         <h1 id="page-title" itemprop="headline" property="schema:headline">
           AENIGMA
         </h1>
+
+        <nav class="catalogue-nav" aria-label="Consulta l’ontologia">
+          <a href="dubium/index.html">Catalogo Dubium</a>
+          <a href="dubium/guide.html">Guida per iniziare</a>
+          <a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki">Wiki</a>
+          <a href="dubium/en/index.html" lang="en" hreflang="en">English</a>
+          <a href="dubium/la/index.html" lang="la" hreflang="la">Latine</a>
+        </nav>
 
         <blockquote
           aria-label="Citazione filosofica sul nominalismo"
@@ -631,40 +638,16 @@
           </header>
           <section typeof="fabio:Section">
             <p itemprop="text" property="schema:text" typeof="fabio:Paragraph">
-              Al momento, lo sviluppo di
-              <span
-                itemprop="about"
-                property="schema:about"
-                typeof="owl:Ontology"
-                resource="#AenigmaOntology"
-                >Aenigma</span
-              >
-              è in fase di
-              <span property="schema:status" typeof="owl:Thing"
-                >preparazione</span
-              >.
+              Il primo modulo di Aenigma, <a href="dubium/index.html">Dubium</a>,
+              rende consultabili concetti, domande, posizioni e fonti del
+              manifesto della Cripta Semantica.
             </p>
-            <figure
-              aria-label="Log di sistema"
-              role="group"
-              typeof="schema:SoftwareSourceCode"
-            >
-              <pre
-                aria-label="Codice di stato fittizio dell'ontologia"
-                tabindex="0"
-                role="region"
-              ><code itemprop="text" property="schema:text"><samp aria-hidden="true">[STATUS LOG]</samp>
-          Costruito il sito web...
-          Costruito il file Turtle principale...<span class="cursor-blink" aria-hidden="true" role="presentation"></span></code></pre>
-              <figcaption
-                class="sr-only"
-                style="display: none"
-                property="schema:description"
-              >
-                Output del terminale che indica lo stato della costruzione dei
-                file dell'ontologia in formato RDF Turtle.
-              </figcaption>
-            </figure>
+            <ul>
+              <li><a href="dubium/guide.html">Inizia con un esempio guidato</a></li>
+              <li><a href="dubium/formal.html">Leggi la formalizzazione</a></li>
+              <li><a href="dubium/dubium.ttl">Apri il grafo RDF e OWL</a></li>
+              <li><a href="dubium/shapes.ttl">Apri i vincoli SHACL</a></li>
+            </ul>
           </section>
         </article>
       </main>

@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<title>Dubium · Formalizzazione</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/formal.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/formal.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/formal.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/formal.html">
+<link rel="stylesheet" href="site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div class="shell">
+  <header class="masthead">
+    <a class="wordmark" href="../index.html">AENIGMA</a>
+    <nav aria-label="Dubium"><a href="index.html">Catalogo</a><a href="guide.html">Guida per iniziare</a><a href="formal.html" aria-current="page">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="languages" aria-label="Lingue"><a href="formal.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/formal.html" lang="en" hreflang="en" data-language>English</a><a href="la/formal.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main"><article class="prose"><h1 id="formalizzazione-del-manifesto">Formalizzazione del manifesto</h1>
+<p>La domanda da conservare è «qual è il senso dell'essere?». Il manifesto la collega alla storia della filosofia, a un modo di scrivere nel Web e alla dipendenza fra diversi modi d'indagine. Il modello permette di seguire questi collegamenti fino al passo che li sostiene, confrontando ciò che il testo afferma con le scelte introdotte per formalizzarlo. <a href="https://criptasemantica.it/">Manifesto della Cripta Semantica</a></p>
+<p><a href="guide.html">Guida per iniziare</a> · <a href="en/formal.html">English</a> · <a href="la/formal.html">Latine</a></p>
+<h2 id="come-leggere-i-simboli">Come leggere i simboli</h2>
+<p>La formalizzazione ha tre livelli.</p>
+<ol type="1">
+<li><strong>Schema OWL.</strong> Fonti, passi, riferimenti concettuali, voci della ricerca e asserzioni sono tipi distinti. Domanda e posizione sono sottoclassi disgiunte di voce della ricerca. L'inversa di <code>belongsTo</code> collega una posizione alle sue asserzioni.</li>
+<li><strong>Grafo del discorso.</strong> Un'asserzione relazionale <code>r</code> proietta una formula nella forma ⟨concetto di partenza, relazione, concetto di arrivo⟩ entro la posizione <code>p</code>. La notazione è <code>Arco(r,p,s,k,o)</code>. Ogni posizione collega il passo, il modo di lettura, lo statuto, la forza e la formula. <code>Parafrasi</code> indica una riformulazione attribuita alla fonte. <code>Lettura</code> esplicita una scelta del modello. <code>Estensione</code> individua un raccordo da una pagina di contesto.</li>
+<li><strong>Formule.</strong> La notazione è uno strumento di lettura a più registri. <code>∀x:D</code> e <code>∃x:D</code> restringono la variabile al dominio indicato. <code>¬</code>, <code>∧</code>, <code>∨</code>, <code>→</code> e <code>↔︎</code> hanno i consueti usi logici. <code>:=</code> introduce un'abbreviazione. <code>◇</code> marca una possibilità, <code>Oₘ</code> un compito prescritto dal manifesto, <code>⟦…⟧</code> una menzione concettuale. I predicati descrittivi, modali e genealogici hanno la lettura indicata nella rispettiva scheda. Una formula complessa può generare più archi di consultazione. Questi archi perdono parte della struttura logica della formula, che resta disponibile in <code>dub:formula</code>.</li>
+</ol>
+<p><code>OInf</code>, <code>OAn</code> e <code>OFen</code> abbreviano le indagini informatica, analitica e fenomenologica. <code>D(T)</code> è il dominio interpretativo di una teoria e <code>Dᵣ</code> è un ambito oggettuale aperto rispetto a una regione. <code>x∈D</code> restringe <code>x</code> a quell'ambito. <code>Oₘ</code> e <code>◇</code> restano operatori descrittivi della fonte. Le formule non specificano una semantica a mondi possibili e sono conservate come testo da interpretare. L'inferenza riguarda solo lo schema OWL.</p>
+<h3 id="passi-del-testo-e-schede">Passi del testo e schede</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Passo</th>
+<th>Articolazione</th>
+<th>Schede</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P0</td>
+<td>Titolo, epigrafe, parola «essente», comprensione presunta e perplessità.</td>
+<td>F01, Q01</td>
+</tr>
+<tr class="even">
+<td>P1</td>
+<td>Compito di porre il problema dell'essere, esordio greco, oralità, memoria scritta, dialogo, reminiscenza e trasformazione della psiche.</td>
+<td>F02–F05, Q02</td>
+</tr>
+<tr class="odd">
+<td>P2</td>
+<td>Tradizione, soglia del 1936, macchina astratta, iperstoria, infosfera, quantificazione della scrittura e destinazione ipertestuale.</td>
+<td>F06–F09</td>
+</tr>
+<tr class="even">
+<td>P3</td>
+<td>Analogia tra scrittura e iperscrittura, livelli elementare e consapevole, Web, contenuti, significati e capitale semantico.</td>
+<td>F10–F13</td>
+</tr>
+<tr class="odd">
+<td>P4</td>
+<td>Ontologia come specificazione, condivisione e riflessività, trasmissibilità generale o di un contenuto determinato.</td>
+<td>F14–F16</td>
+</tr>
+<tr class="even">
+<td>P5</td>
+<td>Impegno analitico, contenuto e modo della specificazione, enunciati, variabili vincolate, valori e duplice esigenza di quantificazione.</td>
+<td>F17–F20</td>
+</tr>
+<tr class="odd">
+<td>P6</td>
+<td>Dipendenza fenomenologica, piano formale e regionale, giudizio, usiologia e apertura dell'ambito oggettuale.</td>
+<td>F21–F25, Q03</td>
+</tr>
+<tr class="even">
+<td>P7</td>
+<td>Ente come cosa, essere di un ente, essere in quanto tale, quattro compiti della tematizzazione, referente-limite e nulla.</td>
+<td>F26–F30, Q04</td>
+</tr>
+<tr class="odd">
+<td>P8</td>
+<td>Senso delle ontologie dell'ente, totalità inespressa, ricerca dell'essenza, problema del senso e produzione dell'ipertesto.</td>
+<td>F31–F35, Q05–Q06</td>
+</tr>
+</tbody>
+</table>
+<h2 id="scelte-interpretative">Scelte interpretative</h2>
+<p><strong>Una genealogia attribuita al testo.</strong> La familiarità dei destinatari dell'epigrafe e la precedente fiducia di chi parla occupano ruoli distinti in F01. F03 e F07 conservano la cronologia e il primato della macchina astratta come affermazioni del manifesto. La soglia filosofica del 1936 è distinta dall'anno bibliografico. L'articolo di Turing riporta ricezione e lettura nel 1936 e figura nel volume 42 dei <em>Proceedings</em> (1936–37). Il manifesto lascia implicito il nome di Turing. <a href="https://fab.cba.mit.edu/classes/862.22/notes/computation/Turing-1936.pdf">Articolo di Turing</a></p>
+<p><strong>Scrittura, capacità e quantificatori.</strong> F08 tratta la quantificazione della scrittura come processo storico-tecnico. F19 tratta la quantificazione ontologica come relazione fra teoria, enunciato, variabile e valore. La formula <code>Q(T,φ,v,d)</code> richiede un'assegnazione ammissibile di <code>d</code> a <code>v</code> entro <code>T</code> e <code>φ</code>. F16 distingue <code>∀c∈D ◇Veicola(p,c)</code> e <code>◇Veicola(p,c₀)</code>. La prima attribuisce una capacità per ogni contenuto del dominio e lascia aperta la questione se tutti siano veicolabili insieme. F21 comprende gli orientamenti a oggetti e iperoggetti, consapevoli o inconsapevoli. La lettura F25 rende esplicito che il dominio è relativo al contesto di ricerca.</p>
+<p><strong>Il doppio uso di “ontologico”.</strong> F26 registra la trattazione ontologica dell'ente in quanto cosa. F27 riguarda i casi in cui un'ontologia dell'ente tematizza l'essere in rapporto a un ente. F28 mette la tematizzazione dell'essere in quanto tale e l'assenza di una cosa prescelta entro l'ambito del compito indicato nel manifesto. Questi tre ruoli sono interrogabili tramite <code>readingMode</code>. F29 distingue l'esserci dell'essere, da indicare, dall'esserci a cui è accessibile il contenuto in F13. Sono due sensi registrati secondo la funzione nei rispettivi passi.</p>
+<p><strong>Il nulla e la fondazione.</strong> F30 è una lettura del riferimento-limite. I simboli in ⟦…⟧ parlano di menzioni nel testo, quindi il modello può conservare quel riferimento senza quantificare su un oggetto chiamato «Nulla». <code>owl:Nothing</code> è la classe vuota di OWL e ha una funzione logica diversa. F31 rappresenta la fondazione di senso dall'ontologia fondamentale alle ontologie dell'ente. X03 rappresenta il sostegno ontico dall'ontologia informatica alla ricerca, come indicato nella pagina Progetto. Le due direzioni hanno relazioni distinte e nessuna proprietà di transitività. F32 mantiene aperta la totalità dell'indagine. <a href="https://criptasemantica.it/progetto/">Progetto</a></p>
+<h2 id="contesto-pubblico">Contesto pubblico</h2>
+<p>X01–X03 collegano progettualità, gettatezza, le sue quattro determinazioni e la mappa dell'Ente al manifesto. X04 distingue l'ipertesto, il sito che ospita le note e le note che possono riprendere l'ipertesto. X05 collega l'articolo all'articolazione di un'apertura di senso. Le schede X hanno proprie fonti e si possono filtrare in blocco. <a href="https://criptasemantica.it/progetto/">Progetto</a>, <a href="https://criptasemantica.it/chi-siamo/">Chi siamo</a>, <a href="https://criptasemantica.it/articoli/">Articoli</a></p>
+<p>Nelle applicazioni editoriali un articolo, una tesi, una fonte, un'opera e una misura di ricezione sono risorse con compiti diversi. Un raccordo a Dubium può indicare se l'articolo discute, sviluppa, problematizza o applica una posizione, specificando la fonte e la motivazione. L'IRI della scheda <code>dub:F27</code>, per esempio, designa una posizione del manifesto. Un articolo può tematizzare il suo contenuto anche con lessico e identificatori propri.</p>
+<h2 id="interrogazione-di-esempio">Interrogazione di esempio</h2>
+<p>Questa query recupera chi, secondo il manifesto, riceve senso dall'ontologia fondamentale. Restituisce la posizione, il modo di lettura, il passo e la fonte, oltre al concetto collegato.</p>
+<pre class="sparql"><code>PREFIX dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt;
+
+SELECT ?concetto ?posizione ?lettura ?passo ?fonte WHERE {
+  ?arco a dub:RelationAssertion ;
+    dub:subjectConcept ?concetto ;
+    dub:relationKind dub:rel-riceveSensoDa ;
+    dub:objectConcept dub:ontologiaFondamentale ;
+    dub:belongsTo ?posizione .
+  ?posizione dub:derivedFrom ?passo ; dub:readingMode ?lettura .
+  ?passo dub:partOfSource ?fonte .
+}</code></pre>
+<p>Il risultato atteso è <code>dub:ontologiaEnte</code> nella posizione <code>dub:F31</code>, lettura <code>dub:Fondamentale</code>, passo <code>dub:P8</code> del manifesto. Per ritrovare il riferimento-limite del nulla, si può cercare <code>dub:rel-haFiguraLimite</code>, che riconduce a F30 e al passo P7.</p>
+<h2 id="estensione-e-verifica">Estensione e verifica</h2>
+<p>Per un nuovo passo si crea una scheda con un localizzatore riproducibile. Per una nuova posizione si dichiara la forza dell'enunciato, si indica quale testo la sostiene e si aggiungono gli archi che aiutano a ritrovarla. Una lettura concorrente prende un proprio identificatore e conserva la propria provenienza. È possibile usare più posizioni sullo stesso passo senza far coincidere i loro contenuti.</p>
+<p>Con SHACL si verifica che una scheda contenga i dati necessari e che una domanda resti interrogativa. Con OWL si possono dedurre le relazioni strutturali, a partire dalla forma esplicita del grafo. Le prove non decidono la verità delle tesi, la correttezza storiografica dei primati o l'adeguatezza filosofica di tutte le letture. <a href="https://www.w3.org/TR/owl2-syntax/">OWL 2</a>, <a href="https://www.w3.org/TR/shacl/">SHACL</a></p>
+<h2 id="repertorio-delle-formule">Repertorio delle formule</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Scheda</th>
+<th>Passo</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>F01</strong> · Dalla familiarità alla perplessità</td>
+<td>P0</td>
+<td><code>Cita(epigrafe,sofista244a) ∧ AutoreAttribuito(sofista244a,platone) ∧ TraduzioneAttribuita(epigrafe,pietroChiodi) ∧ Familiarità(voi, «essente», t₀) ∧ Crede(noi, Comprende(noi, «essente»), t₁) ∧ Perplessi(noi, «essente», t₂) ∧ t₁ &lt; t₂</code></td>
+</tr>
+<tr class="even">
+<td><strong>F02</strong> · Necessità di porre il problema</td>
+<td>P1</td>
+<td><code>Oₘ Porre(problemaEssere) ∧ Innesca(Oₘ Porre(problemaEssere), pensieroOccidentale)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F03</strong> · Localizzazione dell'esordio</td>
+<td>P1</td>
+<td><code>EsordioDi(esordioGreco, pensieroOccidentale) ∧ Luogo(esordioGreco, grecia) ∧ Collocato(esordioGreco, «VII sec. a.C.; I–II sec. AUC»)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F04</strong> · Filosofia orale e trasmissione scritta</td>
+<td>P1</td>
+<td><code>CorpoTradizionale(filosofia, pensieroOccidentale) ∧ Orale(filosofia) ∧ ∀p:PraticaDialogica, t:Testo [Trasferisce(filosofia,p,t) → Registra(t,Risultati(p)) ∧ Registra(t,Ricordi(p))]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F05</strong> · Fine ed effetto del dialogo</td>
+<td>P1</td>
+<td><code>Fine(praticaDialogica, Reminiscenza(essere)) ∧ ∀a [Partecipa(a,praticaDialogica) → Effetto(praticaDialogica, ScienzaTrasformazione(Psiche(a)))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F06</strong> · La tradizione fino alla svolta</td>
+<td>P2</td>
+<td><code>Tramanda(tradizioneTestuale,filosofia) ∧ Accresce(tradizioneTestuale,filosofia) ∧ Intervallo(tradizioneTestuale,esordioGreco,svolta1936) ∧ DataNelManifesto(svolta1936,1936,2689_AUC)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F07</strong> · Macchina astratta, iperstoria e infosfera</td>
+<td>P2</td>
+<td><code>Individua(pubblicazioneMacchina,svolta1936) ∧ Pubblica(pubblicazioneMacchina,macchinaAstratta) ∧ PrimaSecondoIlTesto(macchinaAstratta) ∧ Inaugura(svolta1936,iperstoria) ∧ FaNascere(svolta1936,infosfera)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F08</strong> · Ostensione della quantificazione nell'ipertesto</td>
+<td>P2</td>
+<td><code>Avvia(svolta1936,quantificazioneScrittura) ∧ ConLaGenesiDi(web, Ostende(ipertesto,quantificazioneScrittura))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F09</strong> · Destinazione ipertestuale posteriore alla svolta</td>
+<td>P2</td>
+<td><code>∀p:ProduzioneFilosofica [Posteriore(p,svolta1936) → DestinataAllaTrasposizione(p,ipertesto)] ∧ IndipendenteDa(destinazioneIpertestuale,consapevolezza)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F10</strong> · Analogia fra storia e iperstoria</td>
+<td>P3</td>
+<td><code>InizioCon(storia,scrittura) ∧ Corrisponde(Inizio(iperstoria),Comparsa(iperscrittura))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F11</strong> · I due livelli dell'iperscrittura</td>
+<td>P3</td>
+<td><code>∀p [(IperScrittura(p) → Produce(p,ipertesti)) ∧ (Elem(p) → MetteInFunzione(p,testi,macchineAstratte)) ∧ (Consap(p) → MetteInCircuito(p,contenuti,codici,web))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F12</strong> · Orientamento del Web</td>
+<td>P3</td>
+<td><code>SviluppoDi(sviluppoWeb,web) ∧ Fine(sviluppoWeb,Accumulare(capitaleSemantico)) ∧ Fine(sviluppoWeb,Distribuire(capitaleSemantico))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F13</strong> · Come si costituisce il capitale semantico</td>
+<td>P3</td>
+<td><code>Costituisce(organizzazioneSemantica,capitaleSemantico) ∧ Media(ontologiaInformatica,organizzazioneSemantica) ∧ ∀c,m [Organizza(organizzazioneSemantica,c,m) → (AccessibileA(c,esserci) ∧ AccessibileA(m,macchinaConcreta))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F14</strong> · Specificazione formale, esplicita e condivisa</td>
+<td>P4</td>
+<td><code>OInf(o) ↔︎ ∃s,c [Specifica(o,s,c) ∧ Formale(s) ∧ Esplicita(s) ∧ Concettualizzazione(c) ∧ Condivisa(c)]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F15</strong> · Riflessività della possibilità di trasmissione</td>
+<td>P4</td>
+<td><code>∀p [Riflessiva(p) → (RifletteSu(p,Consapevolezza(p)) ∧ MiraA(p,PossibilitàDiVeicolare) ∧ ¬FinePrimario(p,VeicolareUnContenuto))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F16</strong> · Portata generale e determinata della trasmissibilità</td>
+<td>P4</td>
+<td><code>Generale(p,D) := ∀c∈D ◇ Veicola(p,c); Determinata(p,c₀) := c₀∈D ∧ ◇ Veicola(p,c₀)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F17</strong> · Dipendenza dell'informatica dall'analitica</td>
+<td>P5</td>
+<td><code>∀o:OInf ∃a:OAn [Presuppone(o,a) ∧ ImplicaNelManifesto(o,a) ∧ Integra(Implementazione(o),a) ∧ (Esplicito(Implementazione(o),a) ∨ Implicito(Implementazione(o),a))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F18</strong> · Che cosa esiste, che cosa e come si specifica</td>
+<td>P5</td>
+<td><code>∀a:OAn [Individua(a,Entità,Tipi) ∧ Fornisce(a,Contenuto(concettualizzazione)) ∧ Fornisce(a,Modo(specificazione))]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F19</strong> · Quantificazione relativa alla teoria</td>
+<td>P5</td>
+<td><code>Q(T,φ,v,d) := EnunciatoDi(φ,T) ∧ Vincolata(v,φ) ∧ d∈D(T) ∧ ∃g [Ammissibile(g,T,φ) ∧ g(v)=d]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F20</strong> · Duplice esigenza di quantificazione</td>
+<td>P5</td>
+<td><code>∀o:OInf ∃T:Teoria [Richiede(o,ContenutoQuantificato(T)) ∧ ConsisteIn(o,iperscrittura) ∧ Richiede(iperscrittura,QuantificazioneOntologica(scritturaSovrastata))]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F21</strong> · Dipendenza fenomenologica dell'analitica</td>
+<td>P6</td>
+<td><code>∀a:OAn ∃p:OFen [EffettoDi(a,p)]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F22</strong> · Articolazione formale e regionale</td>
+<td>P6</td>
+<td><code>Articolazione(ontologiaFenomenologica; ontologiaFormale, ontologiaRegionale)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F23</strong> · Oggetto in generale, struttura enunciativa e giudizio</td>
+<td>P6</td>
+<td><code>ValidePerOgniOggetto(StruttureFormali) ∧ ∀x [IndividuatoDaAnalitica(x) → Specifica(ontologiaFormale,EssereEntità(x))] ∧ Inquadra(ontologiaFormale,StruttureEnunciative) ∧ Richiede(ontologiaFormale,NozioneGiudizio)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F24</strong> · Usiologia e possibilità regionali</td>
+<td>P6</td>
+<td><code>∀r:Regione [Fissa(Usiologia(r),EssenzeSpecifiche(r)) ∧ ∀x∈D(r) [IndividuatoDaAnalitica(x) → Specifica(ontologiaRegionale(r),ComePossibile(x,r))]]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F25</strong> · Il dominio della quantificazione è aperto regionalmente</td>
+<td>P6</td>
+<td><code>Apre(aperturaFenomenologica,Dᵣ;usiologia(r)) ∧ Quantifica(T,Dᵣ) ∧ PerOgniOggetto_Dᵣ(φ) := ∀x∈Dᵣ φ(x)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F26</strong> · L'ente trattato ontologicamente nella metafisica</td>
+<td>P7</td>
+<td><code>∀o [(OFen(o) ∨ OAn(o) ∨ OInf(o)) → (Segue(o,metafisicaOccidentale) ∧ Tema(o,ente,OntologicoComeCosa))]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F27</strong> · L'essere trattato onticamente nella metafisica</td>
+<td>P7</td>
+<td><code>∀o:OntologiaDellEnte ∀b [TematizzaEssere(o,b) → ∃x∈D(o) [b=EssereDi(x) ∧ Tratta(o,b,OnticoRelativo)]]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F28</strong> · Tematizzare l'essere indipendentemente dalla cosa</td>
+<td>P7</td>
+<td><code>Oₘ [Tratta(oFond,essereInQuantoTale,OntologicoTematico) ∧ ¬∃x [Cosa(x) ∧ OggettoPrescelto(oFond,x)]]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F29</strong> · Quattro compiti della tematizzazione</td>
+<td>P7</td>
+<td><code>Oₘ [SpecificaFormalmente(concettualizzazioneEssere) ∧ Indica(esserciDellEssere) ∧ Esprime(essenzaEssere) ∧ Esplicita(ModoPossibilità(essereInQuantoTale))]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F30</strong> · Ente ontico e nulla come riferimento-limite</td>
+<td>P7</td>
+<td><code>RiferimentoNelPasso(⟦essere in quanto tale⟧,⟦ente onticamente inteso⟧) ∧ FiguraLimite(⟦ente onticamente inteso⟧,⟦nulla⟧) ∧ ¬Presupposto(∃x [Cosa(x) ∧ ReferentePrescelto(x)])</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F31</strong> · Fondazione del senso delle ontologie dell'ente</td>
+<td>P8</td>
+<td><code>∀o:OntologiaDellEnte [RiceveSensoDa(o,ontologiaFondamentale)]</code></td>
+</tr>
+<tr class="even">
+<td><strong>F32</strong> · L'inespresso nella totalità</td>
+<td>P8</td>
+<td><code>Problematico(essereInQuantoTale) ∧ A_CausaDi(¬EspressaNellaSuaTotalità(ontologiaFondamentale), Problematico(essereInQuantoTale))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F33</strong> · Ricerca posizionale sull'essenza</td>
+<td>P8</td>
+<td><code>Sviluppa(ricercaFondamentale,ontologiaFondamentale) ∧ RicercaPosizionale(ricercaFondamentale,problemaEssenzaEssere)</code></td>
+</tr>
+<tr class="even">
+<td><strong>F34</strong> · Iperscrittura e filo conduttore</td>
+<td>P8</td>
+<td><code>Oₘ Porre(problemaSensoEssere) ∧ Realizza(iperscritturaFondamentale,Porre(problemaSensoEssere)) ∧ ∀l,p [Pertinenti(l,p,ricercaOntologica) → PuòRaccordare(iperscritturaFondamentale,l,p;problemaSensoEssere)]</code></td>
+</tr>
+<tr class="odd">
+<td><strong>F35</strong> · Cripta come ipertesto prodotto</td>
+<td>P8</td>
+<td><code>Ipertesto(criptaIpertesto) ∧ Produce(iperscritturaFondamentale,criptaIpertesto)</code></td>
+</tr>
+<tr class="even">
+<td><strong>X01</strong> · Progettare il fondamento del progettare</td>
+<td>XProgetto</td>
+<td><code>Realizza(criptaIpertesto,progettoCripta) ∧ Tematizza(progettoCripta,progettualita) ∧ Interroga(progettoCripta,FondamentoDelProgettare(progettoCripta))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>X02</strong> · Determinabilità della gettatezza</td>
+<td>XProgetto</td>
+<td><code>DeterminabileCome(gettatezza; oggetto, soggetto, progetto, rigetto) ∧ Riguarda(gettatezza,progettualita)</code></td>
+</tr>
+<tr class="even">
+<td><strong>X03</strong> · Direzioni della fondazione</td>
+<td>XProgetto</td>
+<td><code>SostegnoOntico(ontologiaInformatica,ricercaFondamentale) ∧ Obiettivo(progettoCripta,mappaEnte) ∧ FondazioneDiSenso(ontologiaFondamentale,ontologiaEnte)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>X04</strong> · Cripta come sito, ipertesto e note</td>
+<td>XChiSiamo</td>
+<td><code>Raccoglie(criptaSito,note) ∧ RicorreIn(criptaIpertesto,note) ∧ PuòComunicare(notaIpertestuale,notaIpertestuale′)</code></td>
+</tr>
+<tr class="even">
+<td><strong>X05</strong> · Articolo come articolazione di un'apertura</td>
+<td>XArticoli</td>
+<td><code>Artefatto(articolo) ∧ Articola(articolo,senso) ∧ Raccordabile(articolo,ricercaOntologica)</code></td>
+</tr>
+</tbody>
+</table>
+</article></main>
+  <footer><a href="https://criptasemantica.it/">Cripta Semantica</a> <span>Dubium · RDF / OWL</span></footer>
+</div>
+</body>
+</html>

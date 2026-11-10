@@ -1,0 +1,50 @@
+{
+  "it": {
+    "catalogue": "Catalogo", "guide": "Guida per iniziare", "formal": "Formalizzazione", "wiki": "Wiki",
+    "skip": "Vai al contenuto", "language": "Lingue", "sections": "Sezioni del catalogo",
+    "edition": "Aenigma / Modulo 01", "title": "Dubium",
+    "description": "Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.",
+    "start": "Inizia dalla guida", "example": "Esplora «essere in quanto tale»",
+    "concepts": "Concetti", "positions": "Posizioni", "questions": "Domande", "passages": "Passi e fonti",
+    "classes": "Classi OWL", "properties": "Proprietà OWL", "relations": "Tipi di relazione", "values": "Modi, statuti e forze",
+    "filter": "Cerca nel catalogo", "placeholder": "Es. essere, F27, ontologia…", "empty": "Nessuna voce corrispondente.", "count": "Voci visibili",
+    "formula": "Formula", "arcs": "Relazioni nella posizione", "in_positions": "Compare in", "source": "Fonte",
+    "mode": "Modo di lettura", "status": "Statuto", "force": "Forza", "concerns": "Concetti in questione",
+    "domain": "Dominio", "range": "Valori ammessi", "parent": "Sottoclasse di", "children": "Sottoclassi",
+    "inverse": "Inversa", "used": "Proprietà dichiarate per la classe", "version": "Versione di lavoro",
+    "download": "File per il riuso", "turtle": "Grafo RDF / OWL", "shapes": "Vincoli SHACL",
+    "original": "Testo italiano", "permalink": "Collegamento alla voce", "manifesto": "Manifesto della Cripta Semantica"
+  },
+  "en": {
+    "catalogue": "Catalogue", "guide": "Beginner’s guide", "formal": "Formalisation", "wiki": "Wiki",
+    "skip": "Skip to content", "language": "Languages", "sections": "Catalogue sections",
+    "edition": "Aenigma / Module 01", "title": "Dubium",
+    "description": "A web ontology for reading the Cripta Semantica manifesto. Follow a concept, trace it to its source passage and compare how the text approaches the question of being.",
+    "start": "Start with the guide", "example": "Explore “being as such”",
+    "concepts": "Concepts", "positions": "Positions", "questions": "Questions", "passages": "Passages and sources",
+    "classes": "OWL classes", "properties": "OWL properties", "relations": "Kinds of relation", "values": "Modes, statuses and forces",
+    "filter": "Search the catalogue", "placeholder": "E.g. being, F27, ontology…", "empty": "No matching entries.", "count": "Visible entries",
+    "formula": "Formula", "arcs": "Relations in the position", "in_positions": "Occurs in", "source": "Source",
+    "mode": "Mode of reading", "status": "Status", "force": "Force", "concerns": "Concepts in question",
+    "domain": "Domain", "range": "Range", "parent": "Subclass of", "children": "Subclasses",
+    "inverse": "Inverse", "used": "Properties declared for the class", "version": "Working version",
+    "download": "Files for reuse", "turtle": "RDF / OWL graph", "shapes": "SHACL constraints",
+    "original": "Italian text", "permalink": "Link to the entry", "manifesto": "Cripta Semantica manifesto"
+  },
+  "la": {
+    "catalogue": "Index", "guide": "Dux incipientium", "formal": "Formalizatio", "wiki": "Vicipagina",
+    "skip": "Ad materiam transi", "language": "Linguae", "sections": "Partes indicis",
+    "edition": "Aenigma / Pars 01", "title": "Dubium",
+    "description": "Ontologia retialis ad prooemium Cryptae Semanticae legendum. Notionem sequere, locum fontis reperi et rationes compara quibus textus de esse quaerit.",
+    "start": "A duce incipe", "example": "«Esse ipsum» inspice",
+    "concepts": "Notiones", "positions": "Sententiae", "questions": "Quaestiones", "passages": "Loci et fontes",
+    "classes": "Classes OWL", "properties": "Proprietates OWL", "relations": "Genera relationum", "values": "Rationes, status et vires",
+    "filter": "In indice quaere", "placeholder": "Ex. esse, F27, ontologia…", "empty": "Nulla schedula congruit.", "count": "Schedulae visibiles",
+    "formula": "Formula", "arcs": "Relationes in sententia", "in_positions": "Occurrit in", "source": "Fons",
+    "mode": "Ratio legendi", "status": "Status", "force": "Vis", "concerns": "Notiones in quaestione",
+    "domain": "Ambitus subiectorum", "range": "Ambitus valorum", "parent": "Classis superior", "children": "Classes inferiores",
+    "inverse": "Inversa", "used": "Proprietates classi declaratae", "version": "Exemplar praeparatorium",
+    "download": "Tabulae ad usum", "turtle": "Graphus RDF / OWL", "shapes": "Regulae SHACL",
+    "original": "Textus Italicus", "permalink": "Nexus ad schedulam", "manifesto": "Prooemium Cryptae Semanticae"
+  }
+}

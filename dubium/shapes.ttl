@@ -1,0 +1,73 @@
+@prefix dub: <https://aenigma.criptasemantica.it/dubium#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# EN: Keep the published provenance chain complete and require a locatable passage.
+# LA: Provenientiam publicam integram serva et locum iterum inveniendum require.
+dub:SourceShape a sh:NodeShape ;
+    sh:targetClass dub:Source ;
+    sh:nodeKind sh:IRI ;
+    sh:pattern "^https://" ;
+    sh:property [ sh:path rdfs:label ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:uniqueLang true ] .
+
+dub:PassageShape a sh:NodeShape ;
+    sh:targetClass dub:Passage ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dub:partOfSource ; sh:nodeKind sh:IRI ; sh:class dub:Source ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:locator ; sh:datatype rdf:langString ; sh:languageIn ( "it" "en" "la" ) ;
+        sh:minCount 1 ; sh:maxCount 3 ; sh:uniqueLang true ; sh:minLength 10 ;
+        sh:qualifiedValueShape [ sh:languageIn ( "it" ) ] ; sh:qualifiedMinCount 1 ] .
+
+# EN: Language tags distinguish the labels and glosses of one stable concept.
+# LA: Signa linguarum nomina et glossas unius notionis stabilis distinguunt.
+dub:ConceptShape a sh:NodeShape ;
+    sh:targetClass dub:Concept ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path rdfs:comment ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:uniqueLang true ] .
+
+# EN: Provenance and reading mode can also identify an incomplete research record.
+# LA: Provenientia et ratio legendi etiam schedulam inquisitionis mancam designare possunt.
+dub:ResearchItemShape a sh:NodeShape ;
+    sh:targetClass dub:ResearchItem, dub:Position, dub:Question ;
+    sh:targetSubjectsOf dub:derivedFrom, dub:readingMode ;
+    sh:class dub:ResearchItem ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path rdfs:label ; sh:nodeKind sh:Literal ; sh:minCount 1 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path dub:derivedFrom ; sh:nodeKind sh:IRI ; sh:class dub:Passage ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:readingMode ; sh:nodeKind sh:IRI ; sh:class dub:ReadingMode ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# EN: Check the record before reasoning. OWL can infer a type that was omitted in the input.
+# LA: Schedulam ante illationem proba. OWL genus in datis omissum inferre potest.
+dub:PositionShape a sh:NodeShape ;
+    sh:targetClass dub:Position ;
+    sh:targetSubjectsOf dub:status, dub:force, dub:formula ;
+    sh:class dub:Position ;
+    sh:property [ sh:path dub:status ; sh:in ( dub:Parafrasi dub:Lettura dub:Estensione ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:force ; sh:nodeKind sh:IRI ; sh:class dub:Force ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:formula ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 6 ] ;
+    sh:property [ sh:path [ sh:inversePath dub:belongsTo ] ; sh:class dub:RelationAssertion ; sh:minCount 1 ] .
+
+# EN: Keep the question open by restricting formulas and statuses to positions.
+# LA: Quaestionem apertam serva formulis et statibus ad sententias restrictis.
+dub:QuestionShape a sh:NodeShape ;
+    sh:targetClass dub:Question ;
+    sh:targetSubjectsOf dub:concerns ;
+    sh:class dub:Question ;
+    sh:property [ sh:path dub:concerns ; sh:nodeKind sh:IRI ; sh:class dub:Concept ; sh:minCount 1 ] ;
+    sh:property [ sh:path dub:formula ; sh:maxCount 0 ] ;
+    sh:property [ sh:path dub:status ; sh:maxCount 0 ] .
+
+# EN: Target partially written relations as well as nodes already declared as assertions.
+# LA: Relationes partim scriptas necnon nodos iam ut assertiones declaratos elige.
+dub:RelationShape a sh:NodeShape ;
+    sh:targetClass dub:RelationAssertion ;
+    sh:targetSubjectsOf dub:belongsTo, dub:subjectConcept, dub:relationKind, dub:objectConcept ;
+    sh:class dub:RelationAssertion ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path dub:belongsTo ; sh:nodeKind sh:IRI ; sh:class dub:Position ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:subjectConcept ; sh:nodeKind sh:IRI ; sh:class dub:Concept ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:relationKind ; sh:nodeKind sh:IRI ; sh:class dub:RelationKind ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dub:objectConcept ; sh:nodeKind sh:IRI ; sh:class dub:Concept ; sh:minCount 1 ; sh:maxCount 1 ] .

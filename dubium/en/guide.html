@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="A web ontology for reading the Cripta Semantica manifesto. Follow a concept, trace it to its source passage and compare how the text approaches the question of being.">
+<title>Dubium · Beginner’s guide</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/guide.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/guide.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/guide.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/guide.html">
+<link rel="stylesheet" href="../site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="masthead">
+    <a class="wordmark" href="../../index.html">AENIGMA</a>
+    <nav aria-label="Dubium"><a href="index.html">Catalogue</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="languages" aria-label="Languages"><a href="../guide.html" lang="it" hreflang="it" data-language>Italiano</a><a href="guide.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/guide.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main"><article class="prose"><h1 id="dubium-a-guide-for-first-time-readers">Dubium. A guide for first-time readers</h1>
+<p><a href="../guide.html">Italiano</a> · <a href="../la/guide.html">Latine</a></p>
+<p>Dubium takes its name from the doubt at the opening of the <a href="https://criptasemantica.it/">Cripta Semantica manifesto</a>. In Plato's <em>Sophist</em>, the speaker once thought they knew what “being” meant. The dialogue unsettles that confidence. It raises a question of method. How do we connect the things we study, the sense in which we say they are, and the wider question of being?</p>
+<p><strong>Philosophical ontology</strong> investigates being and what is. A <strong>web ontology</strong> gives people and software shared names and rules for describing a domain. Dubium is a web ontology that makes a text of philosophical ontology explorable. Return to the source when assessing a reading.</p>
+<h2 id="your-first-visit">Your first visit</h2>
+<ol type="1">
+<li>Open the <a href="index.html">Dubium catalogue</a> and look for <strong>being of an entity</strong>. Its entry gives a definition and links to positions in which it occurs.</li>
+<li>Follow <a href="index.html#F27">F27</a>. Here the manifesto treats being in relation to an entity. The entry shows the formula, the mode of reading and the relations that help you navigate it.</li>
+<li>Open <a href="index.html#P7">P7</a> to find the paragraph, then <a href="index.html#F28">F28</a>, where the inquiry takes up being as such. <a href="index.html#Q04">Question Q04</a> keeps the difficulty raised by that distinction open.</li>
+</ol>
+<p>You can also start with <a href="index.html#capitaleSemantico">semantic capital</a>. This route goes from content a reader can understand to meanings organised for a machine to process.</p>
+<h2 id="read-an-entry">Read an entry</h2>
+<p>A <strong>concept</strong> is a reference with a name, a gloss and a stable identifier. A <strong>position</strong> is a thesis, a reading or a contextual link attributed to a passage. A <strong>qualified relation</strong> connects two concepts within that position. A <strong>question</strong> identifies something that remains open.</p>
+<p>The <a href="https://www.w3.org/TR/owl2-syntax/">OWL</a> schema describes the graph's categories and properties. For instance, going from a position to its relations reverses the link from each relation back to the position. <a href="https://www.w3.org/TR/shacl/">SHACL</a> constraints check that entries are complete, such as whether a position has a source. The philosophical formulas are readable text. The <a href="formal.html">formalisation</a> explains their notation.</p>
+<h2 id="identifiers-and-prefixes">Identifiers and prefixes</h2>
+<p>An <strong>IRI</strong> is the full name of a resource. <code>dub:essereDiEnte</code> abbreviates <code>https://aenigma.criptasemantica.it/dubium#essereDiEnte</code>. That address leads to the Italian catalogue and the term's anchor. The English and Latin editions use the same graph.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Where</th>
+<th>Prefix</th>
+<th>Base IRI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dubium, in these guides</td>
+<td><code>dub:</code></td>
+<td><code>https://aenigma.criptasemantica.it/dubium#</code></td>
+</tr>
+<tr class="even">
+<td>Cripta editorial RDFa previews</td>
+<td><code>cs:</code></td>
+<td><code>https://aenigma.criptasemantica.it/dubium#</code></td>
+</tr>
+<tr class="odd">
+<td>Cripta Semantic Service</td>
+<td><code>cs:</code></td>
+<td><code>https://criptasemantica.it/ns/semantic-service#</code></td>
+</tr>
+</tbody>
+</table>
+<p>A prefix is local to the document that declares it. Under the second declaration, <code>cs:essereDiEnte</code> identifies the same resource as <code>dub:essereDiEnte</code>. To use both vocabularies in one document, declare <code>dub:</code> for Dubium and <code>cs:</code> for the service. Compare expanded IRIs when joining data. The service still uses its own list of accepted references. Offering an individual entry through that list requires an explicit update to the service.</p>
+<h2 id="from-the-file-to-your-first-query">From the file to your first query</h2>
+<p><a href="https://www.w3.org/TR/turtle/">Turtle</a> is a text format for saving an RDF graph. An RDF statement connects a subject, a property and a value. Open <a href="../dubium.ttl">dubium.ttl</a> in a text editor or read it with RDFLib. With Python and RDFLib available, run this example from the repository root.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdflib <span class="im">import</span> Graph</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph().parse(<span class="st">&quot;dubium/dubium.ttl&quot;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;turtle&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">PREFIX dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT ?passage ?source WHERE {</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  dub:F27 dub:derivedFrom ?passage .</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">  ?passage dub:partOfSource ?source .</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> passage, source <span class="kw">in</span> graph.query(query):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(passage, source)</span></code></pre></div>
+<p>You get P7's IRI and the manifesto's address. In an application, load Turtle from a reviewed copy, use full IRIs as keys and keep the source when displaying a position. Use <a href="../shapes.ttl">shapes.ttl</a> to check a new graph's structure. If you add a competing reading, give it a separate position with its own identifier and provenance.</p>
+<h2 id="build-and-check-the-site">Build and check the site</h2>
+<p>The site uses static files. Building them requires Python 3 with RDFLib, Pandoc, OpenSSL and the Clean CSS CLI (<code>cleancss</code>). The graph checks also need pySHACL and OWL-RL. Run from the repository root.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> minify.sh</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tools/build_site.py</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> dubium/tests/verifica.py</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> http.server 8000 <span class="at">--bind</span> 127.0.0.1</span></code></pre></div>
+<p>Preview the English catalogue at <code>http://127.0.0.1:8000/dubium/en/</code>. The builder reads the local Turtle and guides. Italian glosses are identified where a translation is unavailable. You can browse the catalogue with JavaScript disabled. When enabled, the filter runs in the browser. The <a href="formal.html#example-query">query in the formalisation</a> shows how to retrieve a relation with its supporting passage.</p>
+</article></main>
+  <footer><a href="https://criptasemantica.it/">Cripta Semantica</a> <span>Dubium · RDF / OWL</span></footer>
+</div>
+</body>
+</html>

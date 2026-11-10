@@ -228,3 +228,13 @@ footer {
     padding: 0;
   }
 }
+
+/* EN: Put the catalogue and its language editions at the first point of entry.
+   LA: Indicem et editiones linguarum in primo aditu pone. */
+.catalogue-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .55rem 1.25rem;
+  margin: .85rem 0 1.35rem;
+}

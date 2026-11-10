@@ -1,9 +1,2320 @@
-@prefix : <https://aenigma.criptasemantica.it/dubium#> .
+@prefix dub: <https://aenigma.criptasemantica.it/dubium#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
-@prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <https://aenigma.criptasemantica.it/dubium#> .
 
-<https://aenigma.criptasemantica.it/dubium#> rdf:type owl:Ontology .
+# EN: Preserve the ontology IRI used by existing editorial documents. The version IRI identifies this draft.
+# LA: IRI ontologiae in documentis editorialibus iam adhibitum conserva. IRI versionis hoc exemplar praeparatorium designat.
+<https://aenigma.criptasemantica.it/dubium#> rdf:type owl:Ontology ;
+    owl:versionIRI <https://aenigma.criptasemantica.it/dubium#v0.1.0-draft> ;
+    owl:versionInfo "0.1.0-draft" ;
+    rdfs:label "Dubium. Il manifesto della Cripta Semantica"@it,
+               "Dubium. The Cripta Semantica manifesto"@en,
+               "Dubium. Prooemium Cryptae Semanticae"@la ;
+    rdfs:comment "Formalizzazione del manifesto pubblico. Ogni posizione rimanda al passo che la sostiene."@it .
+
+# EN: The following classes describe records in the graph. A Concept represents a meaning in a discourse.
+# LA: Classes quae sequuntur schedulas graphi describunt. Concept sensum in sermone repraesentat.
+dub:Source a owl:Class ; rdfs:label "fonte pubblica"@it, "public source"@en, "fons publicus"@la .
+dub:Passage a owl:Class ; rdfs:label "passo localizzabile di una fonte"@it, "locatable source passage"@en, "locus fontis designatus"@la .
+dub:Concept a owl:Class ; rdfs:label "riferimento concettuale"@it, "conceptual reference"@en, "relatio ad notionem"@la ;
+    rdfs:comment "Identificatore di un senso nel discorso. La tipizzazione riguarda il riferimento concettuale."@it .
+dub:ResearchItem a owl:Class ; rdfs:label "voce della ricerca"@it, "research entry"@en, "schedula inquisitionis"@la .
+dub:Position a owl:Class ; rdfs:subClassOf dub:ResearchItem ; rdfs:label "posizione formalizzata"@it, "formalised position"@en, "sententia formalizata"@la ;
+    rdfs:comment "Tesi, lettura esplicita o raccordo di contesto con formula e provenienza."@it .
+dub:Question a owl:Class ; rdfs:subClassOf dub:ResearchItem ; rdfs:label "questione aperta"@it, "open question"@en, "quaestio aperta"@la ;
+    owl:disjointWith dub:Position .
+dub:RelationAssertion a owl:Class ; rdfs:label "asserzione relazionale qualificata"@it, "qualified relational assertion"@en, "assertio relationis qualificata"@la ;
+    rdfs:comment "Proiezione leggibile di una formula entro la posizione indicata."@it .
+dub:RelationKind a owl:Class ; rdfs:label "tipo di relazione nel discorso"@it, "kind of relation"@en, "genus relationis"@la ;
+    rdfs:comment "Segno del vocabolario delle relazioni; può essere usato per interrogare le asserzioni."@it .
+dub:ReadingMode a owl:Class ; rdfs:label "modo di lettura"@it, "mode of reading"@en, "ratio legendi"@la .
+dub:Status a owl:Class ; rdfs:label "statuto della formalizzazione"@it, "status of formalisation"@en, "status formalizationis"@la .
+dub:Force a owl:Class ; rdfs:label "forza dell'enunciato"@it, "force of the statement"@en, "vis enuntiati"@la .
+
+# EN: Disjoint record roles expose modelling errors, such as classifying a passage as a conceptual reference.
+# LA: Munera schedularum disiuncta errores exemplaris patefaciunt, velut si locus fontis pro notione habeatur.
+[] a owl:AllDisjointClasses ;
+    owl:members ( dub:Source dub:Passage dub:Concept dub:ResearchItem dub:RelationAssertion
+                  dub:RelationKind dub:ReadingMode dub:Status dub:Force ) .
+
+# EN: Provenance is a two-step path from a research entry to its passage and from that passage to its source.
+# LA: Provenientia duobus gradibus constat, a schedula ad locum et a loco ad fontem.
+dub:partOfSource a owl:ObjectProperty ;
+    rdfs:domain dub:Passage ; rdfs:range dub:Source ;
+    rdfs:label "appartiene alla fonte"@it, "belongs to a source"@en, "ad fontem pertinet"@la .
+dub:locator a owl:DatatypeProperty ;
+    rdfs:domain dub:Passage ; rdfs:range rdf:langString ;
+    rdfs:label "localizzatore del passo"@it, "passage locator"@en, "loci indicium"@la .
+dub:derivedFrom a owl:ObjectProperty ;
+    rdfs:domain dub:ResearchItem ; rdfs:range dub:Passage ;
+    rdfs:label "tratta dal passo"@it, "drawn from a passage"@en, "e loco sumitur"@la .
+dub:readingMode a owl:ObjectProperty ;
+    rdfs:domain dub:ResearchItem ; rdfs:range dub:ReadingMode ;
+    rdfs:label "modo di lettura"@it, "mode of reading"@en, "ratio legendi"@la .
+# EN: Status marks the editor’s relation to the source. Force marks what kind of claim the position expresses.
+# LA: Status rationem editoris ad fontem significat. Vis indicat quale enuntiatum sententia exprimat.
+dub:status a owl:ObjectProperty ;
+    rdfs:domain dub:Position ; rdfs:range dub:Status ;
+    rdfs:label "statuto"@it, "formalisation status"@en, "status formalizationis"@la .
+dub:force a owl:ObjectProperty ;
+    rdfs:domain dub:Position ; rdfs:range dub:Force ;
+    rdfs:label "forza dell'enunciato"@it, "statement force"@en, "vis enuntiati"@la .
+# EN: A formula is a string for readers. The OWL graph reasons over the record structure.
+# LA: Formula est catena litterarum lectoribus destinata. Graphus OWL ex structura schedularum infert.
+dub:formula a owl:DatatypeProperty ;
+    rdfs:domain dub:Position ; rdfs:range xsd:string ;
+    rdfs:label "formula simbolica"@it, "symbolic formula"@en, "formula symbolica"@la .
+dub:concerns a owl:ObjectProperty ;
+    rdfs:domain dub:Question ; rdfs:range dub:Concept ;
+    rdfs:label "riguarda il concetto"@it, "concerns a concept"@en, "ad notionem spectat"@la .
+# EN: The inverse property allows navigation from a position to its assertions under OWL entailment.
+# LA: Proprietas inversa sinit a sententia ad eius assertiones per consequentiam OWL perveniri.
+dub:belongsTo a owl:ObjectProperty ;
+    rdfs:domain dub:RelationAssertion ; rdfs:range dub:Position ;
+    rdfs:label "appartiene alla posizione"@it, "belongs to a position"@en, "ad sententiam pertinet"@la .
+dub:hasAssertion a owl:ObjectProperty ;
+    owl:inverseOf dub:belongsTo ;
+    rdfs:domain dub:Position ; rdfs:range dub:RelationAssertion ;
+    rdfs:label "ha asserzione"@it, "has a relational assertion"@en, "assertionem relationis habet"@la .
+# EN: Each arc carries two concepts and a relation-kind node. That kind is a vocabulary entry.
+# LA: Quisque arcus duas notiones et nodum generis relationis continet. Genus illud est vox lexici.
+dub:subjectConcept a owl:ObjectProperty ;
+    rdfs:domain dub:RelationAssertion ; rdfs:range dub:Concept ;
+    rdfs:label "concetto di partenza"@it, "source concept"@en, "notio subiecta"@la .
+dub:relationKind a owl:ObjectProperty ;
+    rdfs:domain dub:RelationAssertion ; rdfs:range dub:RelationKind ;
+    rdfs:label "tipo di relazione"@it, "kind of relation"@en, "genus relationis"@la .
+dub:objectConcept a owl:ObjectProperty ;
+    rdfs:domain dub:RelationAssertion ; rdfs:range dub:Concept ;
+    rdfs:label "concetto di arrivo"@it, "target concept"@en, "notio obiecta"@la .
+
+# EN: Public sources and locators. Keep the locators tied to the cited pages.
+# LA: Fontes publici et indicia locorum. Indicia paginis citatis adhaereant.
+
+<https://criptasemantica.it/> a dub:Source ;
+    rdfs:label "Manifesto della Cripta Semantica"@it, "Cripta Semantica manifesto"@en, "Prooemium Cryptae Semanticae"@la .
+
+dub:P0 a dub:Passage ;
+    rdfs:label "Titolo, sottotitolo ed epigrafe"@it, "Title, subtitle and epigraph"@en, "Titulus, subtitulus et epigraphe"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Titolo della homepage ed epigrafe da Platone, Sofista 244a, traduzione attribuita a Pietro Chiodi."@it, "Homepage title and epigraph from Plato, Sophist 244a. The Italian rendering is attributed to Pietro Chiodi."@en, "Titulus paginae primae et epigraphe e Platone, Sophista 244a. Versio Italica Petro Chiodi tribuitur."@la .
+
+dub:P1 a dub:Passage ;
+    rdfs:label "Posizione del problema, Grecia, dialogo"@it, "Posing the question, Greece, dialogue"@en, "Quaestio posita, Graecia, dialogus"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, primo capoverso."@it, "Hyperwriting of ontological inquiry, first paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus primus."@la .
+
+dub:P2 a dub:Passage ;
+    rdfs:label "Tradizione testuale e svolta del 1936"@it, "Textual tradition and the turning point of 1936"@en, "Traditio textualis et discrimen anni 1936"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, secondo capoverso."@it, "Hyperwriting of ontological inquiry, second paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus secundus."@la .
+
+dub:P3 a dub:Passage ;
+    rdfs:label "Iperscrittura, Web e capitale semantico"@it, "Hyperwriting, Web and semantic capital"@en, "Hyperscriptura, Rete et capitale semanticum"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, terzo capoverso."@it, "Hyperwriting of ontological inquiry, third paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus tertius."@la .
+
+dub:P4 a dub:Passage ;
+    rdfs:label "Definizione e riflessività dell'ontologia"@it, "Definition and reflexivity of ontology"@en, "Definitio et reflexivitas ontologiae"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, quarto capoverso."@it, "Hyperwriting of ontological inquiry, fourth paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus quartus."@la .
+
+dub:P5 a dub:Passage ;
+    rdfs:label "Analitica e quantificazione ontologica"@it, "Analytic ontology and ontological quantification"@en, "Ontologia analytica et quantificatio ontologica"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, quinto capoverso."@it, "Hyperwriting of ontological inquiry, fifth paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus quintus."@la .
+
+dub:P6 a dub:Passage ;
+    rdfs:label "Fenomenologia formale e regionale"@it, "Formal and regional phenomenology"@en, "Phaenomenologia formalis et regionalis"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, sesto capoverso."@it, "Hyperwriting of ontological inquiry, sixth paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus sextus."@la .
+
+dub:P7 a dub:Passage ;
+    rdfs:label "Ente, essere e nulla"@it, "Entity, being and nothing"@en, "Ens, esse et nihil"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, settimo capoverso."@it, "Hyperwriting of ontological inquiry, seventh paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus septimus."@la .
+
+dub:P8 a dub:Passage ;
+    rdfs:label "Ontologia fondamentale e Cripta"@it, "Fundamental ontology and Cripta"@en, "Ontologia fundamentalis et Crypta"@la ;
+    dub:partOfSource <https://criptasemantica.it/> ;
+    dub:locator "Iperscrittura della ricerca ontologica, ottavo capoverso."@it, "Hyperwriting of ontological inquiry, eighth paragraph."@en, "Hyperscriptura inquisitionis ontologicae, locus octavus."@la .
+
+<https://criptasemantica.it/progetto/> a dub:Source ;
+    rdfs:label "Progetto"@it, "Project"@en, "Propositum"@la .
+
+dub:XProgetto a dub:Passage ;
+    rdfs:label "Progettualità, gettatezza e fondazione"@it, "Projection, thrownness and grounding"@en, "Ratio proiciendi, iectitas et fundatio"@la ;
+    dub:partOfSource <https://criptasemantica.it/progetto/> ;
+    dub:locator "Pagina Progetto, capoversi sulla progettualità, sulle quattro determinazioni della gettatezza e sul sostegno ontico."@it, "Project page, paragraphs on projection, the four determinations of thrownness and ontic support."@en, "Pagina de Proposito, loci de ratione proiciendi, quattuor determinationibus iectitatis et sustentatione ontica."@la .
+
+<https://criptasemantica.it/chi-siamo/> a dub:Source ;
+    rdfs:label "Chi siamo"@it, "About Cripta Semantica"@en, "De Crypta Semantica"@la .
+
+dub:XChiSiamo a dub:Passage ;
+    rdfs:label "Ipertesto e note"@it, "Hypertext and notes"@en, "Hypertextus et notae"@la ;
+    dub:partOfSource <https://criptasemantica.it/chi-siamo/> ;
+    dub:locator "Pagina Chi siamo, presentazione della ricorrenza del designatore e delle note."@it, "About page, on the recurrence of the name and the notes."@en, "Pagina de Crypta, ubi de nominis notarumque recursu agitur."@la .
+
+<https://criptasemantica.it/articoli/> a dub:Source ;
+    rdfs:label "Articoli"@it, "Articles"@en, "Articuli"@la .
+
+dub:XArticoli a dub:Passage ;
+    rdfs:label "L'articolo come artefatto"@it, "The article as an artefact"@en, "Articulus ut artefactum"@la ;
+    dub:partOfSource <https://criptasemantica.it/articoli/> ;
+    dub:locator "Pagina Articoli, introduzione al rapporto fra senso, ricerca e articolo."@it, "Articles page, introduction to the relation between sense, inquiry and article."@en, "Pagina Articulorum, initium de nexu inter sensum, inquisitionem et articulum."@la .
+
+# EN: Controlled vocabularies separate the status, force and mode of reading.
+# LA: Lexica definita statum, vim et rationem legendi distinguunt.
+
+dub:Parafrasi a dub:Status ;
+    rdfs:label "parafrasi del testo"@it, "paraphrase of the text"@en, "paraphrasis textus"@la .
+
+dub:Lettura a dub:Status ;
+    rdfs:label "scelta interpretativa del modello"@it, "interpretive choice"@en, "electio interpretativa"@la .
+
+dub:Estensione a dub:Status ;
+    rdfs:label "raccordo da una pagina di contesto"@it, "contextual extension"@en, "extensio e contextu"@la .
+
+dub:Testimoniale a dub:Force ;
+    rdfs:label "attribuzione o testimonianza"@it, "testimony or attribution"@en, "testimonium vel attributio"@la .
+
+dub:Storica a dub:Force ;
+    rdfs:label "affermazione storica del testo"@it, "historical claim in the text"@en, "assertio historica textus"@la .
+
+dub:Genealogia a dub:Force ;
+    rdfs:label "ricostruzione genealogica"@it, "genealogical reconstruction"@en, "reconstructio genealogica"@la .
+
+dub:Normativa a dub:Force ;
+    rdfs:label "compito indicato dal testo"@it, "task prescribed by the text"@en, "munus a textu praescriptum"@la .
+
+dub:Modale a dub:Force ;
+    rdfs:label "possibilità o destinazione"@it, "possibility or orientation"@en, "possibilitas vel destinatio"@la .
+
+dub:Definizione a dub:Force ;
+    rdfs:label "definizione o caratterizzazione"@it, "definition or characterisation"@en, "definitio vel descriptio"@la .
+
+dub:Funzionale a dub:Force ;
+    rdfs:label "funzione o meccanismo"@it, "function or mechanism"@en, "functio vel processus"@la .
+
+dub:Intenzionale a dub:Force ;
+    rdfs:label "intenzione riflessiva"@it, "reflexive intent"@en, "intentio reflexiva"@la .
+
+dub:Fondazione a dub:Force ;
+    rdfs:label "dipendenza o fondazione"@it, "dependence or grounding"@en, "dependentia vel fundatio"@la .
+
+dub:Logica a dub:Force ;
+    rdfs:label "struttura logica"@it, "logical structure"@en, "structura logica"@la .
+
+dub:Limite a dub:Force ;
+    rdfs:label "limite della tematizzazione"@it, "limit of inquiry"@en, "terminus inquisitionis"@la .
+
+dub:Epigrafe a dub:ReadingMode ;
+    rdfs:label "uso di una parola e perplessità"@it, "use of a word and perplexity"@en, "usus vocis et perplexitas"@la .
+
+dub:Genealogica a dub:ReadingMode ;
+    rdfs:label "genealogia filosofica"@it, "philosophical genealogy"@en, "genealogia philosophica"@la .
+
+dub:Mediale a dub:ReadingMode ;
+    rdfs:label "storia e funzionamento dei mezzi"@it, "history and operation of media"@en, "historia et operatio mediorum"@la .
+
+dub:Informatica a dub:ReadingMode ;
+    rdfs:label "specificazione informatica"@it, "computational specification"@en, "specificatio informatica"@la .
+
+dub:Analitica a dub:ReadingMode ;
+    rdfs:label "indagine filosofico-analitica"@it, "analytic philosophical inquiry"@en, "inquisitio philosophica analytica"@la .
+
+dub:Fenomenologica a dub:ReadingMode ;
+    rdfs:label "articolazione fenomenologica"@it, "phenomenological articulation"@en, "articulatio phaenomenologica"@la .
+
+dub:Formale a dub:ReadingMode ;
+    rdfs:label "formale nel senso fenomenologico"@it, "formal in the phenomenological sense"@en, "formalis sensu phaenomenologico"@la .
+
+dub:Regionale a dub:ReadingMode ;
+    rdfs:label "regionale nel senso fenomenologico"@it, "regional in the phenomenological sense"@en, "regionalis sensu phaenomenologico"@la .
+
+dub:Metafisica a dub:ReadingMode ;
+    rdfs:label "ontologica riguardo all'ente come cosa"@it, "ontological with regard to an entity as a thing"@en, "ontologica quoad ens ut rem"@la .
+
+dub:Ontica a dub:ReadingMode ;
+    rdfs:label "ontica riguardo all'essere di un ente"@it, "ontic with regard to the being of an entity"@en, "ontica quoad esse entis"@la .
+
+dub:Fondamentale a dub:ReadingMode ;
+    rdfs:label "ontologica riguardo all'essere in quanto tale"@it, "ontological with regard to being as such"@en, "ontologica quoad esse ipsum"@la .
+
+dub:Contestuale a dub:ReadingMode ;
+    rdfs:label "estensione dal contesto pubblico"@it, "extension from public context"@en, "extensio e contextu publico"@la .
+
+dub:rel-accessibileA a dub:RelationKind ;
+    rdfs:label "è accessibile a"@it, "is accessible to"@en, "patet"@la .
+
+dub:rel-accresce a dub:RelationKind ;
+    rdfs:label "accresce"@it, "extends"@en, "auget"@la .
+
+dub:rel-ammette a dub:RelationKind ;
+    rdfs:label "ammette"@it, "admits"@en, "admittit"@la .
+
+dub:rel-applicataA a dub:RelationKind ;
+    rdfs:label "si applica a"@it, "is applied to"@en, "adhibetur ad"@la .
+
+dub:rel-apre a dub:RelationKind ;
+    rdfs:label "apre"@it, "opens"@en, "aperit"@la .
+
+dub:rel-articola a dub:RelationKind ;
+    rdfs:label "articola"@it, "articulates"@en, "articulat"@la .
+
+dub:rel-attribuitoA a dub:RelationKind ;
+    rdfs:label "è attribuito a"@it, "is attributed to"@en, "attribuitur"@la .
+
+dub:rel-cita a dub:RelationKind ;
+    rdfs:label "cita"@it, "cites"@en, "citat"@la .
+
+dub:rel-comprende a dub:RelationKind ;
+    rdfs:label "comprende"@it, "includes"@en, "complectitur"@la .
+
+dub:rel-costituisce a dub:RelationKind ;
+    rdfs:label "costituisce"@it, "constitutes"@en, "constituit"@la .
+
+dub:rel-destinataA a dub:RelationKind ;
+    rdfs:label "è destinata a"@it, "is directed towards"@en, "destinatur ad"@la .
+
+dub:rel-dipendeDa a dub:RelationKind ;
+    rdfs:label "dipende da"@it, "depends on"@en, "pendet ab"@la .
+
+dub:rel-esercita a dub:RelationKind ;
+    rdfs:label "esercita"@it, "practises"@en, "exercet"@la .
+
+dub:rel-esplicita a dub:RelationKind ;
+    rdfs:label "esplicita"@it, "makes explicit"@en, "explicat"@la .
+
+dub:rel-espone a dub:RelationKind ;
+    rdfs:label "espone"@it, "exhibits"@en, "exhibet"@la .
+
+dub:rel-fornisceContenutoA a dub:RelationKind ;
+    rdfs:label "fornisce il contenuto a"@it, "supplies content to"@en, "materiam praebet"@la .
+
+dub:rel-fornisceModoA a dub:RelationKind ;
+    rdfs:label "fornisce il modo a"@it, "supplies the mode to"@en, "modum praebet"@la .
+
+dub:rel-guidataDa a dub:RelationKind ;
+    rdfs:label "è guidata da"@it, "is guided by"@en, "dirigitur a"@la .
+
+dub:rel-haCarattere a dub:RelationKind ;
+    rdfs:label "ha carattere"@it, "has the character"@en, "rationem habet"@la .
+
+dub:rel-haCondizione a dub:RelationKind ;
+    rdfs:label "ha come condizione"@it, "has as a condition"@en, "condicionem habet"@la .
+
+dub:rel-haDimensione a dub:RelationKind ;
+    rdfs:label "ha come dimensione"@it, "has as a dimension"@en, "dimensionem habet"@la .
+
+dub:rel-haEffetto a dub:RelationKind ;
+    rdfs:label "ha per effetto"@it, "has as an effect"@en, "effectum habet"@la .
+
+dub:rel-haFiguraLimite a dub:RelationKind ;
+    rdfs:label "ha come figura-limite"@it, "has as a limiting figure"@en, "figuram limitaneam habet"@la .
+
+dub:rel-haFine a dub:RelationKind ;
+    rdfs:label "ha come fine"@it, "aims at"@en, "finem habet"@la .
+
+dub:rel-haForma a dub:RelationKind ;
+    rdfs:label "ha forma di"@it, "takes the form of"@en, "formam habet"@la .
+
+dub:rel-haFunzione a dub:RelationKind ;
+    rdfs:label "ha funzione di"@it, "has the function of"@en, "munere fungitur"@la .
+
+dub:rel-haLimite a dub:RelationKind ;
+    rdfs:label "ha come limite"@it, "has as a limit"@en, "terminum habet"@la .
+
+dub:rel-haSoglia a dub:RelationKind ;
+    rdfs:label "ha come soglia"@it, "has as a threshold"@en, "limen habet"@la .
+
+dub:rel-implica a dub:RelationKind ;
+    rdfs:label "implica nel discorso"@it, "implies in the discourse"@en, "secundum textum implicat"@la .
+
+dub:rel-inaugura a dub:RelationKind ;
+    rdfs:label "inaugura"@it, "inaugurates"@en, "inaugurat"@la .
+
+dub:rel-indica a dub:RelationKind ;
+    rdfs:label "indica"@it, "indicates"@en, "indicat"@la .
+
+dub:rel-indipendenteDa a dub:RelationKind ;
+    rdfs:label "è indipendente da"@it, "is independent of"@en, "non pendet ab"@la .
+
+dub:rel-individua a dub:RelationKind ;
+    rdfs:label "individua"@it, "identifies"@en, "determinat"@la .
+
+dub:rel-iniziaCon a dub:RelationKind ;
+    rdfs:label "inizia con"@it, "begins with"@en, "incipit cum"@la .
+
+dub:rel-iniziaDa a dub:RelationKind ;
+    rdfs:label "prende inizio da"@it, "starts from"@en, "incipit ab"@la .
+
+dub:rel-inquadra a dub:RelationKind ;
+    rdfs:label "inquadra"@it, "frames"@en, "in ambitu collocat"@la .
+
+dub:rel-integra a dub:RelationKind ;
+    rdfs:label "integra"@it, "incorporates"@en, "includit"@la .
+
+dub:rel-lasciaPostoA a dub:RelationKind ;
+    rdfs:label "lascia posto a"@it, "gives way to"@en, "locum cedit"@la .
+
+dub:rel-livelloDi a dub:RelationKind ;
+    rdfs:label "è un livello di"@it, "is a level of"@en, "gradus est"@la .
+
+dub:rel-localizzatoIn a dub:RelationKind ;
+    rdfs:label "è localizzato in"@it, "is located in"@en, "situs est in"@la .
+
+dub:rel-mediataDa a dub:RelationKind ;
+    rdfs:label "è mediata da"@it, "is mediated by"@en, "ope perficitur"@la .
+
+dub:rel-metteInCircuito a dub:RelationKind ;
+    rdfs:label "mette in circuito"@it, "puts into circulation"@en, "in circuitum mittit"@la .
+
+dub:rel-metteInFunzione a dub:RelationKind ;
+    rdfs:label "mette in funzione"@it, "puts into operation"@en, "in usum adducit"@la .
+
+dub:rel-modoDi a dub:RelationKind ;
+    rdfs:label "è un modo di"@it, "is a mode of"@en, "modus est"@la .
+
+dub:rel-motivataDa a dub:RelationKind ;
+    rdfs:label "è motivata da"@it, "is motivated by"@en, "causam habet"@la .
+
+dub:rel-operaCon a dub:RelationKind ;
+    rdfs:label "opera con"@it, "works with"@en, "operatur cum"@la .
+
+dub:rel-operaIn a dub:RelationKind ;
+    rdfs:label "opera in"@it, "operates in"@en, "operatur in"@la .
+
+dub:rel-organizza a dub:RelationKind ;
+    rdfs:label "organizza"@it, "organises"@en, "ordinat"@la .
+
+dub:rel-pone a dub:RelationKind ;
+    rdfs:label "pone"@it, "poses"@en, "ponit"@la .
+
+dub:rel-presuppone a dub:RelationKind ;
+    rdfs:label "presuppone"@it, "presupposes"@en, "praesupponit"@la .
+
+dub:rel-produce a dub:RelationKind ;
+    rdfs:label "produce"@it, "produces"@en, "producit"@la .
+
+dub:rel-qualifica a dub:RelationKind ;
+    rdfs:label "qualifica"@it, "qualifies"@en, "determinat qualiter"@la .
+
+dub:rel-raccoglie a dub:RelationKind ;
+    rdfs:label "raccoglie"@it, "collects"@en, "colligit"@la .
+
+dub:rel-raccorda a dub:RelationKind ;
+    rdfs:label "raccorda"@it, "connects"@en, "conectit"@la .
+
+dub:rel-realizza a dub:RelationKind ;
+    rdfs:label "realizza"@it, "realises"@en, "ad effectum ducit"@la .
+
+dub:rel-registra a dub:RelationKind ;
+    rdfs:label "registra"@it, "records"@en, "consignat"@la .
+
+dub:rel-relativaA a dub:RelationKind ;
+    rdfs:label "è relativa a"@it, "is relative to"@en, "refertur ad"@la .
+
+dub:rel-rendePossibile a dub:RelationKind ;
+    rdfs:label "rende possibile"@it, "makes possible"@en, "possibile facit"@la .
+
+dub:rel-riceveSensoDa a dub:RelationKind ;
+    rdfs:label "riceve senso da"@it, "receives sense from"@en, "sensum accipit ab"@la .
+
+dub:rel-richiede a dub:RelationKind ;
+    rdfs:label "richiede"@it, "requires"@en, "requirit"@la .
+
+dub:rel-ricorreIn a dub:RelationKind ;
+    rdfs:label "ricorre in"@it, "recurs in"@en, "recurrit in"@la .
+
+dub:rel-rifletteSu a dub:RelationKind ;
+    rdfs:label "riflette su"@it, "reflects on"@en, "reflectit de"@la .
+
+dub:rel-riguarda a dub:RelationKind ;
+    rdfs:label "riguarda"@it, "concerns"@en, "spectat ad"@la .
+
+dub:rel-rinviaComeFigura a dub:RelationKind ;
+    rdfs:label "rinvia a una figura"@it, "refers to as a figure"@en, "ad figuram remittit"@la .
+
+dub:rel-segue a dub:RelationKind ;
+    rdfs:label "segue"@it, "follows"@en, "sequitur"@la .
+
+dub:rel-sensoDi a dub:RelationKind ;
+    rdfs:label "è un senso di"@it, "is a sense of"@en, "sensus est"@la .
+
+dub:rel-siArticolaIn a dub:RelationKind ;
+    rdfs:label "si articola in"@it, "is articulated into"@en, "articulatur in"@la .
+
+dub:rel-siAvvaleDi a dub:RelationKind ;
+    rdfs:label "si avvale di"@it, "makes use of"@en, "utitur"@la .
+
+dub:rel-sostieneOnticamente a dub:RelationKind ;
+    rdfs:label "sostiene onticamente"@it, "supports ontically"@en, "ontice sustinet"@la .
+
+dub:rel-sovrasta a dub:RelationKind ;
+    rdfs:label "sovrasta"@it, "overlies"@en, "superstat"@la .
+
+dub:rel-studia a dub:RelationKind ;
+    rdfs:label "studia"@it, "investigates"@en, "investigat"@la .
+
+dub:rel-sviluppa a dub:RelationKind ;
+    rdfs:label "sviluppa"@it, "develops"@en, "explicat ulterius"@la .
+
+dub:rel-traduzioneAttribuitaA a dub:RelationKind ;
+    rdfs:label "ha traduzione attribuita a"@it, "has a translation attributed to"@en, "versionem habet attributam"@la .
+
+dub:rel-tramanda a dub:RelationKind ;
+    rdfs:label "tramanda"@it, "hands down"@en, "tradit"@la .
+
+dub:rel-trasforma a dub:RelationKind ;
+    rdfs:label "trasforma"@it, "transforms"@en, "transformat"@la .
+
+dub:rel-usataCon a dub:RelationKind ;
+    rdfs:label "è usata con"@it, "is used with"@en, "in usu coniungitur cum"@la .
+
+dub:rel-valePer a dub:RelationKind ;
+    rdfs:label "vale per"@it, "holds for"@en, "valet pro"@la .
+
+dub:rel-varianteDi a dub:RelationKind ;
+    rdfs:label "è una variante di"@it, "is a variant of"@en, "species varians est"@la .
+
+dub:rel-vincola a dub:RelationKind ;
+    rdfs:label "vincola"@it, "binds"@en, "ligat"@la .
+
+# EN: Concepts are identified meanings. Their glosses explain how a word is used here.
+# LA: Notiones sunt sensus designati. Glossae explicant quomodo vox hic adhibeatur.
+
+dub:criptaIpertesto a dub:Concept ;
+    rdfs:label "Cripta Semantica come ipertesto"@it, "Cripta Semantica as hypertext"@en, "Crypta Semantica ut hypertextus"@la ;
+    rdfs:comment "Risultato aperto dell'iperscrittura della ricerca ontologica fondamentale."@it, "The open result of hyperwriting in fundamental ontological inquiry."@en, "Exitus apertus hyperscripturae inquisitionis ontologicae fundamentalis."@la .
+
+dub:criptaSito a dub:Concept ;
+    rdfs:label "Cripta Semantica come sito"@it, "Cripta Semantica as website"@en, "Crypta Semantica ut situs retialis"@la ;
+    rdfs:comment "Sito digitale che raccoglie, rende accessibili e collega note."@it, "The digital site that collects, connects and makes notes available."@en, "Situs digitalis qui notas colligit, conectit et lectoribus praebet."@la .
+
+dub:notaIpertestuale a dub:Concept ;
+    rdfs:label "nota ipertestuale"@it, "hypertextual note"@en, "nota hypertextualis"@la ;
+    rdfs:comment "Unità comunicante che può riprendere il progetto al proprio interno."@it, "A unit that communicates with other notes and can take up the project within itself."@en, "Unitas quae cum aliis notis communicat et propositum intra se resumere potest."@la .
+
+dub:filoConduttore a dub:Concept ;
+    rdfs:label "filo conduttore"@it, "guiding thread"@en, "filum dux"@la ;
+    rdfs:comment "Funzione del problema del senso dell'essere nel raccordare la ricerca."@it, "The role played by the question of the sense of being in connecting inquiries."@en, "Munus quaestionis de sensu essendi in inquisitionibus conectendis."@la .
+
+dub:epigrafe a dub:Concept ;
+    rdfs:label "epigrafe del manifesto"@it, "manifesto epigraph"@en, "epigraphe prooemii"@la ;
+    rdfs:comment "Passo collocato all'ingresso dell'ipertesto."@it, "A passage placed at the entrance to the hypertext."@en, "Locus in ipso hypertextus aditu positus."@la .
+
+dub:sofista244a a dub:Concept ;
+    rdfs:label "Sofista 244a"@it, "Sophist 244a"@en, "Sophista 244a"@la ;
+    rdfs:comment "Riferimento all'opera platonica e al passo citato in epigrafe."@it, "Reference to Plato's work and the passage quoted in the epigraph."@en, "Relatio ad opus Platonis et locum in epigraphe citatum."@la .
+
+dub:platone a dub:Concept ;
+    rdfs:label "Platone"@it, "Plato"@en, "Plato"@la ;
+    rdfs:comment "Autore a cui l'epigrafe attribuisce il passo."@it, "Author to whom the epigraph attributes the passage."@en, "Auctor cui epigraphe locum attribuit."@la .
+
+dub:pietroChiodi a dub:Concept ;
+    rdfs:label "Pietro Chiodi"@it, "Pietro Chiodi"@en, "Petrus Chiodi"@la ;
+    rdfs:comment "Traduttore a cui il manifesto attribuisce la resa italiana."@it, "Translator to whom the manifesto attributes the Italian rendering."@en, "Interpres cui prooemium versionem Italicam tribuit."@la .
+
+dub:essenteEspressione a dub:Concept ;
+    rdfs:label "«essente» come espressione"@it, "“being” as an expression"@en, "vox «ens»"@la ;
+    rdfs:comment "Parola il cui uso familiare diviene problematico nell'epigrafe."@it, "A familiar word whose meaning becomes a problem in the epigraph."@en, "Vox familiaris cuius significatio in epigraphe in quaestionem vocatur."@la .
+
+dub:familiarita a dub:Concept ;
+    rdfs:label "familiarità d'uso"@it, "familiarity in use"@en, "familiaritas usus"@la ;
+    rdfs:comment "Intesa pratica presupposta nell'uso di un'espressione."@it, "The practical understanding presupposed in using an expression."@en, "Intellegentia usu comparata quae in voce adhibenda praesupponitur."@la .
+
+dub:comprensionePresunta a dub:Concept ;
+    rdfs:label "comprensione presunta"@it, "presumed understanding"@en, "intellectus praesumptus"@la ;
+    rdfs:comment "Credenza di avere già compreso il senso."@it, "The belief that one already understands the sense."@en, "Opinio qua quis sensum iam intellegere sibi videtur."@la .
+
+dub:perplessita a dub:Concept ;
+    rdfs:label "perplessità"@it, "perplexity"@en, "perplexitas"@la ;
+    rdfs:comment "Esito interrogativo della perdita della comprensione presunta."@it, "The questioning that results when presumed understanding gives way."@en, "Dubitatio quae intellectu praesumpto sublato oritur."@la .
+
+dub:problemaEssere a dub:Concept ;
+    rdfs:label "problema dell'essere"@it, "question of being"@en, "quaestio de esse"@la ;
+    rdfs:comment "Questione da porre che orienta l'impresa filosofica."@it, "The question to be posed in order to orient philosophical inquiry."@en, "Quaestio ponenda quae inquisitionem philosophicam dirigit."@la .
+
+dub:problemaSensoEssere a dub:Concept ;
+    rdfs:label "problema del senso dell'essere"@it, "question of the sense of being"@en, "quaestio de sensu essendi"@la ;
+    rdfs:comment "Questione che raccorda i livelli e i piani della ricerca."@it, "The question that connects the levels and planes of inquiry."@en, "Quaestio quae gradus et plana inquisitionis conectit."@la .
+
+dub:problemaEssenzaEssere a dub:Concept ;
+    rdfs:label "problema dell'essenza dell'essere"@it, "question of the essence of being"@en, "quaestio de essentia essendi"@la ;
+    rdfs:comment "Questione tematizzata nello sviluppo posizionale della ricerca."@it, "The question posed as the inquiry develops."@en, "Quaestio quae in inquisitione progrediente ponitur."@la .
+
+dub:necessitaPorre a dub:Concept ;
+    rdfs:label "necessità di porre il problema"@it, "need to pose the question"@en, "necessitas quaestionem ponendi"@la ;
+    rdfs:comment "Carattere necessario attribuito alla posizione del problema dell'essere."@it, "The necessity the manifesto attributes to posing the question of being."@en, "Necessitas quam prooemium positioni quaestionis de esse tribuit."@la .
+
+dub:porreProblema a dub:Concept ;
+    rdfs:label "posizione del problema"@it, "posing the question"@en, "quaestionis positio"@la ;
+    rdfs:comment "Atto di mettere a tema la questione e tenerla aperta."@it, "The act of making the question a theme and keeping it open."@en, "Actus quo quaestio tractanda proponitur et aperta servatur."@la .
+
+dub:pensieroOccidentale a dub:Concept ;
+    rdfs:label "pensiero occidentale"@it, "Western thought"@en, "cogitatio occidentalis"@la ;
+    rdfs:comment "Tradizione il cui inizio è narrato nel manifesto."@it, "The tradition whose beginnings the manifesto narrates."@en, "Traditio cuius initia prooemium narrat."@la .
+
+dub:esordioGreco a dub:Concept ;
+    rdfs:label "esordio greco"@it, "Greek beginnings"@en, "exordium Graecum"@la ;
+    rdfs:comment "Inizio del pensiero occidentale localizzato in Grecia nel racconto del manifesto."@it, "The beginning of Western thought, located in Greece in the manifesto's account."@en, "Initium cogitationis occidentalis quod prooemium in Graecia collocat."@la .
+
+dub:grecia a dub:Concept ;
+    rdfs:label "Grecia"@it, "Greece"@en, "Graecia"@la ;
+    rdfs:comment "Localizzazione dell'esordio secondo il manifesto."@it, "The location of that beginning in the manifesto."@en, "Locus illius initii secundum prooemium."@la .
+
+dub:filosofia a dub:Concept ;
+    rdfs:label "filosofia"@it, "philosophy"@en, "philosophia"@la ;
+    rdfs:comment "Corpo tradizionale del pensiero occidentale e disciplina originariamente orale."@it, "The traditional body of Western thought and a discipline originally practised orally."@en, "Corpus traditum cogitationis occidentalis atque disciplina primum ore exercita."@la .
+
+dub:oralita a dub:Concept ;
+    rdfs:label "oralità"@it, "orality"@en, "usus oralis"@la ;
+    rdfs:comment "Forma di esercizio della filosofia che precede il trasferimento nei testi."@it, "The mode of practising philosophy that precedes its transfer to writing."@en, "Ratio philosophandi quae traditionem scriptam antecedit."@la .
+
+dub:praticaDialogica a dub:Concept ;
+    rdfs:label "pratica dialogica"@it, "dialogical practice"@en, "exercitatio dialogica"@la ;
+    rdfs:comment "Esercizio condiviso volto alla reminiscenza dell'essere."@it, "A shared exercise aimed at recollecting being."@en, "Exercitatio communis ad reminiscendum esse directa."@la .
+
+dub:partecipante a dub:Concept ;
+    rdfs:label "partecipante"@it, "participant"@en, "particeps"@la ;
+    rdfs:comment "Chi prende parte alla pratica dialogica."@it, "Someone who takes part in the dialogical practice."@en, "Is qui exercitationis dialogicae particeps est."@la .
+
+dub:psiche a dub:Concept ;
+    rdfs:label "psiche"@it, "psyche"@en, "animus"@la ;
+    rdfs:comment "Ciò che la pratica trasforma nei partecipanti."@it, "What the practice transforms in the participants."@en, "Id quod exercitatio in participibus transformat."@la .
+
+dub:reminiscenza a dub:Concept ;
+    rdfs:label "reminiscenza"@it, "recollection"@en, "reminiscentia"@la ;
+    rdfs:comment "Rimemorazione dell'essere come fine del dialogo."@it, "Recollecting being as the aim of dialogue."@en, "Reminiscentia essendi ut finis dialogi."@la .
+
+dub:scienzaTrasformazione a dub:Concept ;
+    rdfs:label "scienza come trasformazione"@it, "science as transformation"@en, "scientia ut transformatio"@la ;
+    rdfs:comment "Nome della trasformazione psichica prodotta dalla pratica nel passo."@it, "The passage's name for the change in the psyche produced by the practice."@en, "Nomen quo locus mutationem animi ab exercitatione effectam appellat."@la .
+
+dub:risultatoDialogico a dub:Concept ;
+    rdfs:label "risultato del dialogo"@it, "outcome of dialogue"@en, "exitus dialogi"@la ;
+    rdfs:comment "Esito della pratica che può essere trasferito nello scritto."@it, "An outcome of dialogue that can be written down."@en, "Exitus dialogi qui litteris mandari potest."@la .
+
+dub:memoriaDialogica a dub:Concept ;
+    rdfs:label "ricordo del dialogo"@it, "memory of dialogue"@en, "memoria dialogi"@la ;
+    rdfs:comment "Memoria della pratica che può essere trasferita nello scritto."@it, "A memory of dialogue that can be written down."@en, "Memoria dialogi quae litteris mandari potest."@la .
+
+dub:testo a dub:Concept ;
+    rdfs:label "testo"@it, "text"@en, "textus"@la ;
+    rdfs:comment "Supporto della trasmissione scritta e ingresso dell'iperscrittura elementare."@it, "A vehicle of written transmission and an input to elementary hyperwriting."@en, "Instrumentum traditionis scriptae et materia hyperscripturae elementaris."@la .
+
+dub:tradizioneTestuale a dub:Concept ;
+    rdfs:label "tradizione testuale"@it, "textual tradition"@en, "traditio textualis"@la ;
+    rdfs:comment "Sequenza di scritti che tramandano e accrescono la filosofia."@it, "A sequence of writings that transmits and extends philosophy."@en, "Series scriptorum quae philosophiam tradit et auget."@la .
+
+dub:scrittura a dub:Concept ;
+    rdfs:label "scrittura"@it, "writing"@en, "scriptura"@la ;
+    rdfs:comment "Pratica associata all'inizio della storia e sottoposta a quantificazione."@it, "The practice associated with the beginning of history and subject to quantification."@en, "Exercitatio quae cum initio historiae conectitur et quantificationi subicitur."@la .
+
+dub:storia a dub:Concept ;
+    rdfs:label "storia"@it, "history"@en, "historia"@la ;
+    rdfs:comment "Periodo che nel parallelismo comincia con l'avvento della scrittura."@it, "The period which, in the analogy, begins with the appearance of writing."@en, "Aetas quae, secundum analogiam, scriptura apparente incipit."@la .
+
+dub:svolta1936 a dub:Concept ;
+    rdfs:label "svolta del 1936"@it, "the turning point of 1936"@en, "discrimen anni 1936"@la ;
+    rdfs:comment "Soglia storica individuata nel manifesto con la pubblicazione di una macchina astratta."@it, "The threshold the manifesto identifies with publication of an abstract machine."@en, "Limen quod prooemium editione machinae abstractae designat."@la .
+
+dub:pubblicazioneMacchina a dub:Concept ;
+    rdfs:label "pubblicazione della macchina astratta"@it, "publication of the abstract machine"@en, "editio machinae abstractae"@la ;
+    rdfs:comment "Evento con cui il manifesto individua la svolta."@it, "The event the manifesto uses to locate the turning point."@en, "Eventus quo prooemium discrimen designat."@la .
+
+dub:macchinaAstratta a dub:Concept ;
+    rdfs:label "macchina astratta"@it, "abstract machine"@en, "machina abstracta"@la ;
+    rdfs:comment "Modello astratto al quale vengono messi in rapporto i testi."@it, "An abstract model to which texts are put in relation."@en, "Exemplar abstractum ad quod textus referuntur."@la .
+
+dub:iperstoria a dub:Concept ;
+    rdfs:label "iperstoria"@it, "hyperhistory"@en, "hyperhistoria"@la ;
+    rdfs:comment "Periodo inaugurato dalla svolta e correlato all'iperscrittura."@it, "The period inaugurated by the turning point and associated with hyperwriting."@en, "Aetas a discrimine inaugurata et cum hyperscriptura coniuncta."@la .
+
+dub:infosfera a dub:Concept ;
+    rdfs:label "infosfera"@it, "infosphere"@en, "sphaera informationis"@la ;
+    rdfs:comment "Ambiente informazionale la cui nascita è associata alla svolta."@it, "The informational environment whose emergence is associated with the turning point."@en, "Ambitus informationis cuius ortus cum discrimine conectitur."@la .
+
+dub:quantificazioneScrittura a dub:Concept ;
+    rdfs:label "quantificazione della scrittura"@it, "quantification of writing"@en, "quantificatio scripturae"@la ;
+    rdfs:comment "Processo storico-tecnico che trova esposizione nell'ipertesto."@it, "A historical and technical process that is exhibited in hypertext."@en, "Processus historicus et technicus qui in hypertextu manifestatur."@la .
+
+dub:quantificazioneOntologica a dub:Concept ;
+    rdfs:label "quantificazione ontologica"@it, "ontological quantification"@en, "quantificatio ontologica"@la ;
+    rdfs:comment "Lettura dell'impegno di una teoria attraverso i valori ammissibili delle variabili vincolate."@it, "Reading a theory's commitments through the admissible values of bound variables."@en, "Examinatio obligationum theoriae per valores admissibiles variabilium ligatorum."@la .
+
+dub:destinazioneIpertestuale a dub:Concept ;
+    rdfs:label "destinazione all'ipertesto"@it, "orientation towards hypertext"@en, "destinatio ad hypertextum"@la ;
+    rdfs:comment "Trasposizione prospettata a prescindere dalla consapevolezza dell'ipertesto."@it, "The projected shift into hypertext, regardless of awareness of that form."@en, "Transitus ad hypertextum prospectus, sive quis illius formae conscius est sive non."@la .
+
+dub:produzioneFilosofica a dub:Concept ;
+    rdfs:label "produzione filosofica"@it, "philosophical production"@en, "productio philosophica"@la ;
+    rdfs:comment "Produzione testuale che dopo la svolta può assumere forma ipertestuale."@it, "Textual production that can take hypertextual form after the turning point."@en, "Productio textualis quae post discrimen formam hypertextualem sumere potest."@la .
+
+dub:iperscrittura a dub:Concept ;
+    rdfs:label "iperscrittura"@it, "hyperwriting"@en, "hyperscriptura"@la ;
+    rdfs:comment "Processo di produzione di ipertesti."@it, "The process of producing hypertexts."@en, "Processus hypertextus producendi."@la .
+
+dub:iperscritturaElementare a dub:Concept ;
+    rdfs:label "iperscrittura elementare"@it, "elementary hyperwriting"@en, "hyperscriptura elementaris"@la ;
+    rdfs:comment "Messa in funzione di testi in rapporto a macchine astratte."@it, "Putting texts into operation in relation to abstract machines."@en, "Textus ad machinas abstractas relatos in usum adducere."@la .
+
+dub:iperscritturaConsapevole a dub:Concept ;
+    rdfs:label "iperscrittura consapevole"@it, "conscious hyperwriting"@en, "hyperscriptura conscia"@la ;
+    rdfs:comment "Messa in circuito di contenuti e codici di sviluppo del Web."@it, "Putting content and development code into circulation on the Web."@en, "Materiam et codicem exstruendi per Rete in circuitum mittere."@la .
+
+dub:iperscritturaRiflessiva a dub:Concept ;
+    rdfs:label "iperscrittura riflessiva"@it, "reflexive hyperwriting"@en, "hyperscriptura reflexiva"@la ;
+    rdfs:comment "Consapevolezza della propria capacità di veicolare contenuti."@it, "Awareness of one's own capacity to convey content."@en, "Conscientia propriae facultatis materiam tradendi."@la .
+
+dub:consapevolezza a dub:Concept ;
+    rdfs:label "consapevolezza dell'iperscrittura"@it, "awareness of hyperwriting"@en, "conscientia hyperscripturae"@la ;
+    rdfs:comment "Riconoscimento riflessivo del processo o della sua forma."@it, "Reflexive recognition of the process or its form."@en, "Agnitio reflexiva processus vel formae eius."@la .
+
+dub:ipertesto a dub:Concept ;
+    rdfs:label "ipertesto"@it, "hypertext"@en, "hypertextus"@la ;
+    rdfs:comment "Esito dell'iperscrittura e forma espositiva della quantificazione della scrittura."@it, "The result of hyperwriting and the form in which writing's quantification becomes manifest."@en, "Exitus hyperscripturae atque forma qua quantificatio scripturae apparet."@la .
+
+dub:web a dub:Concept ;
+    rdfs:label "Rete di Portata Mondiale"@it, "World Wide Web"@en, "Rete Totum Orbem Complectens"@la ;
+    rdfs:comment "World Wide Web, ambiente di messa in circuito di contenuti e codici."@it, "The environment in which content and code are put into circulation."@en, "Ambitus in quo materia et codices in circuitum mittuntur."@la .
+
+dub:sviluppoWeb a dub:Concept ;
+    rdfs:label "sviluppo del Web"@it, "development of the Web"@en, "progressus Retis"@la ;
+    rdfs:comment "Accrescimento e perfezionamento orientati al capitale semantico."@it, "Growth and improvement directed towards semantic capital."@en, "Incrementum et perfectio ad capitale semanticum directa."@la .
+
+dub:codiceSviluppo a dub:Concept ;
+    rdfs:label "codice di sviluppo"@it, "development code"@en, "praecepta ad Rete exstruendum"@la ;
+    rdfs:comment "Codice messo in circuito nel Web dall'iperscrittura consapevole."@it, "Code put into circulation on the Web by conscious hyperwriting."@en, "Praecepta quae hyperscriptura conscia in circuitum Retis mittit."@la .
+
+dub:contenuto a dub:Concept ;
+    rdfs:label "contenuto"@it, "content"@en, "materia expressa"@la ;
+    rdfs:comment "Ciò che l'iperscrittura può veicolare e l'esserci può comprendere."@it, "What hyperwriting can convey and Dasein can understand."@en, "Id quod hyperscriptura tradere et adesse intellegere potest."@la .
+
+dub:significato a dub:Concept ;
+    rdfs:label "significato computabile"@it, "computable meaning"@en, "significatio computabilis"@la ;
+    rdfs:comment "Organizzazione del contenuto resa accessibile a macchine concrete."@it, "The organisation of content in a form that concrete machines can process."@en, "Ordinatio materiae in formam a machinis concretis tractabilem."@la .
+
+dub:capitaleSemantico a dub:Concept ;
+    rdfs:label "capitale semantico"@it, "semantic capital"@en, "capitale semanticum"@la ;
+    rdfs:comment "Risorsa costituita dall'organizzazione dei contenuti in significati accessibili a macchine."@it, "A resource formed by organising content into meanings that machines can process."@en, "Opes ex materia in significationes a machinis tractabiles ordinata constitutae."@la .
+
+dub:accumuloSemantico a dub:Concept ;
+    rdfs:label "accumulo di capitale semantico"@it, "accumulation of semantic capital"@en, "accumulatio capitalis semantici"@la ;
+    rdfs:comment "Primo orientamento attribuito allo sviluppo del Web."@it, "The first orientation ascribed to the development of the Web."@en, "Prima directio progressui Retis attributa."@la .
+
+dub:distribuzioneSemantica a dub:Concept ;
+    rdfs:label "distribuzione di capitale semantico"@it, "distribution of semantic capital"@en, "distributio capitalis semantici"@la ;
+    rdfs:comment "Secondo orientamento attribuito allo sviluppo del Web."@it, "The second orientation ascribed to the development of the Web."@en, "Altera directio progressui Retis attributa."@la .
+
+dub:organizzazioneSemantica a dub:Concept ;
+    rdfs:label "organizzazione semantica"@it, "semantic organisation"@en, "ordinatio semantica"@la ;
+    rdfs:comment "Trasformazione di contenuti accessibili all'esserci in significati trattabili da macchine."@it, "The transformation of humanly accessible content into meanings that machines can process."@en, "Transformatio materiae adesse patentis in significationes a machinis tractabiles."@la .
+
+dub:esserci a dub:Concept ;
+    rdfs:label "esserci"@it, "Dasein"@en, "adesse (Dasein)"@la ;
+    rdfs:comment "Polo di accessibilità umana del contenuto nel passo sul capitale semantico."@it, "The human pole of accessibility in the passage on semantic capital."@en, "Pars humana accessus in loco de capitali semantico."@la .
+
+dub:esserciDellEssere a dub:Concept ;
+    rdfs:label "esserci dell'essere"@it, "the being-there of being"@en, "adesse ipsius esse"@la ;
+    rdfs:comment "Dimensione che il passo chiede di indicare nel tematizzare l'essere; espressione lasciata aperta."@it, "A dimension to be indicated when being becomes the theme of inquiry. The expression remains open."@en, "Ratio indicanda cum esse ipsum fit argumentum inquisitionis. Locutio aperta manet."@la .
+
+dub:macchinaConcreta a dub:Concept ;
+    rdfs:label "macchina concreta"@it, "concrete machine"@en, "machina concreta"@la ;
+    rdfs:comment "Sistema effettivo a cui sono resi accessibili i significati organizzati."@it, "An actual system to which organised meanings are made accessible."@en, "Systema re ipsa exsistens cui significationes ordinatae patefiunt."@la .
+
+dub:strutturaConoscenzaOntica a dub:Concept ;
+    rdfs:label "struttura di conoscenza ontica"@it, "structure of ontic knowledge"@en, "structura cognitionis onticae"@la ;
+    rdfs:comment "Strumento esplicito con cui si organizza il capitale semantico."@it, "An explicit means of organising semantic capital."@en, "Instrumentum explicitum quo capitale semanticum ordinatur."@la .
+
+dub:ontologiaInformatica a dub:Concept ;
+    rdfs:label "ontologia informatica"@it, "computational ontology"@en, "ontologia informatica"@la ;
+    rdfs:comment "Specificazione formale ed esplicita di una concettualizzazione condivisa."@it, "A formal and explicit specification of a shared conceptualisation."@en, "Specificatio formalis et explicita ordinationis conceptuum communis."@la .
+
+dub:specificazione a dub:Concept ;
+    rdfs:label "specificazione"@it, "specification"@en, "specificatio"@la ;
+    rdfs:comment "Espressione formale ed esplicita della concettualizzazione."@it, "Formal and explicit expression of the conceptualisation."@en, "Expressio formalis et explicita ordinationis conceptuum."@la .
+
+dub:formalita a dub:Concept ;
+    rdfs:label "formalità"@it, "formality"@en, "ratio formalis"@la ;
+    rdfs:comment "Carattere della specificazione relativo alla forma dichiarata."@it, "The character of the specification with respect to its stated form."@en, "Ratio specificationis quoad formam declaratam."@la .
+
+dub:esplicitezza a dub:Concept ;
+    rdfs:label "esplicitezza"@it, "explicitness"@en, "ratio explicita"@la ;
+    rdfs:comment "Carattere della specificazione dichiarata."@it, "The character of a specification that is made explicit."@en, "Ratio specificationis quae explicite declaratur."@la .
+
+dub:concettualizzazione a dub:Concept ;
+    rdfs:label "concettualizzazione"@it, "conceptualisation"@en, "conceptuum ordinatio"@la ;
+    rdfs:comment "Assetto concettuale reso condiviso e specificato dall'ontologia informatica."@it, "The conceptual arrangement made shared and specified by computational ontology."@en, "Ordinatio conceptuum communis reddita et ontologia informatica specificata."@la .
+
+dub:condivisione a dub:Concept ;
+    rdfs:label "condivisione"@it, "shared character"@en, "communicatio"@la ;
+    rdfs:comment "Condizione intersoggettiva attribuita alla concettualizzazione."@it, "The intersubjective condition ascribed to the conceptualisation."@en, "Condicio inter subiecta ordinationi conceptuum attributa."@la .
+
+dub:trasmissibilita a dub:Concept ;
+    rdfs:label "possibilità di veicolare contenuti"@it, "capacity to convey content"@en, "facultas materiam tradendi"@la ;
+    rdfs:comment "Oggetto riflessivo dell'ontologia informatica."@it, "What computational ontology reflects on in the act of conveying content."@en, "Id de quo ontologia informatica in materia tradenda reflectit."@la .
+
+dub:trasmissibilitaGenerale a dub:Concept ;
+    rdfs:label "trasmissibilità generale"@it, "general conveyability"@en, "facultas tradendi generalis"@la ;
+    rdfs:comment "Possibilità riferita a qualsiasi contenuto entro un ambito."@it, "A possibility considered for any content within a domain."@en, "Possibilitas ad quamlibet materiam intra certum ambitum relata."@la .
+
+dub:trasmissibilitaDeterminata a dub:Concept ;
+    rdfs:label "trasmissibilità determinata"@it, "determinate conveyability"@en, "facultas tradendi determinata"@la ;
+    rdfs:comment "Possibilità riferita a un contenuto esatto."@it, "A possibility considered for one exact piece of content."@en, "Possibilitas ad unam materiam definitam relata."@la .
+
+dub:ontologiaAnalitica a dub:Concept ;
+    rdfs:label "ontologia filosofico-analitica"@it, "analytic philosophical ontology"@en, "ontologia philosophica analytica"@la ;
+    rdfs:comment "Indagine su che cosa c'è e sui tipi di entità, rilevante per contenuto e forma dell'implementazione."@it, "Inquiry into what there is and the kinds of entities, bearing on the content and form of implementation."@en, "Inquisitio de iis quae sunt deque generibus entium, quae ad materiam formamque exsecutionis pertinet."@la .
+
+dub:orientamentoOggetti a dub:Concept ;
+    rdfs:label "orientamento agli oggetti"@it, "object-oriented inquiry"@en, "inquisitio ad obiecta directa"@la ;
+    rdfs:comment "Variante dell'indagine analitica menzionata dal manifesto."@it, "A variant of analytic inquiry mentioned by the manifesto."@en, "Species inquisitionis analyticae quam prooemium commemorat."@la .
+
+dub:orientamentoIperoggetti a dub:Concept ;
+    rdfs:label "orientamento agli iperoggetti"@it, "hyperobject-oriented inquiry"@en, "inquisitio ad hyperobiecta directa"@la ;
+    rdfs:comment "Variante analitica menzionata senza una definizione degli iperoggetti."@it, "An analytic variant mentioned without a definition of hyperobjects."@en, "Species analytica commemorata sine definitione hyperobiectorum."@la .
+
+dub:implementazione a dub:Concept ;
+    rdfs:label "implementazione informatica"@it, "computational implementation"@en, "exsecutio informatica"@la ;
+    rdfs:comment "Realizzazione in cui il contributo analitico può essere esplicito o implicito."@it, "A realisation in which the analytic contribution can be explicit or implicit."@en, "Exsecutio in qua adiumentum analyticum explicitum vel implicitum esse potest."@la .
+
+dub:teoria a dub:Concept ;
+    rdfs:label "teoria"@it, "theory"@en, "theoria"@la ;
+    rdfs:comment "Contesto entro cui enunciati, variabili e valori diventano pertinenti alla quantificazione."@it, "A context in which statements, variables and values matter for quantification."@en, "Contextus in quo enuntiata, variabilia et valores ad quantificationem pertinent."@la .
+
+dub:enunciato a dub:Concept ;
+    rdfs:label "enunciato"@it, "statement"@en, "enuntiatum"@la ;
+    rdfs:comment "Espressione di una teoria che contiene o usa variabili vincolate."@it, "An expression of a theory that contains or uses bound variables."@en, "Expressio theoriae quae variabilia ligata continet aut adhibet."@la .
+
+dub:variabileVincolata a dub:Concept ;
+    rdfs:label "variabile vincolata"@it, "bound variable"@en, "variabile ligatum"@la ;
+    rdfs:comment "Variabile il cui legame con un quantificatore è circoscritto alla teoria e all'enunciato."@it, "A variable whose binding by a quantifier is scoped to the theory and statement."@en, "Variabile cuius ligatio per quantificatorem ambitu theoriae et enuntiati continetur."@la .
+
+dub:valoreVariabile a dub:Concept ;
+    rdfs:label "valore di una variabile"@it, "value of a variable"@en, "valor variabilis"@la ;
+    rdfs:comment "Valore ammissibile rispetto a un'assegnazione e a un dominio."@it, "A value admissible with respect to an assignment and a domain."@en, "Valor ad attributionem et ambitum admissus."@la .
+
+dub:tipoEntita a dub:Concept ;
+    rdfs:label "tipo di entità"@it, "type of entity"@en, "genus entis"@la ;
+    rdfs:comment "Tipo che l'indagine analitica distingue nel proprio dominio."@it, "A kind that analytic inquiry distinguishes in its domain."@en, "Genus quod inquisitio analytica in suo ambitu distinguit."@la .
+
+dub:ontologiaFenomenologica a dub:Concept ;
+    rdfs:label "ontologia fenomenologica"@it, "phenomenological ontology"@en, "ontologia phaenomenologica"@la ;
+    rdfs:comment "Indagine articolata in dimensione formale e regionale."@it, "Inquiry articulated into formal and regional dimensions."@en, "Inquisitio in rationem formalem et regionalem articulata."@la .
+
+dub:ontologiaFormale a dub:Concept ;
+    rdfs:label "ontologia formale fenomenologica"@it, "formal phenomenological ontology"@en, "ontologia phaenomenologica formalis"@la ;
+    rdfs:comment "Indagine sulle strutture logiche valide per l'oggetto in generale."@it, "Inquiry into logical structures that apply to an object in general."@en, "Inquisitio structurarum logicarum quae de obiecto in genere valent."@la .
+
+dub:ontologiaRegionale a dub:Concept ;
+    rdfs:label "ontologia regionale"@it, "regional ontology"@en, "ontologia regionalis"@la ;
+    rdfs:comment "Indagine sulle essenze e sui modi di possibilità propri di una regione."@it, "Inquiry into essences and modes of possibility proper to a region."@en, "Inquisitio essentiarum et modorum possibilitatis propriorum regionis."@la .
+
+dub:oggettoGenerale a dub:Concept ;
+    rdfs:label "oggetto in generale"@it, "object in general"@en, "obiectum in genere"@la ;
+    rdfs:comment "Polo delle strutture valide formalmente per qualsiasi oggetto."@it, "The pole of structures that hold formally for any object."@en, "Id cui structurae formaliter de quolibet obiecto valentes referuntur."@la .
+
+dub:strutturaLogica a dub:Concept ;
+    rdfs:label "struttura logica"@it, "logical structure"@en, "structura logica"@la ;
+    rdfs:comment "Struttura valida per l'oggetto in generale secondo l'indagine formale."@it, "A structure that holds for objects in general according to formal inquiry."@en, "Structura quae secundum inquisitionem formalem de obiectis in genere valet."@la .
+
+dub:strutturaEnunciativa a dub:Concept ;
+    rdfs:label "struttura enunciativa"@it, "structure of statements"@en, "structura enuntiativa"@la ;
+    rdfs:comment "Forma di enunciazione dell'ontologia analitica indagata formalmente."@it, "The form of statements in analytic ontology as investigated formally."@en, "Forma enuntiationis ontologiae analyticae ratione formali investigata."@la .
+
+dub:giudizio a dub:Concept ;
+    rdfs:label "giudizio"@it, "judgement"@en, "iudicium"@la ;
+    rdfs:comment "Nozione richiesta dall'indagine formale delle strutture enunciative."@it, "A notion required in the formal investigation of statement structures."@en, "Notio ad inquisitionem formalem structurarum enuntiativarum requisita."@la .
+
+dub:regioneRealta a dub:Concept ;
+    rdfs:label "regione della realtà"@it, "region of reality"@en, "regio realitatis"@la ;
+    rdfs:comment "Campo di realtà per cui l'usiologia fissa caratteri specifici."@it, "A field of reality whose specific features are established by inquiry into essences."@en, "Pars realitatis cuius proprietates usiologia constituit."@la .
+
+dub:usiologia a dub:Concept ;
+    rdfs:label "usiologia"@it, "study of regional essences"@en, "usiologia"@la ;
+    rdfs:comment "Indagine delle essenze specifiche proprie delle regioni."@it, "Inquiry into the specific essences of regions."@en, "Inquisitio essentiarum propriarum regionum."@la .
+
+dub:essenzaRegionale a dub:Concept ;
+    rdfs:label "essenza regionale"@it, "regional essence"@en, "essentia regionalis"@la ;
+    rdfs:comment "Essenza specifica che qualifica una regione."@it, "A specific essence that characterises a region."@en, "Essentia propria qua regio determinatur."@la .
+
+dub:modoPossibilitaEntita a dub:Concept ;
+    rdfs:label "modo di possibilità di un'entità"@it, "mode of possibility of an entity"@en, "modus quo ens possibile est"@la ;
+    rdfs:comment "Come è possibile essere un'entità in una regione."@it, "How it is possible to be an entity in a region."@en, "Quomodo in regione ens esse possit."@la .
+
+dub:modoPossibilitaEssere a dub:Concept ;
+    rdfs:label "modo di possibilità dell'essere"@it, "mode of possibility of being"@en, "modus quo esse possibile est"@la ;
+    rdfs:comment "Dimensione che il manifesto chiede di esplicitare nella tematizzazione dell'essere."@it, "A dimension to be made explicit when being is taken as the theme."@en, "Ratio explicanda cum esse ipsum pro argumento sumitur."@la .
+
+dub:ambitoOggettuale a dub:Concept ;
+    rdfs:label "ambito oggettuale"@it, "domain of objects"@en, "ambitus obiectorum"@la ;
+    rdfs:comment "Dominio aperto fenomenologicamente a partire dalle determinazioni regionali."@it, "A domain opened phenomenologically on the basis of regional determinations."@en, "Ambitus phaenomenologice apertus ex determinationibus regionalibus."@la .
+
+dub:aperturaFenomenologica a dub:Concept ;
+    rdfs:label "apertura fenomenologica"@it, "phenomenological opening"@en, "apertio phaenomenologica"@la ;
+    rdfs:comment "Apertura dell'ambito che rende circoscrivibile una quantificazione."@it, "The opening of a domain that lets quantification be delimited."@en, "Apertio ambitus qua quantificatio circumscribi potest."@la .
+
+dub:metafisicaOccidentale a dub:Concept ;
+    rdfs:label "metafisica occidentale"@it, "Western metaphysics"@en, "metaphysica occidentalis"@la ;
+    rdfs:comment "Criteri e metodi attribuiti alle ontologie dell'ente."@it, "Criteria and methods ascribed to ontologies of entities."@en, "Normae et methodi ontologiis entium attributae."@la .
+
+dub:ontologiaEnte a dub:Concept ;
+    rdfs:label "ontologia dell'ente"@it, "ontology of entities"@en, "ontologia entium"@la ;
+    rdfs:comment "Indagine dell'ente in quanto ente e dell'essere in quanto essere di un ente."@it, "Inquiry into entities as entities and being as the being of an entity."@en, "Inquisitio de ente quatenus ens est deque esse ut esse entis."@la .
+
+dub:ente a dub:Concept ;
+    rdfs:label "ente o entità"@it, "entity or being"@en, "ens"@la ;
+    rdfs:comment "Ciò che viene indagato secondo diversi sensi e diversi ambiti."@it, "What is investigated under different senses and within different domains."@en, "Id quod variis sensibus in variis ambitibus investigatur."@la .
+
+dub:enteComeCosa a dub:Concept ;
+    rdfs:label "ente in quanto ente, come cosa"@it, "entity as entity, considered as a thing"@en, "ens quatenus ens ut res"@la ;
+    rdfs:comment "Ente trattato in senso ontologico dalle ontologie metafisiche."@it, "An entity treated as a thing in the ontological approach of metaphysics."@en, "Ens ut res ratione ontologica metaphysicae tractatum."@la .
+
+dub:essere a dub:Concept ;
+    rdfs:label "essere"@it, "being"@en, "esse"@la ;
+    rdfs:comment "Tema del manifesto, distinto dalle specificazioni relative e fondamentali."@it, "The manifesto's theme, distinguished from its relational and fundamental formulations."@en, "Argumentum prooemii, cuius ratio relativa a ratione fundamentali distinguitur."@la .
+
+dub:essereEntita a dub:Concept ;
+    rdfs:label "essere un'entità"@it, "being an entity"@en, "esse ens"@la ;
+    rdfs:comment "Che cosa significa contare come entità rispetto alla struttura formale."@it, "What it means to count as an entity with regard to formal structure."@en, "Quid significet pro ente haberi, habita ratione structurae formalis."@la .
+
+dub:essereDiEnte a dub:Concept ;
+    rdfs:label "essere di un ente"@it, "being of an entity"@en, "esse entis"@la ;
+    rdfs:comment "Senso ontico dell'essere in relazione a qualcosa."@it, "The ontic sense of being in relation to something."@en, "Sensus onticus essendi ad aliquid relati."@la .
+
+dub:essereInQuantoTale a dub:Concept ;
+    rdfs:label "essere in quanto tale"@it, "being as such"@en, "esse ipsum"@la ;
+    rdfs:comment "Tema problematico dell'ontologia fondamentale, indipendente dalla scelta di una cosa da indagare."@it, "The problematic theme of fundamental ontology, independent of selecting a thing to investigate."@en, "Argumentum difficile ontologiae fundamentalis, quod a re investiganda praeelecta non pendet."@la .
+
+dub:essenzaEssere a dub:Concept ;
+    rdfs:label "essenza dell'essere"@it, "essence of being"@en, "essentia essendi"@la ;
+    rdfs:comment "Dimensione dell'essere tematizzata dalla ricerca posizionale."@it, "A dimension of being thematised by inquiry that poses the question."@en, "Ratio essendi quam inquisitio quaestionem ponens tractat."@la .
+
+dub:concettualizzazioneEssere a dub:Concept ;
+    rdfs:label "concettualizzazione dell'essere"@it, "conceptualisation of being"@en, "ordinatio conceptuum de esse"@la ;
+    rdfs:comment "Articolazione concettuale da specificare formalmente nella trattazione ontologica dell'essere."@it, "A conceptual articulation to be formally specified in the ontological treatment of being."@en, "Articulatio conceptuum formaliter specificanda in tractatione ontologica essendi."@la .
+
+dub:enteOntico a dub:Concept ;
+    rdfs:label "ente onticamente inteso"@it, "entity understood ontically"@en, "ens ontice intellectum"@la ;
+    rdfs:comment "Figura usata dal manifesto come referente-limite nella trattazione dell'essere."@it, "The figure the manifesto uses as a limiting reference in the inquiry into being."@en, "Figura qua prooemium utitur ut ad limen inquisitionis de esse referatur."@la .
+
+dub:nulla a dub:Concept ;
+    rdfs:label "nulla"@it, "nothing"@en, "nihil"@la ;
+    rdfs:comment "Nome della figura-limite del passo; qui indica un senso da indagare."@it, "The name of the limiting figure in the passage, recorded as a sense to investigate."@en, "Nomen figurae limitaneae in hoc loco, ut sensus investigandus inscriptum."@la .
+
+dub:assenzaCosa a dub:Concept ;
+    rdfs:label "assenza di una cosa come oggetto"@it, "absence of a thing as object"@en, "absentia rei ut obiecti"@la ;
+    rdfs:comment "Condizione di lettura della tematizzazione dell'essere in quanto tale."@it, "A condition on taking being as such as the theme."@en, "Condicio qua esse ipsum pro argumento sumitur."@la .
+
+dub:ontologiaFondamentale a dub:Concept ;
+    rdfs:label "ontologia fondamentale"@it, "fundamental ontology"@en, "ontologia fundamentalis"@la ;
+    rdfs:comment "Ricerca di fondazione del senso delle ontologie dell'ente, lasciata inespressa nella sua totalità."@it, "Inquiry into the ground of the sense of ontologies of entities. The whole remains unexpressed."@en, "Inquisitio fundamenti sensus ontologiarum entium. Totalitas non exprimitur."@la .
+
+dub:senso a dub:Concept ;
+    rdfs:label "senso"@it, "sense"@en, "sensus"@la ;
+    rdfs:comment "Ciò che si articola o dà intelligibilità in un contesto di ricerca."@it, "What can be articulated or lends intelligibility in a context of inquiry."@en, "Id quod articulatur aut in ambitu inquisitionis intellegibilitatem praebet."@la .
+
+dub:sensoEssere a dub:Concept ;
+    rdfs:label "senso dell'essere"@it, "sense of being"@en, "sensus essendi"@la ;
+    rdfs:comment "Orizzonte interrogato che dà il filo conduttore alla ricerca."@it, "The horizon under inquiry which provides its guiding thread."@en, "Horizon investigatus qui inquisitioni filum quod ducit praebet."@la .
+
+dub:totalitaInespressa a dub:Concept ;
+    rdfs:label "totalità inespressa"@it, "unexpressed totality"@en, "totalitas non expressa"@la ;
+    rdfs:comment "Carattere dell'ontologia fondamentale motivato dal suo oggetto problematico."@it, "A feature of fundamental ontology motivated by its problematic theme."@en, "Ratio ontologiae fundamentalis difficultate argumenti inducta."@la .
+
+dub:ricercaFondamentale a dub:Concept ;
+    rdfs:label "ricerca ontologica fondamentale"@it, "fundamental ontological inquiry"@en, "inquisitio ontologica fundamentalis"@la ;
+    rdfs:comment "Sviluppo posizionale del problema dell'essenza dell'essere."@it, "Inquiry that develops by posing the question of the essence of being."@en, "Inquisitio quae procedit quaestionem de essentia essendi ponendo."@la .
+
+dub:ricercaOntologica a dub:Concept ;
+    rdfs:label "ricerca ontologica"@it, "ontological inquiry"@en, "inquisitio ontologica"@la ;
+    rdfs:comment "Insieme aperto di livelli e piani d'indagine attraversati dall'iperscrittura."@it, "An open collection of levels and planes traversed by hyperwriting."@en, "Collectio aperta graduum et planorum quae hyperscriptura percurrit."@la .
+
+dub:livelloRicerca a dub:Concept ;
+    rdfs:label "livello della ricerca"@it, "level of inquiry"@en, "gradus inquisitionis"@la ;
+    rdfs:comment "Articolazione stratificata della ricerca ontologica."@it, "A layer in the articulation of ontological inquiry."@en, "Gradus in articulatione inquisitionis ontologicae."@la .
+
+dub:pianoRicerca a dub:Concept ;
+    rdfs:label "piano della ricerca"@it, "plane of inquiry"@en, "planum inquisitionis"@la ;
+    rdfs:comment "Articolazione della ricerca che l'iperscrittura mette in rapporto con altre."@it, "An articulation of inquiry that hyperwriting connects with others."@en, "Planum inquisitionis quod hyperscriptura cum aliis conectit."@la .
+
+dub:iperscritturaFondamentale a dub:Concept ;
+    rdfs:label "iperscrittura della ricerca fondamentale"@it, "hyperwriting of fundamental inquiry"@en, "hyperscriptura inquisitionis fundamentalis"@la ;
+    rdfs:comment "Pratica che raccorda livelli e piani lungo il problema del senso dell'essere."@it, "The practice of connecting levels and planes along the question of the sense of being."@en, "Exercitatio gradus et plana secundum quaestionem de sensu essendi conectendi."@la .
+
+dub:progettoCripta a dub:Concept ;
+    rdfs:label "progetto della Cripta"@it, "the Cripta project"@en, "propositum Cryptae"@la ;
+    rdfs:comment "Progettazione dell'ipertesto e interrogazione del fondamento del proprio progettare."@it, "Planning the hypertext and questioning the ground of that very planning."@en, "Proiectio hypertextus et quaestio de fundamento ipsius proiciendi."@la .
+
+dub:progettualita a dub:Concept ;
+    rdfs:label "progettualità"@it, "projective character"@en, "ratio proiciendi"@la ;
+    rdfs:comment "Dimensione dell'esistenza da tematizzare nel progetto."@it, "A dimension of existence to be thematised in the project."@en, "Ratio exsistentiae in proposito tractanda."@la .
+
+dub:gettatezza a dub:Concept ;
+    rdfs:label "gettatezza"@it, "thrownness"@en, "iectitas"@la ;
+    rdfs:comment "Struttura determinabile che il progetto mette in rapporto con quattro figure."@it, "A determinable structure that the project connects to four figures."@en, "Structura determinabilis quam propositum cum quattuor figuris conectit."@la .
+
+dub:oggettoGettatezza a dub:Concept ;
+    rdfs:label "oggetto come determinazione della gettatezza"@it, "object as a determination of thrownness"@en, "obiectum ut determinatio iectitatis"@la ;
+    rdfs:comment "Voce della pagina Progetto, distinta dall'oggetto in generale del manifesto."@it, "A term in the Project page, distinct from the manifesto's object in general."@en, "Vox paginae de Proposito, distincta ab obiecto in genere prooemii."@la .
+
+dub:soggettoGettatezza a dub:Concept ;
+    rdfs:label "soggetto come determinazione della gettatezza"@it, "subject as a determination of thrownness"@en, "subiectum ut determinatio iectitatis"@la ;
+    rdfs:comment "Voce della pagina Progetto."@it, "A term on the Project page."@en, "Vox paginae de Proposito."@la .
+
+dub:progettoGettatezza a dub:Concept ;
+    rdfs:label "progetto come determinazione della gettatezza"@it, "projection as a determination of thrownness"@en, "proiectum ut determinatio iectitatis"@la ;
+    rdfs:comment "Voce della pagina Progetto, distinta dal progetto particolare della Cripta."@it, "A term on the Project page, distinct from the particular Cripta project."@en, "Vox paginae de Proposito, distincta a singulari proposito Cryptae."@la .
+
+dub:rigettoGettatezza a dub:Concept ;
+    rdfs:label "rigetto come determinazione della gettatezza"@it, "rejection as a determination of thrownness"@en, "reiectum ut determinatio iectitatis"@la ;
+    rdfs:comment "Voce della pagina Progetto."@it, "A term on the Project page."@en, "Vox paginae de Proposito."@la .
+
+dub:fondamentoOntico a dub:Concept ;
+    rdfs:label "fondamento ontico"@it, "ontic ground"@en, "fundamentum onticum"@la ;
+    rdfs:comment "Condizione o occasione concreta della ricerca, distinta dalla fondazione di senso."@it, "A concrete condition or occasion for inquiry, distinct from grounding its sense."@en, "Condicio concreta vel occasio inquisitionis, a fundatione sensus distincta."@la .
+
+dub:fondamentoOntologico a dub:Concept ;
+    rdfs:label "fondamento ontologico"@it, "ontological ground"@en, "fundamentum ontologicum"@la ;
+    rdfs:comment "Fondazione di senso o fondamento quanto alla propria essenza."@it, "The grounding of sense or the ground considered in its essence."@en, "Fundatio sensus aut fundamentum secundum essentiam suam."@la .
+
+dub:mappaEnte a dub:Concept ;
+    rdfs:label "mappa dell'Ente"@it, "map of entities"@en, "tabula entium"@la ;
+    rdfs:comment "Orizzonte di un'ontologia analitica totale delineato dalla pagina Progetto."@it, "The horizon of a total analytic ontology outlined on the Project page."@en, "Horizon ontologiae analyticae totalis in pagina de Proposito delineatus."@la .
+
+dub:articolo a dub:Concept ;
+    rdfs:label "articolo come artefatto"@it, "article as an artefact"@en, "articulus ut artefactum"@la ;
+    rdfs:comment "Articolazione consultabile di un'apertura di senso."@it, "A readable articulation of an opening of sense."@en, "Articulatio legibilis aperturae sensus."@la .
+
+# EN: Positions contain symbolic readings. The associated arcs retain the scope of each position.
+# LA: Sententiae lectiones symbolicas continent. Arcus adnexi ambitum cuiusque sententiae servant.
+
+dub:F01 a dub:Position ;
+    rdfs:label "Dalla familiarità alla perplessità"@it, "From familiarity to perplexity"@en, "A familiaritate ad perplexitatem"@la ;
+    dub:derivedFrom dub:P0 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Testimoniale ;
+    dub:readingMode dub:Epigrafe ;
+    dub:formula "Cita(epigrafe,sofista244a) ∧ AutoreAttribuito(sofista244a,platone) ∧ TraduzioneAttribuita(epigrafe,pietroChiodi) ∧ Familiarità(voi, «essente», t₀) ∧ Crede(noi, Comprende(noi, «essente»), t₁) ∧ Perplessi(noi, «essente», t₂) ∧ t₁ < t₂" .
+
+dub:F01-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F01 ;
+    dub:subjectConcept dub:epigrafe ;
+    dub:relationKind dub:rel-cita ;
+    dub:objectConcept dub:sofista244a .
+
+dub:F01-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F01 ;
+    dub:subjectConcept dub:sofista244a ;
+    dub:relationKind dub:rel-attribuitoA ;
+    dub:objectConcept dub:platone .
+
+dub:F01-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F01 ;
+    dub:subjectConcept dub:epigrafe ;
+    dub:relationKind dub:rel-traduzioneAttribuitaA ;
+    dub:objectConcept dub:pietroChiodi .
+
+dub:F01-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F01 ;
+    dub:subjectConcept dub:essenteEspressione ;
+    dub:relationKind dub:rel-usataCon ;
+    dub:objectConcept dub:familiarita .
+
+dub:F01-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F01 ;
+    dub:subjectConcept dub:comprensionePresunta ;
+    dub:relationKind dub:rel-lasciaPostoA ;
+    dub:objectConcept dub:perplessita .
+
+dub:F02 a dub:Position ;
+    rdfs:label "Necessità di porre il problema"@it, "The need to pose the question"@en, "Necessitas quaestionem ponendi"@la ;
+    dub:derivedFrom dub:P1 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Normativa ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "Oₘ Porre(problemaEssere) ∧ Innesca(Oₘ Porre(problemaEssere), pensieroOccidentale)" .
+
+dub:F02-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F02 ;
+    dub:subjectConcept dub:problemaEssere ;
+    dub:relationKind dub:rel-richiede ;
+    dub:objectConcept dub:porreProblema .
+
+dub:F02-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F02 ;
+    dub:subjectConcept dub:necessitaPorre ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:porreProblema .
+
+dub:F02-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F02 ;
+    dub:subjectConcept dub:necessitaPorre ;
+    dub:relationKind dub:rel-inaugura ;
+    dub:objectConcept dub:pensieroOccidentale .
+
+dub:F03 a dub:Position ;
+    rdfs:label "Localizzazione dell'esordio"@it, "Locating the beginning"@en, "Locus et tempus exordii"@la ;
+    dub:derivedFrom dub:P1 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Storica ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "EsordioDi(esordioGreco, pensieroOccidentale) ∧ Luogo(esordioGreco, grecia) ∧ Collocato(esordioGreco, «VII sec. a.C.; I–II sec. AUC»)" .
+
+dub:F03-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F03 ;
+    dub:subjectConcept dub:esordioGreco ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:pensieroOccidentale .
+
+dub:F03-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F03 ;
+    dub:subjectConcept dub:esordioGreco ;
+    dub:relationKind dub:rel-localizzatoIn ;
+    dub:objectConcept dub:grecia .
+
+dub:F04 a dub:Position ;
+    rdfs:label "Filosofia orale e trasmissione scritta"@it, "Oral philosophy and written transmission"@en, "Philosophia oralis et traditio scripta"@la ;
+    dub:derivedFrom dub:P1 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Genealogia ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "CorpoTradizionale(filosofia, pensieroOccidentale) ∧ Orale(filosofia) ∧ ∀p:PraticaDialogica, t:Testo [Trasferisce(filosofia,p,t) → Registra(t,Risultati(p)) ∧ Registra(t,Ricordi(p))]" .
+
+dub:F04-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F04 ;
+    dub:subjectConcept dub:filosofia ;
+    dub:relationKind dub:rel-costituisce ;
+    dub:objectConcept dub:pensieroOccidentale .
+
+dub:F04-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F04 ;
+    dub:subjectConcept dub:filosofia ;
+    dub:relationKind dub:rel-haForma ;
+    dub:objectConcept dub:oralita .
+
+dub:F04-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F04 ;
+    dub:subjectConcept dub:filosofia ;
+    dub:relationKind dub:rel-esercita ;
+    dub:objectConcept dub:praticaDialogica .
+
+dub:F04-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F04 ;
+    dub:subjectConcept dub:testo ;
+    dub:relationKind dub:rel-registra ;
+    dub:objectConcept dub:risultatoDialogico .
+
+dub:F04-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F04 ;
+    dub:subjectConcept dub:testo ;
+    dub:relationKind dub:rel-registra ;
+    dub:objectConcept dub:memoriaDialogica .
+
+dub:F05 a dub:Position ;
+    rdfs:label "Fine ed effetto del dialogo"@it, "Aim and effect of dialogue"@en, "Finis et effectus dialogi"@la ;
+    dub:derivedFrom dub:P1 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Genealogia ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "Fine(praticaDialogica, Reminiscenza(essere)) ∧ ∀a [Partecipa(a,praticaDialogica) → Effetto(praticaDialogica, ScienzaTrasformazione(Psiche(a)))]" .
+
+dub:F05-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F05 ;
+    dub:subjectConcept dub:praticaDialogica ;
+    dub:relationKind dub:rel-haFine ;
+    dub:objectConcept dub:reminiscenza .
+
+dub:F05-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F05 ;
+    dub:subjectConcept dub:reminiscenza ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essere .
+
+dub:F05-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F05 ;
+    dub:subjectConcept dub:praticaDialogica ;
+    dub:relationKind dub:rel-haEffetto ;
+    dub:objectConcept dub:scienzaTrasformazione .
+
+dub:F05-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F05 ;
+    dub:subjectConcept dub:scienzaTrasformazione ;
+    dub:relationKind dub:rel-trasforma ;
+    dub:objectConcept dub:psiche .
+
+dub:F05-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F05 ;
+    dub:subjectConcept dub:partecipante ;
+    dub:relationKind dub:rel-haDimensione ;
+    dub:objectConcept dub:psiche .
+
+dub:F06 a dub:Position ;
+    rdfs:label "La tradizione fino alla svolta"@it, "Tradition up to the turning point"@en, "Traditio usque ad discrimen"@la ;
+    dub:derivedFrom dub:P2 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Storica ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "Tramanda(tradizioneTestuale,filosofia) ∧ Accresce(tradizioneTestuale,filosofia) ∧ Intervallo(tradizioneTestuale,esordioGreco,svolta1936) ∧ DataNelManifesto(svolta1936,1936,2689_AUC)" .
+
+dub:F06-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F06 ;
+    dub:subjectConcept dub:tradizioneTestuale ;
+    dub:relationKind dub:rel-tramanda ;
+    dub:objectConcept dub:filosofia .
+
+dub:F06-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F06 ;
+    dub:subjectConcept dub:tradizioneTestuale ;
+    dub:relationKind dub:rel-accresce ;
+    dub:objectConcept dub:filosofia .
+
+dub:F06-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F06 ;
+    dub:subjectConcept dub:tradizioneTestuale ;
+    dub:relationKind dub:rel-iniziaDa ;
+    dub:objectConcept dub:esordioGreco .
+
+dub:F06-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F06 ;
+    dub:subjectConcept dub:tradizioneTestuale ;
+    dub:relationKind dub:rel-haSoglia ;
+    dub:objectConcept dub:svolta1936 .
+
+dub:F07 a dub:Position ;
+    rdfs:label "Macchina astratta, iperstoria e infosfera"@it, "Abstract machine, hyperhistory and infosphere"@en, "Machina abstracta, hyperhistoria et sphaera informationis"@la ;
+    dub:derivedFrom dub:P2 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Storica ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "Individua(pubblicazioneMacchina,svolta1936) ∧ Pubblica(pubblicazioneMacchina,macchinaAstratta) ∧ PrimaSecondoIlTesto(macchinaAstratta) ∧ Inaugura(svolta1936,iperstoria) ∧ FaNascere(svolta1936,infosfera)" .
+
+dub:F07-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F07 ;
+    dub:subjectConcept dub:pubblicazioneMacchina ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:macchinaAstratta .
+
+dub:F07-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F07 ;
+    dub:subjectConcept dub:pubblicazioneMacchina ;
+    dub:relationKind dub:rel-individua ;
+    dub:objectConcept dub:svolta1936 .
+
+dub:F07-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F07 ;
+    dub:subjectConcept dub:svolta1936 ;
+    dub:relationKind dub:rel-inaugura ;
+    dub:objectConcept dub:iperstoria .
+
+dub:F07-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F07 ;
+    dub:subjectConcept dub:svolta1936 ;
+    dub:relationKind dub:rel-inaugura ;
+    dub:objectConcept dub:infosfera .
+
+dub:F08 a dub:Position ;
+    rdfs:label "Ostensione della quantificazione nell'ipertesto"@it, "Quantification made manifest in hypertext"@en, "Quantificatio in hypertextu manifesta"@la ;
+    dub:derivedFrom dub:P2 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Genealogia ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "Avvia(svolta1936,quantificazioneScrittura) ∧ ConLaGenesiDi(web, Ostende(ipertesto,quantificazioneScrittura))" .
+
+dub:F08-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F08 ;
+    dub:subjectConcept dub:svolta1936 ;
+    dub:relationKind dub:rel-inaugura ;
+    dub:objectConcept dub:quantificazioneScrittura .
+
+dub:F08-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F08 ;
+    dub:subjectConcept dub:web ;
+    dub:relationKind dub:rel-rendePossibile ;
+    dub:objectConcept dub:ipertesto .
+
+dub:F08-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F08 ;
+    dub:subjectConcept dub:ipertesto ;
+    dub:relationKind dub:rel-espone ;
+    dub:objectConcept dub:quantificazioneScrittura .
+
+dub:F09 a dub:Position ;
+    rdfs:label "Destinazione ipertestuale posteriore alla svolta"@it, "The turn towards hypertext after the threshold"@en, "Destinatio ad hypertextum post discrimen"@la ;
+    dub:derivedFrom dub:P2 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Modale ;
+    dub:readingMode dub:Genealogica ;
+    dub:formula "∀p:ProduzioneFilosofica [Posteriore(p,svolta1936) → DestinataAllaTrasposizione(p,ipertesto)] ∧ IndipendenteDa(destinazioneIpertestuale,consapevolezza)" .
+
+dub:F09-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F09 ;
+    dub:subjectConcept dub:produzioneFilosofica ;
+    dub:relationKind dub:rel-destinataA ;
+    dub:objectConcept dub:ipertesto .
+
+dub:F09-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F09 ;
+    dub:subjectConcept dub:destinazioneIpertestuale ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:ipertesto .
+
+dub:F09-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F09 ;
+    dub:subjectConcept dub:destinazioneIpertestuale ;
+    dub:relationKind dub:rel-indipendenteDa ;
+    dub:objectConcept dub:consapevolezza .
+
+dub:F10 a dub:Position ;
+    rdfs:label "Analogia fra storia e iperstoria"@it, "The analogy between history and hyperhistory"@en, "Analogia historiae et hyperhistoriae"@la ;
+    dub:derivedFrom dub:P3 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Genealogia ;
+    dub:readingMode dub:Mediale ;
+    dub:formula "InizioCon(storia,scrittura) ∧ Corrisponde(Inizio(iperstoria),Comparsa(iperscrittura))" .
+
+dub:F10-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F10 ;
+    dub:subjectConcept dub:storia ;
+    dub:relationKind dub:rel-iniziaCon ;
+    dub:objectConcept dub:scrittura .
+
+dub:F10-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F10 ;
+    dub:subjectConcept dub:iperstoria ;
+    dub:relationKind dub:rel-iniziaCon ;
+    dub:objectConcept dub:iperscrittura .
+
+dub:F11 a dub:Position ;
+    rdfs:label "I due livelli dell'iperscrittura"@it, "Two levels of hyperwriting"@en, "Duo gradus hyperscripturae"@la ;
+    dub:derivedFrom dub:P3 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Mediale ;
+    dub:formula "∀p [(IperScrittura(p) → Produce(p,ipertesti)) ∧ (Elem(p) → MetteInFunzione(p,testi,macchineAstratte)) ∧ (Consap(p) → MetteInCircuito(p,contenuti,codici,web))]" .
+
+dub:F11-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscrittura ;
+    dub:relationKind dub:rel-produce ;
+    dub:objectConcept dub:ipertesto .
+
+dub:F11-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaElementare ;
+    dub:relationKind dub:rel-livelloDi ;
+    dub:objectConcept dub:iperscrittura .
+
+dub:F11-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaElementare ;
+    dub:relationKind dub:rel-metteInFunzione ;
+    dub:objectConcept dub:testo .
+
+dub:F11-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaElementare ;
+    dub:relationKind dub:rel-operaCon ;
+    dub:objectConcept dub:macchinaAstratta .
+
+dub:F11-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaConsapevole ;
+    dub:relationKind dub:rel-livelloDi ;
+    dub:objectConcept dub:iperscrittura .
+
+dub:F11-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaConsapevole ;
+    dub:relationKind dub:rel-metteInCircuito ;
+    dub:objectConcept dub:contenuto .
+
+dub:F11-r07 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaConsapevole ;
+    dub:relationKind dub:rel-metteInCircuito ;
+    dub:objectConcept dub:codiceSviluppo .
+
+dub:F11-r08 a dub:RelationAssertion ;
+    dub:belongsTo dub:F11 ;
+    dub:subjectConcept dub:iperscritturaConsapevole ;
+    dub:relationKind dub:rel-operaIn ;
+    dub:objectConcept dub:web .
+
+dub:F12 a dub:Position ;
+    rdfs:label "Orientamento del Web"@it, "The orientation of the Web"@en, "Directio Retis"@la ;
+    dub:derivedFrom dub:P3 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Funzionale ;
+    dub:readingMode dub:Mediale ;
+    dub:formula "SviluppoDi(sviluppoWeb,web) ∧ Fine(sviluppoWeb,Accumulare(capitaleSemantico)) ∧ Fine(sviluppoWeb,Distribuire(capitaleSemantico))" .
+
+dub:F12-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F12 ;
+    dub:subjectConcept dub:sviluppoWeb ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:web .
+
+dub:F12-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F12 ;
+    dub:subjectConcept dub:sviluppoWeb ;
+    dub:relationKind dub:rel-haFine ;
+    dub:objectConcept dub:accumuloSemantico .
+
+dub:F12-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F12 ;
+    dub:subjectConcept dub:sviluppoWeb ;
+    dub:relationKind dub:rel-haFine ;
+    dub:objectConcept dub:distribuzioneSemantica .
+
+dub:F12-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F12 ;
+    dub:subjectConcept dub:accumuloSemantico ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:capitaleSemantico .
+
+dub:F12-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F12 ;
+    dub:subjectConcept dub:distribuzioneSemantica ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:capitaleSemantico .
+
+dub:F13 a dub:Position ;
+    rdfs:label "Come si costituisce il capitale semantico"@it, "How semantic capital is formed"@en, "Quomodo capitale semanticum constituatur"@la ;
+    dub:derivedFrom dub:P3 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Mediale ;
+    dub:formula "Costituisce(organizzazioneSemantica,capitaleSemantico) ∧ Media(ontologiaInformatica,organizzazioneSemantica) ∧ ∀c,m [Organizza(organizzazioneSemantica,c,m) → (AccessibileA(c,esserci) ∧ AccessibileA(m,macchinaConcreta))]" .
+
+dub:F13-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:organizzazioneSemantica ;
+    dub:relationKind dub:rel-costituisce ;
+    dub:objectConcept dub:capitaleSemantico .
+
+dub:F13-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:organizzazioneSemantica ;
+    dub:relationKind dub:rel-organizza ;
+    dub:objectConcept dub:contenuto .
+
+dub:F13-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:organizzazioneSemantica ;
+    dub:relationKind dub:rel-produce ;
+    dub:objectConcept dub:significato .
+
+dub:F13-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:organizzazioneSemantica ;
+    dub:relationKind dub:rel-mediataDa ;
+    dub:objectConcept dub:strutturaConoscenzaOntica .
+
+dub:F13-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-haForma ;
+    dub:objectConcept dub:strutturaConoscenzaOntica .
+
+dub:F13-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:contenuto ;
+    dub:relationKind dub:rel-accessibileA ;
+    dub:objectConcept dub:esserci .
+
+dub:F13-r07 a dub:RelationAssertion ;
+    dub:belongsTo dub:F13 ;
+    dub:subjectConcept dub:significato ;
+    dub:relationKind dub:rel-accessibileA ;
+    dub:objectConcept dub:macchinaConcreta .
+
+dub:F14 a dub:Position ;
+    rdfs:label "Specificazione formale, esplicita e condivisa"@it, "Formal, explicit and shared specification"@en, "Specificatio formalis, explicita et communis"@la ;
+    dub:derivedFrom dub:P4 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Informatica ;
+    dub:formula "OInf(o) ↔ ∃s,c [Specifica(o,s,c) ∧ Formale(s) ∧ Esplicita(s) ∧ Concettualizzazione(c) ∧ Condivisa(c)]" .
+
+dub:F14-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F14 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-haForma ;
+    dub:objectConcept dub:specificazione .
+
+dub:F14-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F14 ;
+    dub:subjectConcept dub:specificazione ;
+    dub:relationKind dub:rel-haCarattere ;
+    dub:objectConcept dub:formalita .
+
+dub:F14-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F14 ;
+    dub:subjectConcept dub:specificazione ;
+    dub:relationKind dub:rel-haCarattere ;
+    dub:objectConcept dub:esplicitezza .
+
+dub:F14-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F14 ;
+    dub:subjectConcept dub:specificazione ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:concettualizzazione .
+
+dub:F14-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F14 ;
+    dub:subjectConcept dub:concettualizzazione ;
+    dub:relationKind dub:rel-haCarattere ;
+    dub:objectConcept dub:condivisione .
+
+dub:F15 a dub:Position ;
+    rdfs:label "Riflessività della possibilità di trasmissione"@it, "Reflexivity about the capacity to convey"@en, "Reflexio de facultate tradendi"@la ;
+    dub:derivedFrom dub:P4 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Intenzionale ;
+    dub:readingMode dub:Informatica ;
+    dub:formula "∀p [Riflessiva(p) → (RifletteSu(p,Consapevolezza(p)) ∧ MiraA(p,PossibilitàDiVeicolare) ∧ ¬FinePrimario(p,VeicolareUnContenuto))]" .
+
+dub:F15-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F15 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-haForma ;
+    dub:objectConcept dub:iperscritturaRiflessiva .
+
+dub:F15-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F15 ;
+    dub:subjectConcept dub:iperscritturaRiflessiva ;
+    dub:relationKind dub:rel-rifletteSu ;
+    dub:objectConcept dub:iperscritturaConsapevole .
+
+dub:F15-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F15 ;
+    dub:subjectConcept dub:iperscritturaRiflessiva ;
+    dub:relationKind dub:rel-rifletteSu ;
+    dub:objectConcept dub:consapevolezza .
+
+dub:F15-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F15 ;
+    dub:subjectConcept dub:iperscritturaRiflessiva ;
+    dub:relationKind dub:rel-haFine ;
+    dub:objectConcept dub:trasmissibilita .
+
+dub:F16 a dub:Position ;
+    rdfs:label "Portata generale e determinata della trasmissibilità"@it, "General and determinate scope of conveyability"@en, "Ambitus generalis et determinatus facultatis tradendi"@la ;
+    dub:derivedFrom dub:P4 ;
+    dub:status dub:Lettura ;
+    dub:force dub:Modale ;
+    dub:readingMode dub:Informatica ;
+    dub:formula "Generale(p,D) := ∀c∈D ◇ Veicola(p,c); Determinata(p,c₀) := c₀∈D ∧ ◇ Veicola(p,c₀)" .
+
+dub:F16-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F16 ;
+    dub:subjectConcept dub:trasmissibilitaGenerale ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:trasmissibilita .
+
+dub:F16-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F16 ;
+    dub:subjectConcept dub:trasmissibilitaDeterminata ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:trasmissibilita .
+
+dub:F17 a dub:Position ;
+    rdfs:label "Dipendenza dell'informatica dall'analitica"@it, "The dependence of computational ontology on analytic ontology"@en, "Dependentia ontologiae informaticae ab analytica"@la ;
+    dub:derivedFrom dub:P5 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Analitica ;
+    dub:formula "∀o:OInf ∃a:OAn [Presuppone(o,a) ∧ ImplicaNelManifesto(o,a) ∧ Integra(Implementazione(o),a) ∧ (Esplicito(Implementazione(o),a) ∨ Implicito(Implementazione(o),a))]" .
+
+dub:F17-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F17 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-presuppone ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:F17-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F17 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-implica ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:F17-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F17 ;
+    dub:subjectConcept dub:implementazione ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:ontologiaInformatica .
+
+dub:F17-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F17 ;
+    dub:subjectConcept dub:implementazione ;
+    dub:relationKind dub:rel-integra ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:F18 a dub:Position ;
+    rdfs:label "Che cosa esiste, che cosa e come si specifica"@it, "What exists, what is specified and how"@en, "Quid sit, quid et quomodo specificetur"@la ;
+    dub:derivedFrom dub:P5 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Funzionale ;
+    dub:readingMode dub:Analitica ;
+    dub:formula "∀a:OAn [Individua(a,Entità,Tipi) ∧ Fornisce(a,Contenuto(concettualizzazione)) ∧ Fornisce(a,Modo(specificazione))]" .
+
+dub:F18-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F18 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-individua ;
+    dub:objectConcept dub:ente .
+
+dub:F18-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F18 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-individua ;
+    dub:objectConcept dub:tipoEntita .
+
+dub:F18-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F18 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-fornisceContenutoA ;
+    dub:objectConcept dub:concettualizzazione .
+
+dub:F18-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F18 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-fornisceModoA ;
+    dub:objectConcept dub:specificazione .
+
+dub:F19 a dub:Position ;
+    rdfs:label "Quantificazione relativa alla teoria"@it, "Quantification relative to a theory"@en, "Quantificatio ad theoriam relata"@la ;
+    dub:derivedFrom dub:P5 ;
+    dub:status dub:Lettura ;
+    dub:force dub:Logica ;
+    dub:readingMode dub:Analitica ;
+    dub:formula "Q(T,φ,v,d) := EnunciatoDi(φ,T) ∧ Vincolata(v,φ) ∧ d∈D(T) ∧ ∃g [Ammissibile(g,T,φ) ∧ g(v)=d]" .
+
+dub:F19-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F19 ;
+    dub:subjectConcept dub:quantificazioneOntologica ;
+    dub:relationKind dub:rel-relativaA ;
+    dub:objectConcept dub:teoria .
+
+dub:F19-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F19 ;
+    dub:subjectConcept dub:teoria ;
+    dub:relationKind dub:rel-comprende ;
+    dub:objectConcept dub:enunciato .
+
+dub:F19-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F19 ;
+    dub:subjectConcept dub:enunciato ;
+    dub:relationKind dub:rel-vincola ;
+    dub:objectConcept dub:variabileVincolata .
+
+dub:F19-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F19 ;
+    dub:subjectConcept dub:variabileVincolata ;
+    dub:relationKind dub:rel-ammette ;
+    dub:objectConcept dub:valoreVariabile .
+
+dub:F20 a dub:Position ;
+    rdfs:label "Duplice esigenza di quantificazione"@it, "Two requirements for quantification"@en, "Duplex postulatio quantificationis"@la ;
+    dub:derivedFrom dub:P5 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Analitica ;
+    dub:formula "∀o:OInf ∃T:Teoria [Richiede(o,ContenutoQuantificato(T)) ∧ ConsisteIn(o,iperscrittura) ∧ Richiede(iperscrittura,QuantificazioneOntologica(scritturaSovrastata))]" .
+
+dub:F20-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F20 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-richiede ;
+    dub:objectConcept dub:quantificazioneOntologica .
+
+dub:F20-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F20 ;
+    dub:subjectConcept dub:iperscrittura ;
+    dub:relationKind dub:rel-sovrasta ;
+    dub:objectConcept dub:scrittura .
+
+dub:F20-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F20 ;
+    dub:subjectConcept dub:iperscrittura ;
+    dub:relationKind dub:rel-richiede ;
+    dub:objectConcept dub:quantificazioneOntologica .
+
+dub:F20-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F20 ;
+    dub:subjectConcept dub:quantificazioneOntologica ;
+    dub:relationKind dub:rel-applicataA ;
+    dub:objectConcept dub:scrittura .
+
+dub:F21 a dub:Position ;
+    rdfs:label "Dipendenza fenomenologica dell'analitica"@it, "The phenomenological dependence of analytic ontology"@en, "Dependentia ontologiae analyticae a phaenomenologica"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Fenomenologica ;
+    dub:formula "∀a:OAn ∃p:OFen [EffettoDi(a,p)]" .
+
+dub:F21-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F21 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-dipendeDa ;
+    dub:objectConcept dub:ontologiaFenomenologica .
+
+dub:F21-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F21 ;
+    dub:subjectConcept dub:orientamentoOggetti ;
+    dub:relationKind dub:rel-varianteDi ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:F21-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F21 ;
+    dub:subjectConcept dub:orientamentoIperoggetti ;
+    dub:relationKind dub:rel-varianteDi ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:F22 a dub:Position ;
+    rdfs:label "Articolazione formale e regionale"@it, "Formal and regional articulation"@en, "Articulatio formalis et regionalis"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Fenomenologica ;
+    dub:formula "Articolazione(ontologiaFenomenologica; ontologiaFormale, ontologiaRegionale)" .
+
+dub:F22-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F22 ;
+    dub:subjectConcept dub:ontologiaFenomenologica ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:ontologiaFormale .
+
+dub:F22-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F22 ;
+    dub:subjectConcept dub:ontologiaFenomenologica ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:ontologiaRegionale .
+
+dub:F23 a dub:Position ;
+    rdfs:label "Oggetto in generale, struttura enunciativa e giudizio"@it, "Object in general, statement structure and judgement"@en, "Obiectum in genere, structura enuntiativa et iudicium"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Logica ;
+    dub:readingMode dub:Formale ;
+    dub:formula "ValidePerOgniOggetto(StruttureFormali) ∧ ∀x [IndividuatoDaAnalitica(x) → Specifica(ontologiaFormale,EssereEntità(x))] ∧ Inquadra(ontologiaFormale,StruttureEnunciative) ∧ Richiede(ontologiaFormale,NozioneGiudizio)" .
+
+dub:F23-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:ontologiaFormale ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:strutturaLogica .
+
+dub:F23-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:strutturaLogica ;
+    dub:relationKind dub:rel-valePer ;
+    dub:objectConcept dub:oggettoGenerale .
+
+dub:F23-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:ontologiaFormale ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:essereEntita .
+
+dub:F23-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:essereEntita ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:ente .
+
+dub:F23-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:ontologiaFormale ;
+    dub:relationKind dub:rel-inquadra ;
+    dub:objectConcept dub:strutturaEnunciativa .
+
+dub:F23-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F23 ;
+    dub:subjectConcept dub:ontologiaFormale ;
+    dub:relationKind dub:rel-richiede ;
+    dub:objectConcept dub:giudizio .
+
+dub:F24 a dub:Position ;
+    rdfs:label "Usiologia e possibilità regionali"@it, "Regional essences and possibilities"@en, "Essentiae et possibilitates regionales"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Modale ;
+    dub:readingMode dub:Regionale ;
+    dub:formula "∀r:Regione [Fissa(Usiologia(r),EssenzeSpecifiche(r)) ∧ ∀x∈D(r) [IndividuatoDaAnalitica(x) → Specifica(ontologiaRegionale(r),ComePossibile(x,r))]]" .
+
+dub:F24-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F24 ;
+    dub:subjectConcept dub:ontologiaRegionale ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:regioneRealta .
+
+dub:F24-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F24 ;
+    dub:subjectConcept dub:ontologiaRegionale ;
+    dub:relationKind dub:rel-siAvvaleDi ;
+    dub:objectConcept dub:usiologia .
+
+dub:F24-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F24 ;
+    dub:subjectConcept dub:usiologia ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:essenzaRegionale .
+
+dub:F24-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F24 ;
+    dub:subjectConcept dub:essenzaRegionale ;
+    dub:relationKind dub:rel-qualifica ;
+    dub:objectConcept dub:regioneRealta .
+
+dub:F24-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F24 ;
+    dub:subjectConcept dub:ontologiaRegionale ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:modoPossibilitaEntita .
+
+dub:F25 a dub:Position ;
+    rdfs:label "Il dominio della quantificazione è aperto regionalmente"@it, "Quantification ranges over a regionally opened domain"@en, "Quantificatio per ambitum regionaliter apertum"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:status dub:Lettura ;
+    dub:force dub:Logica ;
+    dub:readingMode dub:Regionale ;
+    dub:formula "Apre(aperturaFenomenologica,Dᵣ;usiologia(r)) ∧ Quantifica(T,Dᵣ) ∧ PerOgniOggetto_Dᵣ(φ) := ∀x∈Dᵣ φ(x)" .
+
+dub:F25-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F25 ;
+    dub:subjectConcept dub:quantificazioneOntologica ;
+    dub:relationKind dub:rel-relativaA ;
+    dub:objectConcept dub:ambitoOggettuale .
+
+dub:F25-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F25 ;
+    dub:subjectConcept dub:aperturaFenomenologica ;
+    dub:relationKind dub:rel-apre ;
+    dub:objectConcept dub:ambitoOggettuale .
+
+dub:F25-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F25 ;
+    dub:subjectConcept dub:aperturaFenomenologica ;
+    dub:relationKind dub:rel-siAvvaleDi ;
+    dub:objectConcept dub:usiologia .
+
+dub:F25-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F25 ;
+    dub:subjectConcept dub:ambitoOggettuale ;
+    dub:relationKind dub:rel-relativaA ;
+    dub:objectConcept dub:regioneRealta .
+
+dub:F26 a dub:Position ;
+    rdfs:label "L'ente trattato ontologicamente nella metafisica"@it, "Metaphysics treats the entity ontologically"@en, "Metaphysica ens ontologice tractat"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Metafisica ;
+    dub:formula "∀o [(OFen(o) ∨ OAn(o) ∨ OInf(o)) → (Segue(o,metafisicaOccidentale) ∧ Tema(o,ente,OntologicoComeCosa))]" .
+
+dub:F26-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:ontologiaFenomenologica ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:ontologiaEnte .
+
+dub:F26-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:ontologiaAnalitica ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:ontologiaEnte .
+
+dub:F26-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:ontologiaEnte .
+
+dub:F26-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:ontologiaEnte ;
+    dub:relationKind dub:rel-segue ;
+    dub:objectConcept dub:metafisicaOccidentale .
+
+dub:F26-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:ontologiaEnte ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:enteComeCosa .
+
+dub:F26-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F26 ;
+    dub:subjectConcept dub:enteComeCosa ;
+    dub:relationKind dub:rel-sensoDi ;
+    dub:objectConcept dub:ente .
+
+dub:F27 a dub:Position ;
+    rdfs:label "L'essere trattato onticamente nella metafisica"@it, "Metaphysics treats being ontically"@en, "Metaphysica esse ontice tractat"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Ontica ;
+    dub:formula "∀o:OntologiaDellEnte ∀b [TematizzaEssere(o,b) → ∃x∈D(o) [b=EssereDi(x) ∧ Tratta(o,b,OnticoRelativo)]]" .
+
+dub:F27-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F27 ;
+    dub:subjectConcept dub:ontologiaEnte ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:essereDiEnte .
+
+dub:F27-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F27 ;
+    dub:subjectConcept dub:essereDiEnte ;
+    dub:relationKind dub:rel-relativaA ;
+    dub:objectConcept dub:enteComeCosa .
+
+dub:F27-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F27 ;
+    dub:subjectConcept dub:essereDiEnte ;
+    dub:relationKind dub:rel-sensoDi ;
+    dub:objectConcept dub:essere .
+
+dub:F28 a dub:Position ;
+    rdfs:label "Tematizzare l'essere indipendentemente dalla cosa"@it, "Taking up being independently of a thing"@en, "Esse sine re praeelecta tractandum"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Normativa ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Oₘ [Tratta(oFond,essereInQuantoTale,OntologicoTematico) ∧ ¬∃x [Cosa(x) ∧ OggettoPrescelto(oFond,x)]]" .
+
+dub:F28-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F28 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F28-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F28 ;
+    dub:subjectConcept dub:essereInQuantoTale ;
+    dub:relationKind dub:rel-sensoDi ;
+    dub:objectConcept dub:essere .
+
+dub:F28-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F28 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-haCondizione ;
+    dub:objectConcept dub:assenzaCosa .
+
+dub:F29 a dub:Position ;
+    rdfs:label "Quattro compiti della tematizzazione"@it, "Four tasks for the inquiry into being"@en, "Quattuor munera inquisitionis de esse"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Normativa ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Oₘ [SpecificaFormalmente(concettualizzazioneEssere) ∧ Indica(esserciDellEssere) ∧ Esprime(essenzaEssere) ∧ Esplicita(ModoPossibilità(essereInQuantoTale))]" .
+
+dub:F29-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:concettualizzazioneEssere .
+
+dub:F29-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-indica ;
+    dub:objectConcept dub:esserciDellEssere .
+
+dub:F29-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:essenzaEssere .
+
+dub:F29-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-esplicita ;
+    dub:objectConcept dub:modoPossibilitaEssere .
+
+dub:F29-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:modoPossibilitaEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F29-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:concettualizzazioneEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F29-r07 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:esserciDellEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F29-r08 a dub:RelationAssertion ;
+    dub:belongsTo dub:F29 ;
+    dub:subjectConcept dub:essenzaEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F30 a dub:Position ;
+    rdfs:label "Ente ontico e nulla come riferimento-limite"@it, "Ontically understood entity and nothing as a limiting reference"@en, "Ens ontice intellectum et nihil ut relatio ad limen"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:status dub:Lettura ;
+    dub:force dub:Limite ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "RiferimentoNelPasso(⟦essere in quanto tale⟧,⟦ente onticamente inteso⟧) ∧ FiguraLimite(⟦ente onticamente inteso⟧,⟦nulla⟧) ∧ ¬Presupposto(∃x [Cosa(x) ∧ ReferentePrescelto(x)])" .
+
+dub:F30-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F30 ;
+    dub:subjectConcept dub:essereInQuantoTale ;
+    dub:relationKind dub:rel-rinviaComeFigura ;
+    dub:objectConcept dub:enteOntico .
+
+dub:F30-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F30 ;
+    dub:subjectConcept dub:enteOntico ;
+    dub:relationKind dub:rel-haFiguraLimite ;
+    dub:objectConcept dub:nulla .
+
+dub:F30-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F30 ;
+    dub:subjectConcept dub:enteOntico ;
+    dub:relationKind dub:rel-sensoDi ;
+    dub:objectConcept dub:ente .
+
+dub:F31 a dub:Position ;
+    rdfs:label "Fondazione del senso delle ontologie dell'ente"@it, "Grounding the sense of ontologies of entities"@en, "Fundatio sensus ontologiarum entium"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "∀o:OntologiaDellEnte [RiceveSensoDa(o,ontologiaFondamentale)]" .
+
+dub:F31-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F31 ;
+    dub:subjectConcept dub:ontologiaEnte ;
+    dub:relationKind dub:rel-riceveSensoDa ;
+    dub:objectConcept dub:ontologiaFondamentale .
+
+dub:F32 a dub:Position ;
+    rdfs:label "L'inespresso nella totalità"@it, "The totality left unexpressed"@en, "Totalitas non expressa"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Limite ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Problematico(essereInQuantoTale) ∧ A_CausaDi(¬EspressaNellaSuaTotalità(ontologiaFondamentale), Problematico(essereInQuantoTale))" .
+
+dub:F32-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F32 ;
+    dub:subjectConcept dub:ontologiaFondamentale ;
+    dub:relationKind dub:rel-haLimite ;
+    dub:objectConcept dub:totalitaInespressa .
+
+dub:F32-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F32 ;
+    dub:subjectConcept dub:totalitaInespressa ;
+    dub:relationKind dub:rel-motivataDa ;
+    dub:objectConcept dub:essereInQuantoTale .
+
+dub:F33 a dub:Position ;
+    rdfs:label "Ricerca posizionale sull'essenza"@it, "Inquiry that poses the question of essence"@en, "Inquisitio qua quaestio essentiae ponitur"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Funzionale ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Sviluppa(ricercaFondamentale,ontologiaFondamentale) ∧ RicercaPosizionale(ricercaFondamentale,problemaEssenzaEssere)" .
+
+dub:F33-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F33 ;
+    dub:subjectConcept dub:ricercaFondamentale ;
+    dub:relationKind dub:rel-sviluppa ;
+    dub:objectConcept dub:ontologiaFondamentale .
+
+dub:F33-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F33 ;
+    dub:subjectConcept dub:ricercaFondamentale ;
+    dub:relationKind dub:rel-pone ;
+    dub:objectConcept dub:problemaEssenzaEssere .
+
+dub:F33-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F33 ;
+    dub:subjectConcept dub:problemaEssenzaEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:essenzaEssere .
+
+dub:F34 a dub:Position ;
+    rdfs:label "Iperscrittura e filo conduttore"@it, "Hyperwriting and its guiding thread"@en, "Hyperscriptura et filum dux"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Normativa ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Oₘ Porre(problemaSensoEssere) ∧ Realizza(iperscritturaFondamentale,Porre(problemaSensoEssere)) ∧ ∀l,p [Pertinenti(l,p,ricercaOntologica) → PuòRaccordare(iperscritturaFondamentale,l,p;problemaSensoEssere)]" .
+
+dub:F34-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-realizza ;
+    dub:objectConcept dub:porreProblema .
+
+dub:F34-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-sviluppa ;
+    dub:objectConcept dub:ricercaFondamentale .
+
+dub:F34-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-raccorda ;
+    dub:objectConcept dub:livelloRicerca .
+
+dub:F34-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-raccorda ;
+    dub:objectConcept dub:pianoRicerca .
+
+dub:F34-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:ricercaOntologica ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:livelloRicerca .
+
+dub:F34-r06 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:ricercaOntologica ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:pianoRicerca .
+
+dub:F34-r07 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:problemaSensoEssere ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:sensoEssere .
+
+dub:F34-r08 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:sensoEssere ;
+    dub:relationKind dub:rel-sensoDi ;
+    dub:objectConcept dub:senso .
+
+dub:F34-r09 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:problemaSensoEssere ;
+    dub:relationKind dub:rel-haFunzione ;
+    dub:objectConcept dub:filoConduttore .
+
+dub:F34-r10 a dub:RelationAssertion ;
+    dub:belongsTo dub:F34 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-guidataDa ;
+    dub:objectConcept dub:problemaSensoEssere .
+
+dub:F35 a dub:Position ;
+    rdfs:label "Cripta come ipertesto prodotto"@it, "Cripta as the resulting hypertext"@en, "Crypta ut hypertextus productus"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:status dub:Parafrasi ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Fondamentale ;
+    dub:formula "Ipertesto(criptaIpertesto) ∧ Produce(iperscritturaFondamentale,criptaIpertesto)" .
+
+dub:F35-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:F35 ;
+    dub:subjectConcept dub:criptaIpertesto ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:ipertesto .
+
+dub:F35-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:F35 ;
+    dub:subjectConcept dub:iperscritturaFondamentale ;
+    dub:relationKind dub:rel-produce ;
+    dub:objectConcept dub:criptaIpertesto .
+
+dub:X01 a dub:Position ;
+    rdfs:label "Progettare il fondamento del progettare"@it, "Planning to investigate the ground of planning"@en, "Propositum fundamenti proiciendi investigandi"@la ;
+    dub:derivedFrom dub:XProgetto ;
+    dub:status dub:Estensione ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Contestuale ;
+    dub:formula "Realizza(criptaIpertesto,progettoCripta) ∧ Tematizza(progettoCripta,progettualita) ∧ Interroga(progettoCripta,FondamentoDelProgettare(progettoCripta))" .
+
+dub:X01-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:X01 ;
+    dub:subjectConcept dub:criptaIpertesto ;
+    dub:relationKind dub:rel-realizza ;
+    dub:objectConcept dub:progettoCripta .
+
+dub:X01-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:X01 ;
+    dub:subjectConcept dub:progettoCripta ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:progettualita .
+
+dub:X01-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:X01 ;
+    dub:subjectConcept dub:progettoCripta ;
+    dub:relationKind dub:rel-studia ;
+    dub:objectConcept dub:fondamentoOntologico .
+
+dub:X02 a dub:Position ;
+    rdfs:label "Determinabilità della gettatezza"@it, "The determinability of thrownness"@en, "Iectitas determinabilis"@la ;
+    dub:derivedFrom dub:XProgetto ;
+    dub:status dub:Estensione ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Contestuale ;
+    dub:formula "DeterminabileCome(gettatezza; oggetto, soggetto, progetto, rigetto) ∧ Riguarda(gettatezza,progettualita)" .
+
+dub:X02-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:X02 ;
+    dub:subjectConcept dub:gettatezza ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:oggettoGettatezza .
+
+dub:X02-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:X02 ;
+    dub:subjectConcept dub:gettatezza ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:soggettoGettatezza .
+
+dub:X02-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:X02 ;
+    dub:subjectConcept dub:gettatezza ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:progettoGettatezza .
+
+dub:X02-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:X02 ;
+    dub:subjectConcept dub:gettatezza ;
+    dub:relationKind dub:rel-siArticolaIn ;
+    dub:objectConcept dub:rigettoGettatezza .
+
+dub:X02-r05 a dub:RelationAssertion ;
+    dub:belongsTo dub:X02 ;
+    dub:subjectConcept dub:gettatezza ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:progettualita .
+
+dub:X03 a dub:Position ;
+    rdfs:label "Direzioni della fondazione"@it, "Directions of grounding"@en, "Directiones fundationis"@la ;
+    dub:derivedFrom dub:XProgetto ;
+    dub:status dub:Estensione ;
+    dub:force dub:Fondazione ;
+    dub:readingMode dub:Contestuale ;
+    dub:formula "SostegnoOntico(ontologiaInformatica,ricercaFondamentale) ∧ Obiettivo(progettoCripta,mappaEnte) ∧ FondazioneDiSenso(ontologiaFondamentale,ontologiaEnte)" .
+
+dub:X03-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:X03 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-sostieneOnticamente ;
+    dub:objectConcept dub:ricercaFondamentale .
+
+dub:X03-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:X03 ;
+    dub:subjectConcept dub:ontologiaInformatica ;
+    dub:relationKind dub:rel-haFunzione ;
+    dub:objectConcept dub:fondamentoOntico .
+
+dub:X03-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:X03 ;
+    dub:subjectConcept dub:progettoCripta ;
+    dub:relationKind dub:rel-haFine ;
+    dub:objectConcept dub:mappaEnte .
+
+dub:X03-r04 a dub:RelationAssertion ;
+    dub:belongsTo dub:X03 ;
+    dub:subjectConcept dub:mappaEnte ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:ontologiaAnalitica .
+
+dub:X04 a dub:Position ;
+    rdfs:label "Cripta come sito, ipertesto e note"@it, "Cripta as website, hypertext and notes"@en, "Crypta ut situs, hypertextus et notae"@la ;
+    dub:derivedFrom dub:XChiSiamo ;
+    dub:status dub:Estensione ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Contestuale ;
+    dub:formula "Raccoglie(criptaSito,note) ∧ RicorreIn(criptaIpertesto,note) ∧ PuòComunicare(notaIpertestuale,notaIpertestuale′)" .
+
+dub:X04-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:X04 ;
+    dub:subjectConcept dub:criptaSito ;
+    dub:relationKind dub:rel-raccoglie ;
+    dub:objectConcept dub:notaIpertestuale .
+
+dub:X04-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:X04 ;
+    dub:subjectConcept dub:criptaIpertesto ;
+    dub:relationKind dub:rel-ricorreIn ;
+    dub:objectConcept dub:notaIpertestuale .
+
+dub:X04-r03 a dub:RelationAssertion ;
+    dub:belongsTo dub:X04 ;
+    dub:subjectConcept dub:notaIpertestuale ;
+    dub:relationKind dub:rel-modoDi ;
+    dub:objectConcept dub:ipertesto .
+
+dub:X05 a dub:Position ;
+    rdfs:label "Articolo come articolazione di un'apertura"@it, "The article as an articulation of an opening"@en, "Articulus ut articulatio aperturae"@la ;
+    dub:derivedFrom dub:XArticoli ;
+    dub:status dub:Estensione ;
+    dub:force dub:Definizione ;
+    dub:readingMode dub:Contestuale ;
+    dub:formula "Artefatto(articolo) ∧ Articola(articolo,senso) ∧ Raccordabile(articolo,ricercaOntologica)" .
+
+dub:X05-r01 a dub:RelationAssertion ;
+    dub:belongsTo dub:X05 ;
+    dub:subjectConcept dub:articolo ;
+    dub:relationKind dub:rel-articola ;
+    dub:objectConcept dub:senso .
+
+dub:X05-r02 a dub:RelationAssertion ;
+    dub:belongsTo dub:X05 ;
+    dub:subjectConcept dub:articolo ;
+    dub:relationKind dub:rel-riguarda ;
+    dub:objectConcept dub:ricercaOntologica .
+
+# EN: Questions record topics of inquiry and their sources.
+# LA: Quaestiones argumenta inquirenda et fontes eorum inscribunt.
+
+dub:Q01 a dub:Question ;
+    rdfs:label "Che cosa intendiamo quando diciamo «essente»?"@it, "What do we mean when we say “being”?"@en, "Quid intellegimus cum dicimus «ens»?"@la ;
+    dub:derivedFrom dub:P0 ;
+    dub:readingMode dub:Epigrafe ;
+    dub:concerns dub:essenteEspressione, dub:perplessita .
+
+dub:Q02 a dub:Question ;
+    rdfs:label "Come va posto il problema dell'essere?"@it, "How should the question of being be posed?"@en, "Quomodo quaestio de esse ponenda est?"@la ;
+    dub:derivedFrom dub:P1 ;
+    dub:readingMode dub:Fondamentale ;
+    dub:concerns dub:problemaEssere, dub:porreProblema .
+
+dub:Q03 a dub:Question ;
+    rdfs:label "Come si apre il dominio nel quale una teoria può quantificare?"@it, "How does the domain of a theory's quantification open up?"@en, "Quomodo ambitus quantificationis theoriae aperitur?"@la ;
+    dub:derivedFrom dub:P6 ;
+    dub:readingMode dub:Regionale ;
+    dub:concerns dub:ambitoOggettuale, dub:usiologia, dub:quantificazioneOntologica .
+
+dub:Q04 a dub:Question ;
+    rdfs:label "Come si può tematizzare l'essere senza assumere come oggetto una cosa?"@it, "How can we inquire into being without taking a thing as our object?"@en, "Quomodo esse investigari potest sine re pro obiecto sumpta?"@la ;
+    dub:derivedFrom dub:P7 ;
+    dub:readingMode dub:Fondamentale ;
+    dub:concerns dub:essereInQuantoTale, dub:assenzaCosa, dub:nulla .
+
+dub:Q05 a dub:Question ;
+    rdfs:label "Qual è l'essenza dell'essere?"@it, "What is the essence of being?"@en, "Quae est essentia essendi?"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:readingMode dub:Fondamentale ;
+    dub:concerns dub:problemaEssenzaEssere, dub:essenzaEssere .
+
+dub:Q06 a dub:Question ;
+    rdfs:label "Qual è il senso dell'essere?"@it, "What is the sense of being?"@en, "Quis est sensus essendi?"@la ;
+    dub:derivedFrom dub:P8 ;
+    dub:readingMode dub:Fondamentale ;
+    dub:concerns dub:problemaSensoEssere, dub:sensoEssere .

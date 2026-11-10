@@ -1,19 +1,33 @@
-#!/bin/bash
-# minify.sh
+#!/usr/bin/env bash
+set -euo pipefail
 
-cleancss -O2 style.css > style.min.css
+# EN: Work from the checkout even when the script is invoked from another directory.
+# LA: In repositorio labora, etiamsi scriptum ex alio directorio invocatur.
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+scratch=$(mktemp -d .aenigma-build.XXXXXX)
+trap 'rm -r -- "$scratch"' EXIT
 
-CSS_HASH=$(openssl dgst -sha256 -binary style.min.css | base64)
-CSP_STRING="sha256-${CSS_HASH}"
+cleancss -O2 style.css > "$scratch/style.css"
+style_hash=$(openssl dgst -sha256 -binary "$scratch/style.css" | base64)
 
-printf "<style>" > style.wrapped.css
-cat style.min.css >> style.wrapped.css
-printf "</style>" >> style.wrapped.css
+# EN: Hash precisely the bytes that will appear between the style tags.
+# LA: Ipsos octetos intra signa styli futuros digere.
+python3 - "$scratch/style.css" "$style_hash" "$scratch/index.html" <<'PY'
+from pathlib import Path
+import sys
 
-sed "s@INJECT_CSP_HASH_HERE@${CSP_STRING}@g" index.src.html > index.tmp.html
+style = Path(sys.argv[1]).read_bytes()
+digest = sys.argv[2].encode("ascii")
+template = Path("index.src.html").read_bytes()
+hash_marker = b"INJECT_CSP_HASH_HERE"
+style_marker = b"INJECT_CSS_HERE"
+if not style or any(template.count(marker) != 1 for marker in (hash_marker, style_marker)):
+    raise SystemExit("Expected non-empty CSS and one of each template marker.")
+html = template.replace(hash_marker, b"sha256-" + digest)
+html = html.replace(style_marker, b"<style>" + style + b"</style>")
+Path(sys.argv[3]).write_bytes(html)
+PY
 
-sed -e '/INJECT_CSS_HERE/r style.wrapped.css' -e '/INJECT_CSS_HERE/d' index.tmp.html > index.html
-
-rm style.min.css style.wrapped.css index.tmp.html
-
-echo "[+] Compilazione completata. Firma CSP esatta: ${CSP_STRING}"
+# EN: Replace the served page only after the new document has been generated.
+# LA: Paginam publicandam demum post confectionem novi documenti substitue.
+mv -- "$scratch/index.html" index.html
