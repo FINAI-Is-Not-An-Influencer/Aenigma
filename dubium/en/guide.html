@@ -10,6 +10,7 @@
 <title>Dubium · Beginner’s guide</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/guide.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/guide.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/guide.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/guide.html">
+<link rel="stylesheet" href="../../style.css">
 <link rel="stylesheet" href="../site.css">
 
 </head>
@@ -18,7 +19,7 @@
 <div class="shell">
   <header class="masthead">
     <a class="wordmark" href="../../index.html">AENIGMA</a>
-    <nav aria-label="Dubium"><a href="index.html">Catalogue</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav aria-label="Dubium"><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
     <nav class="languages" aria-label="Languages"><a href="../guide.html" lang="it" hreflang="it" data-language>Italiano</a><a href="guide.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/guide.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main"><article class="prose"><h1 id="dubium-a-guide-for-first-time-readers">Dubium. A guide for first-time readers</h1>
@@ -28,10 +29,11 @@
 <h2 id="your-first-visit">Your first visit</h2>
 <ol type="1">
 <li>Open the <a href="index.html">Dubium catalogue</a> and look for <strong>being of an entity</strong>. Its entry gives a definition and links to positions in which it occurs.</li>
-<li>Follow <a href="index.html#F27">F27</a>. Here the manifesto treats being in relation to an entity. The entry shows the formula, the mode of reading and the relations that help you navigate it.</li>
-<li>Open <a href="index.html#P7">P7</a> to find the paragraph, then <a href="index.html#F28">F28</a>, where the inquiry takes up being as such. <a href="index.html#Q04">Question Q04</a> keeps the difficulty raised by that distinction open.</li>
+<li>Follow <a href="term/F27.html">F27</a>. Here the manifesto treats being in relation to an entity. The entry shows the formula, the mode of reading and the relations that help you navigate it.</li>
+<li>Open <a href="term/P7.html">P7</a> to find the paragraph, then <a href="term/F28.html">F28</a>, where the inquiry takes up being as such. <a href="term/Q04.html">Question Q04</a> keeps the difficulty raised by that distinction open.</li>
 </ol>
-<p>You can also start with <a href="index.html#capitaleSemantico">semantic capital</a>. This route goes from content a reader can understand to meanings organised for a machine to process.</p>
+<p>You can also start with <a href="term/capitaleSemantico.html">semantic capital</a>. This route goes from content a reader can understand to meanings organised for a machine to process.</p>
+<p>You can also browse the <a href="schema.html">class hierarchy and property table</a>. Each entry opens a <a href="term/F27.html">reference page</a> with relevant links and, where available, a Turtle example from the graph.</p>
 <h2 id="read-an-entry">Read an entry</h2>
 <p>A <strong>concept</strong> is a reference with a name, a gloss and a stable identifier. A <strong>position</strong> is a thesis, a reading or a contextual link attributed to a passage. A <strong>qualified relation</strong> connects two concepts within that position. A <strong>question</strong> identifies something that remains open.</p>
 <p>The <a href="https://www.w3.org/TR/owl2-syntax/">OWL</a> schema describes the graph's categories and properties. For instance, going from a position to its relations reverses the link from each relation back to the position. <a href="https://www.w3.org/TR/shacl/">SHACL</a> constraints check that entries are complete, such as whether a position has a source. The philosophical formulas are readable text. The <a href="formal.html">formalisation</a> explains their notation.</p>

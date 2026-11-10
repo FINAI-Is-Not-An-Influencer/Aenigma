@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<title>Dubium · Gerarchia e proprietà</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/schema.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/schema.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/schema.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/schema.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<div class="shell">
+  <header class="masthead">
+    <a class="wordmark" href="../index.html">AENIGMA</a>
+    <nav aria-label="Dubium"><a href="index.html">Catalogo</a><a href="schema.html" aria-current="page">Gerarchia e proprietà</a><a href="guide.html">Guida per iniziare</a><a href="formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="languages" aria-label="Lingue"><a href="schema.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/schema.html" lang="en" hreflang="en" data-language>English</a><a href="la/schema.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main">
+<article class="prose schema-reference">
+  <p class="eyebrow">Aenigma / Modulo 01</p>
+  <h1>Gerarchia e proprietà</h1>
+  <p>La gerarchia segue i rapporti di sottoclasse dichiarati nel grafo. La tabella mostra il dominio e il codominio dichiarati per ogni proprietà.</p>
+  <section><h2>Classi OWL</h2><ul class="class-tree"><li><a href="term/Concept.html"><span>riferimento concettuale</span></a></li><li><a href="term/Force.html"><span>forza dell&#x27;enunciato</span></a></li><li><a href="term/Passage.html"><span>passo localizzabile di una fonte</span></a></li><li><a href="term/ReadingMode.html"><span>modo di lettura</span></a></li><li><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></li><li><a href="term/RelationKind.html"><span>tipo di relazione nel discorso</span></a></li><li><a href="term/ResearchItem.html"><span>voce della ricerca</span></a><ul><li><a href="term/Position.html"><span>posizione formalizzata</span></a></li><li><a href="term/Question.html"><span>questione aperta</span></a></li></ul></li><li><a href="term/Source.html"><span>fonte pubblica</span></a></li><li><a href="term/Status.html"><span>statuto della formalizzazione</span></a></li></ul></section>
+  <section><h2>Proprietà OWL</h2><div class="table-scroll">
+    <table><thead><tr><th scope="col">Proprietà</th>
+      <th scope="col">Dominio</th><th scope="col">Codominio</th>
+    </tr></thead><tbody><tr><th scope="row"><a href="term/belongsTo.html"><span>appartiene alla posizione</span></a></th><td><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></td><td><a href="term/Position.html"><span>posizione formalizzata</span></a></td></tr><tr><th scope="row"><a href="term/concerns.html"><span>riguarda il concetto</span></a></th><td><a href="term/Question.html"><span>questione aperta</span></a></td><td><a href="term/Concept.html"><span>riferimento concettuale</span></a></td></tr><tr><th scope="row"><a href="term/derivedFrom.html"><span>tratta dal passo</span></a></th><td><a href="term/ResearchItem.html"><span>voce della ricerca</span></a></td><td><a href="term/Passage.html"><span>passo localizzabile di una fonte</span></a></td></tr><tr><th scope="row"><a href="term/force.html"><span>forza dell&#x27;enunciato</span></a></th><td><a href="term/Position.html"><span>posizione formalizzata</span></a></td><td><a href="term/Force.html"><span>forza dell&#x27;enunciato</span></a></td></tr><tr><th scope="row"><a href="term/formula.html"><span>formula simbolica</span></a></th><td><a href="term/Position.html"><span>posizione formalizzata</span></a></td><td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td></tr><tr><th scope="row"><a href="term/hasAssertion.html"><span>ha asserzione</span></a></th><td><a href="term/Position.html"><span>posizione formalizzata</span></a></td><td><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></td></tr><tr><th scope="row"><a href="term/locator.html"><span>localizzatore del passo</span></a></th><td><a href="term/Passage.html"><span>passo localizzabile di una fonte</span></a></td><td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td></tr><tr><th scope="row"><a href="term/objectConcept.html"><span>concetto di arrivo</span></a></th><td><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></td><td><a href="term/Concept.html"><span>riferimento concettuale</span></a></td></tr><tr><th scope="row"><a href="term/partOfSource.html"><span>appartiene alla fonte</span></a></th><td><a href="term/Passage.html"><span>passo localizzabile di una fonte</span></a></td><td><a href="term/Source.html"><span>fonte pubblica</span></a></td></tr><tr><th scope="row"><a href="term/readingMode.html"><span>modo di lettura</span></a></th><td><a href="term/ResearchItem.html"><span>voce della ricerca</span></a></td><td><a href="term/ReadingMode.html"><span>modo di lettura</span></a></td></tr><tr><th scope="row"><a href="term/relationKind.html"><span>tipo di relazione</span></a></th><td><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></td><td><a href="term/RelationKind.html"><span>tipo di relazione nel discorso</span></a></td></tr><tr><th scope="row"><a href="term/status.html"><span>statuto</span></a></th><td><a href="term/Position.html"><span>posizione formalizzata</span></a></td><td><a href="term/Status.html"><span>statuto della formalizzazione</span></a></td></tr><tr><th scope="row"><a href="term/subjectConcept.html"><span>concetto di partenza</span></a></th><td><a href="term/RelationAssertion.html"><span>asserzione relazionale qualificata</span></a></td><td><a href="term/Concept.html"><span>riferimento concettuale</span></a></td></tr></tbody></table>
+  </div></section>
+</article></main>
+  <footer><a href="https://criptasemantica.it/">Cripta Semantica</a> <span>Dubium · RDF / OWL</span></footer>
+</div>
+</body>
+</html>

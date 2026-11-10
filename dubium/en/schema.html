@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="A web ontology for reading the Cripta Semantica manifesto. Follow a concept, trace it to its source passage and compare how the text approaches the question of being.">
+<title>Dubium · Hierarchy and properties</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/schema.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/schema.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/schema.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/schema.html">
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../site.css">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="shell">
+  <header class="masthead">
+    <a class="wordmark" href="../../index.html">AENIGMA</a>
+    <nav aria-label="Dubium"><a href="index.html">Catalogue</a><a href="schema.html" aria-current="page">Hierarchy and properties</a><a href="guide.html">Beginner’s guide</a><a href="formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="languages" aria-label="Languages"><a href="../schema.html" lang="it" hreflang="it" data-language>Italiano</a><a href="schema.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/schema.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main">
+<article class="prose schema-reference">
+  <p class="eyebrow">Aenigma / Module 01</p>
+  <h1>Hierarchy and properties</h1>
+  <p>The tree follows the subclass relations declared in the graph. The table shows the declared domain and range of each property.</p>
+  <section><h2>OWL classes</h2><ul class="class-tree"><li><a href="term/Concept.html"><span>conceptual reference</span></a></li><li><a href="term/Force.html"><span>force of the statement</span></a></li><li><a href="term/Passage.html"><span>locatable source passage</span></a></li><li><a href="term/ReadingMode.html"><span>mode of reading</span></a></li><li><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></li><li><a href="term/RelationKind.html"><span>kind of relation</span></a></li><li><a href="term/ResearchItem.html"><span>research entry</span></a><ul><li><a href="term/Position.html"><span>formalised position</span></a></li><li><a href="term/Question.html"><span>open question</span></a></li></ul></li><li><a href="term/Source.html"><span>public source</span></a></li><li><a href="term/Status.html"><span>status of formalisation</span></a></li></ul></section>
+  <section><h2>OWL properties</h2><div class="table-scroll">
+    <table><thead><tr><th scope="col">Property</th>
+      <th scope="col">Domain</th><th scope="col">Range</th>
+    </tr></thead><tbody><tr><th scope="row"><a href="term/belongsTo.html"><span>belongs to a position</span></a></th><td><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></td><td><a href="term/Position.html"><span>formalised position</span></a></td></tr><tr><th scope="row"><a href="term/concerns.html"><span>concerns a concept</span></a></th><td><a href="term/Question.html"><span>open question</span></a></td><td><a href="term/Concept.html"><span>conceptual reference</span></a></td></tr><tr><th scope="row"><a href="term/derivedFrom.html"><span>drawn from a passage</span></a></th><td><a href="term/ResearchItem.html"><span>research entry</span></a></td><td><a href="term/Passage.html"><span>locatable source passage</span></a></td></tr><tr><th scope="row"><a href="term/force.html"><span>statement force</span></a></th><td><a href="term/Position.html"><span>formalised position</span></a></td><td><a href="term/Force.html"><span>force of the statement</span></a></td></tr><tr><th scope="row"><a href="term/formula.html"><span>symbolic formula</span></a></th><td><a href="term/Position.html"><span>formalised position</span></a></td><td><a href="http://www.w3.org/2001/XMLSchema#string">xsd:string</a></td></tr><tr><th scope="row"><a href="term/hasAssertion.html"><span>has a relational assertion</span></a></th><td><a href="term/Position.html"><span>formalised position</span></a></td><td><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></td></tr><tr><th scope="row"><a href="term/locator.html"><span>passage locator</span></a></th><td><a href="term/Passage.html"><span>locatable source passage</span></a></td><td><a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString">rdf:langString</a></td></tr><tr><th scope="row"><a href="term/objectConcept.html"><span>target concept</span></a></th><td><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></td><td><a href="term/Concept.html"><span>conceptual reference</span></a></td></tr><tr><th scope="row"><a href="term/partOfSource.html"><span>belongs to a source</span></a></th><td><a href="term/Passage.html"><span>locatable source passage</span></a></td><td><a href="term/Source.html"><span>public source</span></a></td></tr><tr><th scope="row"><a href="term/readingMode.html"><span>mode of reading</span></a></th><td><a href="term/ResearchItem.html"><span>research entry</span></a></td><td><a href="term/ReadingMode.html"><span>mode of reading</span></a></td></tr><tr><th scope="row"><a href="term/relationKind.html"><span>kind of relation</span></a></th><td><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></td><td><a href="term/RelationKind.html"><span>kind of relation</span></a></td></tr><tr><th scope="row"><a href="term/status.html"><span>formalisation status</span></a></th><td><a href="term/Position.html"><span>formalised position</span></a></td><td><a href="term/Status.html"><span>status of formalisation</span></a></td></tr><tr><th scope="row"><a href="term/subjectConcept.html"><span>source concept</span></a></th><td><a href="term/RelationAssertion.html"><span>qualified relational assertion</span></a></td><td><a href="term/Concept.html"><span>conceptual reference</span></a></td></tr></tbody></table>
+  </div></section>
+</article></main>
+  <footer><a href="https://criptasemantica.it/">Cripta Semantica</a> <span>Dubium · RDF / OWL</span></footer>
+</div>
+</body>
+</html>

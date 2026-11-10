@@ -9,10 +9,12 @@ Un'**ontologia filosofica** indaga l'essere e ciò che è. Un'**ontologia web** 
 ## La prima visita
 
 1. Apri il [catalogo di Dubium](index.html) e cerca **essere di un ente**. La voce offre una definizione e rimanda alle posizioni in cui compare.
-2. Segui [F27](index.html#F27). Il manifesto tratta qui l'essere in relazione a un ente. La scheda mostra la formula, il modo di lettura e le relazioni che aiutano a navigarla.
-3. Apri [P7](index.html#P7) per ritrovare il capoverso e poi [F28](index.html#F28), dove l'indagine tematizza l'essere in quanto tale. La [domanda Q04](index.html#Q04) tiene aperta la difficoltà che nasce da questa distinzione.
+2. Segui [F27](term/F27.html). Il manifesto tratta qui l'essere in relazione a un ente. La scheda mostra la formula, il modo di lettura e le relazioni che aiutano a navigarla.
+3. Apri [P7](term/P7.html) per ritrovare il capoverso e poi [F28](term/F28.html), dove l'indagine tematizza l'essere in quanto tale. La [domanda Q04](term/Q04.html) tiene aperta la difficoltà che nasce da questa distinzione.
 
-Puoi cominciare anche dal [capitale semantico](index.html#capitaleSemantico). Il percorso passa da contenuti comprensibili a chi legge a significati organizzati per essere trattati da una macchina.
+Puoi cominciare anche dal [capitale semantico](term/capitaleSemantico.html). Il percorso passa da contenuti comprensibili a chi legge a significati organizzati per essere trattati da una macchina.
+
+Puoi anche consultare la [gerarchia e la tabella delle proprietà](schema.html). Ogni voce apre una [pagina di riferimento](term/F27.html) con i collegamenti pertinenti e, quando disponibile, un esempio Turtle tratto dal grafo.
 
 ## Come leggere una scheda
 

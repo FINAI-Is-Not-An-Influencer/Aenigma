@@ -9,10 +9,12 @@ Dubium nomen ducit a dubitatione qua incipit [prooemium Cryptae Semanticae](http
 ## Prima visitatio
 
 1. Aperi [indicem Dubii](la/index.html) et quaere **esse entis**. Schedula notionem breviter exponit et ad sententias in quibus occurrit ducit.
-2. Sequere [F27](la/index.html#F27). Prooemium hic esse ad ens refert. Schedula formulam, rationem legendi et nexus ad eam pervestigandam ostendit.
-3. Aperi [P7](la/index.html#P7), ut locum fontis invenias, deinde [F28](la/index.html#F28), ubi esse ipsum tractatur. [Quaestio Q04](la/index.html#Q04) difficultatem ex hac distinctione ortam apertam servat.
+2. Sequere [F27](la/term/F27.html). Prooemium hic esse ad ens refert. Schedula formulam, rationem legendi et nexus ad eam pervestigandam ostendit.
+3. Aperi [P7](la/term/P7.html), ut locum fontis invenias, deinde [F28](la/term/F28.html), ubi esse ipsum tractatur. [Quaestio Q04](la/term/Q04.html) difficultatem ex hac distinctione ortam apertam servat.
 
-Incipere etiam licet a [capitali semantico](la/index.html#capitaleSemantico). Hinc ab iis quae lector intellegit ad significationes a machina tractabiles proceditur.
+Incipere etiam licet a [capitali semantico](la/term/capitaleSemantico.html). Hinc ab iis quae lector intellegit ad significationes a machina tractabiles proceditur.
+
+Etiam [hierarchiam classium et tabulam proprietatum](la/schema.html) inspicere potes. Quaeque vox [paginam propriam](la/term/F27.html) aperit cum nexibus pertinentibus et, ubi adest, exemplo forma Turtle e grapho sumpto.
 
 ## Quomodo schedula legatur
 

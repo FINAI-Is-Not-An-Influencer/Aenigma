@@ -9,10 +9,12 @@ Dubium takes its name from the doubt at the opening of the [Cripta Semantica man
 ## Your first visit
 
 1. Open the [Dubium catalogue](en/index.html) and look for **being of an entity**. Its entry gives a definition and links to positions in which it occurs.
-2. Follow [F27](en/index.html#F27). Here the manifesto treats being in relation to an entity. The entry shows the formula, the mode of reading and the relations that help you navigate it.
-3. Open [P7](en/index.html#P7) to find the paragraph, then [F28](en/index.html#F28), where the inquiry takes up being as such. [Question Q04](en/index.html#Q04) keeps the difficulty raised by that distinction open.
+2. Follow [F27](en/term/F27.html). Here the manifesto treats being in relation to an entity. The entry shows the formula, the mode of reading and the relations that help you navigate it.
+3. Open [P7](en/term/P7.html) to find the paragraph, then [F28](en/term/F28.html), where the inquiry takes up being as such. [Question Q04](en/term/Q04.html) keeps the difficulty raised by that distinction open.
 
-You can also start with [semantic capital](en/index.html#capitaleSemantico). This route goes from content a reader can understand to meanings organised for a machine to process.
+You can also start with [semantic capital](en/term/capitaleSemantico.html). This route goes from content a reader can understand to meanings organised for a machine to process.
+
+You can also browse the [class hierarchy and property table](en/schema.html). Each entry opens a [reference page](en/term/F27.html) with relevant links and, where available, a Turtle example from the graph.
 
 ## Read an entry
 
