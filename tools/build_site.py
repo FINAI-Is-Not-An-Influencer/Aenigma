@@ -3,6 +3,7 @@
 LA: Indicem staticum et tres editiones ducum gigne.
 """
 
+from hashlib import sha256
 from html import escape as esc, unescape
 import json
 from pathlib import Path
@@ -14,6 +15,10 @@ from urllib.parse import urlsplit
 from rdflib import Graph, Literal, Namespace, OWL, RDF, RDFS, URIRef
 
 ROOT = Path(__file__).resolve().parents[1] / "dubium"
+# EN: Link the current styles even when an older copy is still in a proxy cache.
+# LA: Nexus stylorum recentium praebe, etiamsi copia vetus in memoria intermedia manet.
+SHARED_CSS_VERSION = sha256((ROOT.parent / "style.css").read_bytes()).hexdigest()[:12]
+REFERENCE_CSS_VERSION = sha256((ROOT / "site.css").read_bytes()).hexdigest()[:12]
 DUB = Namespace("https://aenigma.criptasemantica.it/dubium#")
 SITE = "https://aenigma.criptasemantica.it/dubium/"
 WIKI = "https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki"
@@ -249,7 +254,7 @@ class Catalogue:
   <h1>{label}</h1>
   <p class="identifier"><code>dub:{name}</code></p>
   <p class="term-iri"><span>IRI</span> <code>{esc(str(node))}</code></p>
-  <div class="term-description">{self.entry_content(node, group, "../")}</div>
+  <div class="term-description terminal-panel">{self.entry_content(node, group, "../")}</div>
 {self.example(node, group)}
   <p><a href="../index.html#{name}">{esc(t["in_catalogue"])}</a></p>
 </article>"""
@@ -300,7 +305,7 @@ class Catalogue:
         version_node = graph.value(URIRef(str(DUB)), OWL.versionIRI)
         nav = "".join(index)
         content = f"""
-<header class="hero">
+<header class="hero terminal-panel">
   <p class="eyebrow">{esc(t["edition"])}</p><h1>{esc(t["title"])}</h1>
   <p class="intro">{esc(t["description"])}</p>
   <div class="actions"><a class="primary" href="guide.html">{esc(t["start"])}</a>
@@ -338,7 +343,8 @@ def page(lang, filename, content, search=False, title=None):
     prefix = "" if assets == "." else assets + "/"
     local_prefix = "" if local == "." else local + "/"
     title = f'Dubium · {title or t[TABS[filename]]}'
-    tabs = []
+    home = f"{prefix}../index.html"
+    tabs = [f'<a href="{home}">Aenigma</a>']
     for file, key in TABS.items():
         current = ' aria-current="page"' if filename == file else ""
         tabs.append(f'<a href="{local_prefix}{file}"{current}>{esc(t[key])}</a>')
@@ -363,20 +369,26 @@ def page(lang, filename, content, search=False, title=None):
 <title>{esc(title)}</title>
 <link rel="canonical" href="{site_url(lang, filename)}">
 {"".join(alternate)}
-<link rel="stylesheet" href="{prefix}../style.css">
-<link rel="stylesheet" href="{prefix}site.css">
+<link rel="stylesheet" href="{prefix}../style.css?v={SHARED_CSS_VERSION}">
+<link rel="stylesheet" href="{prefix}site.css?v={REFERENCE_CSS_VERSION}">
 {script}
 </head>
-<body>
-<a class="skip" href="#main">{esc(t["skip"])}</a>
-<div class="shell">
-  <header class="masthead">
-    <a class="wordmark" href="{prefix}../index.html">AENIGMA</a>
-    <nav aria-label="Dubium">{"".join(tabs)}</nav>
-    <nav class="languages" aria-label="{esc(t["language"])}">{"".join(languages)}</nav>
+<body class="reference-page">
+<a class="skip-link" href="#main">{esc(t["skip"])}</a>
+<div class="container">
+  <header>
+    <p class="site-brand">AENIGMA</p>
+    <nav class="site-nav" aria-label="{esc(t["navigation"])}">{"".join(tabs)}</nav>
+    <nav class="site-languages" aria-label="{esc(t["language"])}">{"".join(languages)}</nav>
   </header>
   <main id="main">{content}</main>
-  <footer><a href="https://criptasemantica.it/">Cripta Semantica</a> <span>Dubium · RDF / OWL</span></footer>
+  <footer>
+    <nav class="footer-nav" aria-label="{esc(t["footer_nav"])}">
+      <a href="{home}">Aenigma</a>
+      <a href="https://criptasemantica.it/">Cripta Semantica</a>
+      <a href="{home}#nav-policies">{esc(t["legal"])}</a>
+    </nav>
+  </footer>
 </div>
 </body>
 </html>

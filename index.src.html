@@ -191,20 +191,25 @@
         itemtype="https://schema.org/WPHeader"
         typeof="schema:WPHeader"
       >
-        <h1 id="page-title" itemprop="headline" property="schema:headline">
+        <h1 class="site-brand" id="page-title" itemprop="headline" property="schema:headline">
           AENIGMA
         </h1>
 
-        <nav class="catalogue-nav" aria-label="Consulta l’ontologia">
-          <a href="dubium/index.html">Catalogo Dubium</a>
+        <nav class="site-nav" aria-label="Navigazione Aenigma">
+          <a href="index.html" aria-current="page">Aenigma</a>
+          <a href="dubium/index.html">Catalogo</a>
           <a href="dubium/schema.html">Gerarchia e proprietà</a>
           <a href="dubium/guide.html">Guida per iniziare</a>
-          <a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki">Wiki</a>
+          <a href="dubium/formal.html">Formalizzazione</a>
+          <a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a>
+        </nav>
+        <nav class="site-languages" aria-label="Lingue del catalogo">
+          <a href="dubium/index.html" lang="it" hreflang="it">Italiano</a>
           <a href="dubium/en/index.html" lang="en" hreflang="en">English</a>
           <a href="dubium/la/index.html" lang="la" hreflang="la">Latine</a>
         </nav>
 
-        <section class="reference-start" aria-labelledby="reference-start-title">
+        <section class="reference-start terminal-panel" aria-labelledby="reference-start-title">
           <h2 id="reference-start-title">Consulta Dubium</h2>
           <p>
             Dubium è il primo modulo di Aenigma. Puoi partire da un concetto
@@ -771,6 +776,11 @@
         itemtype="https://schema.org/WPFooter"
         typeof="schema:WPFooter"
       >
+        <nav class="footer-nav" aria-label="Collegamenti nel piè di pagina">
+          <a href="index.html">Aenigma</a>
+          <a href="https://criptasemantica.it/">Cripta Semantica</a>
+          <a href="#nav-policies">Informazioni legali</a>
+        </nav>
         <aside
           class="legal-disclaimer-block"
           aria-label="Informativa Legale, Privacy e Licenze - Sezione Piè di pagina"

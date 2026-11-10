@@ -75,13 +75,20 @@ h4 {
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
 }
-h1 {
+h1,
+.site-brand {
   font-size: 2.5rem;
   border-bottom: 2px solid var(--color-text-accent);
   padding-bottom: 0.5rem;
   margin-top: 0;
 }
-h1::before {
+.site-brand {
+  color: var(--color-text-accent);
+  font-weight: normal;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.site-brand::before {
   content: "root@aenigma:~# ";
   opacity: 0.7;
   font-size: 1.5rem;
@@ -229,19 +236,42 @@ footer {
   }
 }
 
-/* EN: Put the catalogue and its language editions at the first point of entry.
-   LA: Indicem et editiones linguarum in primo aditu pone. */
-.catalogue-nav {
+/* EN: Use the same masthead, navigation and footer throughout Aenigma.
+   LA: Eandem frontem, navigationem et calcem per totum Aenigma adhibe. */
+.site-nav,
+.site-languages,
+.footer-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: .55rem 1.25rem;
-  margin: .85rem 0 1.35rem;
+  gap: .45rem 1rem;
+  font-size: .9em;
+}
+.site-nav { margin: .8rem 0 .5rem; }
+.site-languages { margin: 0 0 1.4rem; }
+.site-languages a,
+.footer-nav a { color: var(--color-text-dim); }
+.site-nav a[aria-current],
+.site-languages a[aria-current] {
+  color: var(--color-text-accent);
+  border-bottom-color: currentColor;
+}
+.footer-nav {
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 42rem) {
+  :root { --font-size-base: 1rem; }
+  .container { padding: 1.25rem 1rem; }
+  h1,
+  .site-brand { font-size: clamp(1.65rem, 6vw, 2.2rem); }
+  .site-brand::before { font-size: .75em; }
+  h2 { font-size: 1.45rem; }
 }
 
 /* EN: Give the reference its entry point before the full project description.
    LA: Aditum ad indicem ante plenam consilii descriptionem praebe. */
-.reference-start {
+.terminal-panel {
   margin: 1.6rem 0 2rem;
   padding: 1rem 1.2rem;
   border: 1px solid var(--color-border);
