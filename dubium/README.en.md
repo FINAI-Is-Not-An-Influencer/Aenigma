@@ -67,3 +67,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Preview the English catalogue at `http://127.0.0.1:8000/dubium/en/`. The builder reads the local Turtle and guides. Italian glosses are identified where a translation is unavailable. You can browse the catalogue with JavaScript disabled. When enabled, the filter runs in the browser. The [query in the formalisation](FORMALIZZAZIONE.en.md#example-query) shows how to retrieve a relation with its supporting passage.
+
+## What changes in version 0.2.0
+
+Dubium is now the first module of a network, next to [Trivium](../trivium/README.en.md) and [Metrum](../metrum/README.en.md), imported by the [Aenigma root](../aenigma.ttl). No identifier changed and the prior version (`dub:v0.1.0-draft`) remains citable. What is new is metadata and alignment: the header declares title, description, CC BY 4.0 licence, authors, publisher and dates; concepts are also `skos:Concept`, gathered in the `dub:concetti` scheme with preferred labels, so SKOS tools can browse them; positions, questions, passages and assertions are `prov:Entity` and `derivedFrom` is a subproperty of `prov:wasDerivedFrom`, so provenance can be read with PROV-O too; sources are `schema:CreativeWork`. The graph is also available as [JSON-LD](dubium.jsonld) and [RDF/XML](dubium.rdf), with a [context](context.jsonld) for developers. The [network test](../tests/verifica.py) complements the module test.

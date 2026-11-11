@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · dipendenza o fondazione</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/term/Fondazione.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Fondazione.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Fondazione.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Fondazione.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../trivium/index.html">Trivium</a><a href="../../metrum/index.html">Metrum</a><a href="../../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="Fondazione.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="../en/term/Fondazione.html" lang="en" hreflang="en" data-language>English</a><a href="../la/term/Fondazione.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Percorso della scheda">
-  <a href="../index.html">Catalogo</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#values">Modi, statuti e forze</a>
 </nav>
 <article class="term" id="Fondazione">
@@ -32,12 +33,14 @@
   <h1><span>dipendenza o fondazione</span></h1>
   <p class="identifier"><code>dub:Fondazione</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Fondazione</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Compare in</dt><dd><a href="../term/F17.html"><span>Dipendenza dell&#x27;informatica dall&#x27;analitica</span></a>, <a href="../term/F20.html"><span>Duplice esigenza di quantificazione</span></a>, <a href="../term/F21.html"><span>Dipendenza fenomenologica dell&#x27;analitica</span></a>, <a href="../term/F31.html"><span>Fondazione del senso delle ontologie dell&#x27;ente</span></a>, <a href="../term/X01.html"><span>Progettare il fondamento del progettare</span></a>, <a href="../term/X03.html"><span>Direzioni della fondazione</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Compare in</dt><dd><a href="F17.html"><span>Dipendenza dell&#x27;informatica dall&#x27;analitica</span></a>, <a href="F20.html"><span>Duplice esigenza di quantificazione</span></a>, <a href="F21.html"><span>Dipendenza fenomenologica dell&#x27;analitica</span></a>, <a href="F31.html"><span>Fondazione del senso delle ontologie dell&#x27;ente</span></a>, <a href="X01.html"><span>Progettare il fondamento del progettare</span></a>, <a href="X03.html"><span>Direzioni della fondazione</span></a></dd></dl></div>
 <section><h2>Esempio in Turtle</h2><p>Estratto dal grafo pubblicato.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:Fondazione a dub:Force .
-dub:Fondazione &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;dependence or grounding&quot;@en .
-dub:Fondazione &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;dependentia vel fundatio&quot;@la .</code></pre></section>
+dub:Fondazione rdfs:label &quot;dependence or grounding&quot;@en .
+dub:Fondazione rdfs:label &quot;dependentia vel fundatio&quot;@la .</code></pre></section>
   <p><a href="../index.html#Fondazione">Ritrova questa voce nel catalogo</a></p>
 </article></main>
   <footer>

@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/Concept.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Concept.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Concept.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Concept.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/Concept.html" lang="it" hreflang="it" data-language>Italiano</a><a href="Concept.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/Concept.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#classes">OWL classes</a>
 </nav>
 <article class="term" id="Concept">
@@ -32,8 +33,9 @@
   <h1><span>conceptual reference</span></h1>
   <p class="identifier"><code>dub:Concept</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Concept</code></p>
-  <div class="term-description terminal-panel"><p><span lang="it">Identificatore di un senso nel discorso. La tipizzazione riguarda il riferimento concettuale.</span> <small class="original">Italian text</small></p><dl><dt>Properties with this class as their range</dt><dd><a href="../term/concerns.html"><span>concerns a concept</span></a>, <a href="../term/objectConcept.html"><span>target concept</span></a>, <a href="../term/subjectConcept.html"><span>source concept</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span lang="it">Identificatore di un senso nel discorso. La tipizzazione riguarda il riferimento concettuale.</span> <small class="original">Italian text</small></p><dl><dt>Subclass of</dt><dd><a href="http://www.w3.org/2004/02/skos/core#Concept" rel="external">skos:Concept</a></dd><dt>Properties with this class as their range</dt><dd><a href="concerns.html"><span>concerns a concept</span></a>, <a href="objectConcept.html"><span>target concept</span></a>, <a href="subjectConcept.html"><span>source concept</span></a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 
 dub:accumuloSemantico a dub:Concept .
 dub:ambitoOggettuale a dub:Concept .

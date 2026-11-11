@@ -1,0 +1,1825 @@
+{
+ "source": "https://criptasemantica.it/wp-json/wp/v2/categories",
+ "retrieved": "2026-11-11",
+ "count": 202,
+ "categories": [
+  {
+   "id": 1,
+   "count": 17,
+   "description": "",
+   "link": "https://criptasemantica.it/senza-categoria/",
+   "name": "Senza categoria",
+   "slug": "senza-categoria",
+   "parent": 0
+  },
+  {
+   "id": 9,
+   "count": 43,
+   "description": "Arte scaturita dall'agone nel discorso, la tecnica del dialogo è ancora il filo conduttore che, attraverso la maestria dell'analisi e della sintesi, mena l'indagine razionale attraverso i territori della logica, della storia e della cibernetica, per sollevare il velame che oscura la conoscenza del mondo.",
+   "link": "https://criptasemantica.it/dialettica/",
+   "name": "Dialettica",
+   "slug": "dialettica",
+   "parent": 0
+  },
+  {
+   "id": 10,
+   "count": 11,
+   "description": "A partire dal vastissimo rizoma ellenistico della grammatikē technē — l'arte totale della lettura, dell'esegesi, della cura dei testi e della comprensione del linguaggio — la categoria \"grammatica\" funziona da attualizzazione del campo della \"lettera\", proiettato nell'orizzonte cognitivo e tecnologico del nostro tempo.\r\nGrammatica è dunque il grembo sintetico di tutte le branche fiorite da quell'antico slancio verso la decodifica del mondo, la disciplina che eleva a scienza scritture e archiscritture, testi e ipertesti, lingue e linguaggi, tipi e caratteri, segni e comunicazioni.",
+   "link": "https://criptasemantica.it/grammatica/",
+   "name": "Grammatica",
+   "slug": "grammatica",
+   "parent": 0
+  },
+  {
+   "id": 11,
+   "count": 18,
+   "description": "Coronamento del Trivio classico e vertice pragmatico del linguaggio, la categoria \"retorica\" racchiude l'arte della persuasione e l'architettura del potere, configurandosi come forgia dell'azione sociale, entro la quale il discorso si fa legge, amministrazione e strategia. È il dominio in cui la parola plasma le masse e i confini, spingendosi fino all'intima ingegneria del pensiero e trasformandosi in forza motrice capace di governare e riprogrammare la realtà umana.",
+   "link": "https://criptasemantica.it/retorica/",
+   "name": "Retorica",
+   "slug": "retorica",
+   "parent": 0
+  },
+  {
+   "id": 12,
+   "count": 2,
+   "description": "Arte della reminiscenza attraverso enti che mediano fra il sensibile e l'intelligibile, linguaggio della natura che non crea ed è creata, studio a priori dello spazio e del tempo, o scienza dell'immaginazione e della costruzione dei significati, polo opposto e complementare della metafisica, la matematica è da sempre e ancor oggi la lente che espande e dettaglia il godimento contemplativo.",
+   "link": "https://criptasemantica.it/matematica/",
+   "name": "Matematica",
+   "slug": "matematica",
+   "parent": 0
+  },
+  {
+   "id": 13,
+   "count": 5,
+   "description": "La più generale disciplina per aspirare alla mappatura e alla misurazione di tutto il cosmo sublunare, della Terra, matrice dell'esserci.",
+   "link": "https://criptasemantica.it/geografia/",
+   "name": "Geografia",
+   "slug": "geografia",
+   "parent": 0
+  },
+  {
+   "id": 14,
+   "count": 0,
+   "description": "La più generale disciplina per aspirare alla mappatura e alla misurazione di tutto il cosmo etereo, del Cielo, patria del desiderio.",
+   "link": "https://criptasemantica.it/astronomia/",
+   "name": "Astronomia",
+   "slug": "astronomia",
+   "parent": 0
+  },
+  {
+   "id": 15,
+   "count": 2,
+   "description": "Arte di tutte le arti e scienza di tutte le scienze, scaturigine della poesia e della tecnica occidentale, apparenza della volontà come volontà, la musica è l'attività metafisica fondamentale dell'uomo che abita la Terra.",
+   "link": "https://criptasemantica.it/musica/",
+   "name": "Musica",
+   "slug": "musica",
+   "parent": 0
+  },
+  {
+   "id": 16,
+   "count": 0,
+   "description": "La comunità della Cripta Semantica.",
+   "link": "https://criptasemantica.it/autori/",
+   "name": "Autori",
+   "slug": "autori",
+   "parent": 0
+  },
+  {
+   "id": 17,
+   "count": 4,
+   "description": "Esami critici di opere.",
+   "link": "https://criptasemantica.it/recensioni/",
+   "name": "Recensioni",
+   "slug": "recensioni",
+   "parent": 0
+  },
+  {
+   "id": 18,
+   "count": 0,
+   "description": "Merci ed esperienze dalla comunità della Cripta Semantica, per la soddisfazione di ogni esigenza di consumo e coscienza.",
+   "link": "https://criptasemantica.it/prodotti/",
+   "name": "Prodotti",
+   "slug": "prodotti",
+   "parent": 0
+  },
+  {
+   "id": 19,
+   "count": 0,
+   "description": "Biografie, curricula, storie delle persone che compongono o ispirano la comunità della Cripta Semantica.",
+   "link": "https://criptasemantica.it/profili/",
+   "name": "Profili",
+   "slug": "profili",
+   "parent": 0
+  },
+  {
+   "id": 20,
+   "count": 0,
+   "description": "Rete multicanale della Cripta Semantica, fra Cripta Filosofica, FINAI e collaborazioni per contenuti di varia natura.",
+   "link": "https://criptasemantica.it/canali/",
+   "name": "Canali",
+   "slug": "canali",
+   "parent": 0
+  },
+  {
+   "id": 21,
+   "count": 0,
+   "description": "Attività di sostegno, affiliazione e partenariato con la Cripta Semantica.",
+   "link": "https://criptasemantica.it/sinergie/",
+   "name": "Sinergie",
+   "slug": "sinergie",
+   "parent": 0
+  },
+  {
+   "id": 22,
+   "count": 6,
+   "description": "\"Abbiamo noi oggi una risposta alla domanda intorno a ciò che propriamente intendiamo con la parola 'essente'? Per nulla. Dunque è necessario riproporre il problema del senso dell'essere.\"",
+   "link": "https://criptasemantica.it/ontologia-fondamentale/",
+   "name": "Ontologia Fondamentale",
+   "slug": "ontologia-fondamentale",
+   "parent": 0
+  },
+  {
+   "id": 23,
+   "count": 1,
+   "description": "Algoritmica della ricerca e dell'interpretazione.",
+   "link": "https://criptasemantica.it/motore-ermeneutico/",
+   "name": "Motore di ricerca ermeneutico",
+   "slug": "motore-ermeneutico",
+   "parent": 0
+  },
+  {
+   "id": 24,
+   "count": 0,
+   "description": "La programmazione letteraria permette di accordare il flusso di codifica con quello di coscienza, e offre opportunità inedite nell'epoca degli ipertesti: è possibile spingere per l'evoluzione di desso paradigma verso una programmazione filosofica?",
+   "link": "https://criptasemantica.it/programmazione-filosofica/",
+   "name": "Programmazione filosofica",
+   "slug": "programmazione-filosofica",
+   "parent": 0
+  },
+  {
+   "id": 25,
+   "count": 2,
+   "description": "Il World Wide Web, la Grande Rete Mondiale, come iperbiblioteca volta all'immagazzinamento e alla socializzazione del capitale semantico umano e meccanico.",
+   "link": "https://criptasemantica.it/www-semantico/",
+   "name": "Grande Rete Semantica Mondiale",
+   "slug": "www-semantico",
+   "parent": 0
+  },
+  {
+   "id": 26,
+   "count": 0,
+   "description": "Iniziative, attività e investimenti nel campo del Webfare e della ridistribuzione della ricchezza cognitiva.",
+   "link": "https://criptasemantica.it/comunismo-digitale/",
+   "name": "Comunismo Digitale",
+   "slug": "comunismo-digitale",
+   "parent": 0
+  },
+  {
+   "id": 27,
+   "count": 1,
+   "description": "\"Gioco si dà anche, anzi si dà proprio, là dove non c'è un orizzonte tematicamente definito dal per sé di una soggettività, e dove non ci sono soggetti che si atteggiano ludicamente.\"",
+   "link": "https://criptasemantica.it/metafisica-gioco/",
+   "name": "Metafisica del Gioco",
+   "slug": "metafisica-gioco",
+   "parent": 0
+  },
+  {
+   "id": 28,
+   "count": 2,
+   "description": "Che fare?",
+   "link": "https://criptasemantica.it/etica/",
+   "name": "Etica",
+   "slug": "etica",
+   "parent": 0
+  },
+  {
+   "id": 29,
+   "count": 0,
+   "description": "Quando la pratica marziale diviene arte e spirito.",
+   "link": "https://criptasemantica.it/arti-marziali/",
+   "name": "Arti Marziali",
+   "slug": "arti-marziali",
+   "parent": 0
+  },
+  {
+   "id": 30,
+   "count": 0,
+   "description": "Il teatro è il luogo della visione, della visione del divino, e l'attore non è che una maschera nuda al cospetto della propria nullità. Con ciò si assegna al teatro, dall'evo classico a quello post-drammatico, lo spazio entro cui si svolgono la formazione e il godimento dei cammini iniziatici.",
+   "link": "https://criptasemantica.it/teatro/",
+   "name": "Teatro",
+   "slug": "teatro",
+   "parent": 0
+  },
+  {
+   "id": 45,
+   "count": 16,
+   "description": "La nozione si annuncia all'apprendista per mezzo della notizia.",
+   "link": "https://criptasemantica.it/notizie/",
+   "name": "Notizie",
+   "slug": "notizie",
+   "parent": 0
+  },
+  {
+   "id": 46,
+   "count": 7,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/metafisica-generale/",
+   "name": "Metafisica Generale",
+   "slug": "metafisica-generale",
+   "parent": 9
+  },
+  {
+   "id": 47,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/gnoseologia-metafisica/",
+   "name": "Gnoseologia Metafisica",
+   "slug": "gnoseologia-metafisica",
+   "parent": 9
+  },
+  {
+   "id": 48,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/mitologia/",
+   "name": "Mitologia",
+   "slug": "mitologia",
+   "parent": 10
+  },
+  {
+   "id": 49,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/mitologia/mito/",
+   "name": "Mito",
+   "slug": "mito",
+   "parent": 48
+  },
+  {
+   "id": 50,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/mitologia/mito/miti-filosofici/",
+   "name": "Miti Filosofici",
+   "slug": "miti-filosofici",
+   "parent": 49
+  },
+  {
+   "id": 51,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/www-semantico/metaversi/",
+   "name": "Metaversi",
+   "slug": "metaversi",
+   "parent": 25
+  },
+  {
+   "id": 52,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/metafisica-gioco/illusione-messa-in-gioco/",
+   "name": "Illusione (messa in gioco)",
+   "slug": "illusione-messa-in-gioco",
+   "parent": 27
+  },
+  {
+   "id": 54,
+   "count": 15,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/epistemologia/",
+   "name": "Epistemologia",
+   "slug": "epistemologia",
+   "parent": 9
+  },
+  {
+   "id": 55,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/",
+   "name": "Informatica",
+   "slug": "informatica",
+   "parent": 9
+  },
+  {
+   "id": 56,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/intelligenza-artificiale/",
+   "name": "Intelligenza Artificiale",
+   "slug": "intelligenza-artificiale",
+   "parent": 55
+  },
+  {
+   "id": 57,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/big-data/",
+   "name": "Big Data",
+   "slug": "big-data",
+   "parent": 55
+  },
+  {
+   "id": 58,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/www-semantico/web-semantico/",
+   "name": "Web Semantico",
+   "slug": "web-semantico",
+   "parent": 25
+  },
+  {
+   "id": 59,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/fisica/",
+   "name": "Fisica",
+   "slug": "fisica",
+   "parent": 13
+  },
+  {
+   "id": 60,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/fisica/fisica-teorica/",
+   "name": "Fisica Teorica",
+   "slug": "fisica-teorica",
+   "parent": 59
+  },
+  {
+   "id": 61,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicanalisi/",
+   "name": "Psicanalisi",
+   "slug": "psicanalisi",
+   "parent": 9
+  },
+  {
+   "id": 62,
+   "count": 5,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/ermeneutica/",
+   "name": "Ermeneutica",
+   "slug": "ermeneutica",
+   "parent": 9
+  },
+  {
+   "id": 63,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-della-differenza/",
+   "name": "Filosofia della Differenza",
+   "slug": "filosofia-della-differenza",
+   "parent": 9
+  },
+  {
+   "id": 64,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/spiritualismo/",
+   "name": "Spiritualismo",
+   "slug": "spiritualismo",
+   "parent": 9
+  },
+  {
+   "id": 66,
+   "count": 16,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/",
+   "name": "Storia della Filosofia",
+   "slug": "storia-della-filosofia",
+   "parent": 9
+  },
+  {
+   "id": 156,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-dellessere/",
+   "name": "Storia dell'essere",
+   "slug": "storia-dellessere",
+   "parent": 9
+  },
+  {
+   "id": 404,
+   "count": 8,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/filosofia-del-linguaggio/",
+   "name": "Filosofia del Linguaggio",
+   "slug": "filosofia-del-linguaggio",
+   "parent": 10
+  },
+  {
+   "id": 405,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/logica/",
+   "name": "Logica",
+   "slug": "logica",
+   "parent": 9
+  },
+  {
+   "id": 468,
+   "count": 7,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/",
+   "name": "Materialismo Dialettico",
+   "slug": "materialismo-dialettico",
+   "parent": 9
+  },
+  {
+   "id": 469,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/femminismo/",
+   "name": "Femminismo",
+   "slug": "femminismo",
+   "parent": 9
+  },
+  {
+   "id": 559,
+   "count": 8,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/",
+   "name": "Cultura e società",
+   "slug": "cultura-e-societa",
+   "parent": 11
+  },
+  {
+   "id": 560,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/innovazione-e-tecnologia/",
+   "name": "Innovazione e tecnologia",
+   "slug": "innovazione-e-tecnologia",
+   "parent": 11
+  },
+  {
+   "id": 561,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/",
+   "name": "Psicologia",
+   "slug": "psicologia",
+   "parent": 9
+  },
+  {
+   "id": 562,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/neuroscienze/",
+   "name": "Neuroscienze",
+   "slug": "neuroscienze",
+   "parent": 561
+  },
+  {
+   "id": 563,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/arte/",
+   "name": "Arte",
+   "slug": "arte",
+   "parent": 559
+  },
+  {
+   "id": 564,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/territorio/",
+   "name": "Territorio",
+   "slug": "territorio",
+   "parent": 559
+  },
+  {
+   "id": 565,
+   "count": 8,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/",
+   "name": "Storia",
+   "slug": "storia",
+   "parent": 9
+  },
+  {
+   "id": 566,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/storia-della-sardegna/",
+   "name": "Storia della Sardegna",
+   "slug": "storia-della-sardegna",
+   "parent": 565
+  },
+  {
+   "id": 588,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/",
+   "name": "Economia",
+   "slug": "economia",
+   "parent": 11
+  },
+  {
+   "id": 589,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/finanza/",
+   "name": "Finanza",
+   "slug": "finanza",
+   "parent": 588
+  },
+  {
+   "id": 590,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/lavoro/",
+   "name": "Lavoro",
+   "slug": "lavoro",
+   "parent": 468
+  },
+  {
+   "id": 591,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/lavoro/sindacato/",
+   "name": "Sindacato",
+   "slug": "sindacato",
+   "parent": 590
+  },
+  {
+   "id": 592,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/",
+   "name": "Sociologia",
+   "slug": "sociologia",
+   "parent": 11
+  },
+  {
+   "id": 593,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/classi-sociali/",
+   "name": "Classi sociali",
+   "slug": "classi-sociali",
+   "parent": 592
+  },
+  {
+   "id": 594,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/cronaca/",
+   "name": "Cronaca",
+   "slug": "cronaca",
+   "parent": 45
+  },
+  {
+   "id": 595,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/territorio-notizie/",
+   "name": "Territorio",
+   "slug": "territorio-notizie",
+   "parent": 45
+  },
+  {
+   "id": 596,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/territorio-notizie/umbria/",
+   "name": "Umbria",
+   "slug": "umbria",
+   "parent": 595
+  },
+  {
+   "id": 597,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/industria/",
+   "name": "Industria",
+   "slug": "industria",
+   "parent": 588
+  },
+  {
+   "id": 598,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/sviluppo/",
+   "name": "Sviluppo",
+   "slug": "sviluppo",
+   "parent": 588
+  },
+  {
+   "id": 599,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/",
+   "name": "Giurisprudenza",
+   "slug": "giurisprudenza",
+   "parent": 11
+  },
+  {
+   "id": 600,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritti-umani/",
+   "name": "Diritti Umani",
+   "slug": "diritti-umani",
+   "parent": 599
+  },
+  {
+   "id": 601,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritti-sociali/",
+   "name": "Diritti Sociali",
+   "slug": "diritti-sociali",
+   "parent": 599
+  },
+  {
+   "id": 602,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/macroeconomia/",
+   "name": "Macroeconomia",
+   "slug": "macroeconomia",
+   "parent": 588
+  },
+  {
+   "id": 603,
+   "count": 5,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/",
+   "name": "Politica",
+   "slug": "politica",
+   "parent": 9
+  },
+  {
+   "id": 604,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/classi-sociali/conflitti-sociali/",
+   "name": "Conflitti sociali",
+   "slug": "conflitti-sociali",
+   "parent": 593
+  },
+  {
+   "id": 605,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/lotta-di-classe/",
+   "name": "Lotta di classe",
+   "slug": "lotta-di-classe",
+   "parent": 468
+  },
+  {
+   "id": 625,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/geopolitica/",
+   "name": "Geopolitica",
+   "slug": "geopolitica",
+   "parent": 603
+  },
+  {
+   "id": 626,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/scienze-politiche/",
+   "name": "Scienze Politiche",
+   "slug": "scienze-politiche",
+   "parent": 603
+  },
+  {
+   "id": 627,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/scienze-politiche/studi-postcoloniali/",
+   "name": "Studi postcoloniali",
+   "slug": "studi-postcoloniali",
+   "parent": 626
+  },
+  {
+   "id": 628,
+   "count": 0,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/storia-dellafrica/",
+   "name": "Storia dell'Africa",
+   "slug": "storia-dellafrica",
+   "parent": 565
+  },
+  {
+   "id": 629,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/geopolitica/relazioni-internazionali/",
+   "name": "Relazioni Internazionali",
+   "slug": "relazioni-internazionali",
+   "parent": 625
+  },
+  {
+   "id": 652,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/politica-interna/",
+   "name": "Politica Interna",
+   "slug": "politica-interna",
+   "parent": 45
+  },
+  {
+   "id": 653,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/inchieste/",
+   "name": "Inchieste",
+   "slug": "inchieste",
+   "parent": 45
+  },
+  {
+   "id": 654,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritto/",
+   "name": "Diritto",
+   "slug": "diritto",
+   "parent": 599
+  },
+  {
+   "id": 655,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritto/costituzione/",
+   "name": "Costituzione",
+   "slug": "costituzione",
+   "parent": 654
+  },
+  {
+   "id": 1355,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/logica/",
+   "name": "Logica",
+   "slug": "logica",
+   "parent": 0
+  },
+  {
+   "id": 1357,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/filosofia-orientale/",
+   "name": "Filosofia Orientale",
+   "slug": "filosofia-orientale",
+   "parent": 0
+  },
+  {
+   "id": 1359,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/logica/logica-matematica/",
+   "name": "Logica Matematica",
+   "slug": "logica-matematica",
+   "parent": 1355
+  },
+  {
+   "id": 1361,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/buddismo/",
+   "name": "Buddismo",
+   "slug": "buddismo",
+   "parent": 0
+  },
+  {
+   "id": 1363,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/giainismo/",
+   "name": "Giainismo",
+   "slug": "giainismo",
+   "parent": 0
+  },
+  {
+   "id": 1365,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/epistemologia-e-metafisica/",
+   "name": "Epistemologia e Metafisica",
+   "slug": "epistemologia-e-metafisica",
+   "parent": 0
+  },
+  {
+   "id": 1367,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/studi-accademici/",
+   "name": "Studi Accademici",
+   "slug": "studi-accademici",
+   "parent": 0
+  },
+  {
+   "id": 1369,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/storia-delle-scienze/",
+   "name": "Storia delle Scienze",
+   "slug": "storia-delle-scienze",
+   "parent": 0
+  },
+  {
+   "id": 1391,
+   "count": 8,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/ontologia/",
+   "name": "Ontologia",
+   "slug": "ontologia",
+   "parent": 9
+  },
+  {
+   "id": 1392,
+   "count": 7,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/epistemologia/filosofia-della-scienza/",
+   "name": "Filosofia della Scienza",
+   "slug": "filosofia-della-scienza",
+   "parent": 54
+  },
+  {
+   "id": 1393,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/filosofia-antica/",
+   "name": "Filosofia Antica",
+   "slug": "filosofia-antica",
+   "parent": 66
+  },
+  {
+   "id": 1418,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritti/",
+   "name": "Diritti",
+   "slug": "diritti",
+   "parent": 599
+  },
+  {
+   "id": 1419,
+   "count": 5,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/",
+   "name": "Arte e Tecnica",
+   "slug": "arte-e-tecnica",
+   "parent": 9
+  },
+  {
+   "id": 1420,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/tecnologia/",
+   "name": "Tecnologia",
+   "slug": "tecnologia",
+   "parent": 1419
+  },
+  {
+   "id": 1421,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/pagamenti/",
+   "name": "Pagamenti",
+   "slug": "pagamenti",
+   "parent": 588
+  },
+  {
+   "id": 1422,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/macroeconomia/analisi-macroeconomica/",
+   "name": "Analisi Macroeconomica",
+   "slug": "analisi-macroeconomica",
+   "parent": 602
+  },
+  {
+   "id": 1447,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/giurisprudenza/diritto/beni-culturali/",
+   "name": "Beni culturali",
+   "slug": "beni-culturali",
+   "parent": 654
+  },
+  {
+   "id": 1448,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/storia-dellarte/",
+   "name": "Storia dell'Arte",
+   "slug": "storia-dellarte",
+   "parent": 1419
+  },
+  {
+   "id": 1449,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/storia-dellarte/arte-medievale/",
+   "name": "Arte Medievale",
+   "slug": "arte-medievale",
+   "parent": 1448
+  },
+  {
+   "id": 1450,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/mercato-dellarte/",
+   "name": "Mercato dell'Arte",
+   "slug": "mercato-dellarte",
+   "parent": 588
+  },
+  {
+   "id": 1466,
+   "count": 5,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/filosofia-contemporanea/",
+   "name": "Filosofia Contemporanea",
+   "slug": "filosofia-contemporanea",
+   "parent": 66
+  },
+  {
+   "id": 1467,
+   "count": 6,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/fenomenologia/",
+   "name": "Fenomenologia",
+   "slug": "fenomenologia",
+   "parent": 9
+  },
+  {
+   "id": 1485,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/economia/economia-politica/",
+   "name": "Economia Politica",
+   "slug": "economia-politica",
+   "parent": 588
+  },
+  {
+   "id": 1486,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/analisi-materialista/",
+   "name": "Analisi Materialista",
+   "slug": "analisi-materialista",
+   "parent": 592
+  },
+  {
+   "id": 1487,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/territorio/ecologia/",
+   "name": "Ecologia",
+   "slug": "ecologia",
+   "parent": 564
+  },
+  {
+   "id": 1488,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/politiche-istituzionali/",
+   "name": "Politiche Istituzionali",
+   "slug": "politiche-istituzionali",
+   "parent": 603
+  },
+  {
+   "id": 1489,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/politiche-normative/",
+   "name": "Politiche Normative",
+   "slug": "politiche-normative",
+   "parent": 603
+  },
+  {
+   "id": 1514,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/antropologia/",
+   "name": "Antropologia",
+   "slug": "antropologia",
+   "parent": 0
+  },
+  {
+   "id": 1515,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/antropologia-dialettica/",
+   "name": "Antropologia",
+   "slug": "antropologia-dialettica",
+   "parent": 9
+  },
+  {
+   "id": 1516,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/antropologia-dialettica/antropologia-culturale/",
+   "name": "Antropologia Culturale",
+   "slug": "antropologia-culturale",
+   "parent": 1515
+  },
+  {
+   "id": 1517,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/antropologia-dialettica/etnologia/",
+   "name": "Etnologia",
+   "slug": "etnologia",
+   "parent": 1515
+  },
+  {
+   "id": 1518,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-e-societa/",
+   "name": "Filosofia e Società",
+   "slug": "filosofia-e-societa",
+   "parent": 9
+  },
+  {
+   "id": 1519,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/scienze-sociali/",
+   "name": "Scienze sociali",
+   "slug": "scienze-sociali",
+   "parent": 11
+  },
+  {
+   "id": 1520,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/storia-delle-religioni/",
+   "name": "Storia delle Religioni",
+   "slug": "storia-delle-religioni",
+   "parent": 565
+  },
+  {
+   "id": 1521,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/psicologia-sociale/",
+   "name": "Psicologia Sociale",
+   "slug": "psicologia-sociale",
+   "parent": 561
+  },
+  {
+   "id": 1522,
+   "count": 7,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura/",
+   "name": "Cultura",
+   "slug": "cultura",
+   "parent": 11
+  },
+  {
+   "id": 1523,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura/studi-culturali/",
+   "name": "Studi Culturali",
+   "slug": "studi-culturali",
+   "parent": 1522
+  },
+  {
+   "id": 1524,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura/cultura-e-tradizione/",
+   "name": "Cultura e Tradizione",
+   "slug": "cultura-e-tradizione",
+   "parent": 1522
+  },
+  {
+   "id": 1543,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-politica/",
+   "name": "Filosofia Politica",
+   "slug": "filosofia-politica",
+   "parent": 9
+  },
+  {
+   "id": 1544,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/sociologia-industriale/",
+   "name": "Sociologia Industriale",
+   "slug": "sociologia-industriale",
+   "parent": 592
+  },
+  {
+   "id": 1567,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/filosofia-moderna/",
+   "name": "Filosofia Moderna",
+   "slug": "filosofia-moderna",
+   "parent": 66
+  },
+  {
+   "id": 1568,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/ontologia/ontologia-e-semantica/",
+   "name": "Ontologia e Semantica",
+   "slug": "ontologia-e-semantica",
+   "parent": 1391
+  },
+  {
+   "id": 1569,
+   "count": 5,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/estetica/",
+   "name": "Estetica",
+   "slug": "estetica",
+   "parent": 9
+  },
+  {
+   "id": 1570,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/poietica/",
+   "name": "Poietica",
+   "slug": "poietica",
+   "parent": 11
+  },
+  {
+   "id": 1571,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/filologia/",
+   "name": "Filologia",
+   "slug": "filologia",
+   "parent": 10
+  },
+  {
+   "id": 1572,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/linguistica/",
+   "name": "Linguistica",
+   "slug": "linguistica",
+   "parent": 10
+  },
+  {
+   "id": 1573,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/linguistica/linguistica-storica/",
+   "name": "Linguistica Storica",
+   "slug": "linguistica-storica",
+   "parent": 1572
+  },
+  {
+   "id": 1592,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/fenomenologia/studi-husserliani/",
+   "name": "Studi Husserliani",
+   "slug": "studi-husserliani",
+   "parent": 1467
+  },
+  {
+   "id": 1593,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/ontologia/ontologia-teoretica/",
+   "name": "Ontologia Teoretica",
+   "slug": "ontologia-teoretica",
+   "parent": 1391
+  },
+  {
+   "id": 1594,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/metafisica-generale/filosofia-prima/",
+   "name": "Filosofia Prima",
+   "slug": "filosofia-prima",
+   "parent": 46
+  },
+  {
+   "id": 1595,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/epistemologia/cosmologia/",
+   "name": "Cosmologia",
+   "slug": "cosmologia",
+   "parent": 54
+  },
+  {
+   "id": 1596,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/architettura-dellinformazione/",
+   "name": "Architettura dell'Informazione",
+   "slug": "architettura-dellinformazione",
+   "parent": 55
+  },
+  {
+   "id": 1597,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/architettura-dellinformazione/architettura-dellinformazione-filosofica/",
+   "name": "Architettura dell'Informazione Filosofica",
+   "slug": "architettura-dellinformazione-filosofica",
+   "parent": 1596
+  },
+  {
+   "id": 1616,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/teoria-marxista/",
+   "name": "Teoria Marxista",
+   "slug": "teoria-marxista",
+   "parent": 468
+  },
+  {
+   "id": 1617,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-storico/",
+   "name": "Materialismo Storico",
+   "slug": "materialismo-storico",
+   "parent": 9
+  },
+  {
+   "id": 1618,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/politica-italiana/",
+   "name": "Politica Italiana",
+   "slug": "politica-italiana",
+   "parent": 603
+  },
+  {
+   "id": 1619,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/politica-italiana/politica-estera/",
+   "name": "Politica Estera",
+   "slug": "politica-estera",
+   "parent": 1618
+  },
+  {
+   "id": 1620,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/critica-delleconomia-politica/",
+   "name": "Critica dell'Economia Politica",
+   "slug": "critica-delleconomia-politica",
+   "parent": 468
+  },
+  {
+   "id": 1621,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/conflitti-contemporanei/",
+   "name": "Conflitti Contemporanei",
+   "slug": "conflitti-contemporanei",
+   "parent": 45
+  },
+  {
+   "id": 1622,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/politica/polemologia/",
+   "name": "Polemologia",
+   "slug": "polemologia",
+   "parent": 603
+  },
+  {
+   "id": 1623,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/dossier-nato-e-difesa/",
+   "name": "Dossier NATO e Difesa",
+   "slug": "dossier-nato-e-difesa",
+   "parent": 45
+  },
+  {
+   "id": 1624,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/analisi-logistica/",
+   "name": "Analisi Logistica",
+   "slug": "analisi-logistica",
+   "parent": 468
+  },
+  {
+   "id": 1625,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/analisi-strategica/",
+   "name": "Analisi Strategica",
+   "slug": "analisi-strategica",
+   "parent": 468
+  },
+  {
+   "id": 1626,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-storico/storia-del-movimento-operaio/",
+   "name": "Storia del Movimento Operaio",
+   "slug": "storia-del-movimento-operaio",
+   "parent": 1617
+  },
+  {
+   "id": 1627,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-politica/imperialismo/",
+   "name": "Imperialismo",
+   "slug": "imperialismo",
+   "parent": 1543
+  },
+  {
+   "id": 1628,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/globalizzazione/",
+   "name": "Globalizzazione",
+   "slug": "globalizzazione",
+   "parent": 13
+  },
+  {
+   "id": 1629,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/globalizzazione-storia/",
+   "name": "Globalizzazione",
+   "slug": "globalizzazione-storia",
+   "parent": 565
+  },
+  {
+   "id": 1652,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-della-matematica/",
+   "name": "Filosofia della Matematica",
+   "slug": "filosofia-della-matematica",
+   "parent": 9
+  },
+  {
+   "id": 1653,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/gnoseologia/",
+   "name": "Gnoseologia",
+   "slug": "gnoseologia",
+   "parent": 9
+  },
+  {
+   "id": 1654,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/logica/fondamenti/",
+   "name": "Fondamenti",
+   "slug": "fondamenti",
+   "parent": 405
+  },
+  {
+   "id": 1655,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/ontologia/ontologia-formale/",
+   "name": "Ontologia Formale",
+   "slug": "ontologia-formale",
+   "parent": 1391
+  },
+  {
+   "id": 1656,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/storia-del-pensiero-matematico/",
+   "name": "Storia del Pensiero Matematico",
+   "slug": "storia-del-pensiero-matematico",
+   "parent": 565
+  },
+  {
+   "id": 1677,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/logica/fondamenti/fondamenti-della-matematica/",
+   "name": "Fondamenti della Matematica",
+   "slug": "fondamenti-della-matematica",
+   "parent": 1654
+  },
+  {
+   "id": 1678,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/matematica/storia-della-matematica/",
+   "name": "Storia della Matematica",
+   "slug": "storia-della-matematica",
+   "parent": 12
+  },
+  {
+   "id": 1679,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/studi-classici/",
+   "name": "Studi Classici",
+   "slug": "studi-classici",
+   "parent": 10
+  },
+  {
+   "id": 1680,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura/polemiche-culturali/",
+   "name": "Polemiche Culturali",
+   "slug": "polemiche-culturali",
+   "parent": 1522
+  },
+  {
+   "id": 1705,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/psicolinguistica/",
+   "name": "Psicolinguistica",
+   "slug": "psicolinguistica",
+   "parent": 0
+  },
+  {
+   "id": 1706,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/linguistica/psicolinguistica-linguistica/",
+   "name": "Psicolinguistica",
+   "slug": "psicolinguistica-linguistica",
+   "parent": 1572
+  },
+  {
+   "id": 1707,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/psicolinguistica-evoluzionistica/",
+   "name": "Psicolinguistica Evoluzionistica",
+   "slug": "psicolinguistica-evoluzionistica",
+   "parent": 0
+  },
+  {
+   "id": 1708,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/linguistica/psicolinguistica-linguistica/psicolinguistica-evoluzionistica-psicolinguistica-linguistica/",
+   "name": "Psicolinguistica Evoluzionistica",
+   "slug": "psicolinguistica-evoluzionistica-psicolinguistica-linguistica",
+   "parent": 1706
+  },
+  {
+   "id": 1709,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/biologia/",
+   "name": "Biologia",
+   "slug": "biologia",
+   "parent": 13
+  },
+  {
+   "id": 1710,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/biologia/evoluzionismo/",
+   "name": "Evoluzionismo",
+   "slug": "evoluzionismo",
+   "parent": 1709
+  },
+  {
+   "id": 1711,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/biologia/evoluzionismo/evoluzione/",
+   "name": "Evoluzione",
+   "slug": "evoluzione",
+   "parent": 1710
+  },
+  {
+   "id": 1712,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/neuroscienze/neuroscienze-cognitive/",
+   "name": "Neuroscienze Cognitive",
+   "slug": "neuroscienze-cognitive",
+   "parent": 562
+  },
+  {
+   "id": 1713,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/psicologia-dello-sviluppo/",
+   "name": "Psicologia dello Sviluppo",
+   "slug": "psicologia-dello-sviluppo",
+   "parent": 561
+  },
+  {
+   "id": 1714,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/biologia/scienze-biologiche/",
+   "name": "Scienze Biologiche",
+   "slug": "scienze-biologiche",
+   "parent": 1709
+  },
+  {
+   "id": 1715,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/geografia/biologia/genetica/",
+   "name": "Genetica",
+   "slug": "genetica",
+   "parent": 1709
+  },
+  {
+   "id": 1716,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/musica/biomusicologia/",
+   "name": "Biomusicologia",
+   "slug": "biomusicologia",
+   "parent": 15
+  },
+  {
+   "id": 1734,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/letteratura/",
+   "name": "Letteratura",
+   "slug": "letteratura",
+   "parent": 10
+  },
+  {
+   "id": 1735,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/letteratura/saggistica/",
+   "name": "Saggistica",
+   "slug": "saggistica",
+   "parent": 1734
+  },
+  {
+   "id": 1736,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/letteratura/saggistica/saggistica-contemporanea/",
+   "name": "Saggistica Contemporanea",
+   "slug": "saggistica-contemporanea",
+   "parent": 1735
+  },
+  {
+   "id": 1737,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/etica/etica-e-societa/",
+   "name": "Etica e Società",
+   "slug": "etica-e-societa",
+   "parent": 28
+  },
+  {
+   "id": 1738,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/materialismo-dialettico/teoria-critica/",
+   "name": "Teoria Critica",
+   "slug": "teoria-critica",
+   "parent": 468
+  },
+  {
+   "id": 1758,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/storia-dellarte/arte-contemporanea/",
+   "name": "Arte Contemporanea",
+   "slug": "arte-contemporanea",
+   "parent": 1448
+  },
+  {
+   "id": 1759,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/estetica/critica-darte/",
+   "name": "Critica d'Arte",
+   "slug": "critica-darte",
+   "parent": 1569
+  },
+  {
+   "id": 1760,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/sociologia/sociologia-del-digitale/",
+   "name": "Sociologia del Digitale",
+   "slug": "sociologia-del-digitale",
+   "parent": 592
+  },
+  {
+   "id": 1761,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/arte/mostre-ed-eventi/",
+   "name": "Mostre ed Eventi",
+   "slug": "mostre-ed-eventi",
+   "parent": 563
+  },
+  {
+   "id": 1785,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-teoretica/",
+   "name": "Filosofia Teoretica",
+   "slug": "filosofia-teoretica",
+   "parent": 9
+  },
+  {
+   "id": 1786,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/autori-storia-della-filosofia/",
+   "name": "Autori",
+   "slug": "autori-storia-della-filosofia",
+   "parent": 66
+  },
+  {
+   "id": 1787,
+   "count": 4,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/autori-storia-della-filosofia/heidegger/",
+   "name": "Heidegger",
+   "slug": "heidegger",
+   "parent": 1786
+  },
+  {
+   "id": 1788,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/autori-storia-della-filosofia/nietzsche/",
+   "name": "Nietzsche",
+   "slug": "nietzsche",
+   "parent": 1786
+  },
+  {
+   "id": 1812,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/notizie/data-journalism/",
+   "name": "Data Journalism",
+   "slug": "data-journalism",
+   "parent": 45
+  },
+  {
+   "id": 1813,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia/storia-contemporanea/",
+   "name": "Storia Contemporanea",
+   "slug": "storia-contemporanea",
+   "parent": 565
+  },
+  {
+   "id": 1814,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/curatela/",
+   "name": "Curatela",
+   "slug": "curatela",
+   "parent": 1419
+  },
+  {
+   "id": 1815,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura/istituzioni-culturali/",
+   "name": "Istituzioni Culturali",
+   "slug": "istituzioni-culturali",
+   "parent": 1522
+  },
+  {
+   "id": 1840,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/arte-e-tecnica/filosofia-della-tecnica/",
+   "name": "Filosofia della Tecnica",
+   "slug": "filosofia-della-tecnica",
+   "parent": 1419
+  },
+  {
+   "id": 1841,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/informatica/intelligenza-artificiale/machine-learning/",
+   "name": "Machine Learning",
+   "slug": "machine-learning",
+   "parent": 56
+  },
+  {
+   "id": 1842,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/metafisica/",
+   "name": "Metafisica",
+   "slug": "metafisica",
+   "parent": 9
+  },
+  {
+   "id": 1843,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/metafisica/cibernetica/",
+   "name": "Cibernetica",
+   "slug": "cibernetica",
+   "parent": 1842
+  },
+  {
+   "id": 1844,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/metafisica/cibernetica/teoria-dei-sistemi/",
+   "name": "Teoria dei Sistemi",
+   "slug": "teoria-dei-sistemi",
+   "parent": 1843
+  },
+  {
+   "id": 1845,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/scienze-cognitive/",
+   "name": "Scienze Cognitive",
+   "slug": "scienze-cognitive",
+   "parent": 561
+  },
+  {
+   "id": 1846,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/psicologia/scienze-cognitive/architetture-neurali/",
+   "name": "Architetture Neurali",
+   "slug": "architetture-neurali",
+   "parent": 1845
+  },
+  {
+   "id": 1847,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/transumanesimo/",
+   "name": "Transumanesimo",
+   "slug": "transumanesimo",
+   "parent": 11
+  },
+  {
+   "id": 1848,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/innovazione-e-tecnologia/futuro-digitale/",
+   "name": "Futuro Digitale",
+   "slug": "futuro-digitale",
+   "parent": 560
+  },
+  {
+   "id": 1849,
+   "count": 2,
+   "description": "",
+   "link": "https://criptasemantica.it/retorica/cultura-e-societa/societa-algoritmica/",
+   "name": "Società Algoritmica",
+   "slug": "societa-algoritmica",
+   "parent": 559
+  },
+  {
+   "id": 1870,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/grammatica/semantica/",
+   "name": "Semantica",
+   "slug": "semantica",
+   "parent": 10
+  },
+  {
+   "id": 1871,
+   "count": 3,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/storia-della-filosofia-contemporanea/",
+   "name": "Storia della Filosofia Contemporanea",
+   "slug": "storia-della-filosofia-contemporanea",
+   "parent": 66
+  },
+  {
+   "id": 1872,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/storia-della-filosofia/filosofia-contemporanea/filosofia-italiana/",
+   "name": "Filosofia Italiana",
+   "slug": "filosofia-italiana",
+   "parent": 1466
+  },
+  {
+   "id": 1896,
+   "count": 1,
+   "description": "",
+   "link": "https://criptasemantica.it/dialettica/filosofia-della-musica/",
+   "name": "Filosofia della Musica",
+   "slug": "filosofia-della-musica",
+   "parent": 9
+  }
+ ]
+}

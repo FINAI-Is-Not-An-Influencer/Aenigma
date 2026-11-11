@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · Guida per iniziare</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/guide.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/guide.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/guide.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/guide.html">
 <link rel="stylesheet" href="../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,7 +19,8 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html" aria-current="page">Guida per iniziare</a><a href="formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="index.html" aria-current="page">Dubium</a><a href="../trivium/index.html">Trivium</a><a href="../metrum/index.html">Metrum</a><a href="../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html" aria-current="page">Guida per iniziare</a><a href="formal.html">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="guide.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/guide.html" lang="en" hreflang="en" data-language>English</a><a href="la/guide.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main"><article class="prose"><h1 id="dubium-una-guida-per-iniziare">Dubium. Una guida per iniziare</h1>
@@ -88,6 +89,8 @@
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> dubium/tests/verifica.py</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> http.server 8000 <span class="at">--bind</span> 127.0.0.1</span></code></pre></div>
 <p>L'anteprima locale del catalogo è su <code>http://127.0.0.1:8000/dubium/</code>. Il generatore legge il Turtle e le guide locali. Le glosse della fonte italiana sono indicate quando non esiste una glossa tradotta. Il catalogo si naviga anche con JavaScript disattivato. Il filtro, quando attivo, lavora nel browser. L'<a href="formal.html#interrogazione-di-esempio">esempio della formalizzazione</a> mostra come recuperare una relazione insieme al passo che la sostiene.</p>
+<h2 id="che-cosa-cambia-nella-versione-020">Che cosa cambia nella versione 0.2.0</h2>
+<p>Dubium è ora il primo modulo di una rete, accanto a <a href="../trivium/README.md">Trivium</a> e <a href="../metrum/README.md">Metrum</a>, importati dalla <a href="../aenigma.ttl">radice di Aenigma</a>. Nessun identificatore è cambiato e la versione precedente (<code>dub:v0.1.0-draft</code>) resta citabile. Le novità sono metadati e allineamenti: l'intestazione dichiara titolo, descrizione, licenza CC BY 4.0, autori, editore e date; i concetti sono anche <code>skos:Concept</code>, raccolti nello schema <code>dub:concetti</code> con etichette preferite, così gli strumenti SKOS li possono sfogliare; posizioni, domande, passi e asserzioni sono <code>prov:Entity</code> e <code>derivedFrom</code> è una sottoproprietà di <code>prov:wasDerivedFrom</code>, così la provenienza si legge anche con PROV-O; le fonti sono <code>schema:CreativeWork</code>. Il grafo è disponibile anche come <a href="dubium.jsonld">JSON-LD</a> e <a href="dubium.rdf">RDF/XML</a>, con un <a href="context.jsonld">contesto</a> per gli sviluppatori. Il <a href="../tests/verifica.py">collaudo della rete</a> si aggiunge a quello del modulo.</p>
 </article></main>
   <footer>
     <nav class="footer-nav" aria-label="Collegamenti nel piè di pagina">

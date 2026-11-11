@@ -1,0 +1,66 @@
+/* EN: The shared stylesheet supplies the page frame, colours and typography.
+   LA: Stylus communis compagem paginae, colores litterasque praebet. */
+[hidden] { display: none !important; }
+
+.reference-page main h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+.reference-page main h1::before {
+  content: "./";
+  opacity: .7;
+}
+.eyebrow { margin: 0 0 .6rem; color: var(--color-text-dim); font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; }
+.hero .intro { max-width: 68ch; margin: 1rem 0 1.4rem; color: var(--color-text-dim); }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem 1.15rem; }
+.primary { display: inline-block; padding: .45rem .75rem; border: 1px solid var(--color-text-accent); font-weight: bold; }
+.primary:hover { color: var(--color-bg-terminal); background: var(--color-text-accent); }
+
+.desk { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.6rem; }
+.index { align-self: start; position: sticky; top: 1rem; display: grid; gap: .25rem; }
+.index a { display: flex; justify-content: space-between; gap: .5rem; padding: .38rem .45rem; border-bottom: 1px solid var(--color-border); font-size: .86rem; }
+.index span { color: var(--color-text-dim); }
+.filter { margin-bottom: 1.5rem; }
+.filter label { display: block; margin-bottom: .3rem; font-size: .9rem; }
+.filter input { width: 100%; max-width: 35rem; border: 1px solid var(--color-border); background: var(--color-bg-element); color: var(--color-text-main); padding: .6rem .75rem; font: inherit; }
+.filter input::placeholder { color: var(--color-text-dim); }
+.filter p { margin: .35rem 0; color: var(--color-text-dim); font-size: .85rem; }
+
+.results section { margin-bottom: 2rem; scroll-margin-top: 1rem; }
+.entries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; align-items: start; }
+.entry { padding: .85rem 1rem; border: 1px solid var(--color-border); background: var(--color-bg-element); overflow-wrap: anywhere; font-size: .9rem; }
+.entry h3 { font-size: 1.06rem; margin: 0; }
+.entry p, .term p { margin: .42rem 0; }
+.identifier { font-size: .83rem; }
+.entry dl, .term dl { margin: .6rem 0 .1rem; }
+.entry dt, .term dt { color: var(--color-text-dim); font-size: .83em; }
+.entry dd, .term dd { margin: 0 0 .5rem; }
+.entry:target, [data-fragment]:target { outline: 2px solid var(--color-text-accent); outline-offset: 3px; }
+.formula { display: grid; gap: .35rem; margin: .7rem 0; }
+.formula code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; }
+.entry details, .term details { margin: .6rem 0; }
+summary { cursor: pointer; color: var(--color-text-accent); }
+.original { font-size: .77em; color: var(--color-text-dim); }
+
+.breadcrumbs { display: flex; gap: .35rem .8rem; flex-wrap: wrap; margin: 1.3rem 0 .8rem; font-size: .85rem; }
+.breadcrumbs a + a::before { content: "/ "; color: var(--color-text-dim); }
+.term, .prose { padding: 1.3rem 0; overflow-wrap: anywhere; }
+.term { padding-top: .75rem; }
+.term-iri { color: var(--color-text-dim); }
+.term-iri code { color: var(--color-text-main); }
+.term-description { margin: 1rem 0 1.35rem; border-inline-start: 2px solid var(--color-text-accent); }
+.term pre, .prose pre { max-width: 100%; }
+.prose table, .table-scroll { display: block; overflow-x: auto; }
+.table-scroll table { display: table; width: 100%; }
+.prose table { border-collapse: collapse; text-align: start; }
+.prose :is(th, td) { border-bottom: 1px solid var(--color-border); padding: .45rem .65rem; text-align: start; vertical-align: top; }
+.class-tree, .class-tree ul { padding-inline-start: 1.4rem; }
+.class-tree li { padding-block: .12rem; }
+.downloads ul { padding-inline-start: 1.2rem; }
+
+@media (max-width: 48rem) {
+  .desk { grid-template-columns: minmax(0, 1fr); }
+  .index { position: static; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 42rem) {
+  .entries { grid-template-columns: minmax(0, 1fr); }
+}

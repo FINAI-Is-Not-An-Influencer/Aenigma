@@ -67,3 +67,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 L'anteprima locale del catalogo è su `http://127.0.0.1:8000/dubium/`. Il generatore legge il Turtle e le guide locali. Le glosse della fonte italiana sono indicate quando non esiste una glossa tradotta. Il catalogo si naviga anche con JavaScript disattivato. Il filtro, quando attivo, lavora nel browser. L'[esempio della formalizzazione](FORMALIZZAZIONE.md#interrogazione-di-esempio) mostra come recuperare una relazione insieme al passo che la sostiene.
+
+## Che cosa cambia nella versione 0.2.0
+
+Dubium è ora il primo modulo di una rete, accanto a [Trivium](../trivium/README.md) e [Metrum](../metrum/README.md), importati dalla [radice di Aenigma](../aenigma.ttl). Nessun identificatore è cambiato e la versione precedente (`dub:v0.1.0-draft`) resta citabile. Le novità sono metadati e allineamenti: l'intestazione dichiara titolo, descrizione, licenza CC BY 4.0, autori, editore e date; i concetti sono anche `skos:Concept`, raccolti nello schema `dub:concetti` con etichette preferite, così gli strumenti SKOS li possono sfogliare; posizioni, domande, passi e asserzioni sono `prov:Entity` e `derivedFrom` è una sottoproprietà di `prov:wasDerivedFrom`, così la provenienza si legge anche con PROV-O; le fonti sono `schema:CreativeWork`. Il grafo è disponibile anche come [JSON-LD](dubium.jsonld) e [RDF/XML](dubium.rdf), con un [contesto](context.jsonld) per gli sviluppatori. Il [collaudo della rete](../tests/verifica.py) si aggiunge a quello del modulo.

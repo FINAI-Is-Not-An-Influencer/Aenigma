@@ -1,0 +1,92 @@
+@prefix aen: <https://aenigma.criptasemantica.it/aenigma#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+aen:dataset a void:Dataset,
+        dcat:Dataset ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:modified "2026-11-11"^^xsd:date ;
+    dcterms:publisher <https://criptasemantica.it/> ;
+    dcterms:title "Aenigma. Ontology of the Cripta Semantica"@en,
+        "Aenigma. Ontologia della Cripta Semantica"@it,
+        "Aenigma. Ontologia Cryptae Semanticae"@la ;
+    void:subset aen:dataset-dubium,
+        aen:dataset-metrum,
+        aen:dataset-trivium ;
+    void:triples 9454 ;
+    void:uriSpace "https://aenigma.criptasemantica.it/" .
+
+aen:dataset-dubium a void:Dataset ;
+    dcterms:title "Dubium" ;
+    void:dataDump <https://aenigma.criptasemantica.it/dubium/dubium.jsonld>,
+        <https://aenigma.criptasemantica.it/dubium/dubium.rdf>,
+        <https://aenigma.criptasemantica.it/dubium/dubium.ttl> ;
+    void:triples 3340 ;
+    void:uriSpace "https://aenigma.criptasemantica.it/dubium#" ;
+    void:vocabulary <https://aenigma.criptasemantica.it/dubium#> ;
+    dcat:distribution aen:distribution-dubium-jsonld,
+        aen:distribution-dubium-rdf,
+        aen:distribution-dubium-ttl .
+
+aen:dataset-metrum a void:Dataset ;
+    dcterms:title "Metrum" ;
+    void:dataDump <https://aenigma.criptasemantica.it/metrum/metrum.jsonld>,
+        <https://aenigma.criptasemantica.it/metrum/metrum.rdf>,
+        <https://aenigma.criptasemantica.it/metrum/metrum.ttl> ;
+    void:triples 3073 ;
+    void:uriSpace "https://aenigma.criptasemantica.it/metrum#" ;
+    void:vocabulary <https://aenigma.criptasemantica.it/metrum#> ;
+    dcat:distribution aen:distribution-metrum-jsonld,
+        aen:distribution-metrum-rdf,
+        aen:distribution-metrum-ttl .
+
+aen:dataset-trivium a void:Dataset ;
+    dcterms:title "Trivium" ;
+    void:dataDump <https://aenigma.criptasemantica.it/trivium/trivium.jsonld>,
+        <https://aenigma.criptasemantica.it/trivium/trivium.rdf>,
+        <https://aenigma.criptasemantica.it/trivium/trivium.ttl> ;
+    void:triples 3041 ;
+    void:uriSpace "https://aenigma.criptasemantica.it/trivium#" ;
+    void:vocabulary <https://aenigma.criptasemantica.it/trivium#> ;
+    dcat:distribution aen:distribution-trivium-jsonld,
+        aen:distribution-trivium-rdf,
+        aen:distribution-trivium-ttl .
+
+aen:distribution-dubium-jsonld a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/dubium/dubium.jsonld> ;
+    dcat:mediaType "application/ld+json" .
+
+aen:distribution-dubium-rdf a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/dubium/dubium.rdf> ;
+    dcat:mediaType "application/rdf+xml" .
+
+aen:distribution-dubium-ttl a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/dubium/dubium.ttl> ;
+    dcat:mediaType "text/turtle" .
+
+aen:distribution-metrum-jsonld a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/metrum/metrum.jsonld> ;
+    dcat:mediaType "application/ld+json" .
+
+aen:distribution-metrum-rdf a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/metrum/metrum.rdf> ;
+    dcat:mediaType "application/rdf+xml" .
+
+aen:distribution-metrum-ttl a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/metrum/metrum.ttl> ;
+    dcat:mediaType "text/turtle" .
+
+aen:distribution-trivium-jsonld a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/trivium/trivium.jsonld> ;
+    dcat:mediaType "application/ld+json" .
+
+aen:distribution-trivium-rdf a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/trivium/trivium.rdf> ;
+    dcat:mediaType "application/rdf+xml" .
+
+aen:distribution-trivium-ttl a dcat:Distribution ;
+    dcat:downloadURL <https://aenigma.criptasemantica.it/trivium/trivium.ttl> ;
+    dcat:mediaType "text/turtle" .
+

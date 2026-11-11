@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/la/term/ResearchItem.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/ResearchItem.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/ResearchItem.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/ResearchItem.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/la/index.html">Trivium</a><a href="../../../metrum/la/index.html">Metrum</a><a href="../../../la/documentazione.html">Documenta</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a></nav>
     <nav class="site-languages" aria-label="Linguae"><a href="../../term/ResearchItem.html" lang="it" hreflang="it" data-language>Italiano</a><a href="../../en/term/ResearchItem.html" lang="en" hreflang="en" data-language>English</a><a href="ResearchItem.html" lang="la" hreflang="la" data-language aria-current="page">Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Via ad schedulam">
-  <a href="../index.html">Index</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#classes">Classes OWL</a>
 </nav>
 <article class="term" id="ResearchItem">
@@ -32,10 +33,12 @@
   <h1><span>schedula inquisitionis</span></h1>
   <p class="identifier"><code>dub:ResearchItem</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#ResearchItem</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Classes inferiores</dt><dd><a href="../term/Position.html"><span>sententia formalizata</span></a>, <a href="../term/Question.html"><span>quaestio aperta</span></a></dd><dt>Proprietates classi declaratae</dt><dd><a href="../term/derivedFrom.html"><span>e loco sumitur</span></a>, <a href="../term/readingMode.html"><span>ratio legendi</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Classis superior</dt><dd><a href="http://www.w3.org/ns/prov#Entity" rel="external">prov:Entity</a></dd><dt>Classes inferiores</dt><dd><a href="Position.html"><span>sententia formalizata</span></a>, <a href="Question.html"><span>quaestio aperta</span></a></dd><dt>Proprietates classi declaratae</dt><dd><a href="derivedFrom.html"><span>e loco sumitur</span></a>, <a href="readingMode.html"><span>ratio legendi</span></a></dd></dl></div>
 <section><h2>Exemplum forma Turtle</h2><p>Fragmentum e grapho publico.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 
-dub:ResearchItem a &lt;http://www.w3.org/2002/07/owl#Class&gt; .</code></pre></section>
+dub:ResearchItem a owl:Class .</code></pre></section>
   <p><a href="../index.html#ResearchItem">Hanc schedulam in indice reperi</a></p>
 </article></main>
   <footer>

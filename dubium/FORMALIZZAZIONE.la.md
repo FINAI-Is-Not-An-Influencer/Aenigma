@@ -104,3 +104,7 @@ Novo loco indicium iterum inveniendum tribue. Novae sententiae signum, fontem, s
 | **X03** · Directiones fundationis | XProgetto | `SostegnoOntico(ontologiaInformatica,ricercaFondamentale) ∧ Obiettivo(progettoCripta,mappaEnte) ∧ FondazioneDiSenso(ontologiaFondamentale,ontologiaEnte)` |
 | **X04** · Crypta ut situs, hypertextus et notae | XChiSiamo | `Raccoglie(criptaSito,note) ∧ RicorreIn(criptaIpertesto,note) ∧ PuòComunicare(notaIpertestuale,notaIpertestuale′)` |
 | **X05** · Articulus ut articulatio aperturae | XArticoli | `Artefatto(articolo) ∧ Articola(articolo,senso) ∧ Raccordabile(articolo,ricercaOntologica)` |
+
+## Consensiones versionis 0.2.0
+
+Consensiones axiomata subclassium et subproprietatum sunt: nullam aequivalentiam asserunt neque sensum schedularum mutant. `dub:Concept ⊑ skos:Concept` sinit relationes ad notiones ut notiones schematis (`dub:concetti`) tractari, `skos:prefLabel` `rdfs:label` repetente. `dub:Source ⊑ prov:Entity, schema:CreativeWork`; `dub:Passage`, `dub:ResearchItem` et `dub:RelationAssertion ⊑ prov:Entity`; `dub:derivedFrom ⊑ prov:wasDerivedFrom`; `dub:partOfSource ⊑ dcterms:isPartOf`. Sub OWL RL sententia genus `prov:Entity` heredat et catena sententia → locus → fons ut derivatio PROV legitur. Classes Dubii inter se disiunctae manent: superclassis externa communis eas non confundit. Regulae SHACL et probatio partis immutatae manent et adhuc transeunt; probatio retis praeterea consensionem inferri et nullam classem disiunctam individua communia accipere probat.

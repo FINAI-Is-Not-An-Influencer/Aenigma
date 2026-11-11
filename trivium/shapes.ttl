@@ -1,0 +1,59 @@
+@prefix trv: <https://aenigma.criptasemantica.it/trivium#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# EN: Prefixes available to the SPARQL-based constraints below.
+# LA: Praefixa quibus regulae SPARQL infra scriptae utuntur.
+<https://aenigma.criptasemantica.it/trivium/shapes> a owl:Ontology ;
+    sh:declare [ sh:prefix "trv" ; sh:namespace "https://aenigma.criptasemantica.it/trivium#"^^xsd:anyURI ],
+               [ sh:prefix "skos" ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] .
+
+# EN: Every concept of Trivium has three preferred labels, a scheme, a notation and a public source on the site.
+# LA: Quaeque notio Trivii tres titulos praelatos, schema, notationem et fontem publicum in situ habet.
+trv:ConceptShape a sh:NodeShape ;
+    sh:targetClass trv:Disciplina, trv:Genere, trv:Programma, trv:Stanza ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path skos:prefLabel ; sh:datatype rdf:langString ; sh:languageIn ( "it" "en" "la" ) ;
+        sh:minCount 3 ; sh:maxCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path skos:inScheme ; sh:nodeKind sh:IRI ; sh:class skos:ConceptScheme ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path skos:notation ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[a-z0-9-]+$" ] ;
+    sh:property [ sh:path dcterms:source ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:pattern "^https://criptasemantica\\.it/" ] ;
+    sh:property [ sh:path skos:scopeNote ; sh:datatype rdf:langString ; sh:languageIn ( "it" "en" "la" ) ; sh:uniqueLang true ] ;
+    # EN: Correspondences point only to Wikidata items and never claim identity.
+    # LA: Consensiones ad res Wikidata tantum spectant neque identitatem umquam affirmant.
+    sh:property [ sh:path skos:closeMatch ; sh:nodeKind sh:IRI ; sh:pattern "^http://www\\.wikidata\\.org/entity/Q[0-9]+$" ] ;
+    sh:property [ sh:path skos:exactMatch ; sh:maxCount 0 ] ;
+    sh:property [ sh:path skos:broadMatch ; sh:nodeKind sh:IRI ; sh:pattern "^https://aenigma\\.criptasemantica\\.it/metrum#ford-" ] ;
+    sh:property [ sh:path skos:related ; sh:nodeKind sh:IRI ] ;
+    # EN: A concept is either a top concept of its scheme or has a broader concept in the same scheme.
+    # LA: Notio aut notio summa sui schematis est aut notionem latiorem in eodem schemate habet.
+    sh:or ( [ sh:property [ sh:path skos:topConceptOf ; sh:minCount 1 ] ]
+            [ sh:property [ sh:path skos:broader ; sh:minCount 1 ] ] ) ;
+    sh:sparql [
+        sh:prefixes <https://aenigma.criptasemantica.it/trivium/shapes> ;
+        sh:message "Il concetto più ampio deve appartenere allo stesso schema." ;
+        sh:select """SELECT $this WHERE { $this skos:broader ?b ; skos:inScheme ?s . FILTER NOT EXISTS { ?b skos:inScheme ?s } }"""
+    ] .
+
+# EN: A category keeps its WordPress identifier, so the site and the module can be compared.
+# LA: Categoria indicem suum WordPress servat, ut situs et pars comparari possint.
+trv:CategoryShape a sh:NodeShape ;
+    sh:targetClass trv:Disciplina, trv:Genere, trv:Programma ;
+    sh:property [ sh:path trv:identificativoCategoria ; sh:datatype xsd:integer ; sh:minCount 1 ; sh:maxCount 1 ; sh:minInclusive 1 ] .
+
+trv:SchemeShape a sh:NodeShape ;
+    sh:targetNode trv:discipline, trv:generi, trv:programmi, trv:stanze ;
+    sh:property [ sh:path skos:prefLabel ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path skos:hasTopConcept ; sh:nodeKind sh:IRI ; sh:minCount 1 ] .
+
+trv:CollectionShape a sh:NodeShape ;
+    sh:targetClass skos:Collection ;
+    sh:property [ sh:path skos:member ; sh:nodeKind sh:IRI ; sh:class trv:Disciplina ; sh:minCount 3 ] ;
+    sh:property [ sh:path skos:prefLabel ; sh:minCount 3 ; sh:uniqueLang true ] .

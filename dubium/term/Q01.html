@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · Che cosa intendiamo quando diciamo «essente»?</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/term/Q01.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Q01.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Q01.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Q01.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../trivium/index.html">Trivium</a><a href="../../metrum/index.html">Metrum</a><a href="../../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="Q01.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="../en/term/Q01.html" lang="en" hreflang="en" data-language>English</a><a href="../la/term/Q01.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Percorso della scheda">
-  <a href="../index.html">Catalogo</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#questions">Domande</a>
 </nav>
 <article class="term" id="Q01">
@@ -32,12 +33,14 @@
   <h1><span>Che cosa intendiamo quando diciamo «essente»?</span></h1>
   <p class="identifier"><code>dub:Q01</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Q01</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Fonte</dt><dd><a href="../term/P0.html"><span>Titolo, sottotitolo ed epigrafe</span></a></dd><dt>Modo di lettura</dt><dd><a href="../term/Epigrafe.html"><span>uso di una parola e perplessità</span></a></dd><dt>Concetti in questione</dt><dd><a href="../term/essenteEspressione.html"><span>«essente» come espressione</span></a>, <a href="../term/perplessita.html"><span>perplessità</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Fonte</dt><dd><a href="P0.html"><span>Titolo, sottotitolo ed epigrafe</span></a></dd><dt>Modo di lettura</dt><dd><a href="Epigrafe.html"><span>uso di una parola e perplessità</span></a></dd><dt>Concetti in questione</dt><dd><a href="essenteEspressione.html"><span>«essente» come espressione</span></a>, <a href="perplessita.html"><span>perplessità</span></a></dd></dl></div>
 <section><h2>Esempio in Turtle</h2><p>Estratto dal grafo pubblicato.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:Q01 a dub:Question .
-dub:Q01 &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Che cosa intendiamo quando diciamo «essente»?&quot;@it .
-dub:Q01 &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Quid intellegimus cum dicimus «ens»?&quot;@la .</code></pre></section>
+dub:Q01 rdfs:label &quot;Che cosa intendiamo quando diciamo «essente»?&quot;@it .
+dub:Q01 rdfs:label &quot;Quid intellegimus cum dicimus «ens»?&quot;@la .</code></pre></section>
   <p><a href="../index.html#Q01">Ritrova questa voce nel catalogo</a></p>
 </article></main>
   <footer>

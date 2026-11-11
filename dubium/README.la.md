@@ -67,3 +67,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
 Indicem Latinum in computatro tuo aperi apud `http://127.0.0.1:8000/dubium/la/`. Generator Turtle et duces locales legit. Ubi explicatio conversa deest, textus Italicus indicatur. Index etiam sine JavaScript perlegi potest. Filtrum, si adhibetur, intra navigatrum operatur. [Exemplum formalizationis](FORMALIZZAZIONE.la.md#exemplum-interrogationis) ostendit quomodo nexum una cum loco qui eum sustinet invenias.
+
+## Quid in versione 0.2.0 mutetur
+
+Dubium nunc prima pars retis est, iuxta [Trivium](../trivium/README.la.md) et [Metrum](../metrum/README.la.md), a [radice Aenigmatis](../aenigma.ttl) importata. Nullum signum mutatum est et versio prior (`dub:v0.1.0-draft`) citabilis manet. Nova sunt notae et consensiones: caput titulum, descriptionem, licentiam CC BY 4.0, auctores, editorem et dies declarat; notiones etiam `skos:Concept` sunt, in schemate `dub:concetti` cum titulis praelatis collectae, ut instrumenta SKOS eas percurrere possint; sententiae, quaestiones, loci et assertiones `prov:Entity` sunt et `derivedFrom` subproprietas `prov:wasDerivedFrom` est, ut origo etiam per PROV-O legatur; fontes `schema:CreativeWork` sunt. Graphus etiam ut [JSON-LD](dubium.jsonld) et [RDF/XML](dubium.rdf) praesto est, cum [contextu](context.jsonld) programmatoribus. [Probatio retis](../tests/verifica.py) probationi partis additur.

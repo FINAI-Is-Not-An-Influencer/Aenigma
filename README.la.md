@@ -1,54 +1,86 @@
 # Aenigma
 
-[Italiano](README.md) · [English](README.en.md)
+[Italiano](README.md) · [English](README.en.md) · [Situs indicis](https://aenigma.criptasemantica.it/) · [Tabula documentorum](https://aenigma.criptasemantica.it/la/documentazione.html) · [Vicipagina](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA)
 
-Aenigma est ontologia retialis Cryptae Semanticae. **Dubium**, pars prima, notiones, quaestiones et sententias prooemii philosophici cum locis quibus fulciuntur conectit. Consilium graphum machinis, indicem lectoribus et Vicipaginam studio atque usui praebet. [Situs Aenigmatis](https://aenigma.criptasemantica.it/) · [Vicipagina Latina](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA)
+Aenigma est ontologia retialis [Cryptae Semanticae](https://criptasemantica.it/), hypertextus ontologici fundamentalis. A versione 0.2.0 est **rete trium partium**, quarum quaeque spatium nominum, versionem, tres linguas et regulas proprias habet:
+
+| Pars | Praefixum | Quid nominet | Versio |
+| --- | --- | --- | --- |
+| [Dubium](dubium/README.la.md) · quaestio | `dub:` | Notiones, sententiae, quaestiones et loci prooemii philosophici, cum fonte cuiusque sententiae | 0.2.0 |
+| [Trivium](trivium/README.la.md) · artes | `trv:` | Ducentae disciplinae, genera, lineae consilii et cellae situs, cum Wikidata et campis FORD | 0.1.0 |
+| [Metrum](metrum/README.la.md) · mensura | `mtr:` | Observatio scientometrica qualificata: protocolla, familiae, ambitus, ambitus corporis, campi FORD et principia aestimationis responsabilis | 0.1.0 |
+
+[Radix `aenigma.ttl`](aenigma.ttl) tres partes importat et describit; [`void.ttl`](void.ttl) distributiones enumerat. Nomen ex aenigmate Graeco venit: formula quae celat quod ostendit. Nomina ontologiae res non exhauriunt; quaestionem de sensu essendi apertam servant dum eam hominibus et programmatibus consultabilem reddunt.
 
 ## A philosophia ad graphum
 
-Epigraphe prooemii dubitationem e *Sophista* Platonis de significatione vocis «ens» resumit. Prooemium deinde quaestionem de esse cum scriptura, inquisitione philosophica et ontologia informatica conectit. Dubium has distinctiones ad fontem usque persequi sinit. Esse entis et esse ipsum, exempli gratia, schedulas distinctas habent quae ad eundem locum ducunt. [Prooemium Cryptae Semanticae](https://criptasemantica.it/) · [De ratione philosophica](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-01)
+Prooemium Cryptae a perplexitate *Sophistae* de voce «ens» incipit et quaestionem de esse cum historia scripturae conectit: cum machina abstracta anni 1936 hyperhistoria incipit et scriptura quantificatur; hyperscriptura hypertextus gignit et Rete capitale semanticum per ontologias accumulat. Dubium hunc textum locum post locum formalizat. Trivium rationem qua situs scientiam ordinat serio accipit: trivium artium sermonis et quadrivium in quo geographia geometriam substituit. Metrum quantificationem scripturae ut rem ontologiae cum origine sua recipit, non ut sententiam patitur. Coniunctae tres partes viam a quaestione ad nomina et a nominibus ad mensuram, et retro, delineant. [Caput 14 Vicipaginae](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-14)
 
 ## Prima visitatio
 
-1. Indicem aperi et *esse entis* quaere. Schedula nomen, glossam et sententias in quibus notio occurrit ostendit.
-2. F27 aperi, deinde P7. Illa schedula sententiam exponit. Haec locum prooemii indicat.
-3. F28 et Q04 compara. Linguam mutare et eandem schedulam sequi potes.
+1. Aperi [schedulam F27](https://aenigma.criptasemantica.it/dubium/la/term/F27.html) Dubii: sententiam prooemii, locum qui eam fulcit, formulam et relationes.
+2. Aperi [Dialecticam](https://aenigma.criptasemantica.it/trivium/la/term/dialettica.html) in Trivio: descriptionem auctoris, ramos, consensionem Wikidata et campum FORD.
+3. Aperi [Citationes receptas](https://aenigma.criptasemantica.it/metrum/la/term/p-citazioni.html) in Metro: familiam, ambitum, unitatem, methodum et principia quae usum finiunt.
+4. Linguam superne muta: quaeque pagina Italice, Anglice et Latine exstat.
 
-[Index](https://aenigma.criptasemantica.it/dubium/la/) · [Dux incipientium](dubium/README.la.md) · [Exercitatio](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-03)
+## Quid repositorium contineat
 
-## Quae Dubium contineat
-
-| Res | Quid praebeat |
+| Via | Materia |
 | --- | --- |
-| [Graphus Turtle](dubium/dubium.ttl) | Notiones, sententias, quaestiones, fontes, relationes et formam OWL |
-| [Formalizatio](dubium/FORMALIZZAZIONE.la.md) | Tabulam locorum, rationes interpretandi et indicem formularum |
-| [Regulae SHACL](dubium/shapes.ttl) | Regulas ad structuram schedularum probandam |
-| [Scriptum probationis](dubium/tests/verifica.py) | Interrogationes, consequentias OWL RL et casus datorum mancorum |
-| [Generator indicis](tools/build_site.py) | Paginas trilingues e grapho et ducibus Markdown genitas |
-
-RDF data per relationes inter res exprimit. OWL classes et proprietates graphi describit. SHACL campos requisitos examinat. Formulae philosophicae signa et fontes suos servant. Illatio automatica ad structuram datorum pertinet. [Exemplar graphi](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-02)
+| `aenigma.ttl`, `void.ttl` | Radix retis et descriptio distributionum |
+| `dubium/`, `trivium/`, `metrum/` | Cuique parti: graphus Turtle, JSON-LD, RDF/XML, contextus JSON-LD, regulae SHACL, duces et formalizationes tribus linguis, paginae situs |
+| `metrum/esempi.ttl`, `metrum/fonti/`, `trivium/fonti/` | Exempla ficta et exemplaria fontium publicorum quibus generatores utuntur |
+| `tools/` | Generatores partium (`trivium_from_taxonomy.py`, `metrum_from_dictionary.py`), exportator (`export.py`), generator situs (`build_site.py`), tabulae documentorum (`doc_tables.py`), probator nexuum (`check_site.py`) |
+| `tests/verifica.py`, `dubium/tests/verifica.py` | Probatio retis et probatio Dubii |
+| `index.src.html`, `minify.sh`, `style.css`, `reference.css`, `search.js` | Pagina prima et compages visualis situs |
+| `DOCUMENTAZIONE*.md`, `CHANGELOG.md` | Tabula documentorum et index versionum |
 
 ## Datis uti
 
-Tabulam Turtle lege et per SPARQL graphum interroga. A sententia ad locum `derivedFrom` sequere, deinde a loco ad paginam `partOfSource`. Hanc viam serva cum sententiam ostendis aut citas. [Prima interrogatio](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-05)
+Quaeque pars per se oneratur (`dubium/dubium.ttl`, `trivium/trivium.ttl`, `metrum/metrum.ttl`) vel omnes simul a radice. Praefixa praelata sunt `dub:`, `trv:`, `mtr:` et `aen:`; `wd:` Wikidata significat. Ope RDFLib:
 
-`dub:` breviat `https://aenigma.criptasemantica.it/dubium#`. Exemplaria RDFa Cryptae etiam `cs:` huic spatio tribuunt. Cripta Semantic Service `cs:` suo lexico tribuit. Cum utroque uteris, IRI integra compara et `dub:` Dubio declara. [Signa et usus editorialis](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-06)
+```python
+from rdflib import Graph
 
-## Adicere et localiter probare
+graph = Graph()
+for module in ("dubium", "trivium", "metrum"):
+    graph.parse(f"{module}/{module}.ttl", format="turtle")
+query = """
+PREFIX trv: <https://aenigma.criptasemantica.it/trivium#>
+PREFIX mtr: <https://aenigma.criptasemantica.it/metrum#>
+PREFIX dub: <https://aenigma.criptasemantica.it/dubium#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+SELECT ?disciplina ?campus ?notio WHERE {
+  ?disciplina skos:broadMatch ?campus ; skos:related ?notio .
+  ?campus a mtr:Discipline . ?notio a dub:Concept .
+}
+"""
+for row in graph.query(query):
+    print(*row)
+```
 
-Ut lectionem addas, locum reperi, signa exsistentia conserva et novam sententiam cum fonte, statu et formula constitue. Tres editiones linguarum adde et graphum proba. [Via adiciendi](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-07)
+Interrogatio tres partes transit: disciplinas situs, campum FORD in quo collocantur, notionem prooemii qua legantur. Relationes inter lexica semper sunt `skos:closeMatch`, `skos:broadMatch`, `skos:related` vel subclasses: numquam aequivalentiae.
 
-Requiruntur Python cum RDFLib, pySHACL et OWL-RL, praeterea Pandoc, OpenSSL et Clean CSS (`cleancss`). A radice repositorii exsequere:
+## Localiter probare et exstruere
+
+Requiruntur Python 3 cum RDFLib, pySHACL et OWL-RL, Raptor (`rapper`), Pandoc, OpenSSL et Clean CSS (`cleancss`). A radice repositorii:
 
 ```bash
+python3 tests/verifica.py
 python3 dubium/tests/verifica.py
-bash minify.sh
+python3 tools/export.py
 python3 tools/build_site.py
+bash minify.sh
+python3 tools/check_site.py
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Aperi `http://127.0.0.1:8000/dubium/la/` et quaestionem, fontes et mutationem linguae proba. [Dux probationis](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-08)
+Primum programma quamque partem duobus interpretibus legit, capita et versiones probat, relationes inter partes resolvit, SHACL validat et undecim mutationes recusat, illationes OWL RL computat et probat nullam classem disiunctam individua communia accipere. Generator situs rete non petit; probatio ultima omnem nexum et ancoram paginarum resolvit. [Caput 08](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-08) · [Caput 15](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-15)
 
-## Ad ulteriorem lectionem
+## Conferre
 
-Vicipagina rationem philosophicam, tabulam locorum, exercitationes, vias operandi, glossarium et quaestiones frequentes continet. [Index capitum](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA) · [Tabula locorum](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-04) · [Glossarium et quaestiones](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-09) · [Licentia repositorii](LICENSE)
+Nova lectio prooemii in Dubium ut sententia nova cum origine propria intrat ([via](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-07)). Nova categoria situs in Trivium cum novo exemplari et titulis trium linguarum intrat. Novum protocollum in Metrum cum familia, ambitu, unitate, methodo tribus linguis, fonte et principiis intrat. Nova pars spatium nominum proprium, vocem in radice et in generatore situs, et probationem accipit ([via](https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA-15)). Signa edita numquam mutantur; versiones per `owl:versionIRI` et `owl:priorVersion` declarantur.
+
+## Licentiae et citatio
+
+Materia ontologiae (graphi, textus, paginae) sub [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) editur et FINAI atque Alexandro Sevardi tribuenda est; programmata instrumentorum sub [GNU GPL v3 vel posteriore](LICENSE). Ad citandum: «Aenigma. Ontologia Cryptae Semanticae, versio 0.2.0, 2026, https://aenigma.criptasemantica.it/». Repositorium in GitHub fons veritatis est; situs a GitHub Pages editur et etiam e dominio Cryptae praebetur.

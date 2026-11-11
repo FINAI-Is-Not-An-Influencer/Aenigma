@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/la/term/criptaSito.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/criptaSito.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/criptaSito.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/criptaSito.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/la/index.html">Trivium</a><a href="../../../metrum/la/index.html">Metrum</a><a href="../../../la/documentazione.html">Documenta</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a></nav>
     <nav class="site-languages" aria-label="Linguae"><a href="../../term/criptaSito.html" lang="it" hreflang="it" data-language>Italiano</a><a href="../../en/term/criptaSito.html" lang="en" hreflang="en" data-language>English</a><a href="criptaSito.html" lang="la" hreflang="la" data-language aria-current="page">Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Via ad schedulam">
-  <a href="../index.html">Index</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#concepts">Notiones</a>
 </nav>
 <article class="term" id="criptaSito">
@@ -32,12 +33,14 @@
   <h1><span>Crypta Semantica ut situs retialis</span></h1>
   <p class="identifier"><code>dub:criptaSito</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#criptaSito</code></p>
-  <div class="term-description terminal-panel"><p><span>Situs digitalis qui notas colligit, conectit et lectoribus praebet.</span></p><dl><dt>Occurrit in</dt><dd><a href="../term/X04.html"><span>Crypta ut situs, hypertextus et notae</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>Situs digitalis qui notas colligit, conectit et lectoribus praebet.</span></p><dl><dt>Occurrit in</dt><dd><a href="X04.html"><span>Crypta ut situs, hypertextus et notae</span></a></dd></dl></div>
 <section><h2>Exemplum forma Turtle</h2><p>Fragmentum e grapho publico.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:criptaSito a dub:Concept .
-dub:criptaSito &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Cripta Semantica as website&quot;@en .
-dub:criptaSito &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Cripta Semantica come sito&quot;@it .</code></pre></section>
+dub:criptaSito rdfs:label &quot;Cripta Semantica as website&quot;@en .
+dub:criptaSito rdfs:label &quot;Cripta Semantica come sito&quot;@it .</code></pre></section>
   <p><a href="../index.html#criptaSito">Hanc schedulam in indice reperi</a></p>
 </article></main>
   <footer>

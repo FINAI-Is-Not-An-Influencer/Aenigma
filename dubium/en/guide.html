@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/guide.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/guide.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/guide.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/guide.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,7 +19,8 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../index.html">Aenigma</a><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../index.html">Aenigma</a><a href="index.html" aria-current="page">Dubium</a><a href="../../trivium/en/index.html">Trivium</a><a href="../../metrum/en/index.html">Metrum</a><a href="../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../guide.html" lang="it" hreflang="it" data-language>Italiano</a><a href="guide.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/guide.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main"><article class="prose"><h1 id="dubium-a-guide-for-first-time-readers">Dubium. A guide for first-time readers</h1>
@@ -88,6 +89,8 @@
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> dubium/tests/verifica.py</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> http.server 8000 <span class="at">--bind</span> 127.0.0.1</span></code></pre></div>
 <p>Preview the English catalogue at <code>http://127.0.0.1:8000/dubium/en/</code>. The builder reads the local Turtle and guides. Italian glosses are identified where a translation is unavailable. You can browse the catalogue with JavaScript disabled. When enabled, the filter runs in the browser. The <a href="formal.html#example-query">query in the formalisation</a> shows how to retrieve a relation with its supporting passage.</p>
+<h2 id="what-changes-in-version-020">What changes in version 0.2.0</h2>
+<p>Dubium is now the first module of a network, next to <a href="../../trivium/README.en.md">Trivium</a> and <a href="../../metrum/README.en.md">Metrum</a>, imported by the <a href="../../aenigma.ttl">Aenigma root</a>. No identifier changed and the prior version (<code>dub:v0.1.0-draft</code>) remains citable. What is new is metadata and alignment: the header declares title, description, CC BY 4.0 licence, authors, publisher and dates; concepts are also <code>skos:Concept</code>, gathered in the <code>dub:concetti</code> scheme with preferred labels, so SKOS tools can browse them; positions, questions, passages and assertions are <code>prov:Entity</code> and <code>derivedFrom</code> is a subproperty of <code>prov:wasDerivedFrom</code>, so provenance can be read with PROV-O too; sources are <code>schema:CreativeWork</code>. The graph is also available as <a href="../dubium.jsonld">JSON-LD</a> and <a href="../dubium.rdf">RDF/XML</a>, with a <a href="../context.jsonld">context</a> for developers. The <a href="../../tests/verifica.py">network test</a> complements the module test.</p>
 </article></main>
   <footer>
     <nav class="footer-nav" aria-label="Footer links">

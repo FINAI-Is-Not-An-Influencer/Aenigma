@@ -1,0 +1,49 @@
+@prefix mtr: <https://aenigma.criptasemantica.it/metrum#> .
+@prefix ex: <https://aenigma.criptasemantica.it/metrum/esempi#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+# EN: Synthetic examples for the guides and the tests. The work, the corpus and the values are invented; only the vocabulary is real.
+# LA: Exempla ficta ad duces et probationes. Opus, corpus et valores ficti sunt; solum lexicon verum est.
+
+ex:opera-dimostrativa a schema:CreativeWork ; rdfs:label "Opera dimostrativa (dati sintetici)"@it, "Demonstration work (synthetic data)"@en, "Opus demonstrativum (data ficta)"@la .
+
+ex:osservazione-1 a mtr:Observation ;
+    rdfs:label "Citazioni dell'opera dimostrativa nel 2024"@it, "Citations of the demonstration work in 2024"@en, "Citationes operis demonstrativi anno 2024"@la ;
+    mtr:protocol mtr:p-citazioni ; mtr:about ex:opera-dimostrativa ;
+    mtr:state mtr:state-observed ; mtr:coverage mtr:coverage-complete ;
+    mtr:corpusLabel "Corpus sintetico di prova" ;
+    mtr:periodStart "2024-01-01"^^xsd:date ; mtr:periodEnd "2024-12-31"^^xsd:date ; mtr:acquiredOn "2025-07-01"^^xsd:date ;
+    mtr:discipline mtr:ford-6-3 ;
+    mtr:source <https://example.org/corpus> ; mtr:evidence <https://example.org/evidence/1> ;
+    mtr:value 12 ; mtr:appliedMethod "Conteggio DOI deduplicati v1" .
+
+ex:osservazione-2 a mtr:Observation ;
+    rdfs:label "Citazioni dell'opera dimostrativa nel 2024, seconda acquisizione"@it, "Citations of the demonstration work in 2024, second acquisition"@en, "Citationes operis demonstrativi anno 2024, acquisitio altera"@la ;
+    mtr:protocol mtr:p-citazioni ; mtr:about ex:opera-dimostrativa ;
+    mtr:state mtr:state-observed ; mtr:coverage mtr:coverage-complete ;
+    mtr:corpusLabel "Corpus sintetico di prova" ;
+    mtr:periodStart "2024-01-01"^^xsd:date ; mtr:periodEnd "2024-12-31"^^xsd:date ; mtr:acquiredOn "2026-01-15"^^xsd:date ;
+    mtr:discipline mtr:ford-6-3 ;
+    mtr:source <https://example.org/corpus> ; mtr:evidence <https://example.org/evidence/2> ;
+    mtr:value 15 ; mtr:appliedMethod "Conteggio DOI deduplicati v1" .
+
+# EN: Missing value with declared partial coverage and an editorial reading.
+# LA: Valor absens cum ambitu partiali declarato et lectione editoria.
+ex:osservazione-3 a mtr:Observation ;
+    rdfs:label "Indice h dell'autore dimostrativo: dato assente"@it, "h-index of the demonstration author: missing"@en, "Index h auctoris demonstrativi: datum absens"@la ;
+    mtr:protocol mtr:p-h-index ; mtr:about ex:autore-dimostrativo ;
+    mtr:state mtr:state-missing ; mtr:coverage mtr:coverage-partial ;
+    mtr:corpusLabel "Corpus sintetico di prova" ;
+    mtr:periodStart "2020-01-01"^^xsd:date ; mtr:periodEnd "2024-12-31"^^xsd:date ; mtr:acquiredOn "2025-07-01"^^xsd:date ;
+    mtr:discipline mtr:ford-6-3 ;
+    mtr:source <https://example.org/corpus> ; mtr:evidence <https://example.org/evidence/3> ;
+    mtr:editorialReading "La fonte copre solo le riviste indicizzate; l'assenza non vale zero." .
+
+ex:autore-dimostrativo a schema:Person ; rdfs:label "Autore dimostrativo (dati sintetici)"@it, "Demonstration author (synthetic data)"@en, "Auctor demonstrativus (data ficta)"@la .
+
+# EN: Admissible comparison: same subject, protocol, corpus, period, discipline and complete coverage.
+# LA: Comparatio admissa: idem subiectum, protocollum, corpus, tempus, disciplina et ambitus integer.
+ex:confronto-1 a mtr:Comparison ; mtr:first ex:osservazione-1 ; mtr:second ex:osservazione-2 ;
+    rdfs:label "Confronto ammissibile fra due acquisizioni"@it, "Admissible comparison between two acquisitions"@en, "Comparatio admissa inter duas acquisitiones"@la .

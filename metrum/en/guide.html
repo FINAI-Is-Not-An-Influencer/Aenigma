@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Qualified measurement of research: fifty-eight protocols, the FORD fields, the principles of responsible assessment and the model of an observation with protocol, corpus, period, coverage and source.">
+<title>Metrum · Beginner’s guide</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/metrum/en/guide.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/metrum/guide.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/metrum/en/guide.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/metrum/la/guide.html">
+<link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
+
+</head>
+<body class="reference-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="container">
+  <header>
+    <p class="site-brand">AENIGMA</p>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../index.html">Aenigma</a><a href="../../dubium/en/index.html">Dubium</a><a href="../../trivium/en/index.html">Trivium</a><a href="index.html" aria-current="page">Metrum</a><a href="../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Metrum"><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html" aria-current="page">Beginner’s guide</a><a href="formal.html">Formalisation</a></nav>
+    <nav class="site-languages" aria-label="Languages"><a href="../guide.html" lang="it" hreflang="it" data-language>Italiano</a><a href="guide.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/guide.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main"><article class="prose"><h1 id="metrum-a-beginners-guide">Metrum. A beginner's guide</h1>
+<p><a href="../guide.html">Italiano</a> · <a href="../la/guide.html">Latine</a> · <a href="formal.html">Formalisation</a></p>
+<p>Metrum is the third module of <a href="../../README.en.md">Aenigma</a>. It serves to say <strong>how</strong> a measure of research was obtained, not to establish who is worth more. Every number that circulates around research (citations, h-index, impact factor, open-access shares, reuses of data and software) comes from a protocol applied to a corpus, within a period, with a certain coverage and from a certain source. Without these five pieces of information two numbers cannot be compared. Metrum makes them mandatory.</p>
+<p>If you have never dealt with scientometrics, keep in mind three rules the module embodies: a missing value is not zero; two measures are comparable only if they share the same contract; a principle of responsible assessment does not forbid a measure, it limits its improper use. The "About us" page of the Cripta says that there are no neutral measures of the quality of science, only technical systems that alter it: Metrum is the way to keep that awareness inside the graph.</p>
+<h2 id="why-metrum">Why Metrum</h2>
+<p><em>Metrum</em> is measure, but also the metre of verse: a rule that makes comparable what would otherwise be mere sound. The Cripta manifesto describes, at the turning point of 1936, the beginning of the "quantification of writing" (<a href="../../dubium/en/term/F08.html">F08 of Dubium</a>). Scientometrics is one of the forms of that quantification. Metrum takes it in as an object of the ontology, with its provenance, instead of suffering it as a verdict.</p>
+<h2 id="a-first-visit">A first visit</h2>
+<ol type="1">
+<li>Open the <a href="index.html">Metrum catalogue</a> and search for <strong>Incoming citations</strong>. The protocol entry shows the family (reception), the scope (work or edition), the unit, the method in three languages, the source and the principles that guide it.</li>
+<li>Open <a href="term/principle-dora.html">DORA</a>. The entry lists the protocols whose use the principle limits: the seven venue indicators, starting with the impact factor.</li>
+<li>Open the FORD field <a href="term/ford-6-3.html">Philosophical, ethical and religious studies</a>: you will see the parent field and the Trivium disciplines that bridge to it.</li>
+<li>Open the <a href="schema.html">hierarchy</a>: classes, properties, the fourteen families and the fifty-eight protocols grouped.</li>
+</ol>
+<h2 id="how-to-read-a-protocol">How to read a protocol</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Family</td>
+<td>The group it belongs to: reception, venues, openness, transfer, data, software, method, humanities, social research, clinical, engineering, agricultural, arts, interventions.</td>
+</tr>
+<tr class="even">
+<td>Applies to</td>
+<td>The subject scope: work, venue, person or organisation, data, software, artefact, intervention, output. A venue metric does not transfer to an author.</td>
+</tr>
+<tr class="odd">
+<td>Value type</td>
+<td>Integer count, decimal, percentage, computed share or textual evidence.</td>
+</tr>
+<tr class="even">
+<td>Unit</td>
+<td>Citations, works, years, percent, text.</td>
+</tr>
+<tr class="odd">
+<td>Method</td>
+<td>What is done to obtain the value. A change of method requires a new version in the service.</td>
+</tr>
+<tr class="even">
+<td>Requires a reference set</td>
+<td>True for normalised indicators (field-weighted impact, percentiles).</td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>The public document that defines or discusses the indicator.</td>
+</tr>
+<tr class="even">
+<td>Guided by principle</td>
+<td>The relevant DORA, Leiden, CoARA, FAIR, FORCE11 or CRediT principles.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-an-observation-is-written">How an observation is written</h2>
+<p>An observation is a single application of a protocol. This is the synthetic example included in <a href="../esempi.ttl">esempi.ttl</a>: the work, the corpus and the values are invented, the vocabulary is real.</p>
+<pre class="turtle"><code>@prefix mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt; .
+@prefix ex: &lt;https://aenigma.criptasemantica.it/metrum/esempi#&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
+
+ex:osservazione-1 a mtr:Observation ;
+    mtr:protocol mtr:p-citazioni ;            # which measurement contract
+    mtr:about ex:opera-dimostrativa ;         # about what
+    mtr:state mtr:state-observed ;            # observed, missing, suppressed, not applicable
+    mtr:coverage mtr:coverage-complete ;      # how much of the corpus was examined
+    mtr:corpusLabel &quot;Corpus sintetico di prova&quot; ;
+    mtr:periodStart &quot;2024-01-01&quot;^^xsd:date ; mtr:periodEnd &quot;2024-12-31&quot;^^xsd:date ;
+    mtr:acquiredOn &quot;2025-07-01&quot;^^xsd:date ;   # when it was read
+    mtr:discipline mtr:ford-6-3 ;             # in which field
+    mtr:source &lt;https://example.org/corpus&gt; ; # where the corpus comes from
+    mtr:evidence &lt;https://example.org/evidence/1&gt; ;  # the evidence of the observation
+    mtr:value 12 .</code></pre>
+<p>The three lines that matter most are <code>state</code>, <code>coverage</code> and <code>evidence</code>. The state says whether the number exists; the coverage says how much it is worth; the evidence says where to check it. The <a href="../shapes.ttl">SHACL constraints</a> reject an "observed" observation without a value, a missing datum with a value, a partial coverage without an editorial reading, a reversed period.</p>
+<h2 id="from-the-file-to-a-first-query">From the file to a first query</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> rdflib <span class="im">import</span> Graph</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>graph <span class="op">=</span> Graph().parse(<span class="st">&quot;metrum/metrum.ttl&quot;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;turtle&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>graph.parse(<span class="st">&quot;metrum/esempi.ttl&quot;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;turtle&quot;</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="st">PREFIX mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="st">PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT ?observation ?value ?protocol WHERE {</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="st">  ?observation a mtr:Observation ; mtr:state mtr:state-observed ;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="st">      mtr:value ?value ; mtr:protocol ?p ; mtr:discipline mtr:ford-6-3 .</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="st">  ?p skos:prefLabel ?protocol . FILTER ( lang(?protocol) = &quot;en&quot; )</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> graph.query(query):</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="op">*</span>row)</span></code></pre></div>
+<p>You obtain the observations with a value in the FORD field of philosophy, with the protocol name. To know whether two observations are comparable, declare an <code>mtr:Comparison</code> between them and validate with the shapes: the comparison is admitted only if they share subject, protocol, corpus, period and fields, with declared coverage.</p>
+<h2 id="bridges-to-the-other-modules">Bridges to the other modules</h2>
+<p>With <strong>Dubium</strong>: the module header refers to <code>dub:F08</code> and <code>dub:F19</code>, the positions on the quantification of writing and on ontological quantification, and to semantic capital. With <strong>Trivium</strong>: the disciplines of the site declare with <code>skos:broadMatch</code> the FORD field in which they sit, so an observation about a "Dialectic" article finds its field. With the <strong>Cripta semantic service</strong>: the classes of the service's operational vocabulary are declared subclasses of those of Metrum, and its protocols share the same key: <code>citazioni@1.0.0</code> in the service is <code>mtr:p-citazioni</code> here.</p>
+<h2 id="building-and-verifying">Building and verifying</h2>
+<p>The file <code>metrum.ttl</code> is generated by <a href="../../tools/metrum_from_dictionary.py">tools/metrum_from_dictionary.py</a>, which reads the snapshot of the protocol dictionary in <code>fonti/</code> and contains, written by hand, the schema, the principles, the scopes and the coverages. From the repository root:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tools/metrum_from_dictionary.py</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tests/verifica.py</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> tools/build_site.py</span></code></pre></div>
+<p>The verification program checks the counts (58 protocols, 48 fields, 35 principles), the sources, the bridges, the SHACL constraints on the examples and six deliberate alterations of Metrum, all rejected.</p>
+<h2 id="contributing">Contributing</h2>
+<p>A new protocol requires: a lowercase key, a family, scopes, a value type, unit and method in three languages, a public source, the relevant principles. If the method of an existing protocol changes, the key stays and the service records a new version: the Metrum IRI identifies the contract, not its version. A new principle requires a public source and a label in three languages; if it limits the use of some protocol, it says so with <code>mtr:cautions</code>.</p>
+</article></main>
+  <footer>
+    <nav class="footer-nav" aria-label="Footer links">
+      <a href="../../index.html">Aenigma</a>
+      <a href="https://criptasemantica.it/">Cripta Semantica</a>
+      <a href="../../index.html#nav-policies">Legal information</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

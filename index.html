@@ -197,10 +197,10 @@
 
         <nav class="site-nav" aria-label="Navigazione Aenigma">
           <a href="index.html" aria-current="page">Aenigma</a>
-          <a href="dubium/index.html">Catalogo</a>
-          <a href="dubium/schema.html">Gerarchia e proprietà</a>
-          <a href="dubium/guide.html">Guida per iniziare</a>
-          <a href="dubium/formal.html">Formalizzazione</a>
+          <a href="dubium/index.html">Dubium</a>
+          <a href="trivium/index.html">Trivium</a>
+          <a href="metrum/index.html">Metrum</a>
+          <a href="documentazione.html">Documentazione</a>
           <a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a>
         </nav>
         <nav class="site-languages" aria-label="Lingue del catalogo">
@@ -210,28 +210,38 @@
         </nav>
 
         <section class="reference-start terminal-panel" aria-labelledby="reference-start-title">
-          <h2 id="reference-start-title">Consulta Dubium</h2>
+          <h2 id="reference-start-title">Consulta i moduli di Aenigma</h2>
           <p>
-            Dubium è il primo modulo di Aenigma. Puoi partire da un concetto
-            del manifesto, seguire il passo a cui rimanda oppure consultare
-            le classi e le proprietà del grafo.
+            Aenigma è una rete di tre moduli. Dubium formalizza il manifesto
+            della Cripta Semantica; Trivium nomina le arti e le discipline del
+            sito; Metrum qualifica la misura della ricerca. Ogni modulo ha un
+            catalogo, una gerarchia, una guida per iniziare e una formalizzazione,
+            in italiano, inglese e latino.
           </p>
           <ul class="reference-links">
             <li>
-              <a href="dubium/index.html#concepts">Esplora i concetti</a>
-              <span>Definizioni, posizioni e domande collegate.</span>
+              <a href="dubium/index.html">Dubium · la domanda</a>
+              <span>Concetti, posizioni, domande e passi del manifesto. Versione 0.2.0.</span>
             </li>
             <li>
-              <a href="dubium/schema.html">Leggi lo schema</a>
-              <span>Gerarchia delle classi, domini e codomini.</span>
+              <a href="trivium/index.html">Trivium · le arti</a>
+              <span>Duecento discipline, generi, programmi e stanze del sito, con Wikidata e FORD. Versione 0.1.0.</span>
             </li>
             <li>
-              <a href="dubium/term/F27.html">Apri una scheda d’esempio</a>
+              <a href="metrum/index.html">Metrum · la misura</a>
+              <span>Osservazioni qualificate, cinquantotto protocolli, campi FORD e principi. Versione 0.1.0.</span>
+            </li>
+            <li>
+              <a href="dubium/term/F27.html">Apri una scheda d'esempio</a>
               <span>Una posizione, il suo passo e un esempio Turtle.</span>
             </li>
             <li>
-              <a href="dubium/guide.html">Segui la guida</a>
-              <span>Dalla prima consultazione all’interrogazione del grafo.</span>
+              <a href="trivium/term/dialettica.html">Apri una disciplina</a>
+              <span>Descrizione d'autore, rami, corrispondenza Wikidata e campo FORD.</span>
+            </li>
+            <li>
+              <a href="metrum/term/p-citazioni.html">Apri un protocollo</a>
+              <span>Famiglia, ambito, unità, metodo e principi che ne limitano l'uso.</span>
             </li>
           </ul>
         </section>
@@ -671,15 +681,21 @@
           </header>
           <section typeof="fabio:Section">
             <p itemprop="text" property="schema:text" typeof="fabio:Paragraph">
-              Il primo modulo di Aenigma, <a href="dubium/index.html">Dubium</a>,
-              rende consultabili concetti, domande, posizioni e fonti del
-              manifesto della Cripta Semantica.
+              Aenigma 0.2.0 è una rete di tre moduli. <a href="dubium/index.html">Dubium</a>
+              rende consultabili concetti, domande, posizioni e fonti del manifesto;
+              <a href="trivium/index.html">Trivium</a> dà un nome stabile alle arti,
+              alle discipline e alle stanze del sito; <a href="metrum/index.html">Metrum</a>
+              descrive come si misura la ricerca senza ridurla a un punteggio. La
+              radice <a href="aenigma.ttl">aenigma.ttl</a> importa i tre moduli e
+              il file <a href="void.ttl">void.ttl</a> ne descrive le distribuzioni.
             </p>
             <ul>
-              <li><a href="dubium/guide.html">Inizia con un esempio guidato</a></li>
-              <li><a href="dubium/formal.html">Leggi la formalizzazione</a></li>
-              <li><a href="dubium/dubium.ttl">Apri il grafo RDF e OWL</a></li>
-              <li><a href="dubium/shapes.ttl">Apri i vincoli SHACL</a></li>
+              <li><a href="dubium/guide.html">Dubium: inizia con un esempio guidato</a></li>
+              <li><a href="trivium/guide.html">Trivium: dalle categorie del sito ai concetti</a></li>
+              <li><a href="metrum/guide.html">Metrum: la prima osservazione qualificata</a></li>
+              <li><a href="dubium/dubium.ttl">Grafo di Dubium</a> · <a href="trivium/trivium.ttl">grafo di Trivium</a> · <a href="metrum/metrum.ttl">grafo di Metrum</a></li>
+              <li><a href="dubium/shapes.ttl">Vincoli SHACL di Dubium</a> · <a href="trivium/shapes.ttl">di Trivium</a> · <a href="metrum/shapes.ttl">di Metrum</a></li>
+              <li><a href="documentazione.html">Mappa della documentazione</a> · <a href="CHANGELOG.md">registro delle versioni</a></li>
             </ul>
           </section>
         </article>
@@ -1010,7 +1026,7 @@
             itemprop="dateModified"
             property="schema:dateModified"
             datatype="xsd:dateTime"
-            >Aggiornamento di Sistema: 10 novembre 2026</time
+            >Aggiornamento di Sistema: 11 novembre 2026</time
           ><br />
           Progetto
           <span

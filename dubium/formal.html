@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · Formalizzazione</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/formal.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/formal.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/formal.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/formal.html">
 <link rel="stylesheet" href="../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,7 +19,8 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html">Guida per iniziare</a><a href="formal.html" aria-current="page">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="index.html" aria-current="page">Dubium</a><a href="../trivium/index.html">Trivium</a><a href="../metrum/index.html">Metrum</a><a href="../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html">Guida per iniziare</a><a href="formal.html" aria-current="page">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="formal.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/formal.html" lang="en" hreflang="en" data-language>English</a><a href="la/formal.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main"><article class="prose"><h1 id="formalizzazione-del-manifesto">Formalizzazione del manifesto</h1>
@@ -327,6 +328,8 @@ SELECT ?concetto ?posizione ?lettura ?passo ?fonte WHERE {
 </tr>
 </tbody>
 </table>
+<h2 id="allineamenti-della-versione-020">Allineamenti della versione 0.2.0</h2>
+<p>Gli allineamenti sono assiomi di sottoclasse e di sottoproprietà: non affermano equivalenze e non cambiano il significato delle schede. <code>dub:Concept ⊑ skos:Concept</code> permette di trattare i riferimenti concettuali come concetti di uno schema (<code>dub:concetti</code>), con <code>skos:prefLabel</code> che ripete <code>rdfs:label</code>. <code>dub:Source ⊑ prov:Entity, schema:CreativeWork</code>; <code>dub:Passage</code>, <code>dub:ResearchItem</code> e <code>dub:RelationAssertion ⊑ prov:Entity</code>; <code>dub:derivedFrom ⊑ prov:wasDerivedFrom</code>; <code>dub:partOfSource ⊑ dcterms:isPartOf</code>. Con OWL RL una posizione eredita il tipo <code>prov:Entity</code> e la catena posizione → passo → fonte si legge come derivazione PROV. Le classi di Dubium restano fra loro disgiunte: avere la stessa superclasse esterna non le confonde. I vincoli SHACL e il programma di verifica del modulo sono invariati e continuano a passare; il programma di rete controlla in più che l'allineamento sia inferito e che nessuna classe disgiunta riceva individui comuni.</p>
 </article></main>
   <footer>
     <nav class="footer-nav" aria-label="Collegamenti nel piè di pagina">

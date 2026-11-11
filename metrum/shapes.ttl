@@ -1,0 +1,102 @@
+@prefix mtr: <https://aenigma.criptasemantica.it/metrum#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+# EN: Prefixes available to the SPARQL-based constraints below.
+# LA: Praefixa quibus regulae SPARQL infra scriptae utuntur.
+<https://aenigma.criptasemantica.it/metrum/shapes> a owl:Ontology ;
+    sh:declare [ sh:prefix "mtr" ; sh:namespace "https://aenigma.criptasemantica.it/metrum#"^^xsd:anyURI ],
+               [ sh:prefix "skos" ; sh:namespace "http://www.w3.org/2004/02/skos/core#"^^xsd:anyURI ] .
+
+# EN: An observation is complete only with protocol, subject, state, coverage, period, acquisition date and provenance.
+# LA: Observatio integra est tantum cum protocollo, subiecto, statu, ambitu, tempore, die acquisitionis et origine.
+mtr:ObservationShape a sh:NodeShape ;
+    sh:targetClass mtr:Observation ;
+    sh:targetSubjectsOf mtr:protocol, mtr:about ;
+    sh:class mtr:Observation ;
+    sh:property [ sh:path mtr:protocol ; sh:nodeKind sh:IRI ; sh:class mtr:Protocol ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:about ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:state ; sh:nodeKind sh:IRI ; sh:class mtr:ResultState ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:coverage ; sh:nodeKind sh:IRI ; sh:class mtr:Coverage ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:periodStart ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:periodEnd ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:acquiredOn ; sh:datatype xsd:date ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:corpusLabel ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:minLength 3 ] ;
+    sh:property [ sh:path mtr:source ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:pattern "^https://" ] ;
+    sh:property [ sh:path mtr:evidence ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:pattern "^https://" ] ;
+    sh:property [ sh:path mtr:discipline ; sh:nodeKind sh:IRI ; sh:class mtr:Discipline ; sh:minCount 1 ] ;
+    sh:property [ sh:path mtr:value ; sh:maxCount 1 ] ;
+    # EN: An observed result carries a value; a missing, suppressed or inapplicable result carries none.
+    # LA: Exitus observatus valorem fert; exitus absens, suppressus vel non applicabilis nullum.
+    sh:sparql [
+        sh:prefixes <https://aenigma.criptasemantica.it/metrum/shapes> ;
+        sh:message "Un risultato osservato richiede un valore; gli altri stati non ne ammettono." ;
+        sh:select """SELECT $this WHERE {
+            { $this mtr:state mtr:state-observed . FILTER NOT EXISTS { $this mtr:value ?v } }
+            UNION
+            { $this mtr:state ?s . FILTER ( ?s != mtr:state-observed ) . $this mtr:value ?v }
+        }"""
+    ] ;
+    sh:sparql [
+        sh:prefixes <https://aenigma.criptasemantica.it/metrum/shapes> ;
+        sh:message "Il periodo deve avere un inizio non successivo alla fine." ;
+        sh:select """SELECT $this WHERE { $this mtr:periodStart ?a ; mtr:periodEnd ?b . FILTER ( ?a > ?b ) }"""
+    ] ;
+    sh:sparql [
+        sh:prefixes <https://aenigma.criptasemantica.it/metrum/shapes> ;
+        sh:message "Una copertura parziale o ignota richiede una lettura redazionale che la spieghi." ;
+        sh:select """SELECT $this WHERE { $this mtr:coverage ?c . FILTER ( ?c != mtr:coverage-complete ) FILTER NOT EXISTS { $this mtr:editorialReading ?r } }"""
+    ] .
+
+# EN: Protocols are stable contracts: family, scope, value type, unit, method and source are required.
+# LA: Protocolla pacta stabilia sunt: familia, ambitus, genus valoris, unitas, methodus et fons requiruntur.
+mtr:ProtocolShape a sh:NodeShape ;
+    sh:targetClass mtr:Protocol ;
+    sh:nodeKind sh:IRI ;
+    sh:property [ sh:path skos:prefLabel ; sh:datatype rdf:langString ; sh:languageIn ( "it" "en" "la" ) ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path skos:notation ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[a-z0-9-]+$" ] ;
+    sh:property [ sh:path mtr:family ; sh:class mtr:Family ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:scope ; sh:class mtr:Scope ; sh:minCount 1 ] ;
+    sh:property [ sh:path mtr:valueType ; sh:class mtr:ValueType ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:unit ; sh:datatype rdf:langString ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path mtr:method ; sh:datatype rdf:langString ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path mtr:requiresReferenceSet ; sh:datatype xsd:boolean ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path dcterms:source ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:pattern "^https://" ] .
+
+mtr:PrincipleShape a sh:NodeShape ;
+    sh:targetClass mtr:Principle ;
+    sh:property [ sh:path rdfs:label ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path dcterms:source ; sh:nodeKind sh:IRI ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^https://" ] ;
+    sh:property [ sh:path mtr:cautions ; sh:class mtr:Protocol ] .
+
+mtr:DisciplineShape a sh:NodeShape ;
+    sh:targetClass mtr:Discipline ;
+    sh:property [ sh:path skos:notation ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ; sh:pattern "^[1-6](\\.[0-9]{1,2})?$" ] ;
+    sh:property [ sh:path skos:prefLabel ; sh:minCount 3 ; sh:uniqueLang true ] ;
+    sh:property [ sh:path skos:inScheme ; sh:hasValue mtr:ford ] .
+
+# EN: A comparison is admissible only between observations of the same subject with the same contract and declared coverage.
+# LA: Comparatio admittitur tantum inter observationes eiusdem subiecti cum eodem pacto et ambitu declarato.
+mtr:ComparisonShape a sh:NodeShape ;
+    sh:targetClass mtr:Comparison ;
+    sh:property [ sh:path mtr:first ; sh:class mtr:Observation ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path mtr:second ; sh:class mtr:Observation ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:sparql [
+        sh:prefixes <https://aenigma.criptasemantica.it/metrum/shapes> ;
+        sh:message "Le due osservazioni devono condividere soggetto, protocollo, corpus, periodo e discipline, con copertura dichiarata." ;
+        sh:select """SELECT $this WHERE {
+            $this mtr:first ?a ; mtr:second ?b .
+            ?a mtr:protocol ?pa ; mtr:about ?sa ; mtr:corpusLabel ?ca ; mtr:periodStart ?fa ; mtr:periodEnd ?ta ; mtr:coverage ?va .
+            ?b mtr:protocol ?pb ; mtr:about ?sb ; mtr:corpusLabel ?cb ; mtr:periodStart ?fb ; mtr:periodEnd ?tb ; mtr:coverage ?vb .
+            FILTER ( ?pa != ?pb || ?sa != ?sb || ?ca != ?cb || ?fa != ?fb || ?ta != ?tb
+                     || ?va = mtr:coverage-unknown || ?vb = mtr:coverage-unknown
+                     || NOT EXISTS { ?a mtr:discipline ?d . ?b mtr:discipline ?d } )
+        }"""
+    ] .

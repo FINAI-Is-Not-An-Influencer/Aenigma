@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/formal.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/formal.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/formal.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/formal.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,7 +19,8 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../index.html">Aenigma</a><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html">Beginner’s guide</a><a href="formal.html" aria-current="page">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../index.html">Aenigma</a><a href="index.html" aria-current="page">Dubium</a><a href="../../trivium/en/index.html">Trivium</a><a href="../../metrum/en/index.html">Metrum</a><a href="../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="index.html">Catalogue</a><a href="schema.html">Hierarchy and properties</a><a href="guide.html">Beginner’s guide</a><a href="formal.html" aria-current="page">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../formal.html" lang="it" hreflang="it" data-language>Italiano</a><a href="formal.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../la/formal.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main"><article class="prose"><h1 id="formalisation-of-the-manifesto">Formalisation of the manifesto</h1>
@@ -319,6 +320,8 @@ SELECT ?concept ?position ?reading ?passage ?source WHERE {
 </tr>
 </tbody>
 </table>
+<h2 id="alignments-of-version-020">Alignments of version 0.2.0</h2>
+<p>The alignments are subclass and subproperty axioms: they assert no equivalence and do not change the meaning of the entries. <code>dub:Concept ⊑ skos:Concept</code> allows the conceptual references to be treated as concepts of a scheme (<code>dub:concetti</code>), with <code>skos:prefLabel</code> repeating <code>rdfs:label</code>. <code>dub:Source ⊑ prov:Entity, schema:CreativeWork</code>; <code>dub:Passage</code>, <code>dub:ResearchItem</code> and <code>dub:RelationAssertion ⊑ prov:Entity</code>; <code>dub:derivedFrom ⊑ prov:wasDerivedFrom</code>; <code>dub:partOfSource ⊑ dcterms:isPartOf</code>. Under OWL RL a position inherits the type <code>prov:Entity</code> and the chain position → passage → source reads as PROV derivation. The Dubium classes remain mutually disjoint: sharing an external superclass does not merge them. The SHACL constraints and the module test are unchanged and still pass; the network test additionally checks that the alignment is inferred and that no disjoint classes receive common individuals.</p>
 </article></main>
   <footer>
     <nav class="footer-nav" aria-label="Footer links">

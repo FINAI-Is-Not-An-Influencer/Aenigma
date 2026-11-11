@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/la/term/Source.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Source.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Source.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Source.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/la/index.html">Trivium</a><a href="../../../metrum/la/index.html">Metrum</a><a href="../../../la/documentazione.html">Documenta</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a></nav>
     <nav class="site-languages" aria-label="Linguae"><a href="../../term/Source.html" lang="it" hreflang="it" data-language>Italiano</a><a href="../../en/term/Source.html" lang="en" hreflang="en" data-language>English</a><a href="Source.html" lang="la" hreflang="la" data-language aria-current="page">Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Via ad schedulam">
-  <a href="../index.html">Index</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#classes">Classes OWL</a>
 </nav>
 <article class="term" id="Source">
@@ -32,8 +33,9 @@
   <h1><span>fons publicus</span></h1>
   <p class="identifier"><code>dub:Source</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Source</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Proprietates quibus haec classis ambitus valorum est</dt><dd><a href="../term/partOfSource.html"><span>ad fontem pertinet</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Classis superior</dt><dd><a href="http://www.w3.org/ns/prov#Entity" rel="external">prov:Entity</a>, <a href="https://schema.org/CreativeWork" rel="external">schema:CreativeWork</a></dd><dt>Proprietates quibus haec classis ambitus valorum est</dt><dd><a href="partOfSource.html"><span>ad fontem pertinet</span></a></dd></dl></div>
 <section><h2>Exemplum forma Turtle</h2><p>Fragmentum e grapho publico.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
 
 &lt;https://criptasemantica.it/&gt; a dub:Source .
 &lt;https://criptasemantica.it/articoli/&gt; a dub:Source .

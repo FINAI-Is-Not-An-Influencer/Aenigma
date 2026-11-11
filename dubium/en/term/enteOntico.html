@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/enteOntico.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/enteOntico.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/enteOntico.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/enteOntico.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/enteOntico.html" lang="it" hreflang="it" data-language>Italiano</a><a href="enteOntico.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/enteOntico.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#concepts">Concepts</a>
 </nav>
 <article class="term" id="enteOntico">
@@ -32,12 +33,14 @@
   <h1><span>entity understood ontically</span></h1>
   <p class="identifier"><code>dub:enteOntico</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#enteOntico</code></p>
-  <div class="term-description terminal-panel"><p><span>The figure the manifesto uses as a limiting reference in the inquiry into being.</span></p><dl><dt>Occurs in</dt><dd><a href="../term/F30.html"><span>Ontically understood entity and nothing as a limiting reference</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>The figure the manifesto uses as a limiting reference in the inquiry into being.</span></p><dl><dt>Occurs in</dt><dd><a href="F30.html"><span>Ontically understood entity and nothing as a limiting reference</span></a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:enteOntico a dub:Concept .
-dub:enteOntico &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;ens ontice intellectum&quot;@la .
-dub:enteOntico &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;ente onticamente inteso&quot;@it .</code></pre></section>
+dub:enteOntico rdfs:label &quot;ens ontice intellectum&quot;@la .
+dub:enteOntico rdfs:label &quot;ente onticamente inteso&quot;@it .</code></pre></section>
   <p><a href="../index.html#enteOntico">Find this entry in the catalogue</a></p>
 </article></main>
   <footer>

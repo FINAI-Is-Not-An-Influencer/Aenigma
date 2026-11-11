@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/derivedFrom.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/derivedFrom.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/derivedFrom.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/derivedFrom.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/derivedFrom.html" lang="it" hreflang="it" data-language>Italiano</a><a href="derivedFrom.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/derivedFrom.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#properties">OWL properties</a>
 </nav>
 <article class="term" id="derivedFrom">
@@ -32,7 +33,7 @@
   <h1><span>drawn from a passage</span></h1>
   <p class="identifier"><code>dub:derivedFrom</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#derivedFrom</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Domain</dt><dd><a href="../term/ResearchItem.html"><span>research entry</span></a></dd><dt>Range</dt><dd><a href="../term/Passage.html"><span>locatable source passage</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Domain</dt><dd><a href="ResearchItem.html"><span>research entry</span></a></dd><dt>Range</dt><dd><a href="Passage.html"><span>locatable source passage</span></a></dd><dt>Subproperty of</dt><dd><a href="http://www.w3.org/ns/prov#wasDerivedFrom" rel="external">prov:wasDerivedFrom</a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
 
 dub:F01 dub:derivedFrom dub:P0 .

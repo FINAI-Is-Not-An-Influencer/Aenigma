@@ -3,17 +3,43 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix schema: <https://schema.org/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
 @base <https://aenigma.criptasemantica.it/dubium#> .
 
-# EN: Preserve the ontology IRI used by existing editorial documents. The version IRI identifies this draft.
-# LA: IRI ontologiae in documentis editorialibus iam adhibitum conserva. IRI versionis hoc exemplar praeparatorium designat.
+# EN: Preserve the ontology IRI used by existing editorial documents. The version IRI identifies release 0.2.0; the prior version stays citable.
+# LA: IRI ontologiae in documentis editorialibus iam adhibitum conserva. IRI versionis editionem 0.2.0 designat; versio prior citabilis manet.
 <https://aenigma.criptasemantica.it/dubium#> rdf:type owl:Ontology ;
-    owl:versionIRI <https://aenigma.criptasemantica.it/dubium#v0.1.0-draft> ;
-    owl:versionInfo "0.1.0-draft" ;
+    owl:versionIRI <https://aenigma.criptasemantica.it/dubium#v0.2.0> ;
+    owl:versionInfo "0.2.0" ;
+    owl:priorVersion <https://aenigma.criptasemantica.it/dubium#v0.1.0-draft> ;
+    dcterms:isPartOf <https://aenigma.criptasemantica.it/aenigma#> ;
+    vann:preferredNamespacePrefix "dub" ;
+    vann:preferredNamespaceUri "https://aenigma.criptasemantica.it/dubium#" ;
     rdfs:label "Dubium. Il manifesto della Cripta Semantica"@it,
                "Dubium. The Cripta Semantica manifesto"@en,
                "Dubium. Prooemium Cryptae Semanticae"@la ;
-    rdfs:comment "Formalizzazione del manifesto pubblico. Ogni posizione rimanda al passo che la sostiene."@it .
+    dcterms:title "Dubium. Il manifesto della Cripta Semantica"@it,
+                  "Dubium. The Cripta Semantica manifesto"@en,
+                  "Dubium. Prooemium Cryptae Semanticae"@la ;
+    rdfs:comment "Formalizzazione del manifesto pubblico. Ogni posizione rimanda al passo che la sostiene."@it,
+                 "Formalisation of the public manifesto. Every position points to the passage that supports it."@en,
+                 "Formalizatio prooemii publici. Quaeque sententia ad locum quo fulcitur remittit."@la ;
+    dcterms:description "Primo modulo di Aenigma. Concetti, posizioni, domande e passi del manifesto della Cripta Semantica, con provenienza esplicita, formule leggibili e allineamenti a SKOS, PROV-O e schema.org."@it,
+                        "First module of Aenigma. Concepts, positions, questions and passages of the Cripta Semantica manifesto, with explicit provenance, readable formulas and alignments to SKOS, PROV-O and schema.org."@en,
+                        "Prima pars Aenigmatis. Notiones, sententiae, quaestiones et loci prooemii Cryptae Semanticae, cum origine expressa, formulis legibilibus et consensione cum SKOS, PROV-O et schema.org."@la ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:creator <https://criptasemantica.it/chi-siamo/finai/>, <https://criptasemantica.it/chi-siamo/alessandro-sevardi/> ;
+    dcterms:publisher <https://criptasemantica.it/> ;
+    dcterms:source <https://criptasemantica.it/> ;
+    dcterms:issued "2026-11-10"^^xsd:date ;
+    dcterms:modified "2026-11-11"^^xsd:date ;
+    dcterms:language "it", "en", "la" ;
+    rdfs:seeAlso <https://github.com/FINAI-Is-Not-An-Influencer/Aenigma>,
+                 <https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki> .
 
 # EN: The following classes describe records in the graph. A Concept represents a meaning in a discourse.
 # LA: Classes quae sequuntur schedulas graphi describunt. Concept sensum in sermone repraesentat.
@@ -2318,3 +2344,153 @@ dub:Q06 a dub:Question ;
     dub:derivedFrom dub:P8 ;
     dub:readingMode dub:Fondamentale ;
     dub:concerns dub:problemaSensoEssere, dub:sensoEssere .
+
+# EN: Alignment with shared vocabularies, introduced in 0.2.0. Only subclass and subproperty axioms are asserted: no equivalence between vocabularies.
+# LA: Consensio cum lexicis communibus, in editione 0.2.0 introducta. Solae subclasses et subproprietates asseruntur: nulla aequivalentia inter lexica.
+dub:Concept rdfs:subClassOf skos:Concept .
+dub:Source rdfs:subClassOf prov:Entity, schema:CreativeWork .
+dub:Passage rdfs:subClassOf prov:Entity .
+dub:ResearchItem rdfs:subClassOf prov:Entity .
+dub:RelationAssertion rdfs:subClassOf prov:Entity .
+dub:derivedFrom rdfs:subPropertyOf prov:wasDerivedFrom .
+dub:partOfSource rdfs:subPropertyOf dcterms:isPartOf .
+
+# EN: One SKOS concept scheme gathers the conceptual references, so SKOS tools can browse them. Preferred labels repeat the labels of the records.
+# LA: Unum schema SKOS relationes ad notiones colligit, ut instrumenta SKOS eas percurrere possint. Nomina praelata nomina schedularum repetunt.
+dub:concetti a skos:ConceptScheme ;
+    rdfs:label "Concetti del manifesto della Cripta Semantica"@it, "Concepts of the Cripta Semantica manifesto"@en, "Notiones prooemii Cryptae Semanticae"@la ;
+    skos:prefLabel "Concetti del manifesto della Cripta Semantica"@it, "Concepts of the Cripta Semantica manifesto"@en, "Notiones prooemii Cryptae Semanticae"@la ;
+    dcterms:source <https://criptasemantica.it/> ;
+    skos:hasTopConcept dub:essere, dub:ente, dub:iperscrittura, dub:ontologiaFondamentale, dub:capitaleSemantico .
+
+dub:accumuloSemantico skos:inScheme dub:concetti ; skos:prefLabel "accumulo di capitale semantico"@it, "accumulation of semantic capital"@en, "accumulatio capitalis semantici"@la .
+dub:ambitoOggettuale skos:inScheme dub:concetti ; skos:prefLabel "ambito oggettuale"@it, "domain of objects"@en, "ambitus obiectorum"@la .
+dub:aperturaFenomenologica skos:inScheme dub:concetti ; skos:prefLabel "apertura fenomenologica"@it, "phenomenological opening"@en, "apertio phaenomenologica"@la .
+dub:articolo skos:inScheme dub:concetti ; skos:prefLabel "articolo come artefatto"@it, "article as an artefact"@en, "articulus ut artefactum"@la .
+dub:assenzaCosa skos:inScheme dub:concetti ; skos:prefLabel "assenza di una cosa come oggetto"@it, "absence of a thing as object"@en, "absentia rei ut obiecti"@la .
+dub:capitaleSemantico skos:inScheme dub:concetti ; skos:prefLabel "capitale semantico"@it, "semantic capital"@en, "capitale semanticum"@la .
+dub:codiceSviluppo skos:inScheme dub:concetti ; skos:prefLabel "codice di sviluppo"@it, "development code"@en, "praecepta ad Rete exstruendum"@la .
+dub:comprensionePresunta skos:inScheme dub:concetti ; skos:prefLabel "comprensione presunta"@it, "presumed understanding"@en, "intellectus praesumptus"@la .
+dub:concettualizzazione skos:inScheme dub:concetti ; skos:prefLabel "concettualizzazione"@it, "conceptualisation"@en, "conceptuum ordinatio"@la .
+dub:concettualizzazioneEssere skos:inScheme dub:concetti ; skos:prefLabel "concettualizzazione dell'essere"@it, "conceptualisation of being"@en, "ordinatio conceptuum de esse"@la .
+dub:condivisione skos:inScheme dub:concetti ; skos:prefLabel "condivisione"@it, "shared character"@en, "communicatio"@la .
+dub:consapevolezza skos:inScheme dub:concetti ; skos:prefLabel "consapevolezza dell'iperscrittura"@it, "awareness of hyperwriting"@en, "conscientia hyperscripturae"@la .
+dub:contenuto skos:inScheme dub:concetti ; skos:prefLabel "contenuto"@it, "content"@en, "materia expressa"@la .
+dub:criptaIpertesto skos:inScheme dub:concetti ; skos:prefLabel "Cripta Semantica come ipertesto"@it, "Cripta Semantica as hypertext"@en, "Crypta Semantica ut hypertextus"@la .
+dub:criptaSito skos:inScheme dub:concetti ; skos:prefLabel "Cripta Semantica come sito"@it, "Cripta Semantica as website"@en, "Crypta Semantica ut situs retialis"@la .
+dub:destinazioneIpertestuale skos:inScheme dub:concetti ; skos:prefLabel "destinazione all'ipertesto"@it, "orientation towards hypertext"@en, "destinatio ad hypertextum"@la .
+dub:distribuzioneSemantica skos:inScheme dub:concetti ; skos:prefLabel "distribuzione di capitale semantico"@it, "distribution of semantic capital"@en, "distributio capitalis semantici"@la .
+dub:ente skos:inScheme dub:concetti ; skos:prefLabel "ente o entità"@it, "entity or being"@en, "ens"@la .
+dub:enteComeCosa skos:inScheme dub:concetti ; skos:prefLabel "ente in quanto ente, come cosa"@it, "entity as entity, considered as a thing"@en, "ens quatenus ens ut res"@la .
+dub:enteOntico skos:inScheme dub:concetti ; skos:prefLabel "ente onticamente inteso"@it, "entity understood ontically"@en, "ens ontice intellectum"@la .
+dub:enunciato skos:inScheme dub:concetti ; skos:prefLabel "enunciato"@it, "statement"@en, "enuntiatum"@la .
+dub:epigrafe skos:inScheme dub:concetti ; skos:prefLabel "epigrafe del manifesto"@it, "manifesto epigraph"@en, "epigraphe prooemii"@la .
+dub:esordioGreco skos:inScheme dub:concetti ; skos:prefLabel "esordio greco"@it, "Greek beginnings"@en, "exordium Graecum"@la .
+dub:esplicitezza skos:inScheme dub:concetti ; skos:prefLabel "esplicitezza"@it, "explicitness"@en, "ratio explicita"@la .
+dub:essenteEspressione skos:inScheme dub:concetti ; skos:prefLabel "«essente» come espressione"@it, "“being” as an expression"@en, "vox «ens»"@la .
+dub:essenzaEssere skos:inScheme dub:concetti ; skos:prefLabel "essenza dell'essere"@it, "essence of being"@en, "essentia essendi"@la .
+dub:essenzaRegionale skos:inScheme dub:concetti ; skos:prefLabel "essenza regionale"@it, "regional essence"@en, "essentia regionalis"@la .
+dub:esserci skos:inScheme dub:concetti ; skos:prefLabel "esserci"@it, "Dasein"@en, "adesse (Dasein)"@la .
+dub:esserciDellEssere skos:inScheme dub:concetti ; skos:prefLabel "esserci dell'essere"@it, "the being-there of being"@en, "adesse ipsius esse"@la .
+dub:essere skos:inScheme dub:concetti ; skos:prefLabel "essere"@it, "being"@en, "esse"@la .
+dub:essereDiEnte skos:inScheme dub:concetti ; skos:prefLabel "essere di un ente"@it, "being of an entity"@en, "esse entis"@la .
+dub:essereEntita skos:inScheme dub:concetti ; skos:prefLabel "essere un'entità"@it, "being an entity"@en, "esse ens"@la .
+dub:essereInQuantoTale skos:inScheme dub:concetti ; skos:prefLabel "essere in quanto tale"@it, "being as such"@en, "esse ipsum"@la .
+dub:familiarita skos:inScheme dub:concetti ; skos:prefLabel "familiarità d'uso"@it, "familiarity in use"@en, "familiaritas usus"@la .
+dub:filoConduttore skos:inScheme dub:concetti ; skos:prefLabel "filo conduttore"@it, "guiding thread"@en, "filum dux"@la .
+dub:filosofia skos:inScheme dub:concetti ; skos:prefLabel "filosofia"@it, "philosophy"@en, "philosophia"@la .
+dub:fondamentoOntico skos:inScheme dub:concetti ; skos:prefLabel "fondamento ontico"@it, "ontic ground"@en, "fundamentum onticum"@la .
+dub:fondamentoOntologico skos:inScheme dub:concetti ; skos:prefLabel "fondamento ontologico"@it, "ontological ground"@en, "fundamentum ontologicum"@la .
+dub:formalita skos:inScheme dub:concetti ; skos:prefLabel "formalità"@it, "formality"@en, "ratio formalis"@la .
+dub:gettatezza skos:inScheme dub:concetti ; skos:prefLabel "gettatezza"@it, "thrownness"@en, "iectitas"@la .
+dub:giudizio skos:inScheme dub:concetti ; skos:prefLabel "giudizio"@it, "judgement"@en, "iudicium"@la .
+dub:grecia skos:inScheme dub:concetti ; skos:prefLabel "Grecia"@it, "Greece"@en, "Graecia"@la .
+dub:implementazione skos:inScheme dub:concetti ; skos:prefLabel "implementazione informatica"@it, "computational implementation"@en, "exsecutio informatica"@la .
+dub:infosfera skos:inScheme dub:concetti ; skos:prefLabel "infosfera"@it, "infosphere"@en, "sphaera informationis"@la .
+dub:iperscrittura skos:inScheme dub:concetti ; skos:prefLabel "iperscrittura"@it, "hyperwriting"@en, "hyperscriptura"@la .
+dub:iperscritturaConsapevole skos:inScheme dub:concetti ; skos:prefLabel "iperscrittura consapevole"@it, "conscious hyperwriting"@en, "hyperscriptura conscia"@la .
+dub:iperscritturaElementare skos:inScheme dub:concetti ; skos:prefLabel "iperscrittura elementare"@it, "elementary hyperwriting"@en, "hyperscriptura elementaris"@la .
+dub:iperscritturaFondamentale skos:inScheme dub:concetti ; skos:prefLabel "iperscrittura della ricerca fondamentale"@it, "hyperwriting of fundamental inquiry"@en, "hyperscriptura inquisitionis fundamentalis"@la .
+dub:iperscritturaRiflessiva skos:inScheme dub:concetti ; skos:prefLabel "iperscrittura riflessiva"@it, "reflexive hyperwriting"@en, "hyperscriptura reflexiva"@la .
+dub:iperstoria skos:inScheme dub:concetti ; skos:prefLabel "iperstoria"@it, "hyperhistory"@en, "hyperhistoria"@la .
+dub:ipertesto skos:inScheme dub:concetti ; skos:prefLabel "ipertesto"@it, "hypertext"@en, "hypertextus"@la .
+dub:livelloRicerca skos:inScheme dub:concetti ; skos:prefLabel "livello della ricerca"@it, "level of inquiry"@en, "gradus inquisitionis"@la .
+dub:macchinaAstratta skos:inScheme dub:concetti ; skos:prefLabel "macchina astratta"@it, "abstract machine"@en, "machina abstracta"@la .
+dub:macchinaConcreta skos:inScheme dub:concetti ; skos:prefLabel "macchina concreta"@it, "concrete machine"@en, "machina concreta"@la .
+dub:mappaEnte skos:inScheme dub:concetti ; skos:prefLabel "mappa dell'Ente"@it, "map of entities"@en, "tabula entium"@la .
+dub:memoriaDialogica skos:inScheme dub:concetti ; skos:prefLabel "ricordo del dialogo"@it, "memory of dialogue"@en, "memoria dialogi"@la .
+dub:metafisicaOccidentale skos:inScheme dub:concetti ; skos:prefLabel "metafisica occidentale"@it, "Western metaphysics"@en, "metaphysica occidentalis"@la .
+dub:modoPossibilitaEntita skos:inScheme dub:concetti ; skos:prefLabel "modo di possibilità di un'entità"@it, "mode of possibility of an entity"@en, "modus quo ens possibile est"@la .
+dub:modoPossibilitaEssere skos:inScheme dub:concetti ; skos:prefLabel "modo di possibilità dell'essere"@it, "mode of possibility of being"@en, "modus quo esse possibile est"@la .
+dub:necessitaPorre skos:inScheme dub:concetti ; skos:prefLabel "necessità di porre il problema"@it, "need to pose the question"@en, "necessitas quaestionem ponendi"@la .
+dub:notaIpertestuale skos:inScheme dub:concetti ; skos:prefLabel "nota ipertestuale"@it, "hypertextual note"@en, "nota hypertextualis"@la .
+dub:nulla skos:inScheme dub:concetti ; skos:prefLabel "nulla"@it, "nothing"@en, "nihil"@la .
+dub:oggettoGenerale skos:inScheme dub:concetti ; skos:prefLabel "oggetto in generale"@it, "object in general"@en, "obiectum in genere"@la .
+dub:oggettoGettatezza skos:inScheme dub:concetti ; skos:prefLabel "oggetto come determinazione della gettatezza"@it, "object as a determination of thrownness"@en, "obiectum ut determinatio iectitatis"@la .
+dub:ontologiaAnalitica skos:inScheme dub:concetti ; skos:prefLabel "ontologia filosofico-analitica"@it, "analytic philosophical ontology"@en, "ontologia philosophica analytica"@la .
+dub:ontologiaEnte skos:inScheme dub:concetti ; skos:prefLabel "ontologia dell'ente"@it, "ontology of entities"@en, "ontologia entium"@la .
+dub:ontologiaFenomenologica skos:inScheme dub:concetti ; skos:prefLabel "ontologia fenomenologica"@it, "phenomenological ontology"@en, "ontologia phaenomenologica"@la .
+dub:ontologiaFondamentale skos:inScheme dub:concetti ; skos:prefLabel "ontologia fondamentale"@it, "fundamental ontology"@en, "ontologia fundamentalis"@la .
+dub:ontologiaFormale skos:inScheme dub:concetti ; skos:prefLabel "ontologia formale fenomenologica"@it, "formal phenomenological ontology"@en, "ontologia phaenomenologica formalis"@la .
+dub:ontologiaInformatica skos:inScheme dub:concetti ; skos:prefLabel "ontologia informatica"@it, "computational ontology"@en, "ontologia informatica"@la .
+dub:ontologiaRegionale skos:inScheme dub:concetti ; skos:prefLabel "ontologia regionale"@it, "regional ontology"@en, "ontologia regionalis"@la .
+dub:oralita skos:inScheme dub:concetti ; skos:prefLabel "oralità"@it, "orality"@en, "usus oralis"@la .
+dub:organizzazioneSemantica skos:inScheme dub:concetti ; skos:prefLabel "organizzazione semantica"@it, "semantic organisation"@en, "ordinatio semantica"@la .
+dub:orientamentoIperoggetti skos:inScheme dub:concetti ; skos:prefLabel "orientamento agli iperoggetti"@it, "hyperobject-oriented inquiry"@en, "inquisitio ad hyperobiecta directa"@la .
+dub:orientamentoOggetti skos:inScheme dub:concetti ; skos:prefLabel "orientamento agli oggetti"@it, "object-oriented inquiry"@en, "inquisitio ad obiecta directa"@la .
+dub:partecipante skos:inScheme dub:concetti ; skos:prefLabel "partecipante"@it, "participant"@en, "particeps"@la .
+dub:pensieroOccidentale skos:inScheme dub:concetti ; skos:prefLabel "pensiero occidentale"@it, "Western thought"@en, "cogitatio occidentalis"@la .
+dub:perplessita skos:inScheme dub:concetti ; skos:prefLabel "perplessità"@it, "perplexity"@en, "perplexitas"@la .
+dub:pianoRicerca skos:inScheme dub:concetti ; skos:prefLabel "piano della ricerca"@it, "plane of inquiry"@en, "planum inquisitionis"@la .
+dub:pietroChiodi skos:inScheme dub:concetti ; skos:prefLabel "Pietro Chiodi"@it, "Pietro Chiodi"@en, "Petrus Chiodi"@la .
+dub:platone skos:inScheme dub:concetti ; skos:prefLabel "Platone"@it, "Plato"@en, "Plato"@la .
+dub:porreProblema skos:inScheme dub:concetti ; skos:prefLabel "posizione del problema"@it, "posing the question"@en, "quaestionis positio"@la .
+dub:praticaDialogica skos:inScheme dub:concetti ; skos:prefLabel "pratica dialogica"@it, "dialogical practice"@en, "exercitatio dialogica"@la .
+dub:problemaEssenzaEssere skos:inScheme dub:concetti ; skos:prefLabel "problema dell'essenza dell'essere"@it, "question of the essence of being"@en, "quaestio de essentia essendi"@la .
+dub:problemaEssere skos:inScheme dub:concetti ; skos:prefLabel "problema dell'essere"@it, "question of being"@en, "quaestio de esse"@la .
+dub:problemaSensoEssere skos:inScheme dub:concetti ; skos:prefLabel "problema del senso dell'essere"@it, "question of the sense of being"@en, "quaestio de sensu essendi"@la .
+dub:produzioneFilosofica skos:inScheme dub:concetti ; skos:prefLabel "produzione filosofica"@it, "philosophical production"@en, "productio philosophica"@la .
+dub:progettoCripta skos:inScheme dub:concetti ; skos:prefLabel "progetto della Cripta"@it, "the Cripta project"@en, "propositum Cryptae"@la .
+dub:progettoGettatezza skos:inScheme dub:concetti ; skos:prefLabel "progetto come determinazione della gettatezza"@it, "projection as a determination of thrownness"@en, "proiectum ut determinatio iectitatis"@la .
+dub:progettualita skos:inScheme dub:concetti ; skos:prefLabel "progettualità"@it, "projective character"@en, "ratio proiciendi"@la .
+dub:psiche skos:inScheme dub:concetti ; skos:prefLabel "psiche"@it, "psyche"@en, "animus"@la .
+dub:pubblicazioneMacchina skos:inScheme dub:concetti ; skos:prefLabel "pubblicazione della macchina astratta"@it, "publication of the abstract machine"@en, "editio machinae abstractae"@la .
+dub:quantificazioneOntologica skos:inScheme dub:concetti ; skos:prefLabel "quantificazione ontologica"@it, "ontological quantification"@en, "quantificatio ontologica"@la .
+dub:quantificazioneScrittura skos:inScheme dub:concetti ; skos:prefLabel "quantificazione della scrittura"@it, "quantification of writing"@en, "quantificatio scripturae"@la .
+dub:regioneRealta skos:inScheme dub:concetti ; skos:prefLabel "regione della realtà"@it, "region of reality"@en, "regio realitatis"@la .
+dub:reminiscenza skos:inScheme dub:concetti ; skos:prefLabel "reminiscenza"@it, "recollection"@en, "reminiscentia"@la .
+dub:ricercaFondamentale skos:inScheme dub:concetti ; skos:prefLabel "ricerca ontologica fondamentale"@it, "fundamental ontological inquiry"@en, "inquisitio ontologica fundamentalis"@la .
+dub:ricercaOntologica skos:inScheme dub:concetti ; skos:prefLabel "ricerca ontologica"@it, "ontological inquiry"@en, "inquisitio ontologica"@la .
+dub:rigettoGettatezza skos:inScheme dub:concetti ; skos:prefLabel "rigetto come determinazione della gettatezza"@it, "rejection as a determination of thrownness"@en, "reiectum ut determinatio iectitatis"@la .
+dub:risultatoDialogico skos:inScheme dub:concetti ; skos:prefLabel "risultato del dialogo"@it, "outcome of dialogue"@en, "exitus dialogi"@la .
+dub:scienzaTrasformazione skos:inScheme dub:concetti ; skos:prefLabel "scienza come trasformazione"@it, "science as transformation"@en, "scientia ut transformatio"@la .
+dub:scrittura skos:inScheme dub:concetti ; skos:prefLabel "scrittura"@it, "writing"@en, "scriptura"@la .
+dub:senso skos:inScheme dub:concetti ; skos:prefLabel "senso"@it, "sense"@en, "sensus"@la .
+dub:sensoEssere skos:inScheme dub:concetti ; skos:prefLabel "senso dell'essere"@it, "sense of being"@en, "sensus essendi"@la .
+dub:significato skos:inScheme dub:concetti ; skos:prefLabel "significato computabile"@it, "computable meaning"@en, "significatio computabilis"@la .
+dub:sofista244a skos:inScheme dub:concetti ; skos:prefLabel "Sofista 244a"@it, "Sophist 244a"@en, "Sophista 244a"@la .
+dub:soggettoGettatezza skos:inScheme dub:concetti ; skos:prefLabel "soggetto come determinazione della gettatezza"@it, "subject as a determination of thrownness"@en, "subiectum ut determinatio iectitatis"@la .
+dub:specificazione skos:inScheme dub:concetti ; skos:prefLabel "specificazione"@it, "specification"@en, "specificatio"@la .
+dub:storia skos:inScheme dub:concetti ; skos:prefLabel "storia"@it, "history"@en, "historia"@la .
+dub:strutturaConoscenzaOntica skos:inScheme dub:concetti ; skos:prefLabel "struttura di conoscenza ontica"@it, "structure of ontic knowledge"@en, "structura cognitionis onticae"@la .
+dub:strutturaEnunciativa skos:inScheme dub:concetti ; skos:prefLabel "struttura enunciativa"@it, "structure of statements"@en, "structura enuntiativa"@la .
+dub:strutturaLogica skos:inScheme dub:concetti ; skos:prefLabel "struttura logica"@it, "logical structure"@en, "structura logica"@la .
+dub:sviluppoWeb skos:inScheme dub:concetti ; skos:prefLabel "sviluppo del Web"@it, "development of the Web"@en, "progressus Retis"@la .
+dub:svolta1936 skos:inScheme dub:concetti ; skos:prefLabel "svolta del 1936"@it, "the turning point of 1936"@en, "discrimen anni 1936"@la .
+dub:teoria skos:inScheme dub:concetti ; skos:prefLabel "teoria"@it, "theory"@en, "theoria"@la .
+dub:testo skos:inScheme dub:concetti ; skos:prefLabel "testo"@it, "text"@en, "textus"@la .
+dub:tipoEntita skos:inScheme dub:concetti ; skos:prefLabel "tipo di entità"@it, "type of entity"@en, "genus entis"@la .
+dub:totalitaInespressa skos:inScheme dub:concetti ; skos:prefLabel "totalità inespressa"@it, "unexpressed totality"@en, "totalitas non expressa"@la .
+dub:tradizioneTestuale skos:inScheme dub:concetti ; skos:prefLabel "tradizione testuale"@it, "textual tradition"@en, "traditio textualis"@la .
+dub:trasmissibilita skos:inScheme dub:concetti ; skos:prefLabel "possibilità di veicolare contenuti"@it, "capacity to convey content"@en, "facultas materiam tradendi"@la .
+dub:trasmissibilitaDeterminata skos:inScheme dub:concetti ; skos:prefLabel "trasmissibilità determinata"@it, "determinate conveyability"@en, "facultas tradendi determinata"@la .
+dub:trasmissibilitaGenerale skos:inScheme dub:concetti ; skos:prefLabel "trasmissibilità generale"@it, "general conveyability"@en, "facultas tradendi generalis"@la .
+dub:usiologia skos:inScheme dub:concetti ; skos:prefLabel "usiologia"@it, "study of regional essences"@en, "usiologia"@la .
+dub:valoreVariabile skos:inScheme dub:concetti ; skos:prefLabel "valore di una variabile"@it, "value of a variable"@en, "valor variabilis"@la .
+dub:variabileVincolata skos:inScheme dub:concetti ; skos:prefLabel "variabile vincolata"@it, "bound variable"@en, "variabile ligatum"@la .
+dub:web skos:inScheme dub:concetti ; skos:prefLabel "Rete di Portata Mondiale"@it, "World Wide Web"@en, "Rete Totum Orbem Complectens"@la .
+dub:essere skos:topConceptOf dub:concetti .
+dub:ente skos:topConceptOf dub:concetti .
+dub:iperscrittura skos:topConceptOf dub:concetti .
+dub:ontologiaFondamentale skos:topConceptOf dub:concetti .
+dub:capitaleSemantico skos:topConceptOf dub:concetti .

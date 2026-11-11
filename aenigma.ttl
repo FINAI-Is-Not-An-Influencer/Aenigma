@@ -1,0 +1,72 @@
+@prefix aen: <https://aenigma.criptasemantica.it/aenigma#> .
+@prefix dub: <https://aenigma.criptasemantica.it/dubium#> .
+@prefix trv: <https://aenigma.criptasemantica.it/trivium#> .
+@prefix mtr: <https://aenigma.criptasemantica.it/metrum#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@base <https://aenigma.criptasemantica.it/aenigma#> .
+
+# EN: Aenigma is the root of the ontology network of the Cripta Semantica. It declares the modules, imports their
+#     published documents and describes how they relate. The modules stay independent: each has its own IRI and version.
+# LA: Aenigma est radix retis ontologici Cryptae Semanticae. Partes declarat, documenta earum edita importat et quomodo
+#     inter se cohaereant describit. Partes sui iuris manent: quaeque IRI et versionem propriam habet.
+
+<https://aenigma.criptasemantica.it/aenigma#> a owl:Ontology ;
+    owl:versionIRI <https://aenigma.criptasemantica.it/aenigma#v0.2.0> ;
+    owl:versionInfo "0.2.0" ;
+    owl:imports <https://aenigma.criptasemantica.it/dubium/dubium.ttl>,
+                <https://aenigma.criptasemantica.it/trivium/trivium.ttl>,
+                <https://aenigma.criptasemantica.it/metrum/metrum.ttl> ;
+    vann:preferredNamespacePrefix "aen" ;
+    vann:preferredNamespaceUri "https://aenigma.criptasemantica.it/aenigma#" ;
+    rdfs:label "Aenigma. L'ontologia della Cripta Semantica"@it, "Aenigma. The ontology of the Cripta Semantica"@en, "Aenigma. Ontologia Cryptae Semanticae"@la ;
+    dcterms:title "Aenigma. L'ontologia della Cripta Semantica"@it, "Aenigma. The ontology of the Cripta Semantica"@en, "Aenigma. Ontologia Cryptae Semanticae"@la ;
+    rdfs:comment "Rete di moduli: Dubium formalizza il manifesto, Trivium nomina le arti e le discipline del sito, Metrum qualifica la misura della ricerca. Ogni modulo ha un IRI, una versione, tre lingue e vincoli SHACL propri."@it,
+                 "A network of modules: Dubium formalises the manifesto, Trivium names the arts and disciplines of the site, Metrum qualifies the measurement of research. Each module has its own IRI, version, three languages and SHACL constraints."@en,
+                 "Rete partium: Dubium prooemium formalizat, Trivium artes et disciplinas situs nominat, Metrum mensuram investigationis qualificat. Quaeque pars IRI, versionem, tres linguas et regulas SHACL proprias habet."@la ;
+    dcterms:description "Il nome viene dall'enigma greco: una formulazione che nasconde ciò che mostra. I nomi dell'ontologia non esauriscono le cose; servono a tenere aperta la domanda sul senso dell'essere mentre la si rende consultabile da persone e programmi."@it,
+                        "The name comes from the Greek enigma: a formulation that hides what it shows. The names of the ontology do not exhaust things; they keep the question of the sense of being open while making it consultable by people and programs."@en,
+                        "Nomen ex aenigmate Graeco venit: formula quae celat quod ostendit. Nomina ontologiae res non exhauriunt; quaestionem de sensu essendi apertam servant dum eam hominibus et programmatibus consultabilem reddunt."@la ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:creator <https://criptasemantica.it/chi-siamo/finai/>, <https://criptasemantica.it/chi-siamo/alessandro-sevardi/> ;
+    dcterms:publisher <https://criptasemantica.it/> ;
+    dcterms:issued "2026-11-11"^^xsd:date ;
+    dcterms:modified "2026-11-11"^^xsd:date ;
+    dcterms:language "it", "en", "la" ;
+    dcterms:hasPart <https://aenigma.criptasemantica.it/dubium#>, <https://aenigma.criptasemantica.it/trivium#>, <https://aenigma.criptasemantica.it/metrum#> ;
+    rdfs:seeAlso <https://aenigma.criptasemantica.it/void.ttl>, <https://github.com/FINAI-Is-Not-An-Influencer/Aenigma>, <https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki> .
+
+# EN: The module registry. Order and roles are editorial; the modules do not depend on it to be valid.
+# LA: Index partium. Ordo et munera editoria sunt; partes ab eo non pendent ut validae sint.
+aen:Modulo a owl:Class ; rdfs:label "modulo di Aenigma"@it, "Aenigma module"@en, "pars Aenigmatis"@la ;
+    rdfs:comment "Un'ontologia pubblicata nel sito di Aenigma, con il proprio spazio di nomi, la propria versione e i propri vincoli."@it,
+                 "An ontology published on the Aenigma site, with its own namespace, version and constraints."@en,
+                 "Ontologia in situ Aenigmatis edita, cum spatio nominum, versione et regulis propriis."@la .
+aen:ordine a owl:DatatypeProperty ; rdfs:domain aen:Modulo ; rdfs:range xsd:integer ; rdfs:label "ordine di lettura"@it, "reading order"@en, "ordo legendi"@la .
+aen:ruolo a owl:DatatypeProperty ; rdfs:domain aen:Modulo ; rdfs:range rdf:langString ; rdfs:label "ruolo nella rete"@it, "role in the network"@en, "munus in rete"@la .
+aen:prefisso a owl:DatatypeProperty ; rdfs:domain aen:Modulo ; rdfs:range xsd:string ; rdfs:label "prefisso preferito"@it, "preferred prefix"@en, "praefixum praelatum"@la .
+aen:documento a owl:ObjectProperty ; rdfs:domain aen:Modulo ; rdfs:label "documento Turtle pubblicato"@it, "published Turtle document"@en, "documentum Turtle editum"@la .
+aen:vincoli a owl:ObjectProperty ; rdfs:domain aen:Modulo ; rdfs:label "vincoli SHACL"@it, "SHACL constraints"@en, "regulae SHACL"@la .
+aen:illumina a owl:ObjectProperty ; rdfs:domain aen:Modulo ; rdfs:range aen:Modulo ;
+    rdfs:label "illumina"@it, "illuminates"@en, "illustrat"@la ;
+    rdfs:comment "Un modulo illumina un altro quando ne offre i concetti con cui leggerlo. La relazione è editoriale e non implica importazione."@it,
+                 "A module illuminates another when it offers the concepts with which to read it. The relation is editorial and implies no import."@en,
+                 "Pars alteram illustrat cum notiones praebet quibus illa legatur. Relatio editoria est neque importationem implicat."@la .
+
+<https://aenigma.criptasemantica.it/dubium#> a aen:Modulo ; aen:ordine 1 ; aen:prefisso "dub" ;
+    aen:ruolo "La domanda: concetti, posizioni e domande del manifesto"@it, "The question: concepts, positions and questions of the manifesto"@en, "Quaestio: notiones, sententiae et quaestiones prooemii"@la ;
+    aen:documento <https://aenigma.criptasemantica.it/dubium/dubium.ttl> ; aen:vincoli <https://aenigma.criptasemantica.it/dubium/shapes.ttl> ;
+    aen:illumina <https://aenigma.criptasemantica.it/trivium#>, <https://aenigma.criptasemantica.it/metrum#> .
+<https://aenigma.criptasemantica.it/trivium#> a aen:Modulo ; aen:ordine 2 ; aen:prefisso "trv" ;
+    aen:ruolo "Le arti: discipline, generi, programmi e stanze del sito"@it, "The arts: disciplines, genres, programmes and rooms of the site"@en, "Artes: disciplinae, genera, consilia et cellae situs"@la ;
+    aen:documento <https://aenigma.criptasemantica.it/trivium/trivium.ttl> ; aen:vincoli <https://aenigma.criptasemantica.it/trivium/shapes.ttl> ;
+    aen:illumina <https://aenigma.criptasemantica.it/metrum#> .
+<https://aenigma.criptasemantica.it/metrum#> a aen:Modulo ; aen:ordine 3 ; aen:prefisso "mtr" ;
+    aen:ruolo "La misura: osservazioni, protocolli, discipline e principi"@it, "The measure: observations, protocols, fields and principles"@en, "Mensura: observationes, protocolla, disciplinae et principia"@la ;
+    aen:documento <https://aenigma.criptasemantica.it/metrum/metrum.ttl> ; aen:vincoli <https://aenigma.criptasemantica.it/metrum/shapes.ttl> ;
+    aen:illumina <https://aenigma.criptasemantica.it/dubium#> .

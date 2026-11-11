@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/la/term/ipertesto.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/ipertesto.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/ipertesto.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/ipertesto.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav" aria-label="Navigatio Aenigmatis"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/la/index.html">Trivium</a><a href="../../../metrum/la/index.html">Metrum</a><a href="../../../la/documentazione.html">Documenta</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/LA">Vicipagina</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Index</a><a href="../schema.html">Hierarchia et proprietates</a><a href="../guide.html">Dux incipientium</a><a href="../formal.html">Formalizatio</a></nav>
     <nav class="site-languages" aria-label="Linguae"><a href="../../term/ipertesto.html" lang="it" hreflang="it" data-language>Italiano</a><a href="../../en/term/ipertesto.html" lang="en" hreflang="en" data-language>English</a><a href="ipertesto.html" lang="la" hreflang="la" data-language aria-current="page">Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Via ad schedulam">
-  <a href="../index.html">Index</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#concepts">Notiones</a>
 </nav>
 <article class="term" id="ipertesto">
@@ -32,12 +33,14 @@
   <h1><span>hypertextus</span></h1>
   <p class="identifier"><code>dub:ipertesto</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#ipertesto</code></p>
-  <div class="term-description terminal-panel"><p><span>Exitus hyperscripturae atque forma qua quantificatio scripturae apparet.</span></p><dl><dt>Occurrit in</dt><dd><a href="../term/F08.html"><span>Quantificatio in hypertextu manifesta</span></a>, <a href="../term/F09.html"><span>Destinatio ad hypertextum post discrimen</span></a>, <a href="../term/F11.html"><span>Duo gradus hyperscripturae</span></a>, <a href="../term/F35.html"><span>Crypta ut hypertextus productus</span></a>, <a href="../term/X04.html"><span>Crypta ut situs, hypertextus et notae</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>Exitus hyperscripturae atque forma qua quantificatio scripturae apparet.</span></p><dl><dt>Occurrit in</dt><dd><a href="F08.html"><span>Quantificatio in hypertextu manifesta</span></a>, <a href="F09.html"><span>Destinatio ad hypertextum post discrimen</span></a>, <a href="F11.html"><span>Duo gradus hyperscripturae</span></a>, <a href="F35.html"><span>Crypta ut hypertextus productus</span></a>, <a href="X04.html"><span>Crypta ut situs, hypertextus et notae</span></a></dd></dl></div>
 <section><h2>Exemplum forma Turtle</h2><p>Fragmentum e grapho publico.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:ipertesto a dub:Concept .
-dub:ipertesto &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;hypertext&quot;@en .
-dub:ipertesto &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;hypertextus&quot;@la .</code></pre></section>
+dub:ipertesto rdfs:label &quot;hypertext&quot;@en .
+dub:ipertesto rdfs:label &quot;hypertextus&quot;@la .</code></pre></section>
   <p><a href="../index.html#ipertesto">Hanc schedulam in indice reperi</a></p>
 </article></main>
   <footer>

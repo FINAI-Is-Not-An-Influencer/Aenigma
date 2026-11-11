@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/Funzionale.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Funzionale.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Funzionale.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Funzionale.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/Funzionale.html" lang="it" hreflang="it" data-language>Italiano</a><a href="Funzionale.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/Funzionale.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#values">Modes, statuses and forces</a>
 </nav>
 <article class="term" id="Funzionale">
@@ -32,12 +33,14 @@
   <h1><span>function or mechanism</span></h1>
   <p class="identifier"><code>dub:Funzionale</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Funzionale</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Occurs in</dt><dd><a href="../term/F12.html"><span>The orientation of the Web</span></a>, <a href="../term/F18.html"><span>What exists, what is specified and how</span></a>, <a href="../term/F33.html"><span>Inquiry that poses the question of essence</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Occurs in</dt><dd><a href="F12.html"><span>The orientation of the Web</span></a>, <a href="F18.html"><span>What exists, what is specified and how</span></a>, <a href="F33.html"><span>Inquiry that poses the question of essence</span></a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:Funzionale a dub:Force .
-dub:Funzionale &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;functio vel processus&quot;@la .
-dub:Funzionale &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;function or mechanism&quot;@en .</code></pre></section>
+dub:Funzionale rdfs:label &quot;functio vel processus&quot;@la .
+dub:Funzionale rdfs:label &quot;function or mechanism&quot;@en .</code></pre></section>
   <p><a href="../index.html#Funzionale">Find this entry in the catalogue</a></p>
 </article></main>
   <footer>

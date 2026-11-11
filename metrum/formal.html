@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="La misura qualificata della ricerca: cinquantotto protocolli, i campi FORD, i principi di valutazione responsabile e il modello dell&#x27;osservazione con protocollo, corpus, periodo, copertura e fonte.">
+<title>Metrum · Formalizzazione</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/metrum/formal.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/metrum/formal.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/metrum/en/formal.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/metrum/la/formal.html">
+<link rel="stylesheet" href="../style.css?v=f4fcaa0cc2ec">
+<link rel="stylesheet" href="../reference.css?v=30936f0da44f">
+
+</head>
+<body class="reference-page">
+<a class="skip-link" href="#main">Vai al contenuto</a>
+<div class="container">
+  <header>
+    <p class="site-brand">AENIGMA</p>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="../dubium/index.html">Dubium</a><a href="../trivium/index.html">Trivium</a><a href="index.html" aria-current="page">Metrum</a><a href="../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Metrum"><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html">Guida per iniziare</a><a href="formal.html" aria-current="page">Formalizzazione</a></nav>
+    <nav class="site-languages" aria-label="Lingue"><a href="formal.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/formal.html" lang="en" hreflang="en" data-language>English</a><a href="la/formal.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main"><article class="prose"><h1 id="metrum-formalizzazione">Metrum. Formalizzazione</h1>
+<p><a href="guide.html">Guida per iniziare</a> · <a href="en/formal.html">English</a> · <a href="la/formal.html">Latine</a></p>
+<p>Metrum formalizza la misura della ricerca come un ente del grafo dotato di provenienza. Il punto di partenza è una tesi della pagina «Chi siamo» della Cripta Semantica: non esistono misure neutrali della qualità della scienza, ma sistemi tecnici di misurazione che la alterano. Se è così, una misura non può entrare in un'ontologia come un numero: deve entrarvi come un'osservazione, con il protocollo che l'ha prodotta, il corpus su cui è stata presa, il periodo, la copertura, lo stato del risultato e la fonte. Questo documento descrive il modello, le tre regole che lo governano, i vincoli che le fanno rispettare e il raccordo con gli altri moduli.</p>
+<h2 id="il-modello">Il modello</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Classe</th>
+<th>Allineamenti</th>
+<th>Che cosa rappresenta</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>mtr:Observation</code></td>
+<td><code>prov:Entity</code>, <code>schema:Observation</code></td>
+<td>Una sola applicazione di un protocollo a un soggetto.</td>
+</tr>
+<tr class="even">
+<td><code>mtr:Protocol</code></td>
+<td><code>skos:Concept</code>, <code>prov:Plan</code></td>
+<td>Il contratto di misura: che cosa si conta o si descrive, con quale unità, su quali soggetti, con quale metodo e fonte.</td>
+</tr>
+<tr class="odd">
+<td><code>mtr:Family</code></td>
+<td><code>skos:Concept</code></td>
+<td>Il gruppo del protocollo: quattordici famiglie.</td>
+</tr>
+<tr class="even">
+<td><code>mtr:Scope</code></td>
+<td><code>skos:Concept</code></td>
+<td>Il tipo di soggetto ammesso: nove ambiti.</td>
+</tr>
+<tr class="odd">
+<td><code>mtr:ValueType</code></td>
+<td><code>skos:Concept</code></td>
+<td>Il tipo del valore, con il tipo di dato XML Schema corrispondente.</td>
+</tr>
+<tr class="even">
+<td><code>mtr:Coverage</code></td>
+<td><code>skos:Concept</code></td>
+<td>Copertura completa, parziale o ignota del corpus.</td>
+</tr>
+<tr class="odd">
+<td><code>mtr:ResultState</code></td>
+<td><code>skos:Concept</code></td>
+<td>Osservato, assente, soppresso, non applicabile.</td>
+</tr>
+<tr class="even">
+<td><code>mtr:Discipline</code></td>
+<td><code>skos:Concept</code></td>
+<td>Un campo FORD del Manuale di Frascati 2015: sei campi e quarantadue sottocampi.</td>
+</tr>
+<tr class="odd">
+<td><code>mtr:Principle</code></td>
+<td><code>prov:Entity</code></td>
+<td>Un enunciato citabile di una dichiarazione pubblica sulla valutazione responsabile.</td>
+</tr>
+<tr class="even">
+<td><code>mtr:Corpus</code></td>
+<td><code>prov:Entity</code></td>
+<td>Un corpus dichiarato, quando ha un IRI proprio.</td>
+</tr>
+<tr class="odd">
+<td><code>mtr:Comparison</code></td>
+<td><code>prov:Entity</code></td>
+<td>Un confronto dichiarato fra due osservazioni.</td>
+</tr>
+</tbody>
+</table>
+<p>Le undici classi sono fra loro disgiunte. Le proprietà di un'osservazione sono <code>protocol</code>, <code>about</code> (sottoproprietà di <code>schema:observationAbout</code>), <code>corpus</code> e <code>corpusLabel</code>, <code>periodStart</code>, <code>periodEnd</code>, <code>acquiredOn</code>, <code>coverage</code>, <code>state</code>, <code>discipline</code>, <code>source</code> ed <code>evidence</code> (entrambe sottoproprietà di <code>prov:wasDerivedFrom</code>), <code>value</code>, <code>numerator</code>, <code>denominator</code>, <code>appliedMethod</code>, <code>editorialReading</code>. Le proprietà di un protocollo sono <code>family</code>, <code>scope</code>, <code>valueType</code>, <code>unit</code>, <code>method</code>, <code>requiresReferenceSet</code>, <code>guidedBy</code>; un principio ha <code>cautions</code>. La <a href="schema.html">gerarchia</a> le elenca con dominio e codominio.</p>
+<h2 id="tre-regole">Tre regole</h2>
+<p><strong>Un dato assente non vale zero.</strong> Lo stato del risultato è obbligatorio e distinto dal valore. Un risultato osservato deve avere un valore; un risultato assente, soppresso o non applicabile non può averne. Chi aggrega osservazioni non può trasformare un'assenza in uno zero senza violare le forme.</p>
+<p><strong>Due misure si confrontano solo con lo stesso contratto.</strong> Un <code>mtr:Comparison</code> è ammesso solo se le due osservazioni condividono soggetto, protocollo, corpus, periodo e discipline e se nessuna delle due ha copertura ignota. La data di acquisizione può cambiare: è proprio ciò che il confronto descrive. La variazione resta descrittiva; non è un giudizio.</p>
+<p><strong>Un principio limita, non vieta.</strong> <code>mtr:cautions</code> collega un principio ai protocolli di cui mette in guardia l'uso improprio: DORA ai sette indicatori di rivista, l'impegno 3 di CoARA al fattore d'impatto e agli indici h, g, i10 e m, il principio 8 di Leiden ai percentili e ai punteggi di attenzione. I protocolli restano nel catalogo, perché esistono e vengono usati; il grafo rende visibile il limite.</p>
+<h2 id="vincoli-shacl">Vincoli SHACL</h2>
+<p>Le <a href="shapes.ttl">forme</a> hanno quattro bersagli. <code>ObservationShape</code> richiede un protocollo, un soggetto, uno stato, una copertura, un periodo di date, una data di acquisizione, un'etichetta del corpus, una fonte e una prova in HTTPS, almeno una disciplina; tre vincoli SPARQL impongono la coerenza fra stato e valore, l'ordine del periodo e la lettura redazionale per le coperture non complete. <code>ProtocolShape</code> richiede tre etichette, notazione, famiglia, ambiti, tipo di valore, unità e metodo in tre lingue, la dichiarazione sull'insieme di riferimento e una fonte. <code>PrincipleShape</code> e <code>DisciplineShape</code> controllano fonti, etichette e notazioni FORD. <code>ComparisonShape</code> applica la regola del confronto con un vincolo SPARQL. Il programma di verifica prova sei alterazioni (osservazione senza protocollo, valore su un dato assente, copertura parziale senza lettura, periodo rovesciato, confronto fra protocolli diversi, protocollo senza fonte), tutte respinte.</p>
+<h2 id="famiglie">Famiglie</h2>
+<!-- table:families -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Chiave</th>
+<th>Famiglia</th>
+<th>Protocolli</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>agraria</code></td>
+<td>Agraria</td>
+<td>3</td>
+<td>Validazioni in campo e trasferimenti veterinari.</td>
+</tr>
+<tr class="even">
+<td><code>apertura</code></td>
+<td>Apertura e accesso</td>
+<td>5</td>
+<td>Quote e controlli su accesso aperto, metadati, identificatori e materiali.</td>
+</tr>
+<tr class="odd">
+<td><code>arti</code></td>
+<td>Arti</td>
+<td>3</td>
+<td>Esposizioni, esecuzioni e valutazioni curatoriali documentate.</td>
+</tr>
+<tr class="even">
+<td><code>clinica</code></td>
+<td>Ricerca clinica</td>
+<td>2</td>
+<td>Recepimento in linee guida e trasferimento clinico.</td>
+</tr>
+<tr class="odd">
+<td><code>dati</code></td>
+<td>Dati</td>
+<td>3</td>
+<td>Citazioni, riusi e contesto dei dati di ricerca.</td>
+</tr>
+<tr class="even">
+<td><code>intervento</code></td>
+<td>Interventi</td>
+<td>2</td>
+<td>Esiti documentati di un intervento editoriale o bibliografico.</td>
+</tr>
+<tr class="odd">
+<td><code>metodo</code></td>
+<td>Metodo</td>
+<td>4</td>
+<td>Repliche, preregistrazioni e descrizione dei contributi.</td>
+</tr>
+<tr class="even">
+<td><code>ricezione</code></td>
+<td>Ricezione</td>
+<td>13</td>
+<td>Citazioni e riusi che una fonte attribuisce a un'opera o a un soggetto.</td>
+</tr>
+<tr class="odd">
+<td><code>sedi</code></td>
+<td>Sedi di pubblicazione</td>
+<td>8</td>
+<td>Indicatori calcolati sulle riviste e sulle collane, non sui singoli lavori.</td>
+</tr>
+<tr class="even">
+<td><code>sociale</code></td>
+<td>Ricerca sociale</td>
+<td>2</td>
+<td>Adozioni didattiche e riscontri territoriali.</td>
+</tr>
+<tr class="odd">
+<td><code>software</code></td>
+<td>Software</td>
+<td>3</td>
+<td>Citazioni, riusi e riproducibilità del software di ricerca.</td>
+</tr>
+<tr class="even">
+<td><code>tecnica</code></td>
+<td>Tecnica</td>
+<td>2</td>
+<td>Verifiche in ambiente operativo e licenze d'uso.</td>
+</tr>
+<tr class="odd">
+<td><code>trasferimento</code></td>
+<td>Trasferimento</td>
+<td>4</td>
+<td>Riscontri dell'uso della ricerca fuori dall'accademia: policy, brevetti, adozioni.</td>
+</tr>
+<tr class="even">
+<td><code>umanistica</code></td>
+<td>Saperi umanistici</td>
+<td>4</td>
+<td>Monografie, edizioni critiche, traduzioni e ricezione argomentativa.</td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="protocolli">Protocolli</h2>
+<p>I protocolli hanno la stessa chiave usata dal servizio semantico della Cripta. La versione (<code>@1.0.0</code>) appartiene al servizio: l'IRI di Metrum identifica il contratto. Un protocollo locale aggiunto nel servizio non ha un IRI in Metrum finché non viene pubblicato qui.</p>
+<!-- table:protocols -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Chiave</th>
+<th>Concetto</th>
+<th>Famiglia</th>
+<th>Ambito</th>
+<th>Unità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>accessibilita-editoriale</code></td>
+<td>Controlli editoriali di accessibilità superati</td>
+<td>Apertura e accesso</td>
+<td>Prodotto della ricerca</td>
+<td>percento</td>
+</tr>
+<tr class="even">
+<td><code>adozioni-cliniche</code></td>
+<td>Recepimenti in linee guida</td>
+<td>Ricerca clinica</td>
+<td>Prodotto della ricerca</td>
+<td>documenti</td>
+</tr>
+<tr class="odd">
+<td><code>adozioni-documentate</code></td>
+<td>Adozioni indipendenti verificate</td>
+<td>Trasferimento</td>
+<td>Prodotto della ricerca</td>
+<td>adozioni</td>
+</tr>
+<tr class="even">
+<td><code>altmetric</code></td>
+<td>Punteggio di attenzione Altmetric</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>punteggio</td>
+</tr>
+<tr class="odd">
+<td><code>article-influence</code></td>
+<td>Article Influence Score</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>indice</td>
+</tr>
+<tr class="even">
+<td><code>citazioni</code></td>
+<td>Citazioni ricevute</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>citazioni</td>
+</tr>
+<tr class="odd">
+<td><code>citazioni-brevetti</code></td>
+<td>Citazioni in brevetti</td>
+<td>Trasferimento</td>
+<td>Opera o edizione</td>
+<td>documenti</td>
+</tr>
+<tr class="even">
+<td><code>citazioni-dati</code></td>
+<td>Citazioni di dati</td>
+<td>Dati</td>
+<td>Dati di ricerca</td>
+<td>citazioni</td>
+</tr>
+<tr class="odd">
+<td><code>citazioni-politiche</code></td>
+<td>Citazioni in documenti di policy</td>
+<td>Trasferimento</td>
+<td>Opera o edizione</td>
+<td>documenti</td>
+</tr>
+<tr class="even">
+<td><code>citazioni-senza-auto</code></td>
+<td>Citazioni esclusa l’autocitazione</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>citazioni</td>
+</tr>
+<tr class="odd">
+<td><code>citazioni-software</code></td>
+<td>Citazioni del software</td>
+<td>Software</td>
+<td>Software di ricerca</td>
+<td>citazioni</td>
+</tr>
+<tr class="even">
+<td><code>citescore</code></td>
+<td>CiteScore</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>rapporto</td>
+</tr>
+<tr class="odd">
+<td><code>completezza-metadati</code></td>
+<td>Completezza dei metadati</td>
+<td>Apertura e accesso</td>
+<td>Prodotto della ricerca</td>
+<td>percento</td>
+</tr>
+<tr class="even">
+<td><code>contributi-credit</code></td>
+<td>Contributi descritti con CRediT</td>
+<td>Metodo</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>copertura-identificatori</code></td>
+<td>Copertura degli identificatori persistenti</td>
+<td>Apertura e accesso</td>
+<td>Persona o organizzazione</td>
+<td>percento</td>
+</tr>
+<tr class="even">
+<td><code>correzioni-metadati</code></td>
+<td>Schede corrette con verifica</td>
+<td>Interventi</td>
+<td>Intervento documentabile</td>
+<td>schede</td>
+</tr>
+<tr class="odd">
+<td><code>diffusione-didattica</code></td>
+<td>Adozioni didattiche documentate</td>
+<td>Ricerca sociale</td>
+<td>Prodotto della ricerca</td>
+<td>adozioni</td>
+</tr>
+<tr class="even">
+<td><code>edizioni-critiche</code></td>
+<td>Contributo dell’edizione critica</td>
+<td>Saperi umanistici</td>
+<td>Opera o edizione</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>eigenfactor</code></td>
+<td>Eigenfactor Score</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>indice</td>
+</tr>
+<tr class="even">
+<td><code>emivita-citazioni</code></td>
+<td>Emivita delle citazioni ricevute</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>anni</td>
+</tr>
+<tr class="odd">
+<td><code>esito-intervento</code></td>
+<td>Esito documentato di un intervento</td>
+<td>Interventi</td>
+<td>Intervento documentabile</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>esito-replica</code></td>
+<td>Esito argomentato di replica</td>
+<td>Metodo</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>esposizioni-curate</code></td>
+<td>Esposizioni curate documentate</td>
+<td>Arti</td>
+<td>Artefatto o esecuzione</td>
+<td>eventi</td>
+</tr>
+<tr class="even">
+<td><code>fwci</code></td>
+<td>Impatto citazionale normalizzato per campo</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>rapporto</td>
+</tr>
+<tr class="odd">
+<td><code>g-index</code></td>
+<td>Indice g</td>
+<td>Ricezione</td>
+<td>Persona o organizzazione</td>
+<td>indice</td>
+</tr>
+<tr class="even">
+<td><code>h-index</code></td>
+<td>Indice h</td>
+<td>Ricezione</td>
+<td>Persona o organizzazione</td>
+<td>indice</td>
+</tr>
+<tr class="odd">
+<td><code>i10-index</code></td>
+<td>Indice i10</td>
+<td>Ricezione</td>
+<td>Persona o organizzazione</td>
+<td>opere</td>
+</tr>
+<tr class="even">
+<td><code>impatto-territoriale</code></td>
+<td>Riscontro di impatto territoriale</td>
+<td>Ricerca sociale</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>jci</code></td>
+<td>Journal Citation Indicator</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>indice</td>
+</tr>
+<tr class="even">
+<td><code>jif</code></td>
+<td>Journal Impact Factor</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>rapporto</td>
+</tr>
+<tr class="odd">
+<td><code>licenze-applicate</code></td>
+<td>Licenze d’uso documentate</td>
+<td>Tecnica</td>
+<td>Prodotto della ricerca</td>
+<td>licenze</td>
+</tr>
+<tr class="even">
+<td><code>m-index</code></td>
+<td>Indice m</td>
+<td>Ricezione</td>
+<td>Ricercatrice o ricercatore</td>
+<td>rapporto</td>
+</tr>
+<tr class="odd">
+<td><code>materiali-disponibili</code></td>
+<td>Disponibilità di materiali di ricerca</td>
+<td>Apertura e accesso</td>
+<td>Prodotto della ricerca</td>
+<td>percento</td>
+</tr>
+<tr class="even">
+<td><code>monografie-recepite</code></td>
+<td>Riscontri su monografie</td>
+<td>Saperi umanistici</td>
+<td>Opera o edizione</td>
+<td>riscontri</td>
+</tr>
+<tr class="odd">
+<td><code>opere-citanti</code></td>
+<td>Opere citanti distinte</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>opere</td>
+</tr>
+<tr class="even">
+<td><code>opere-indicizzate</code></td>
+<td>Opere indicizzate</td>
+<td>Ricezione</td>
+<td>Persona o organizzazione</td>
+<td>opere</td>
+</tr>
+<tr class="odd">
+<td><code>percentile</code></td>
+<td>Percentile citazionale</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>percentile</td>
+</tr>
+<tr class="even">
+<td><code>performance-documentate</code></td>
+<td>Esecuzioni pubbliche documentate</td>
+<td>Arti</td>
+<td>Artefatto o esecuzione</td>
+<td>eventi</td>
+</tr>
+<tr class="odd">
+<td><code>protocolli-preregistrati</code></td>
+<td>Preregistrazioni documentate</td>
+<td>Metodo</td>
+<td>Prodotto della ricerca</td>
+<td>protocolli</td>
+</tr>
+<tr class="even">
+<td><code>qualita-dati</code></td>
+<td>Contesto e limiti dei dati</td>
+<td>Dati</td>
+<td>Dati di ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>quota-accesso-aperto</code></td>
+<td>Quota di opere ad accesso aperto</td>
+<td>Apertura e accesso</td>
+<td>Persona o organizzazione</td>
+<td>percento</td>
+</tr>
+<tr class="even">
+<td><code>rcr</code></td>
+<td>Relative Citation Ratio</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>rapporto</td>
+</tr>
+<tr class="odd">
+<td><code>recepimento-policy</code></td>
+<td>Recepimento in atti o pratiche pubbliche</td>
+<td>Trasferimento</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>repliche-indipendenti</code></td>
+<td>Repliche indipendenti documentate</td>
+<td>Metodo</td>
+<td>Prodotto della ricerca</td>
+<td>repliche</td>
+</tr>
+<tr class="odd">
+<td><code>ricezione-argomentativa</code></td>
+<td>Ricezione argomentativa</td>
+<td>Saperi umanistici</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>riferimenti-bibliografici</code></td>
+<td>Riferimenti in uscita</td>
+<td>Ricezione</td>
+<td>Opera o edizione</td>
+<td>riferimenti</td>
+</tr>
+<tr class="odd">
+<td><code>riproducibilita-software</code></td>
+<td>Riscontro di riproducibilità software</td>
+<td>Software</td>
+<td>Software di ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>riusi-dati</code></td>
+<td>Riusi verificati di dati</td>
+<td>Dati</td>
+<td>Dati di ricerca</td>
+<td>riusi</td>
+</tr>
+<tr class="odd">
+<td><code>riusi-software</code></td>
+<td>Riusi documentati del software</td>
+<td>Software</td>
+<td>Software di ricerca</td>
+<td>riusi</td>
+</tr>
+<tr class="even">
+<td><code>siti-agrari-indipendenti</code></td>
+<td>Siti indipendenti di validazione agraria</td>
+<td>Agraria</td>
+<td>Prodotto della ricerca</td>
+<td>siti</td>
+</tr>
+<tr class="odd">
+<td><code>sjr</code></td>
+<td>SJR</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>indice</td>
+</tr>
+<tr class="even">
+<td><code>snip</code></td>
+<td>SNIP</td>
+<td>Sedi di pubblicazione</td>
+<td>Sede di pubblicazione</td>
+<td>indice</td>
+</tr>
+<tr class="odd">
+<td><code>traduzioni-verificate</code></td>
+<td>Traduzioni verificabili</td>
+<td>Saperi umanistici</td>
+<td>Opera o edizione</td>
+<td>traduzioni</td>
+</tr>
+<tr class="even">
+<td><code>trasferimento-clinico</code></td>
+<td>Riscontro di trasferimento clinico</td>
+<td>Ricerca clinica</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>trasferimento-ingegneristico</code></td>
+<td>Verifica in ambiente operativo</td>
+<td>Tecnica</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>trasferimento-veterinario</code></td>
+<td>Riscontro di trasferimento veterinario</td>
+<td>Agraria</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="odd">
+<td><code>validazione-agronomica</code></td>
+<td>Validazione in campo</td>
+<td>Agraria</td>
+<td>Prodotto della ricerca</td>
+<td>testo</td>
+</tr>
+<tr class="even">
+<td><code>valutazione-artistica</code></td>
+<td>Valutazione curatoriale o artistica</td>
+<td>Arti</td>
+<td>Artefatto o esecuzione</td>
+<td>testo</td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="principi">Principi</h2>
+<p>I principi sono parafrasi; la fonte conserva il testo autorevole. Le dichiarazioni citate sono la Dichiarazione di San Francisco sulla valutazione della ricerca (DORA), il Manifesto di Leiden (dieci principi), l'Accordo per la riforma della valutazione della ricerca (CoARA, quattro impegni fondamentali), i principi FAIR, la Dichiarazione congiunta sui principi di citazione dei dati (FORCE11, otto principi), i principi di citazione del software (sei), la tassonomia CRediT e la preregistrazione.</p>
+<!-- table:principles -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Chiave</th>
+<th>Principio</th>
+<th>Fonte</th>
+<th>Mette in guardia su</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CRediT</td>
+<td>Descrivere i contributi con quattordici ruoli, distinti dall'ordine degli autori</td>
+<td><a href="https://credit.niso.org/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Citazione del software 1</td>
+<td>Importanza: il software è un prodotto di ricerca citabile</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Citazione del software 2</td>
+<td>Credito e attribuzione a chi lo ha sviluppato</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Citazione del software 3</td>
+<td>Identificazione univoca e leggibile dalle macchine</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Citazione del software 4</td>
+<td>Persistenza di identificatori e metadati</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Citazione del software 5</td>
+<td>Accessibilità del software e dei metadati</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Citazione del software 6</td>
+<td>Specificità della versione citata</td>
+<td><a href="https://doi.org/10.7717/peerj-cs.86">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>CoARA, impegno 1</td>
+<td>Riconoscere la diversità dei contributi e delle carriere nella ricerca</td>
+<td><a href="https://coara.eu/agreement/the-agreement-full-text/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>CoARA, impegno 2</td>
+<td>Fondare la valutazione sul giudizio qualitativo e sulla revisione fra pari, con indicatori usati responsabilmente</td>
+<td><a href="https://coara.eu/agreement/the-agreement-full-text/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>CoARA, impegno 3</td>
+<td>Abbandonare gli usi impropri delle metriche di rivista e di pubblicazione, come fattore d'impatto e indice h</td>
+<td><a href="https://coara.eu/agreement/the-agreement-full-text/">Fonte</a></td>
+<td><code>g-index</code>, <code>h-index</code>, <code>i10-index</code>, <code>jif</code>, <code>m-index</code></td>
+</tr>
+<tr class="odd">
+<td>CoARA, impegno 4</td>
+<td>Evitare l'uso delle classifiche delle organizzazioni di ricerca nella valutazione</td>
+<td><a href="https://coara.eu/agreement/the-agreement-full-text/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>DORA</td>
+<td>Non usare metriche di rivista per valutare singoli articoli o persone</td>
+<td><a href="https://sfdora.org/read/">Fonte</a></td>
+<td><code>article-influence</code>, <code>citescore</code>, <code>eigenfactor</code>, <code>jci</code>, <code>jif</code>, <code>sjr</code>, <code>snip</code></td>
+</tr>
+<tr class="odd">
+<td>FAIR A</td>
+<td>Accessibile: protocolli aperti e metadati che restano anche senza i dati</td>
+<td><a href="https://doi.org/10.1038/sdata.2016.18">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FAIR F</td>
+<td>Reperibile: identificatori persistenti e metadati ricchi</td>
+<td><a href="https://doi.org/10.1038/sdata.2016.18">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>FAIR I</td>
+<td>Interoperabile: vocabolari formali e condivisi</td>
+<td><a href="https://doi.org/10.1038/sdata.2016.18">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FAIR R</td>
+<td>Riusabile: licenza chiara, provenienza dettagliata, standard di comunità</td>
+<td><a href="https://doi.org/10.1038/sdata.2016.18">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>FORCE11 1</td>
+<td>Importanza: i dati sono prodotti di ricerca legittimi e citabili</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FORCE11 2</td>
+<td>Credito e attribuzione a chi ha contribuito ai dati</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>FORCE11 3</td>
+<td>Evidenza: citare i dati su cui si fonda un'affermazione</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FORCE11 4</td>
+<td>Identificazione univoca e persistente</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>FORCE11 5</td>
+<td>Accesso ai dati e ai metadati citati</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FORCE11 6</td>
+<td>Persistenza degli identificatori e dei metadati oltre la vita dei dati</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>FORCE11 7</td>
+<td>Specificità e verificabilità della porzione citata</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>FORCE11 8</td>
+<td>Interoperabilità e flessibilità fra comunità</td>
+<td><a href="https://force11.org/info/joint-declaration-of-data-citation-principles-final/">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Manifesto di Leiden 1</td>
+<td>La valutazione quantitativa sostiene il giudizio qualitativo degli esperti</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Manifesto di Leiden 10</td>
+<td>Esaminare regolarmente gli indicatori e aggiornarli</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Manifesto di Leiden 2</td>
+<td>Misurare rispetto alle missioni di ricerca dell'istituzione, del gruppo o della persona</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Manifesto di Leiden 3</td>
+<td>Proteggere l'eccellenza nella ricerca di rilevanza locale</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Manifesto di Leiden 4</td>
+<td>Tenere aperti, trasparenti e semplici raccolta dei dati e analisi</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Manifesto di Leiden 5</td>
+<td>Permettere a chi è valutato di verificare dati e analisi</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Manifesto di Leiden 6</td>
+<td>Tenere conto delle differenze fra campi nelle pratiche di pubblicazione e citazione</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Manifesto di Leiden 7</td>
+<td>Valutare le singole persone con un giudizio qualitativo del loro portafoglio</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Manifesto di Leiden 8</td>
+<td>Evitare la concretezza fuori luogo e la falsa precisione</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td><code>altmetric</code>, <code>percentile</code></td>
+</tr>
+<tr class="even">
+<td>Manifesto di Leiden 9</td>
+<td>Riconoscere gli effetti sistemici della valutazione e degli indicatori</td>
+<td><a href="https://www.nature.com/articles/520429a">Fonte</a></td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>Preregistrazione</td>
+<td>Dichiarare ipotesi e metodo prima di raccogliere i dati</td>
+<td><a href="https://www.cos.io/initiatives/prereg">Fonte</a></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="campi-ford">Campi FORD</h2>
+<p>Il Manuale di Frascati 2015 dell'OCSE classifica la ricerca e sviluppo in sei campi (scienze naturali; ingegneria e tecnologia; medicina e salute; agraria e veterinaria; scienze sociali; scienze umane e arti) e quarantadue sottocampi. Metrum li pubblica come schema SKOS con le etichette in tre lingue usate dalla Cripta; i codici organizzano il lavoro editoriale e non misurano il merito. Trivium vi fa ponte con <code>skos:broadMatch</code>.</p>
+<h2 id="il-raccordo-filosofico">Il raccordo filosofico</h2>
+<p>Il manifesto della Cripta descrive, nel secondo capoverso, una svolta: con la macchina astratta del 1936 si avvia «il processo di quantificazione della scrittura», che trova nell'ipertesto la sua ostensione finale (<a href="../dubium/term/F08.html">F08</a>). Nel quinto capoverso la quantificazione ontologica è il rapporto fra i valori delle variabili vincolate di una teoria e i suoi enunciati (<a href="../dubium/term/F19.html">F19</a>). La scientometria è una quantificazione di secondo grado: non quantifica l'essere, ma la scrittura che ne tratta, contando come i testi si citano, si riusano, si distribuiscono. Metrum tiene fermo questo scarto. Le sue osservazioni riguardano opere, edizioni, sedi, persone come soggetti ontici; la domanda sul senso di ciò che misurano resta in Dubium. Per questo l'intestazione del modulo rimanda a F08, a F19 e al capitale semantico (<a href="../dubium/term/F13.html">F13</a>), e non dichiara alcuna equivalenza.</p>
+<p>La seconda tesi è quella della non neutralità. Una misura altera ciò che misura: chi sa di essere contato scrive per essere contato. Il Manifesto di Leiden lo chiama effetto sistemico (principio 9); la pagina «Chi siamo» della Cripta lo dice con il lessico del materialismo dialettico. Metrum non risolve il problema, ma lo rende visibile: ogni osservazione dichiara il suo contratto, e ogni contratto porta con sé i principi che ne limitano l'uso.</p>
+<h2 id="interrogazioni-di-esempio">Interrogazioni di esempio</h2>
+<p>I protocolli di cui DORA limita l'uso, con la famiglia:</p>
+<pre class="sparql"><code>PREFIX mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+SELECT ?protocollo ?famiglia WHERE {
+  mtr:principle-dora mtr:cautions ?p .
+  ?p skos:prefLabel ?protocollo ; mtr:family/skos:prefLabel ?famiglia .
+  FILTER ( lang(?protocollo) = &quot;it&quot; &amp;&amp; lang(?famiglia) = &quot;it&quot; )
+}</code></pre>
+<p>I protocolli applicabili ai dati di ricerca:</p>
+<pre class="sparql"><code>PREFIX mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt;
+SELECT ?p WHERE { ?p mtr:scope mtr:scope-data }</code></pre>
+<p>Le discipline di Trivium che fanno ponte a un campo FORD delle scienze umane:</p>
+<pre class="sparql"><code>PREFIX mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+SELECT ?disciplina ?campo WHERE {
+  ?campo skos:broader mtr:ford-6 .
+  ?disciplina skos:broadMatch ?campo .
+}</code></pre>
+<h2 id="limiti">Limiti</h2>
+<p>Metrum pubblica i protocolli che il servizio della Cripta conosce oggi; non pretende di esaurire la scientometria. I metodi sono descritti in una frase: la riproduzione effettiva di un indicatore dipende dalla fonte e dal suo corpus. Le etichette inglesi e latine dei campi FORD sono quelle usate dalla Cripta, non traduzioni ufficiali dell'OCSE. Il modulo non contiene osservazioni reali: quelle vivono nel servizio semantico del sito, che pubblica solo ciò che la redazione ha rilasciato.</p>
+</article></main>
+  <footer>
+    <nav class="footer-nav" aria-label="Collegamenti nel piè di pagina">
+      <a href="../index.html">Aenigma</a>
+      <a href="https://criptasemantica.it/">Cripta Semantica</a>
+      <a href="../index.html#nav-policies">Informazioni legali</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,1371 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Le arti e le discipline con cui la Cripta Semantica ordina il suo ipertesto: duecento categorie del sito con tre lingue, gerarchia, descrizioni d&#x27;autore, corrispondenze Wikidata e ponti verso i campi FORD e verso Dubium.">
+<title>Trivium · Formalizzazione</title>
+<link rel="canonical" href="https://aenigma.criptasemantica.it/trivium/formal.html">
+<link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/trivium/formal.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/trivium/en/formal.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/trivium/la/formal.html">
+<link rel="stylesheet" href="../style.css?v=f4fcaa0cc2ec">
+<link rel="stylesheet" href="../reference.css?v=30936f0da44f">
+
+</head>
+<body class="reference-page">
+<a class="skip-link" href="#main">Vai al contenuto</a>
+<div class="container">
+  <header>
+    <p class="site-brand">AENIGMA</p>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../index.html">Aenigma</a><a href="../dubium/index.html">Dubium</a><a href="index.html" aria-current="page">Trivium</a><a href="../metrum/index.html">Metrum</a><a href="../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Trivium"><a href="index.html">Catalogo</a><a href="schema.html">Gerarchia e proprietà</a><a href="guide.html">Guida per iniziare</a><a href="formal.html" aria-current="page">Formalizzazione</a></nav>
+    <nav class="site-languages" aria-label="Lingue"><a href="formal.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="en/formal.html" lang="en" hreflang="en" data-language>English</a><a href="la/formal.html" lang="la" hreflang="la" data-language>Latine</a></nav>
+  </header>
+  <main id="main"><article class="prose"><h1 id="trivium-formalizzazione-e-metodo">Trivium. Formalizzazione e metodo</h1>
+<p><a href="guide.html">Guida per iniziare</a> · <a href="en/formal.html">English</a> · <a href="la/formal.html">Latine</a></p>
+<p>Trivium formalizza un oggetto diverso da quello di Dubium. Dubium legge un testo; Trivium legge un ordinamento: la tassonomia con cui un sito distribuisce i suoi articoli. L'ordinamento è un fatto documentato (le categorie esistono, hanno un nome, una gerarchia, un numero), mentre le traduzioni, le corrispondenze e i ponti sono letture della redazione. Il modulo tiene distinte le due cose: ogni concetto conserva la fonte pubblica della categoria, e tutto ciò che è stato aggiunto è dichiarato in questo documento.</p>
+<h2 id="fonti">Fonti</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Fonte</th>
+<th>Che cosa fornisce</th>
+<th>Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>API pubblica delle categorie di criptasemantica.it</td>
+<td>Nome, slug, identificativo, categoria madre, descrizione, collegamento</td>
+<td>istantanea dell'11 novembre 2026, conservata in <code>fonti/</code></td>
+</tr>
+<tr class="even">
+<td>Pagine Progetto, Chi siamo, Canali, Articoli, FINAI, Alessandro Sevardi</td>
+<td>Le stanze, descritte nei testi alternativi delle immagini e nei testi delle pagine</td>
+<td>11 novembre 2026</td>
+</tr>
+<tr class="odd">
+<td>Wikidata</td>
+<td>Elementi corrispondenti alle discipline, con numero di collegamenti a Wikipedia</td>
+<td>11 novembre 2026</td>
+</tr>
+<tr class="even">
+<td>Manuale di Frascati 2015 (classificazione FORD), tramite Metrum</td>
+<td>Campi di ricerca e sviluppo</td>
+<td>edizione 2015</td>
+</tr>
+<tr class="odd">
+<td>Dubium</td>
+<td>Concetti del manifesto a cui collegare le discipline</td>
+<td>versione 0.2.0</td>
+</tr>
+</tbody>
+</table>
+<p>I conteggi degli articoli per categoria non sono registrati: cambiano ogni giorno e non descrivono il concetto.</p>
+<h2 id="il-modello">Il modello</h2>
+<p>Quattro classi, tutte sottoclassi di <code>skos:Concept</code> e fra loro disgiunte: <code>trv:Disciplina</code>, <code>trv:Genere</code>, <code>trv:Programma</code>, <code>trv:Stanza</code>. Quattro schemi SKOS: <code>trv:discipline</code>, <code>trv:generi</code>, <code>trv:programmi</code>, <code>trv:stanze</code>. Due collezioni: <code>trv:trivio</code> e <code>trv:quadrivio</code>. Una sola proprietà propria, <code>trv:identificativoCategoria</code>, che conserva il numero della categoria su WordPress; tutto il resto usa SKOS e Dublin Core.</p>
+<p><strong>Regola di assegnazione allo schema.</strong> Si risale dalla categoria alla sua radice. Se la radice è una delle sezioni editoriali (notizie, recensioni, autori, profili, prodotti, sinergie, canali, senza categoria) il concetto è un genere; se è una delle linee di programma (comunismo digitale, grande rete semantica mondiale, motore di ricerca ermeneutico, programmazione filosofica, metafisica del gioco, studi accademici) è un programma; altrimenti è una disciplina. La gerarchia del sito è conservata con <code>skos:broader</code> all'interno dello stesso schema; le radici sono <code>skos:topConceptOf</code> del loro schema.</p>
+<p><strong>Il caso «Logica».</strong> Il sito ha due categorie con lo stesso slug: una di vertice e una dentro Dialettica. Un solo IRI confonderebbe due nodi del sito. La seconda riceve il suffisso <code>-dialettica</code>, lo stesso che il sito usa per distinguere le due «Antropologia», e le due voci sono dichiarate <code>skos:related</code>.</p>
+<p><strong>Etichette.</strong> L'italiano è il nome della categoria, carattere per carattere. L'inglese e il latino sono traduzioni editoriali. Per le discipline moderne il latino ricorre a neologismi trasparenti (<code>Informatica</code>, <code>Cybernetica</code>, <code>Data ingentia</code> per i big data) o a perifrasi (<code>Disciplina machinalis</code> per l'apprendimento automatico). Le note d'ambito riportano il testo dell'autore in italiano e, per le venti categorie che ne hanno una, la traduzione in inglese e latino.</p>
+<h2 id="corrispondenze-con-wikidata">Corrispondenze con Wikidata</h2>
+<p>Il metodo è stato il seguente. Per ogni nome italiano si è interrogato il servizio SPARQL di Wikidata chiedendo gli elementi con quell'etichetta italiana, escludendo pagine di disambiguazione e articoli scientifici, ordinati per numero di collegamenti a Wikipedia. Si è scelto l'elemento più collegato solo quando la sua descrizione corrispondeva al senso della categoria; nei casi ambigui non si è scelto nulla. Alcuni esempi delle esclusioni: «Cosmologia» (la categoria sta sotto Epistemologia; l'elemento più collegato è la cosmologia fisica); «Cronaca» (l'elemento più collegato è il genere storiografico); «Teoria critica» (l'elemento trovato è la sociologia critica); «Scienze politiche» (elemento con cinque soli collegamenti); «Storia dell'Africa» (si trovava solo il continente); «Filosofia italiana», «Psicanalisi», «Filosofia prima», «Beni culturali» (nessun elemento con quell'etichetta). «Politica», «Heidegger» e «Nietzsche» sono stati verificati singolarmente.</p>
+<p>La relazione è sempre <code>skos:closeMatch</code>. <code>skos:exactMatch</code> è vietato dai vincoli SHACL: una categoria editoriale non è identica a un concetto enciclopedico, anche quando porta lo stesso nome. La data della verifica è quella dell'istantanea.</p>
+<!-- table:wikidata -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Concetto</th>
+<th>IRI</th>
+<th>Elemento Wikidata</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Antropologia</td>
+<td><code>trv:antropologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q23404">Q23404</a></td>
+</tr>
+<tr class="even">
+<td>Antropologia</td>
+<td><code>trv:antropologia-dialettica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q23404">Q23404</a></td>
+</tr>
+<tr class="odd">
+<td>Antropologia Culturale</td>
+<td><code>trv:antropologia-culturale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q28598">Q28598</a></td>
+</tr>
+<tr class="even">
+<td>Architettura dell'Informazione</td>
+<td><code>trv:architettura-dellinformazione</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q845921">Q845921</a></td>
+</tr>
+<tr class="odd">
+<td>Arte</td>
+<td><code>trv:arte</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q735">Q735</a></td>
+</tr>
+<tr class="even">
+<td>Arte Contemporanea</td>
+<td><code>trv:arte-contemporanea</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q186030">Q186030</a></td>
+</tr>
+<tr class="odd">
+<td>Arte Medievale</td>
+<td><code>trv:arte-medievale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q3624153">Q3624153</a></td>
+</tr>
+<tr class="even">
+<td>Astronomia</td>
+<td><code>trv:astronomia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q333">Q333</a></td>
+</tr>
+<tr class="odd">
+<td>Big Data</td>
+<td><code>trv:big-data</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q858810">Q858810</a></td>
+</tr>
+<tr class="even">
+<td>Biologia</td>
+<td><code>trv:biologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q420">Q420</a></td>
+</tr>
+<tr class="odd">
+<td>Buddismo</td>
+<td><code>trv:buddismo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q748">Q748</a></td>
+</tr>
+<tr class="even">
+<td>Cibernetica</td>
+<td><code>trv:cibernetica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q123637">Q123637</a></td>
+</tr>
+<tr class="odd">
+<td>Costituzione</td>
+<td><code>trv:costituzione</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7755">Q7755</a></td>
+</tr>
+<tr class="even">
+<td>Dialettica</td>
+<td><code>trv:dialettica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9453">Q9453</a></td>
+</tr>
+<tr class="odd">
+<td>Diritti Umani</td>
+<td><code>trv:diritti-umani</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8458">Q8458</a></td>
+</tr>
+<tr class="even">
+<td>Diritto</td>
+<td><code>trv:diritto</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7748">Q7748</a></td>
+</tr>
+<tr class="odd">
+<td>Ecologia</td>
+<td><code>trv:ecologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7150">Q7150</a></td>
+</tr>
+<tr class="even">
+<td>Economia</td>
+<td><code>trv:economia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q159810">Q159810</a></td>
+</tr>
+<tr class="odd">
+<td>Economia Politica</td>
+<td><code>trv:economia-politica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q47555">Q47555</a></td>
+</tr>
+<tr class="even">
+<td>Epistemologia</td>
+<td><code>trv:epistemologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9471">Q9471</a></td>
+</tr>
+<tr class="odd">
+<td>Ermeneutica</td>
+<td><code>trv:ermeneutica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q102686">Q102686</a></td>
+</tr>
+<tr class="even">
+<td>Estetica</td>
+<td><code>trv:estetica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q35986">Q35986</a></td>
+</tr>
+<tr class="odd">
+<td>Etica</td>
+<td><code>trv:etica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9465">Q9465</a></td>
+</tr>
+<tr class="even">
+<td>Etnologia</td>
+<td><code>trv:etnologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q43455">Q43455</a></td>
+</tr>
+<tr class="odd">
+<td>Evoluzione</td>
+<td><code>trv:evoluzione</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1063">Q1063</a></td>
+</tr>
+<tr class="even">
+<td>Femminismo</td>
+<td><code>trv:femminismo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7252">Q7252</a></td>
+</tr>
+<tr class="odd">
+<td>Fenomenologia</td>
+<td><code>trv:fenomenologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q179235">Q179235</a></td>
+</tr>
+<tr class="even">
+<td>Filologia</td>
+<td><code>trv:filologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q40634">Q40634</a></td>
+</tr>
+<tr class="odd">
+<td>Filosofia Antica</td>
+<td><code>trv:filosofia-antica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q204100">Q204100</a></td>
+</tr>
+<tr class="even">
+<td>Filosofia Contemporanea</td>
+<td><code>trv:filosofia-contemporanea</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q943303">Q943303</a></td>
+</tr>
+<tr class="odd">
+<td>Filosofia Moderna</td>
+<td><code>trv:filosofia-moderna</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q860746">Q860746</a></td>
+</tr>
+<tr class="even">
+<td>Filosofia Politica</td>
+<td><code>trv:filosofia-politica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q179805">Q179805</a></td>
+</tr>
+<tr class="odd">
+<td>Filosofia Teoretica</td>
+<td><code>trv:filosofia-teoretica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2166096">Q2166096</a></td>
+</tr>
+<tr class="even">
+<td>Filosofia del Linguaggio</td>
+<td><code>trv:filosofia-del-linguaggio</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q484761">Q484761</a></td>
+</tr>
+<tr class="odd">
+<td>Filosofia della Matematica</td>
+<td><code>trv:filosofia-della-matematica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q180536">Q180536</a></td>
+</tr>
+<tr class="even">
+<td>Filosofia della Musica</td>
+<td><code>trv:filosofia-della-musica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2092865">Q2092865</a></td>
+</tr>
+<tr class="odd">
+<td>Filosofia della Scienza</td>
+<td><code>trv:filosofia-della-scienza</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q59115">Q59115</a></td>
+</tr>
+<tr class="even">
+<td>Filosofia della Tecnica</td>
+<td><code>trv:filosofia-della-tecnica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q5862034">Q5862034</a></td>
+</tr>
+<tr class="odd">
+<td>Finanza</td>
+<td><code>trv:finanza</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q43015">Q43015</a></td>
+</tr>
+<tr class="even">
+<td>Fisica</td>
+<td><code>trv:fisica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q413">Q413</a></td>
+</tr>
+<tr class="odd">
+<td>Fondamenti della Matematica</td>
+<td><code>trv:fondamenti-della-matematica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q833585">Q833585</a></td>
+</tr>
+<tr class="even">
+<td>Genetica</td>
+<td><code>trv:genetica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7162">Q7162</a></td>
+</tr>
+<tr class="odd">
+<td>Geografia</td>
+<td><code>trv:geografia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1071">Q1071</a></td>
+</tr>
+<tr class="even">
+<td>Geopolitica</td>
+<td><code>trv:geopolitica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q159385">Q159385</a></td>
+</tr>
+<tr class="odd">
+<td>Giainismo</td>
+<td><code>trv:giainismo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9232">Q9232</a></td>
+</tr>
+<tr class="even">
+<td>Giurisprudenza</td>
+<td><code>trv:giurisprudenza</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q4932206">Q4932206</a></td>
+</tr>
+<tr class="odd">
+<td>Globalizzazione</td>
+<td><code>trv:globalizzazione</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7181">Q7181</a></td>
+</tr>
+<tr class="even">
+<td>Globalizzazione</td>
+<td><code>trv:globalizzazione-storia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7181">Q7181</a></td>
+</tr>
+<tr class="odd">
+<td>Gnoseologia</td>
+<td><code>trv:gnoseologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2560959">Q2560959</a></td>
+</tr>
+<tr class="even">
+<td>Grammatica</td>
+<td><code>trv:grammatica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8091">Q8091</a></td>
+</tr>
+<tr class="odd">
+<td>Heidegger</td>
+<td><code>trv:heidegger</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q48301">Q48301</a></td>
+</tr>
+<tr class="even">
+<td>Imperialismo</td>
+<td><code>trv:imperialismo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7260">Q7260</a></td>
+</tr>
+<tr class="odd">
+<td>Industria</td>
+<td><code>trv:industria</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8148">Q8148</a></td>
+</tr>
+<tr class="even">
+<td>Informatica</td>
+<td><code>trv:informatica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q21198">Q21198</a></td>
+</tr>
+<tr class="odd">
+<td>Intelligenza Artificiale</td>
+<td><code>trv:intelligenza-artificiale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q11660">Q11660</a></td>
+</tr>
+<tr class="even">
+<td>Lavoro</td>
+<td><code>trv:lavoro</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q268378">Q268378</a></td>
+</tr>
+<tr class="odd">
+<td>Letteratura</td>
+<td><code>trv:letteratura</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8242">Q8242</a></td>
+</tr>
+<tr class="even">
+<td>Linguistica</td>
+<td><code>trv:linguistica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8162">Q8162</a></td>
+</tr>
+<tr class="odd">
+<td>Logica</td>
+<td><code>trv:logica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8078">Q8078</a></td>
+</tr>
+<tr class="even">
+<td>Logica</td>
+<td><code>trv:logica-dialettica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q8078">Q8078</a></td>
+</tr>
+<tr class="odd">
+<td>Logica Matematica</td>
+<td><code>trv:logica-matematica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1166618">Q1166618</a></td>
+</tr>
+<tr class="even">
+<td>Machine Learning</td>
+<td><code>trv:machine-learning</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2539">Q2539</a></td>
+</tr>
+<tr class="odd">
+<td>Macroeconomia</td>
+<td><code>trv:macroeconomia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q39680">Q39680</a></td>
+</tr>
+<tr class="even">
+<td>Matematica</td>
+<td><code>trv:matematica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q395">Q395</a></td>
+</tr>
+<tr class="odd">
+<td>Materialismo Dialettico</td>
+<td><code>trv:materialismo-dialettico</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q181207">Q181207</a></td>
+</tr>
+<tr class="even">
+<td>Materialismo Storico</td>
+<td><code>trv:materialismo-storico</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q190004">Q190004</a></td>
+</tr>
+<tr class="odd">
+<td>Metafisica</td>
+<td><code>trv:metafisica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q35277">Q35277</a></td>
+</tr>
+<tr class="even">
+<td>Metafisica Generale</td>
+<td><code>trv:metafisica-generale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q35277">Q35277</a></td>
+</tr>
+<tr class="odd">
+<td>Metaversi</td>
+<td><code>trv:metaversi</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2632041">Q2632041</a></td>
+</tr>
+<tr class="even">
+<td>Mito</td>
+<td><code>trv:mito</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q12827256">Q12827256</a></td>
+</tr>
+<tr class="odd">
+<td>Mitologia</td>
+<td><code>trv:mitologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9134">Q9134</a></td>
+</tr>
+<tr class="even">
+<td>Musica</td>
+<td><code>trv:musica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q638">Q638</a></td>
+</tr>
+<tr class="odd">
+<td>Neuroscienze</td>
+<td><code>trv:neuroscienze</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q207011">Q207011</a></td>
+</tr>
+<tr class="even">
+<td>Neuroscienze Cognitive</td>
+<td><code>trv:neuroscienze-cognitive</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1138951">Q1138951</a></td>
+</tr>
+<tr class="odd">
+<td>Nietzsche</td>
+<td><code>trv:nietzsche</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9358">Q9358</a></td>
+</tr>
+<tr class="even">
+<td>Notizie</td>
+<td><code>trv:notizie</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q38926">Q38926</a></td>
+</tr>
+<tr class="odd">
+<td>Ontologia</td>
+<td><code>trv:ontologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q44325">Q44325</a></td>
+</tr>
+<tr class="even">
+<td>Ontologia Formale</td>
+<td><code>trv:ontologia-formale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1437388">Q1437388</a></td>
+</tr>
+<tr class="odd">
+<td>Polemologia</td>
+<td><code>trv:polemologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1367522">Q1367522</a></td>
+</tr>
+<tr class="even">
+<td>Politica</td>
+<td><code>trv:politica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7163">Q7163</a></td>
+</tr>
+<tr class="odd">
+<td>Politica Estera</td>
+<td><code>trv:politica-estera</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q181648">Q181648</a></td>
+</tr>
+<tr class="even">
+<td>Psicolinguistica</td>
+<td><code>trv:psicolinguistica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q179488">Q179488</a></td>
+</tr>
+<tr class="odd">
+<td>Psicolinguistica</td>
+<td><code>trv:psicolinguistica-linguistica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q179488">Q179488</a></td>
+</tr>
+<tr class="even">
+<td>Psicologia</td>
+<td><code>trv:psicologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q9418">Q9418</a></td>
+</tr>
+<tr class="odd">
+<td>Psicologia Sociale</td>
+<td><code>trv:psicologia-sociale</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q161272">Q161272</a></td>
+</tr>
+<tr class="even">
+<td>Psicologia dello Sviluppo</td>
+<td><code>trv:psicologia-dello-sviluppo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q175002">Q175002</a></td>
+</tr>
+<tr class="odd">
+<td>Quadrivio</td>
+<td><code>trv:quadrivio</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q273822">Q273822</a></td>
+</tr>
+<tr class="even">
+<td>Recensioni</td>
+<td><code>trv:recensioni</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q265158">Q265158</a></td>
+</tr>
+<tr class="odd">
+<td>Relazioni Internazionali</td>
+<td><code>trv:relazioni-internazionali</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q166542">Q166542</a></td>
+</tr>
+<tr class="even">
+<td>Retorica</td>
+<td><code>trv:retorica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q81009">Q81009</a></td>
+</tr>
+<tr class="odd">
+<td>Saggistica</td>
+<td><code>trv:saggistica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q27801">Q27801</a></td>
+</tr>
+<tr class="even">
+<td>Scienze Cognitive</td>
+<td><code>trv:scienze-cognitive</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q147638">Q147638</a></td>
+</tr>
+<tr class="odd">
+<td>Semantica</td>
+<td><code>trv:semantica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q39645">Q39645</a></td>
+</tr>
+<tr class="even">
+<td>Sindacato</td>
+<td><code>trv:sindacato</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q178790">Q178790</a></td>
+</tr>
+<tr class="odd">
+<td>Sociologia</td>
+<td><code>trv:sociologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q21201">Q21201</a></td>
+</tr>
+<tr class="even">
+<td>Spiritualismo</td>
+<td><code>trv:spiritualismo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q2636432">Q2636432</a></td>
+</tr>
+<tr class="odd">
+<td>Storia</td>
+<td><code>trv:storia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q309">Q309</a></td>
+</tr>
+<tr class="even">
+<td>Storia Contemporanea</td>
+<td><code>trv:storia-contemporanea</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q186075">Q186075</a></td>
+</tr>
+<tr class="odd">
+<td>Storia dell'Arte</td>
+<td><code>trv:storia-dellarte</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q50637">Q50637</a></td>
+</tr>
+<tr class="even">
+<td>Storia della Filosofia</td>
+<td><code>trv:storia-della-filosofia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q27654">Q27654</a></td>
+</tr>
+<tr class="odd">
+<td>Storia della Matematica</td>
+<td><code>trv:storia-della-matematica</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q185264">Q185264</a></td>
+</tr>
+<tr class="even">
+<td>Storia della Sardegna</td>
+<td><code>trv:storia-della-sardegna</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1516605">Q1516605</a></td>
+</tr>
+<tr class="odd">
+<td>Storia delle Religioni</td>
+<td><code>trv:storia-delle-religioni</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q846742">Q846742</a></td>
+</tr>
+<tr class="even">
+<td>Storia delle Scienze</td>
+<td><code>trv:storia-delle-scienze</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q201486">Q201486</a></td>
+</tr>
+<tr class="odd">
+<td>Studi Culturali</td>
+<td><code>trv:studi-culturali</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1143546">Q1143546</a></td>
+</tr>
+<tr class="even">
+<td>Studi postcoloniali</td>
+<td><code>trv:studi-postcoloniali</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q265425">Q265425</a></td>
+</tr>
+<tr class="odd">
+<td>Sviluppo</td>
+<td><code>trv:sviluppo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q4530482">Q4530482</a></td>
+</tr>
+<tr class="even">
+<td>Teatro</td>
+<td><code>trv:teatro</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q11635">Q11635</a></td>
+</tr>
+<tr class="odd">
+<td>Tecnologia</td>
+<td><code>trv:tecnologia</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q11016">Q11016</a></td>
+</tr>
+<tr class="even">
+<td>Teoria Marxista</td>
+<td><code>trv:teoria-marxista</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q7264">Q7264</a></td>
+</tr>
+<tr class="odd">
+<td>Teoria dei Sistemi</td>
+<td><code>trv:teoria-dei-sistemi</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q269699">Q269699</a></td>
+</tr>
+<tr class="even">
+<td>Transumanesimo</td>
+<td><code>trv:transumanesimo</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q194100">Q194100</a></td>
+</tr>
+<tr class="odd">
+<td>Trivio</td>
+<td><code>trv:trivio</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q205186">Q205186</a></td>
+</tr>
+<tr class="even">
+<td>Umbria</td>
+<td><code>trv:umbria</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q1280">Q1280</a></td>
+</tr>
+<tr class="odd">
+<td>Web Semantico</td>
+<td><code>trv:web-semantico</code></td>
+<td><a href="https://www.wikidata.org/wiki/Q54837">Q54837</a></td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="ponti-verso-i-campi-ford">Ponti verso i campi FORD</h2>
+<p>Il ponte è <code>skos:broadMatch</code>: la categoria della Cripta è letta come più specifica di un campo FORD, oppure come interna a esso. La classificazione FORD descrive attività di ricerca, non pensieri: per questo alcuni ponti sorprendono. L'antropologia sta in «Sociologia» (5.4) perché il Manuale di Frascati vi include antropologia ed etnologia; la retorica e la grammatica stanno in «Lingue e letterature» (6.2); la logica ha due ponti, filosofia (6.3) e matematica (1.1); la geografia del sito, che raccoglie fisica e biologia, è letta come «Terra e ambiente» (1.5). I ponti sono dichiarati solo dove la collocazione è difendibile; le categorie di cronaca, politica interna o territorio non ne hanno.</p>
+<!-- table:ford -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Concetto</th>
+<th>IRI</th>
+<th>Campo FORD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Antropologia</td>
+<td><code>trv:antropologia</code></td>
+<td>5.4 · Sociologia</td>
+</tr>
+<tr class="even">
+<td>Antropologia</td>
+<td><code>trv:antropologia-dialettica</code></td>
+<td>5.4 · Sociologia</td>
+</tr>
+<tr class="odd">
+<td>Arte</td>
+<td><code>trv:arte</code></td>
+<td>6.4 · Arti e pratiche performative</td>
+</tr>
+<tr class="even">
+<td>Astronomia</td>
+<td><code>trv:astronomia</code></td>
+<td>1.3 · Fisica</td>
+</tr>
+<tr class="odd">
+<td>Big Data</td>
+<td><code>trv:big-data</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Biologia</td>
+<td><code>trv:biologia</code></td>
+<td>1.6 · Biologia</td>
+</tr>
+<tr class="odd">
+<td>Buddismo</td>
+<td><code>trv:buddismo</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Cibernetica</td>
+<td><code>trv:cibernetica</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="odd">
+<td>Cibernetica</td>
+<td><code>trv:cibernetica</code></td>
+<td>2.2 · Elettronica, elettricità e informazione</td>
+</tr>
+<tr class="even">
+<td>Cosmologia</td>
+<td><code>trv:cosmologia</code></td>
+<td>1.3 · Fisica</td>
+</tr>
+<tr class="odd">
+<td>Dialettica</td>
+<td><code>trv:dialettica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Diritto</td>
+<td><code>trv:diritto</code></td>
+<td>5.5 · Diritto</td>
+</tr>
+<tr class="odd">
+<td>Ecologia</td>
+<td><code>trv:ecologia</code></td>
+<td>1.6 · Biologia</td>
+</tr>
+<tr class="even">
+<td>Economia</td>
+<td><code>trv:economia</code></td>
+<td>5.2 · Economia e impresa</td>
+</tr>
+<tr class="odd">
+<td>Epistemologia</td>
+<td><code>trv:epistemologia</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Epistemologia e Metafisica</td>
+<td><code>trv:epistemologia-e-metafisica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Ermeneutica</td>
+<td><code>trv:ermeneutica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Estetica</td>
+<td><code>trv:estetica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Etica</td>
+<td><code>trv:etica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Femminismo</td>
+<td><code>trv:femminismo</code></td>
+<td>5.4 · Sociologia</td>
+</tr>
+<tr class="odd">
+<td>Fenomenologia</td>
+<td><code>trv:fenomenologia</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Filologia</td>
+<td><code>trv:filologia</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="odd">
+<td>Filosofia Orientale</td>
+<td><code>trv:filosofia-orientale</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Filosofia Politica</td>
+<td><code>trv:filosofia-politica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Filosofia del Linguaggio</td>
+<td><code>trv:filosofia-del-linguaggio</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Filosofia della Scienza</td>
+<td><code>trv:filosofia-della-scienza</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Finanza</td>
+<td><code>trv:finanza</code></td>
+<td>5.2 · Economia e impresa</td>
+</tr>
+<tr class="even">
+<td>Fisica</td>
+<td><code>trv:fisica</code></td>
+<td>1.3 · Fisica</td>
+</tr>
+<tr class="odd">
+<td>Genetica</td>
+<td><code>trv:genetica</code></td>
+<td>1.6 · Biologia</td>
+</tr>
+<tr class="even">
+<td>Geografia</td>
+<td><code>trv:geografia</code></td>
+<td>1.5 · Terra e ambiente</td>
+</tr>
+<tr class="odd">
+<td>Geopolitica</td>
+<td><code>trv:geopolitica</code></td>
+<td>5.6 · Scienze politiche</td>
+</tr>
+<tr class="even">
+<td>Giainismo</td>
+<td><code>trv:giainismo</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Giurisprudenza</td>
+<td><code>trv:giurisprudenza</code></td>
+<td>5.5 · Diritto</td>
+</tr>
+<tr class="even">
+<td>Grammatica</td>
+<td><code>trv:grammatica</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="odd">
+<td>Grande Rete Semantica Mondiale</td>
+<td><code>trv:www-semantico</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Informatica</td>
+<td><code>trv:informatica</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="odd">
+<td>Intelligenza Artificiale</td>
+<td><code>trv:intelligenza-artificiale</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Letteratura</td>
+<td><code>trv:letteratura</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="odd">
+<td>Linguistica</td>
+<td><code>trv:linguistica</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="even">
+<td>Logica</td>
+<td><code>trv:logica</code></td>
+<td>1.1 · Matematica</td>
+</tr>
+<tr class="odd">
+<td>Logica</td>
+<td><code>trv:logica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Logica</td>
+<td><code>trv:logica-dialettica</code></td>
+<td>1.1 · Matematica</td>
+</tr>
+<tr class="odd">
+<td>Logica</td>
+<td><code>trv:logica-dialettica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Logica Matematica</td>
+<td><code>trv:logica-matematica</code></td>
+<td>1.1 · Matematica</td>
+</tr>
+<tr class="odd">
+<td>Machine Learning</td>
+<td><code>trv:machine-learning</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Matematica</td>
+<td><code>trv:matematica</code></td>
+<td>1.1 · Matematica</td>
+</tr>
+<tr class="odd">
+<td>Metafisica</td>
+<td><code>trv:metafisica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Metafisica Generale</td>
+<td><code>trv:metafisica-generale</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Metafisica del Gioco</td>
+<td><code>trv:metafisica-gioco</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Mitologia</td>
+<td><code>trv:mitologia</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Motore di ricerca ermeneutico</td>
+<td><code>trv:motore-ermeneutico</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Musica</td>
+<td><code>trv:musica</code></td>
+<td>6.4 · Arti e pratiche performative</td>
+</tr>
+<tr class="odd">
+<td>Neuroscienze</td>
+<td><code>trv:neuroscienze</code></td>
+<td>3.1 · Medicina di base</td>
+</tr>
+<tr class="even">
+<td>Ontologia</td>
+<td><code>trv:ontologia</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Ontologia Fondamentale</td>
+<td><code>trv:ontologia-fondamentale</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Politica</td>
+<td><code>trv:politica</code></td>
+<td>5.6 · Scienze politiche</td>
+</tr>
+<tr class="odd">
+<td>Programmazione filosofica</td>
+<td><code>trv:programmazione-filosofica</code></td>
+<td>1.2 · Informatica e informazione</td>
+</tr>
+<tr class="even">
+<td>Programmazione filosofica</td>
+<td><code>trv:programmazione-filosofica</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Psicanalisi</td>
+<td><code>trv:psicanalisi</code></td>
+<td>5.1 · Psicologia e cognizione</td>
+</tr>
+<tr class="even">
+<td>Psicolinguistica</td>
+<td><code>trv:psicolinguistica</code></td>
+<td>5.1 · Psicologia e cognizione</td>
+</tr>
+<tr class="odd">
+<td>Psicolinguistica</td>
+<td><code>trv:psicolinguistica-linguistica</code></td>
+<td>5.1 · Psicologia e cognizione</td>
+</tr>
+<tr class="even">
+<td>Psicologia</td>
+<td><code>trv:psicologia</code></td>
+<td>5.1 · Psicologia e cognizione</td>
+</tr>
+<tr class="odd">
+<td>Retorica</td>
+<td><code>trv:retorica</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="even">
+<td>Scienze Cognitive</td>
+<td><code>trv:scienze-cognitive</code></td>
+<td>5.1 · Psicologia e cognizione</td>
+</tr>
+<tr class="odd">
+<td>Scienze sociali</td>
+<td><code>trv:scienze-sociali</code></td>
+<td>5.9 · Altre scienze sociali</td>
+</tr>
+<tr class="even">
+<td>Semantica</td>
+<td><code>trv:semantica</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="odd">
+<td>Sociologia</td>
+<td><code>trv:sociologia</code></td>
+<td>5.4 · Sociologia</td>
+</tr>
+<tr class="even">
+<td>Storia</td>
+<td><code>trv:storia</code></td>
+<td>6.1 · Storia e archeologia</td>
+</tr>
+<tr class="odd">
+<td>Storia dell'Arte</td>
+<td><code>trv:storia-dellarte</code></td>
+<td>6.4 · Arti e pratiche performative</td>
+</tr>
+<tr class="even">
+<td>Storia della Filosofia</td>
+<td><code>trv:storia-della-filosofia</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="odd">
+<td>Storia delle Religioni</td>
+<td><code>trv:storia-delle-religioni</code></td>
+<td>6.3 · Filosofia, etica e religione</td>
+</tr>
+<tr class="even">
+<td>Storia delle Scienze</td>
+<td><code>trv:storia-delle-scienze</code></td>
+<td>6.1 · Storia e archeologia</td>
+</tr>
+<tr class="odd">
+<td>Studi Classici</td>
+<td><code>trv:studi-classici</code></td>
+<td>6.2 · Lingue e letterature</td>
+</tr>
+<tr class="even">
+<td>Teatro</td>
+<td><code>trv:teatro</code></td>
+<td>6.4 · Arti e pratiche performative</td>
+</tr>
+<tr class="odd">
+<td>Tecnologia</td>
+<td><code>trv:tecnologia</code></td>
+<td>2.11 · Altre ingegnerie e tecnologie</td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="legami-con-dubium">Legami con Dubium</h2>
+<p>Un legame <code>skos:related</code> fra una categoria e un concetto del manifesto è una lettura: propone con quale nozione di Dubium conviene leggere gli articoli di quella categoria. Non afferma che la categoria sia definita dal manifesto. Le letture più dirette sono quelle in cui il nome coincide: Ontologia Fondamentale e <code>dub:ontologiaFondamentale</code>, Ontologia Formale e <code>dub:ontologiaFormale</code>, Fenomenologia e <code>dub:ontologiaFenomenologica</code>. Altre esplicitano una funzione: la Grammatica rimanda a scrittura e testo, la Dialettica alla pratica dialogica e alla reminiscenza, la Retorica alla condivisione e all'esplicitezza, l'Informatica alla macchina concreta, l'Intelligenza Artificiale alla macchina astratta, la Grande Rete Semantica Mondiale al Web e al capitale semantico. La categoria Heidegger rimanda a <code>dub:problemaEssere</code> perché l'epigrafe di «Ontologia Fondamentale» nel sito è la prima pagina di <em>Essere e tempo</em>.</p>
+<!-- table:dubium -->
+
+<table>
+<thead>
+<tr class="header">
+<th>Concetto</th>
+<th>IRI</th>
+<th>Concetto di Dubium</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Autori</td>
+<td><code>trv:autori</code></td>
+<td><code>dub:esserci</code> · esserci</td>
+</tr>
+<tr class="even">
+<td>Canali</td>
+<td><code>trv:canali</code></td>
+<td><code>dub:criptaSito</code> · Cripta Semantica come sito</td>
+</tr>
+<tr class="odd">
+<td>Cibernetica</td>
+<td><code>trv:cibernetica</code></td>
+<td><code>dub:macchinaAstratta</code> · macchina astratta</td>
+</tr>
+<tr class="even">
+<td>Dialettica</td>
+<td><code>trv:dialettica</code></td>
+<td><code>dub:praticaDialogica</code> · pratica dialogica</td>
+</tr>
+<tr class="odd">
+<td>Dialettica</td>
+<td><code>trv:dialettica</code></td>
+<td><code>dub:reminiscenza</code> · reminiscenza</td>
+</tr>
+<tr class="even">
+<td>Epistemologia</td>
+<td><code>trv:epistemologia</code></td>
+<td><code>dub:scienzaTrasformazione</code> · scienza come trasformazione</td>
+</tr>
+<tr class="odd">
+<td>Epistemologia</td>
+<td><code>trv:epistemologia</code></td>
+<td><code>dub:teoria</code> · teoria</td>
+</tr>
+<tr class="even">
+<td>Fenomenologia</td>
+<td><code>trv:fenomenologia</code></td>
+<td><code>dub:ontologiaFenomenologica</code> · ontologia fenomenologica</td>
+</tr>
+<tr class="odd">
+<td>Filosofia Antica</td>
+<td><code>trv:filosofia-antica</code></td>
+<td><code>dub:esordioGreco</code> · esordio greco</td>
+</tr>
+<tr class="even">
+<td>Filosofia Prima</td>
+<td><code>trv:filosofia-prima</code></td>
+<td><code>dub:ontologiaFondamentale</code> · ontologia fondamentale</td>
+</tr>
+<tr class="odd">
+<td>Filosofia del Linguaggio</td>
+<td><code>trv:filosofia-del-linguaggio</code></td>
+<td><code>dub:enunciato</code> · enunciato</td>
+</tr>
+<tr class="even">
+<td>Filosofia della Matematica</td>
+<td><code>trv:filosofia-della-matematica</code></td>
+<td><code>dub:quantificazioneOntologica</code> · quantificazione ontologica</td>
+</tr>
+<tr class="odd">
+<td>Gnoseologia</td>
+<td><code>trv:gnoseologia</code></td>
+<td><code>dub:concettualizzazione</code> · concettualizzazione</td>
+</tr>
+<tr class="even">
+<td>Grammatica</td>
+<td><code>trv:grammatica</code></td>
+<td><code>dub:scrittura</code> · scrittura</td>
+</tr>
+<tr class="odd">
+<td>Grammatica</td>
+<td><code>trv:grammatica</code></td>
+<td><code>dub:testo</code> · testo</td>
+</tr>
+<tr class="even">
+<td>Grande Rete Semantica Mondiale</td>
+<td><code>trv:www-semantico</code></td>
+<td><code>dub:capitaleSemantico</code> · capitale semantico</td>
+</tr>
+<tr class="odd">
+<td>Grande Rete Semantica Mondiale</td>
+<td><code>trv:www-semantico</code></td>
+<td><code>dub:web</code> · Rete di Portata Mondiale</td>
+</tr>
+<tr class="even">
+<td>Heidegger</td>
+<td><code>trv:heidegger</code></td>
+<td><code>dub:problemaEssere</code> · problema dell'essere</td>
+</tr>
+<tr class="odd">
+<td>Informatica</td>
+<td><code>trv:informatica</code></td>
+<td><code>dub:macchinaConcreta</code> · macchina concreta</td>
+</tr>
+<tr class="even">
+<td>Intelligenza Artificiale</td>
+<td><code>trv:intelligenza-artificiale</code></td>
+<td><code>dub:macchinaAstratta</code> · macchina astratta</td>
+</tr>
+<tr class="odd">
+<td>Logica</td>
+<td><code>trv:logica</code></td>
+<td><code>dub:giudizio</code> · giudizio</td>
+</tr>
+<tr class="even">
+<td>Logica</td>
+<td><code>trv:logica</code></td>
+<td><code>dub:strutturaLogica</code> · struttura logica</td>
+</tr>
+<tr class="odd">
+<td>Logica</td>
+<td><code>trv:logica-dialettica</code></td>
+<td><code>dub:giudizio</code> · giudizio</td>
+</tr>
+<tr class="even">
+<td>Logica</td>
+<td><code>trv:logica-dialettica</code></td>
+<td><code>dub:strutturaLogica</code> · struttura logica</td>
+</tr>
+<tr class="odd">
+<td>Matematica</td>
+<td><code>trv:matematica</code></td>
+<td><code>dub:reminiscenza</code> · reminiscenza</td>
+</tr>
+<tr class="even">
+<td>Metafisica</td>
+<td><code>trv:metafisica</code></td>
+<td><code>dub:metafisicaOccidentale</code> · metafisica occidentale</td>
+</tr>
+<tr class="odd">
+<td>Metafisica Generale</td>
+<td><code>trv:metafisica-generale</code></td>
+<td><code>dub:metafisicaOccidentale</code> · metafisica occidentale</td>
+</tr>
+<tr class="even">
+<td>Notizie</td>
+<td><code>trv:notizie</code></td>
+<td><code>dub:articolo</code> · articolo come artefatto</td>
+</tr>
+<tr class="odd">
+<td>Ontologia</td>
+<td><code>trv:ontologia</code></td>
+<td><code>dub:ontologiaEnte</code> · ontologia dell'ente</td>
+</tr>
+<tr class="even">
+<td>Ontologia Fondamentale</td>
+<td><code>trv:ontologia-fondamentale</code></td>
+<td><code>dub:ontologiaFondamentale</code> · ontologia fondamentale</td>
+</tr>
+<tr class="odd">
+<td>Ontologia Fondamentale</td>
+<td><code>trv:ontologia-fondamentale</code></td>
+<td><code>dub:problemaSensoEssere</code> · problema del senso dell'essere</td>
+</tr>
+<tr class="even">
+<td>Ontologia Formale</td>
+<td><code>trv:ontologia-formale</code></td>
+<td><code>dub:ontologiaFormale</code> · ontologia formale fenomenologica</td>
+</tr>
+<tr class="odd">
+<td>Ontologia e Semantica</td>
+<td><code>trv:ontologia-e-semantica</code></td>
+<td><code>dub:ontologiaInformatica</code> · ontologia informatica</td>
+</tr>
+<tr class="even">
+<td>Ontologia e Semantica</td>
+<td><code>trv:ontologia-e-semantica</code></td>
+<td><code>dub:significato</code> · significato computabile</td>
+</tr>
+<tr class="odd">
+<td>Programmazione filosofica</td>
+<td><code>trv:programmazione-filosofica</code></td>
+<td><code>dub:codiceSviluppo</code> · codice di sviluppo</td>
+</tr>
+<tr class="even">
+<td>Programmazione filosofica</td>
+<td><code>trv:programmazione-filosofica</code></td>
+<td><code>dub:iperscritturaConsapevole</code> · iperscrittura consapevole</td>
+</tr>
+<tr class="odd">
+<td>Recensioni</td>
+<td><code>trv:recensioni</code></td>
+<td><code>dub:articolo</code> · articolo come artefatto</td>
+</tr>
+<tr class="even">
+<td>Retorica</td>
+<td><code>trv:retorica</code></td>
+<td><code>dub:condivisione</code> · condivisione</td>
+</tr>
+<tr class="odd">
+<td>Retorica</td>
+<td><code>trv:retorica</code></td>
+<td><code>dub:esplicitezza</code> · esplicitezza</td>
+</tr>
+<tr class="even">
+<td>Semantica</td>
+<td><code>trv:semantica</code></td>
+<td><code>dub:significato</code> · significato computabile</td>
+</tr>
+<tr class="odd">
+<td>Stanza degli Articoli</td>
+<td><code>trv:stanza-degli-articoli</code></td>
+<td><code>dub:articolo</code> · articolo come artefatto</td>
+</tr>
+<tr class="even">
+<td>Stanza del Laboratorio Algoritmico</td>
+<td><code>trv:stanza-del-laboratorio-algoritmico</code></td>
+<td><code>dub:notaIpertestuale</code> · nota ipertestuale</td>
+</tr>
+<tr class="odd">
+<td>Stanza del Progetto</td>
+<td><code>trv:stanza-del-progetto</code></td>
+<td><code>dub:gettatezza</code> · gettatezza</td>
+</tr>
+<tr class="even">
+<td>Stanza del Progetto</td>
+<td><code>trv:stanza-del-progetto</code></td>
+<td><code>dub:progettoCripta</code> · progetto della Cripta</td>
+</tr>
+<tr class="odd">
+<td>Stanza della Rosa Blu</td>
+<td><code>trv:stanza-della-rosa-blu</code></td>
+<td><code>dub:praticaDialogica</code> · pratica dialogica</td>
+</tr>
+<tr class="even">
+<td>Stanza di FINAI</td>
+<td><code>trv:stanza-di-finai</code></td>
+<td><code>dub:criptaSito</code> · Cripta Semantica come sito</td>
+</tr>
+<tr class="odd">
+<td>Storia dell'essere</td>
+<td><code>trv:storia-dellessere</code></td>
+<td><code>dub:pensieroOccidentale</code> · pensiero occidentale</td>
+</tr>
+<tr class="even">
+<td>Storia dell'essere</td>
+<td><code>trv:storia-dellessere</code></td>
+<td><code>dub:sensoEssere</code> · senso dell'essere</td>
+</tr>
+<tr class="odd">
+<td>Storia della Filosofia</td>
+<td><code>trv:storia-della-filosofia</code></td>
+<td><code>dub:filosofia</code> · filosofia</td>
+</tr>
+<tr class="even">
+<td>Storia della Filosofia</td>
+<td><code>trv:storia-della-filosofia</code></td>
+<td><code>dub:tradizioneTestuale</code> · tradizione testuale</td>
+</tr>
+<tr class="odd">
+<td>Web Semantico</td>
+<td><code>trv:web-semantico</code></td>
+<td><code>dub:ontologiaInformatica</code> · ontologia informatica</td>
+</tr>
+<tr class="even">
+<td>Web Semantico</td>
+<td><code>trv:web-semantico</code></td>
+<td><code>dub:organizzazioneSemantica</code> · organizzazione semantica</td>
+</tr>
+</tbody>
+</table>
+<!-- /table -->
+
+<h2 id="le-stanze">Le stanze</h2>
+<p>Le nove stanze non sono categorie: sono i luoghi allegorici che il sito descrive nei testi alternativi delle sue immagini e nei testi delle pagine. Ogni stanza conserva come fonte la pagina in cui compare e una nota d'ambito che ne riassume l'iconografia. Due stanze, Interpretazione e Giustizia, sono soltanto nominate come portali: la nota lo dichiara. La stanza degli Articoli prende il nome dalla frase «dalla corrente stanza della Cripta Semantica» con cui la pagina presenta la rete degli articoli.</p>
+<h2 id="vincoli-shacl">Vincoli SHACL</h2>
+<p>Le <a href="shapes.ttl">forme</a> controllano, per ogni concetto: tre etichette preferite con lingue distinte, uno schema, una notazione in minuscolo, una fonte sul dominio del sito, note d'ambito con lingue distinte, corrispondenze solo verso Wikidata, nessuna <code>skos:exactMatch</code>, ponti solo verso i campi FORD di Metrum, e la regola per cui un concetto è di vertice oppure ha un padre nello stesso schema (vincolo SPARQL). Per le categorie è richiesto l'identificativo WordPress. Il programma di verifica prova cinque alterazioni di Trivium (etichetta latina assente, corrispondenza non Wikidata, equivalenza vietata, concetto senza schema, padre in un altro schema), tutte respinte.</p>
+<h2 id="interrogazioni-di-esempio">Interrogazioni di esempio</h2>
+<p>Discipline che il sito colloca nel trivio, con la corrispondenza Wikidata:</p>
+<pre class="sparql"><code>PREFIX trv: &lt;https://aenigma.criptasemantica.it/trivium#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+SELECT ?arte ?wikidata WHERE {
+  trv:trivio skos:member ?arte .
+  ?arte skos:closeMatch ?wikidata .
+}</code></pre>
+<p>Discipline che hanno un ponte verso il campo FORD «Filosofia, etica e religione»:</p>
+<pre class="sparql"><code>PREFIX trv: &lt;https://aenigma.criptasemantica.it/trivium#&gt;
+PREFIX mtr: &lt;https://aenigma.criptasemantica.it/metrum#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+SELECT ?nome WHERE {
+  ?disciplina skos:broadMatch mtr:ford-6-3 ; skos:prefLabel ?nome .
+  FILTER ( lang(?nome) = &quot;it&quot; )
+} ORDER BY ?nome</code></pre>
+<p>Categorie da leggere con il concetto di ontologia fondamentale:</p>
+<pre class="sparql"><code>PREFIX trv: &lt;https://aenigma.criptasemantica.it/trivium#&gt;
+PREFIX dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt;
+PREFIX skos: &lt;http://www.w3.org/2004/02/skos/core#&gt;
+SELECT ?categoria WHERE { ?categoria skos:related dub:ontologiaFondamentale }</code></pre>
+<h2 id="limiti">Limiti</h2>
+<p>Le categorie di un sito cambiano: Trivium fotografa una data e la dichiara. Le traduzioni e le corrispondenze sono scelte editoriali rivedibili. Le descrizioni esistono solo dove l'autore le ha scritte. I ponti FORD servono alla scientometria di Metrum e non pretendono di classificare la filosofia. Il modulo non registra quanti articoli stanno in una categoria, né quali: questo lavoro spetta al servizio semantico del sito.</p>
+</article></main>
+  <footer>
+    <nav class="footer-nav" aria-label="Collegamenti nel piè di pagina">
+      <a href="../index.html">Aenigma</a>
+      <a href="https://criptasemantica.it/">Cripta Semantica</a>
+      <a href="../index.html#nav-policies">Informazioni legali</a>
+    </nav>
+  </footer>
+</div>
+</body>
+</html>

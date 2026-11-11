@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/Storica.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/Storica.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/Storica.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/Storica.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/Storica.html" lang="it" hreflang="it" data-language>Italiano</a><a href="Storica.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/Storica.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#values">Modes, statuses and forces</a>
 </nav>
 <article class="term" id="Storica">
@@ -32,12 +33,14 @@
   <h1><span>historical claim in the text</span></h1>
   <p class="identifier"><code>dub:Storica</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#Storica</code></p>
-  <div class="term-description terminal-panel"><dl><dt>Occurs in</dt><dd><a href="../term/F03.html"><span>Locating the beginning</span></a>, <a href="../term/F06.html"><span>Tradition up to the turning point</span></a>, <a href="../term/F07.html"><span>Abstract machine, hyperhistory and infosphere</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><dl><dt>Occurs in</dt><dd><a href="F03.html"><span>Locating the beginning</span></a>, <a href="F06.html"><span>Tradition up to the turning point</span></a>, <a href="F07.html"><span>Abstract machine, hyperhistory and infosphere</span></a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:Storica a dub:Force .
-dub:Storica &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;affermazione storica del testo&quot;@it .
-dub:Storica &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;assertio historica textus&quot;@la .</code></pre></section>
+dub:Storica rdfs:label &quot;affermazione storica del testo&quot;@it .
+dub:Storica rdfs:label &quot;assertio historica textus&quot;@la .</code></pre></section>
   <p><a href="../index.html#Storica">Find this entry in the catalogue</a></p>
 </article></main>
   <footer>

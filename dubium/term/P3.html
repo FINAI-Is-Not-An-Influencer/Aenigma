@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · Iperscrittura, Web e capitale semantico</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/term/P3.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/P3.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/P3.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/P3.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../trivium/index.html">Trivium</a><a href="../../metrum/index.html">Metrum</a><a href="../../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="P3.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="../en/term/P3.html" lang="en" hreflang="en" data-language>English</a><a href="../la/term/P3.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Percorso della scheda">
-  <a href="../index.html">Catalogo</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#passages">Passi e fonti</a>
 </nav>
 <article class="term" id="P3">
@@ -32,12 +33,14 @@
   <h1><span>Iperscrittura, Web e capitale semantico</span></h1>
   <p class="identifier"><code>dub:P3</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#P3</code></p>
-  <div class="term-description terminal-panel"><p><span>Iperscrittura della ricerca ontologica, terzo capoverso.</span></p><dl><dt>Fonte</dt><dd><a href="https://criptasemantica.it/"><span>Manifesto della Cripta Semantica</span></a></dd><dt>Compare in</dt><dd><a href="../term/F10.html"><span>Analogia fra storia e iperstoria</span></a>, <a href="../term/F11.html"><span>I due livelli dell&#x27;iperscrittura</span></a>, <a href="../term/F12.html"><span>Orientamento del Web</span></a>, <a href="../term/F13.html"><span>Come si costituisce il capitale semantico</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>Iperscrittura della ricerca ontologica, terzo capoverso.</span></p><dl><dt>Fonte</dt><dd><a href="https://criptasemantica.it/" rel="external"><span>Manifesto della Cripta Semantica</span></a></dd><dt>Compare in</dt><dd><a href="F10.html"><span>Analogia fra storia e iperstoria</span></a>, <a href="F11.html"><span>I due livelli dell&#x27;iperscrittura</span></a>, <a href="F12.html"><span>Orientamento del Web</span></a>, <a href="F13.html"><span>Come si costituisce il capitale semantico</span></a></dd></dl></div>
 <section><h2>Esempio in Turtle</h2><p>Estratto dal grafo pubblicato.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:P3 a dub:Passage .
-dub:P3 &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Hyperscriptura, Rete et capitale semanticum&quot;@la .
-dub:P3 &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Hyperwriting, Web and semantic capital&quot;@en .</code></pre></section>
+dub:P3 rdfs:label &quot;Hyperscriptura, Rete et capitale semanticum&quot;@la .
+dub:P3 rdfs:label &quot;Hyperwriting, Web and semantic capital&quot;@en .</code></pre></section>
   <p><a href="../index.html#P3">Ritrova questa voce nel catalogo</a></p>
 </article></main>
   <footer>

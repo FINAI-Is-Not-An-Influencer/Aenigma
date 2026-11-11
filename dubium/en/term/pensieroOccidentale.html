@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/en/term/pensieroOccidentale.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/pensieroOccidentale.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/pensieroOccidentale.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/pensieroOccidentale.html">
 <link rel="stylesheet" href="../../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Aenigma navigation"><a href="../../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../../trivium/en/index.html">Trivium</a><a href="../../../metrum/en/index.html">Metrum</a><a href="../../../en/documentazione.html">Documentation</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/EN">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogue</a><a href="../schema.html">Hierarchy and properties</a><a href="../guide.html">Beginner’s guide</a><a href="../formal.html">Formalisation</a></nav>
     <nav class="site-languages" aria-label="Languages"><a href="../../term/pensieroOccidentale.html" lang="it" hreflang="it" data-language>Italiano</a><a href="pensieroOccidentale.html" lang="en" hreflang="en" data-language aria-current="page">English</a><a href="../../la/term/pensieroOccidentale.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Entry path">
-  <a href="../index.html">Catalogue</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#concepts">Concepts</a>
 </nav>
 <article class="term" id="pensieroOccidentale">
@@ -32,12 +33,14 @@
   <h1><span>Western thought</span></h1>
   <p class="identifier"><code>dub:pensieroOccidentale</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#pensieroOccidentale</code></p>
-  <div class="term-description terminal-panel"><p><span>The tradition whose beginnings the manifesto narrates.</span></p><dl><dt>Occurs in</dt><dd><a href="../term/F02.html"><span>The need to pose the question</span></a>, <a href="../term/F03.html"><span>Locating the beginning</span></a>, <a href="../term/F04.html"><span>Oral philosophy and written transmission</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>The tradition whose beginnings the manifesto narrates.</span></p><dl><dt>Occurs in</dt><dd><a href="F02.html"><span>The need to pose the question</span></a>, <a href="F03.html"><span>Locating the beginning</span></a>, <a href="F04.html"><span>Oral philosophy and written transmission</span></a></dd></dl></div>
 <section><h2>Turtle example</h2><p>Extract from the published graph.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:pensieroOccidentale a dub:Concept .
-dub:pensieroOccidentale &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;Western thought&quot;@en .
-dub:pensieroOccidentale &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;cogitatio occidentalis&quot;@la .</code></pre></section>
+dub:pensieroOccidentale rdfs:label &quot;Western thought&quot;@en .
+dub:pensieroOccidentale rdfs:label &quot;cogitatio occidentalis&quot;@la .</code></pre></section>
   <p><a href="../index.html#pensieroOccidentale">Find this entry in the catalogue</a></p>
 </article></main>
   <footer>

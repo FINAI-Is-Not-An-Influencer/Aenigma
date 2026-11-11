@@ -6,12 +6,12 @@
 <meta name="color-scheme" content="dark">
 <meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; style-src &#x27;self&#x27;; script-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;; object-src &#x27;none&#x27;">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Un’ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l’essere.">
+<meta name="description" content="Un&#x27;ontologia web per leggere il manifesto della Cripta Semantica. Segui un concetto, risali al passo che lo sostiene e confronta i modi in cui il testo interroga l&#x27;essere.">
 <title>Dubium · ontologia informatica</title>
 <link rel="canonical" href="https://aenigma.criptasemantica.it/dubium/term/ontologiaInformatica.html">
 <link rel="alternate" hreflang="it" href="https://aenigma.criptasemantica.it/dubium/term/ontologiaInformatica.html"><link rel="alternate" hreflang="en" href="https://aenigma.criptasemantica.it/dubium/en/term/ontologiaInformatica.html"><link rel="alternate" hreflang="la" href="https://aenigma.criptasemantica.it/dubium/la/term/ontologiaInformatica.html">
 <link rel="stylesheet" href="../../style.css?v=f4fcaa0cc2ec">
-<link rel="stylesheet" href="../site.css?v=30936f0da44f">
+<link rel="stylesheet" href="../../reference.css?v=30936f0da44f">
 
 </head>
 <body class="reference-page">
@@ -19,12 +19,13 @@
 <div class="container">
   <header>
     <p class="site-brand">AENIGMA</p>
-    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav" aria-label="Navigazione Aenigma"><a href="../../index.html">Aenigma</a><a href="../index.html" aria-current="page">Dubium</a><a href="../../trivium/index.html">Trivium</a><a href="../../metrum/index.html">Metrum</a><a href="../../documentazione.html">Documentazione</a><a href="https://github.com/FINAI-Is-Not-An-Influencer/Aenigma/wiki/IT">Wiki</a></nav>
+    <nav class="site-nav module-nav" aria-label="Dubium"><a href="../index.html">Catalogo</a><a href="../schema.html">Gerarchia e proprietà</a><a href="../guide.html">Guida per iniziare</a><a href="../formal.html">Formalizzazione</a></nav>
     <nav class="site-languages" aria-label="Lingue"><a href="ontologiaInformatica.html" lang="it" hreflang="it" data-language aria-current="page">Italiano</a><a href="../en/term/ontologiaInformatica.html" lang="en" hreflang="en" data-language>English</a><a href="../la/term/ontologiaInformatica.html" lang="la" hreflang="la" data-language>Latine</a></nav>
   </header>
   <main id="main">
 <nav class="breadcrumbs" aria-label="Percorso della scheda">
-  <a href="../index.html">Catalogo</a>
+  <a href="../index.html">Dubium</a>
   <a href="../index.html#concepts">Concetti</a>
 </nav>
 <article class="term" id="ontologiaInformatica">
@@ -32,12 +33,14 @@
   <h1><span>ontologia informatica</span></h1>
   <p class="identifier"><code>dub:ontologiaInformatica</code></p>
   <p class="term-iri"><span>IRI</span> <code>https://aenigma.criptasemantica.it/dubium#ontologiaInformatica</code></p>
-  <div class="term-description terminal-panel"><p><span>Specificazione formale ed esplicita di una concettualizzazione condivisa.</span></p><dl><dt>Compare in</dt><dd><a href="../term/F13.html"><span>Come si costituisce il capitale semantico</span></a>, <a href="../term/F14.html"><span>Specificazione formale, esplicita e condivisa</span></a>, <a href="../term/F15.html"><span>Riflessività della possibilità di trasmissione</span></a>, <a href="../term/F17.html"><span>Dipendenza dell&#x27;informatica dall&#x27;analitica</span></a>, <a href="../term/F20.html"><span>Duplice esigenza di quantificazione</span></a>, <a href="../term/F26.html"><span>L&#x27;ente trattato ontologicamente nella metafisica</span></a>, <a href="../term/X03.html"><span>Direzioni della fondazione</span></a></dd></dl></div>
+  <div class="term-description terminal-panel"><p><span>Specificazione formale ed esplicita di una concettualizzazione condivisa.</span></p><dl><dt>Compare in</dt><dd><a href="F13.html"><span>Come si costituisce il capitale semantico</span></a>, <a href="F14.html"><span>Specificazione formale, esplicita e condivisa</span></a>, <a href="F15.html"><span>Riflessività della possibilità di trasmissione</span></a>, <a href="F17.html"><span>Dipendenza dell&#x27;informatica dall&#x27;analitica</span></a>, <a href="F20.html"><span>Duplice esigenza di quantificazione</span></a>, <a href="F26.html"><span>L&#x27;ente trattato ontologicamente nella metafisica</span></a>, <a href="X03.html"><span>Direzioni della fondazione</span></a></dd></dl></div>
 <section><h2>Esempio in Turtle</h2><p>Estratto dal grafo pubblicato.</p><pre><code>@prefix dub: &lt;https://aenigma.criptasemantica.it/dubium#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
 
 dub:ontologiaInformatica a dub:Concept .
-dub:ontologiaInformatica &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;computational ontology&quot;@en .
-dub:ontologiaInformatica &lt;http://www.w3.org/2000/01/rdf-schema#label&gt; &quot;ontologia informatica&quot;@it .</code></pre></section>
+dub:ontologiaInformatica rdfs:label &quot;computational ontology&quot;@en .
+dub:ontologiaInformatica rdfs:label &quot;ontologia informatica&quot;@it .</code></pre></section>
   <p><a href="../index.html#ontologiaInformatica">Ritrova questa voce nel catalogo</a></p>
 </article></main>
   <footer>
